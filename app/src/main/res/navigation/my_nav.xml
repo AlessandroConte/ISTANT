@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/activitiesFragment">
+
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="com.is.istant.ActivitiesFragment"
+        android:label="fragment_activities"
+        tools:layout="@layout/fragment_activities" />
+    <fragment
+        android:id="@+id/loansFragment"
+        android:name="com.is.istant.LoansFragment"
+        android:label="fragment_loans"
+        tools:layout="@layout/fragment_loans" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.is.istant.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.is.istant.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/grInfoFragment"
+        android:name="com.is.istant.GrInfoFragment"
+        android:label="fragment_gr_info"
+        tools:layout="@layout/fragment_gr_info" />
+</navigation>
