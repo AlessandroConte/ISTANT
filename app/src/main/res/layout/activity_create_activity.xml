@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateActivityActivity">
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:text="Nome"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="64dp" />
+
+    <EditText
+        android:id="@+id/creaAttivita_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="173dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Dove"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:layout_editor_absoluteX="64dp" />
+
+    <EditText
+        android:id="@+id/creaAttivita_dove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/creaAttivita_nome"
+        tools:layout_editor_absoluteX="173dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="Quando?"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        tools:layout_editor_absoluteX="62dp" />
+
+    <EditText
+        android:id="@+id/cfeaAttivita_quando"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/creaAttivita_dove"
+        tools:layout_editor_absoluteX="173dp" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="71dp"
+        android:text="Descrizione"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        tools:layout_editor_absoluteX="64dp" />
+
+    <EditText
+        android:id="@+id/creaAttivita_descrizione"
+        android:layout_width="211dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/cfeaAttivita_quando"
+        tools:layout_editor_absoluteX="172dp" />
+
+    <Button
+        android:id="@+id/creaAttivita_btn_crea"
+        android:layout_width="152dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#FB9A40"
+        android:text="Crea Attività"
+        app:layout_constraintTop_toBottomOf="@+id/creaAttivita_descrizione"
+        tools:layout_editor_absoluteX="129dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
