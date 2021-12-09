@@ -30,13 +30,14 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="30dp"
+        android:windowSoftInputMode="adjustResize|adjustPan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_cercaUtente"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/textView24"
