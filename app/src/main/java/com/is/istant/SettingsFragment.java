@@ -62,7 +62,8 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.user_image);
+        ImageView image = (ImageView)rootView.findViewById(R.id.user_image);
+        image.setImageResource(R.drawable.ic_user);
 
         return rootView;
     }
