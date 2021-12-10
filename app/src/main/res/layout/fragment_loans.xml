@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ListView
-            android:id="@+id/loans_list"
+            android:id="@+id/android:list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
@@ -31,7 +31,7 @@
             android:layout_marginTop="130dp"
             android:text="Lista prestiti"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/loans_list"
+            app:layout_constraintBottom_toTopOf="@+id/android:list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.071"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
             android:layout_marginEnd="42dp"
             android:text="I miei"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/loans_list"
+            app:layout_constraintBottom_toTopOf="@+id/android:list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView25"

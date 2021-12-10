@@ -3,19 +3,22 @@ package com.is.istant;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ActivitiesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ActivitiesFragment extends Fragment {
+public class ActivitiesFragment extends ListFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,12 +30,29 @@ public class ActivitiesFragment extends Fragment {
     private String mParam2;
 
     ListView l;
-    String activities_list[]
-            = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
+    private String activitiesNames[] = {
+            "Prestito 1",
+            "Prestito 2",
+            "Prestito 3",
+            "Prestito 4"
+    };
+
+    private Integer imageid[] = {
+            R.drawable.gr_info,
+            R.drawable.ic_user,
+            R.drawable.gr_info,
+            R.drawable.ic_user
+
+    };
+
+    private String activitiesRates[] = {
+            "Prestito 1",
+            "Prestito 2",
+            "Prestito 3",
+            "Prestito 4"
+    };
+
+
 
     public ActivitiesFragment() {
         // Required empty public constructor
@@ -71,10 +91,22 @@ public class ActivitiesFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
 
+        /*
         l = rootView.findViewById(R.id.activities_list);
         ArrayAdapter<String> arr;
         arr = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, activities_list);
-        l.setAdapter(arr);
+        l.setAdapter(arr); */
+
+        ListView listView=(ListView)rootView.findViewById(android.R.id.list);
+
+        CustomActivitiesList customActivitiesList = new CustomActivitiesList(getActivity(), activitiesNames, activitiesRates, imageid);
+        listView.setAdapter(customActivitiesList);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(getActivity().getApplicationContext(),"You Selected "+ " as Country",Toast.LENGTH_SHORT).show();        }
+        });
 
         return rootView;
     }
