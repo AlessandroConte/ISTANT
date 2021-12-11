@@ -29,7 +29,7 @@ public class CustomLoansList extends ArrayAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         if(convertView==null)
             row = inflater.inflate(R.layout.layout_view_adapter, null, true);
-        TextView textViewList = (TextView) row.findViewById(R.id.list_text);
+        TextView textViewList = (TextView) row.findViewById(R.id.list_text_loans);
         ImageView imageList = (ImageView) row.findViewById(R.id.list_image);
         textViewList.setText(loansNames[position]);
         imageList.setImageResource(imageid[position]);

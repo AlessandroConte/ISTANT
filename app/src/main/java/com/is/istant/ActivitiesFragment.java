@@ -46,10 +46,10 @@ public class ActivitiesFragment extends ListFragment {
     };
 
     private String activitiesRates[] = {
-            "Prestito 1",
-            "Prestito 2",
-            "Prestito 3",
-            "Prestito 4"
+            "1",
+            "2",
+            "3",
+            "4"
     };
 
 

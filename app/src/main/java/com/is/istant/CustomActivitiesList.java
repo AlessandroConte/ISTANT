@@ -35,7 +35,7 @@ public class CustomActivitiesList extends ArrayAdapter {
         TextView textViewList2 = (TextView) row.findViewById(R.id.rating_text);
         ImageView imageList = (ImageView) row.findViewById(R.id.list_image);
         textViewList.setText(activitiesNames[position]);
-        textViewList.setText(activitiesRates[position]);
+        textViewList2.setText(activitiesRates[position]);
         imageList.setImageResource(imageid[position]);
         return  row;
     }
