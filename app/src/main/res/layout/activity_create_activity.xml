@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="Dove"
+        android:text="Luogo"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         tools:layout_editor_absoluteX="64dp" />
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
-        android:text="Quando?"
+        android:text="Data inizio"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         tools:layout_editor_absoluteX="62dp" />
 

@@ -41,7 +41,7 @@
         android:layout_width="72dp"
         android:layout_height="55dp"
         android:layout_marginTop="36dp"
-        android:text="Per quanto tempo?"
+        android:text="Durata"
         app:layout_constraintTop_toBottomOf="@+id/textView20"
         tools:layout_editor_absoluteX="62dp" />
 
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="49dp"
-        android:text="Who?"
+        android:text="Chi"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
         tools:layout_editor_absoluteX="62dp" />
 

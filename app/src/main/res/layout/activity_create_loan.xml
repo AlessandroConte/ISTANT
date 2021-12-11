@@ -44,7 +44,7 @@
         android:id="@+id/textView9"
         android:layout_width="72dp"
         android:layout_height="59dp"
-        android:text="Per quanto tempo? (gg)"
+        android:text="Durata"
         tools:layout_editor_absoluteX="41dp"
         tools:layout_editor_absoluteY="318dp" />
 

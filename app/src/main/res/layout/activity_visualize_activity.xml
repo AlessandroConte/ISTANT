@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="175dp"
-        android:text="Dove"
+        android:text="Luogo"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="50dp" />
 
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="47dp"
-        android:text="Quando?"
+        android:text="Quando"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:layout_editor_absoluteX="50dp" />
 
@@ -83,23 +83,15 @@
         app:layout_constraintTop_toBottomOf="@+id/out_descrizione"
         tools:layout_editor_absoluteX="158dp" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:text="Foto"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:layout_editor_absoluteX="52dp" />
-
     <Button
         android:id="@+id/id_partecipa"
         android:layout_width="118dp"
         android:layout_height="47dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginBottom="85dp"
         android:backgroundTint="#FB9A40"
         android:text="Partecipa"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
