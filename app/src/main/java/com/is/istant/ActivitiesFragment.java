@@ -31,13 +31,29 @@ public class ActivitiesFragment extends ListFragment {
 
     ListView l;
     private String activitiesNames[] = {
-            "Prestito 1",
-            "Prestito 2",
-            "Prestito 3",
-            "Prestito 4"
+            "Attività 1",
+            "Attività 2",
+            "Attività 3",
+            "Attività 4",
+            "Attività 5",
+            "Attività 6",
+            "Attività 7",
+            "Attività 8",
+            "Attività 9",
+            "Attività 10",
+            "Attività 111111111111111",
+            "Gioco playstation 5"
     };
 
     private Integer imageid[] = {
+            R.drawable.gr_info,
+            R.drawable.ic_user,
+            R.drawable.gr_info,
+            R.drawable.ic_user,
+            R.drawable.gr_info,
+            R.drawable.ic_user,
+            R.drawable.gr_info,
+            R.drawable.ic_user,
             R.drawable.gr_info,
             R.drawable.ic_user,
             R.drawable.gr_info,
@@ -46,10 +62,18 @@ public class ActivitiesFragment extends ListFragment {
     };
 
     private String activitiesRates[] = {
-            "1",
-            "2",
-            "3",
-            "4"
+            "1.0",
+            "2.0",
+            "3.0",
+            "4.0",
+            "3.6",
+            "4.2",
+            "3.0",
+            "3.4",
+            "2.1",
+            "2.4",
+            "3.7",
+            "4.0"
     };
 
 
