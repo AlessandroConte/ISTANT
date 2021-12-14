@@ -133,7 +133,8 @@ public class ActivitiesFragment extends ListFragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(getActivity().getApplicationContext(),"You Selected "+ " as Country",Toast.LENGTH_SHORT).show();        }
+                Toast.makeText(getActivity().getApplicationContext(),"You Selected "+ " as Country",Toast.LENGTH_SHORT).show();
+            }
         });
 
         FloatingActionButton fab = rootView.findViewById(R.id.fab_act);
@@ -141,6 +142,8 @@ public class ActivitiesFragment extends ListFragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ActivitiesFragment.this.getActivity(), CreateActivityActivity.class));
+                //startActivity(new Intent(ActivitiesFragment.this.getActivity(), VisualizeActivityActivity.class));
+
             }
         });
 

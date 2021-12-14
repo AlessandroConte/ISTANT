@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="291dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="120dp"
         android:text="Visualizza Prestito"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,74 +21,107 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="48dp"
         android:text="Nome"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
-        tools:layout_editor_absoluteX="62dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintEnd_toStartOf="@+id/visualizeLoan_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <EditText
         android:id="@+id/visualizeLoan_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
         android:layout_marginTop="51dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="39dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
-        tools:layout_editor_absoluteX="162dp" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="72dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="56dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginBottom="51dp"
         android:text="Durata"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
-        tools:layout_editor_absoluteX="62dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView22"
+        app:layout_constraintEnd_toStartOf="@+id/visualizeLoan_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <EditText
         android:id="@+id/visualizeLoan_time"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="27dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/visualizeLoan_description"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/visualizeLoan_name"
-        tools:layout_editor_absoluteX="164dp" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="43dp"
         android:text="Descrizione"
-        app:layout_constraintTop_toBottomOf="@+id/textView21"
-        tools:layout_editor_absoluteX="62dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView23"
+        app:layout_constraintEnd_toStartOf="@+id/visualizeLoan_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/visualizeLoan_description" />
 
     <EditText
         android:id="@+id/visualizeLoan_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="337dp" />
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/visualizeLoan_who"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84000003"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="26dp"
         android:text="Chi"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        tools:layout_editor_absoluteX="62dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/visualizeLoan_who"
+        app:layout_constraintEnd_toStartOf="@+id/visualizeLoan_who"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/visualizeLoan_description" />
 
     <EditText
         android:id="@+id/visualizeLoan_who"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginBottom="250dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/visualizeLoan_description"
-        tools:layout_editor_absoluteX="162dp" />
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

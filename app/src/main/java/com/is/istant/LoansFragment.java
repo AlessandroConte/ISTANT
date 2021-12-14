@@ -122,7 +122,9 @@ public class LoansFragment extends ListFragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(getActivity().getApplicationContext(),"You Selected "+ " as Country",Toast.LENGTH_SHORT).show();        }
+                Toast.makeText(getActivity().getApplicationContext(),"You Selected "+ " as Country",Toast.LENGTH_SHORT).show();
+                startActivity((new Intent(LoansFragment.this.getActivity(), VisualizeLoan.class)));
+            }
         });
 
         FloatingActionButton fab = rootView.findViewById(R.id.fab_loan);
