@@ -1,5 +1,6 @@
 package com.is.istant;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -130,6 +134,14 @@ public class ActivitiesFragment extends ListFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Toast.makeText(getActivity().getApplicationContext(),"You Selected "+ " as Country",Toast.LENGTH_SHORT).show();        }
+        });
+
+        FloatingActionButton fab = rootView.findViewById(R.id.fab_act);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivitiesFragment.this.getActivity(), CreateActivityActivity.class));
+            }
         });
 
         return rootView;
