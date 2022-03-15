@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:id="@+id/grInfoFragment" android:title="Info Gruppo" android:icon="@drawable/ic_info"/>
-    <item android:id="@+id/loansFragment" android:title="Prestiti" android:icon="@drawable/ic_loan" />
-    <item android:id="@+id/searchFragment" android:title="Cerca" android:icon="@drawable/ic_search" />
-    <item android:id="@+id/activitiesFragment" android:title="Attività" android:icon="@drawable/ic_activities"/>
-    <item android:id="@+id/settingsFragment" android:title="Impostazioni" android:icon="@drawable/ic_settings" />
-
-
+    <item
+        android:icon="@drawable/info"
+        android:title="info" />
+    <item
+        android:icon="@drawable/prestiti"
+        android:title="prestiti" />
+    <item
+        android:icon="@drawable/cerca"
+        android:title="cerca" />
+    <item
+        android:icon="@drawable/attivita"
+        android:title="attivita" />
+    <item
+        android:icon="@drawable/impostazioni"
+        android:title="impostazioni" />
 </menu>

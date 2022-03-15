@@ -3,31 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/activitiesFragment">
+    app:startDestination="@id/fragment_groupinfo">
 
     <fragment
-        android:id="@+id/activitiesFragment"
-        android:name="com.is.istant.ActivitiesFragment"
-        android:label="fragment_activities"
-        tools:layout="@layout/fragment_activities" />
+        android:id="@+id/fragment_attivita"
+        android:name="com.example.istant.fragment_attivita"
+        android:label="fragment_attivita"
+        tools:layout="@layout/fragment_attivita" />
     <fragment
-        android:id="@+id/loansFragment"
-        android:name="com.is.istant.LoansFragment"
-        android:label="fragment_loans"
-        tools:layout="@layout/fragment_loans" />
+        android:id="@+id/fragment_cerca"
+        android:name="com.example.istant.fragment_cerca"
+        android:label="fragment_cerca"
+        tools:layout="@layout/fragment_cerca" />
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.is.istant.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/fragment_groupinfo"
+        android:name="com.example.istant.fragment_groupinfo"
+        android:label="fragment_groupinfo"
+        tools:layout="@layout/fragment_groupinfo" />
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.is.istant.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/fragment_impostazioni"
+        android:name="com.example.istant.fragment_impostazioni"
+        android:label="fragment_impostazioni"
+        tools:layout="@layout/fragment_impostazioni" />
     <fragment
-        android:id="@+id/grInfoFragment"
-        android:name="com.is.istant.GrInfoFragment"
-        android:label="fragment_gr_info"
-        tools:layout="@layout/fragment_gr_info" />
+        android:id="@+id/fragment_prestiti"
+        android:name="com.example.istant.fragment_prestiti"
+        android:label="fragment_prestiti"
+        tools:layout="@layout/fragment_prestiti" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.istant.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1025466676103",
+    "project_id": "istant-fd506",
+    "storage_bucket": "istant-fd506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025466676103:android:5bc4e040910d7eba585922",
+        "android_client_info": {
+          "package_name": "com.example.istant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025466676103-m0vgpjdtbfpn57gqbutdmlkuag4rl00b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJUHWnwkGisAgfE-PYrbyTRXG0wv0OzH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025466676103-m0vgpjdtbfpn57gqbutdmlkuag4rl00b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
