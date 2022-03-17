@@ -6,15 +6,15 @@
     app:startDestination="@id/fragment_groupinfo">
 
     <fragment
-        android:id="@+id/fragment_attivita"
-        android:name="com.example.istant.fragment_attivita"
-        android:label="fragment_attivita"
-        tools:layout="@layout/fragment_attivita" />
+        android:id="@+id/fragment_activities"
+        android:name="com.example.istant.fragment_activities"
+        android:label="fragment_activities"
+        tools:layout="@layout/fragment_activities" />
     <fragment
-        android:id="@+id/fragment_cerca"
-        android:name="com.example.istant.fragment_cerca"
-        android:label="fragment_cerca"
-        tools:layout="@layout/fragment_cerca" />
+        android:id="@+id/fragment_search"
+        android:name="com.example.istant.fragment_search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/fragment_groupinfo"
         android:name="com.example.istant.fragment_groupinfo"
@@ -26,10 +26,10 @@
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
-        android:id="@+id/fragment_prestiti"
-        android:name="com.example.istant.fragment_prestiti"
-        android:label="fragment_prestiti"
-        tools:layout="@layout/fragment_prestiti" />
+        android:id="@+id/fragment_loans"
+        android:name="com.example.istant.fragment_loans"
+        android:label="fragment_loans"
+        tools:layout="@layout/fragment_loans" />
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.istant.MainActivity"

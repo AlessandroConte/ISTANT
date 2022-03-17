@@ -42,9 +42,16 @@
         <entry key="..\:/Users/user/Documents/GitHub/ISTANT/app/src/main/res/layout/login.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/chat.xml" value="0.354" />
         <entry key="app/src/main/res/drawable/impostazioni.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_activities.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_gr_info.xml" value="0.2807971014492754" />
+        <entry key="app/src/main/res/layout/fragment_groupinfo.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_loans.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.35260416666666666" />

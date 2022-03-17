@@ -5,17 +5,17 @@
         android:icon="@drawable/info"
         android:title="info" />
     <item
-        android:id="@+id/fragment_prestiti"
-        android:icon="@drawable/prestiti"
-        android:title="prestiti" />
+        android:id="@+id/fragment_loans"
+        android:icon="@drawable/loans"
+        android:title="loans" />
     <item
-        android:id="@+id/fragment_cerca"
-        android:icon="@drawable/cerca"
-        android:title="cerca" />
+        android:id="@+id/fragment_search"
+        android:icon="@drawable/search"
+        android:title="search" />
     <item
-        android:id="@+id/fragment_attivita"
-        android:icon="@drawable/attivita"
-        android:title="attivita" />
+        android:id="@+id/fragment_activities"
+        android:icon="@drawable/activities"
+        android:title="activities" />
     <item
         android:id="@+id/fragment_chat"
         android:icon="@drawable/chat"
