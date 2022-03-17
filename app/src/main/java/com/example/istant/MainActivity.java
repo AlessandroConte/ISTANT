@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         //NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.fragment_groupinfo, R.id.fragment_prestiti, R.id.fragment_cerca, R.id.fragment_attivita, R.id.fragment_impostazioni).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.fragment_groupinfo, R.id.fragment_prestiti, R.id.fragment_cerca, R.id.fragment_attivita, R.id.fragment_chat).build();
         // on the line above I need to add the references to the different fragments
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);

@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/fragment_groupinfo"
         android:icon="@drawable/info"
         android:title="info" />
     <item
+        android:id="@+id/fragment_prestiti"
         android:icon="@drawable/prestiti"
         android:title="prestiti" />
     <item
+        android:id="@+id/fragment_cerca"
         android:icon="@drawable/cerca"
         android:title="cerca" />
     <item
+        android:id="@+id/fragment_attivita"
         android:icon="@drawable/attivita"
         android:title="attivita" />
     <item
-        android:icon="@drawable/impostazioni"
-        android:title="impostazioni" />
+        android:id="@+id/fragment_chat"
+        android:icon="@drawable/chat"
+        android:title="chat" />
 </menu>

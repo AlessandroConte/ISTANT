@@ -21,10 +21,10 @@
         android:label="fragment_groupinfo"
         tools:layout="@layout/fragment_groupinfo" />
     <fragment
-        android:id="@+id/fragment_impostazioni"
-        android:name="com.example.istant.fragment_impostazioni"
-        android:label="fragment_impostazioni"
-        tools:layout="@layout/fragment_impostazioni" />
+        android:id="@+id/fragment_chat"
+        android:name="com.example.istant.fragment_chat"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/fragment_prestiti"
         android:name="com.example.istant.fragment_prestiti"
