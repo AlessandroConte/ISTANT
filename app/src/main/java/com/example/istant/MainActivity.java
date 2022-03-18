@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
+
+    // Function that creates the menu in the upper right corner of the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -105,12 +107,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    // Function that manages what is done when you open the options menu and click on one of the items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        // Reset password option
         if (item.getItemId() == R.id.resetPassword){
             startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
         }
 
+        // Update email option
         if (item.getItemId() == R.id.updateEmailMenu){
             View v = inflater.inflate(R.layout.reset_pop,null);
             reset_alert.setTitle("Vuoi reimpostare l'email?")
@@ -143,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     .create().show();
         }
 
+        // Delete account option
         if (item.getItemId() == R.id.deleteAccountMenu){
             reset_alert.setTitle("Vuoi cancellare l'account?")
                     .setMessage("Sei sicuro?")
@@ -170,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     .create().show();
         }
 
+        // Logout option
         if (item.getItemId() == R.id.logout){
             reset_alert.setTitle("Vuoi sloggarti?")
                     .setMessage("Sei sicuro?")
@@ -195,6 +204,11 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .setNegativeButton("Cancel", null)
                     .create().show();
+        }
+
+        // Settings option
+        if (item.getItemId() == R.id.settings) {
+            startActivity(new Intent(getApplicationContext(), activity_settings.class));
         }
 
 

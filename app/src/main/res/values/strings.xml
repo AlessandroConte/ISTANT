@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">ISTANT</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_settings">activity_settings</string>
+
+    <!-- PLEASE WHEN YOU INSERT NEW STRINGS PLACE A COMMENT AT THE BEGINNING OF THE STRINGS CONTAINING THE NAME OF
+     THE ACTIVITY IN WHICH THEY ARE LOCATED (example: activity_settings) -->
+
+
+    <!-- activity_settings -->
+    <string name="changeName_title">change name</string>
+    <string name="changeSurname_title">change surname</string>
+    <string name="reply_title">Default reply action</string>
+    <string name="name">we need to put the name here!</string>
+    <string name="surname">we need to put the surname here!</string>
+
+
 </resources>

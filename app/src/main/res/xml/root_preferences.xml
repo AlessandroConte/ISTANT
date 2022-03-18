@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Change user info">
+
+        <!-- EditTextPreference is deprecated. It works and I don't care, if you have a better solution change it -->
+        <EditTextPreference
+            app:key="name"
+            app:title="@string/changeName_title"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/name"/>
+
+        <EditTextPreference
+            app:key="surname"
+            app:title="@string/changeSurname_title"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/surname"/>
+
+    </PreferenceCategory>
+
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Do we need to insert an image of the user??" />
+
+</PreferenceScreen>
