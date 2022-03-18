@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +59,13 @@ public class fragment_groupinfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groupinfo, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_groupinfo, container, false);
+
+        ImageView image = (ImageView)rootView.findViewById(R.id.gr_image);
+        image.setImageResource(R.drawable.gr_info);
+
+        return rootView;
     }
 }
