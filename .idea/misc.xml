@@ -48,6 +48,7 @@
         <entry key="app/src/main/res/drawable/chat.xml" value="0.354" />
         <entry key="app/src/main/res/drawable/impostazioni.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/info.xml" value="0.354" />
+        <entry key="app/src/main/res/layout/activity__guide.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.35260416666666666" />

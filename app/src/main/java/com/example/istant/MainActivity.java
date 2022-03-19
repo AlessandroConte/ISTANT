@@ -211,6 +211,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), activity_settings.class));
         }
 
+        // User Guide option
+        if (item.getItemId() == R.id.userguide) {
+            startActivity(new Intent(getApplicationContext(), activity_guide.class));
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
