@@ -1,0 +1,200 @@
+
+// ACTIVITY - read
+db.collection("activity")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		String nameActivity = document.getData().get("nameActivity").toString();
+		String address = document.getData().get("address").toString();
+		Timestamp dateStart = document.getTimestamp("dateStart");
+		Timestamp dateEnd = document.getTimestamp("dateEnd");
+		String description = document.getData().get("description").toString();
+		List<String> personInCharge = (List<String>)(document.get("personInCharge"));
+		List<String> photoEvent = (List<String>)(document.get("photoEvent"));
+
+		Activity activity = new Activity(id, nameActivity, address, dateStart, dateEnd, description, personInCharge, photoEvent);
+		//activities.add(activity);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+// CHILD - read
+db.collection("child")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		List<String> allergy = (List<String>)(document.get("allergy"));
+		Timestamp dateBorn = document.getTimestamp("bornDate");
+		int gender = (int) document.getData().get("gender").toString();
+		String info = document.getData().get("info").toString();
+		String name = document.getData().get("name").toString();
+		String surname = document.getData().get("surname").toString();
+		String parent = document.getData().get("uid").toString();
+
+		Child child = new Child(id, allergy, dateBorn, gender, info, name, surname, parent);
+		//children.add(child);
+
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+// ACTIVITY-CHILD - read
+db.collection("activityChild")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		String idActivity = document.getData().get("idactivity").toString();
+		String idChild = document.getData().get("idchild").toString();
+
+		ActivityChild activitychild = new ActivityChild(id, idActivity, idChild);
+		//activitieschildren.add(activitychild);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+// CHAT - read
+db.collection("chat")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		Timestamp createdAt = document.getTimestamp("createdAt");
+		String displayName = document.getData().get("displayName").toString();
+		String message = document.getData().get("message").toString();
+		String photoUrl = document.getData().get("photoURL").toString();
+		String uid = document.getData().get("uid").toString();
+
+		Chat chat = new Chat(id, createdAt, displayName, message, photoUrl ,uid);
+		//chats.add(chat);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+// SCORE-ACTIVITY-USER - read
+db.collection("scoreActivityUser")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		int score = (int) document.getData().get("score").toString();
+		String comment = document.getData().get("comment").toString();
+		String idActivity = document.getData().get("activityid").toString();
+		String uid = document.getData().get("uid").toString();
+
+		ScoreActivityUser scoreActUser = new ScoreActivityUser(id, score, comment, idActivity, uid);
+
+		//scores.add(scoreActUser);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+// LOAN - read
+
+db.collection("loan")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		Timestamp dateStart = document.getTimestamp("dateStart");
+		Timestamp dateEnd = document.getTimestamp("dateEnd");
+		String description = document.getData().get("description").toString();;
+		String nameLoan = document.getData().get("nameLoan").toString();
+		String uid = document.getData().get("uid").toString();
+
+		Loan loan = new Loan(id, dateStart, dateEnd, description, nameLoan, uid);
+
+		//loans.add(loan);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+// TAKEN-LOAN - read
+db.collection("takenLoan")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		String idLoan = document.getData().get("loanid").toString();
+		int taken = (int) document.getData().get("taken").toString();
+		String uid = document.getData().get("uid").toString();
+
+		TakenLoan takenloan = new TakenLoan(id, idLoan, taken, uid);
+
+		//takenloans.add(takenloan);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+// USER - read
+db.collection("user")
+.get()
+.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+	if (task.isSuccessful()) {
+	    for (QueryDocumentSnapshot document : task.getResult()) {
+		String id = document.getDocument().getId();
+		String address = document.getData().get("address").toString();
+		Timestamp dateBorn = document.getTimestamp("dateBorn");
+		String email = document.getData().get("email").toString();
+		String fiscalCode = document.getData().get("fiscalCode").toString();
+		int gender = (int) document.getData().get("gender").toString();
+		String photoUrl = document.getData().get("photoURL").toString();
+		String name = document.getData().get("name").toString();
+		String surname = document.getData().get("surname").toString();
+		int telephoneNumber = (int) document.getData().get("telephoneNumber").toString();
+
+		User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+		//users.add(user);
+	    }
+	} else {
+	    Log.d("TAG", "Error getting documents: ", task.getException());
+	}
+    }
+});
+
+
