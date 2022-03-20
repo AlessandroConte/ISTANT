@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog.Builder reset_alert;
     LayoutInflater inflater;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
