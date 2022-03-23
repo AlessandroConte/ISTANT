@@ -23,7 +23,7 @@
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".VisualizeActivityActivity"
+            android:name=".activity_visualizeactivities"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

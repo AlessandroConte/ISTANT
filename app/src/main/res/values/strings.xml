@@ -13,5 +13,12 @@
     <string name="name">we need to put the name here!</string>
     <string name="surname">we need to put the surname here!</string>
 
+    <!-- activity_visualizeactivities -->
+    <string name="textview_where">where</string>
+    <string name="textview_when">when</string>
+    <string name="textview_description">description</string>
+    <string name="textview_participants">participants</string>
+    <string name="button_participate">participate</string>
+
 
 </resources>

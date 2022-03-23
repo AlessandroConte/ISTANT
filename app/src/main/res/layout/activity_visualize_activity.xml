@@ -4,94 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VisualizeActivityActivity">
+    tools:context=".activity_visualizeactivities">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="175dp"
-        android:text="Luogo"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="50dp" />
 
-    <EditText
-        android:id="@+id/out_dove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="162dp" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:text="Quando"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        tools:layout_editor_absoluteX="50dp" />
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
 
-    <EditText
-        android:id="@+id/out_quando"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/out_dove"
-        tools:layout_editor_absoluteX="162dp" />
+            <TextView
+                android:id="@+id/visualizeactivity_where"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="150dp"
+                android:text="@string/textview_where"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:text="Descrizione"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        tools:layout_editor_absoluteX="50dp" />
+            <EditText
+                android:id="@+id/visualizeactivities_edittext_where"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="insert the place..." />
+        </TableRow>
 
-    <EditText
-        android:id="@+id/out_descrizione"
-        android:layout_width="207dp"
-        android:layout_height="113dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/out_quando"
-        tools:layout_editor_absoluteX="162dp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <TextView
+                android:id="@+id/visualizeactivity_when"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="150dp"
+                android:text="@string/textview_when"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Partecipanti"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="442dp" />
+            <EditText
+                android:id="@+id/visualizeactivities_edittext_when"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="insert the date..."
+                tools:ignore="TouchTargetSizeCheck" />
+        </TableRow>
 
-    <EditText
-        android:id="@+id/out_partecipanti"
-        android:layout_width="214dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/out_descrizione"
-        tools:layout_editor_absoluteX="158dp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/visualizeactivity_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="150dp"
+                android:text="@string/textview_description"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/id_partecipa"
-        android:layout_width="118dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="85dp"
-        android:backgroundTint="#FB9A40"
-        android:text="Partecipa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:id="@+id/visualizeactivities_description"
+                android:layout_width="wrap_content"
+                android:layout_height="124dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:minHeight="100dp"
+                android:text="insert the description..." />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/visualizeactivity_participants"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="150dp"
+                android:text="@string/textview_participants"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/visualizeactivity_participantslist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/visualizeactivity_buttonParticipate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_participate"
+                android:layout_column="1"/>
+        </TableRow>
+
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

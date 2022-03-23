@@ -90,7 +90,7 @@ public class fragment_activities extends Fragment {
         }
 
 
-        ListAdapter listAdapter = new ListAdapter(getActivity(),userArrayList);
+        ListAdapter listAdapter  = new ListAdapter(getActivity(),userArrayList);
 
         binding.listview.setAdapter(listAdapter);
         binding.listview.setClickable(true);
@@ -98,7 +98,7 @@ public class fragment_activities extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(getActivity(),VisualizeActivityActivity.class);
+                Intent i = new Intent(getActivity(), activity_visualizeactivities.class);
                 i.putExtra("name",name[position]);
                 i.putExtra("phone",phoneNo[position]);
                 i.putExtra("country",country[position]);
