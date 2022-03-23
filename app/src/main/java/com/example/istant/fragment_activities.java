@@ -71,11 +71,11 @@ public class fragment_activities extends Fragment {
 
         int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
                 R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
-        String[] name = {"Christopher","Craig","Sergio","Mubariz","Mike","Michael","Toa","Ivana","Alex"};
-        String[] lastMessage = {"Heye","Supp","Let's Catchup","Dinner tonight?","Gotta go",
-                "i'm in meeting","Gotcha","Let's Go","any Weekend Plans?"};
-        String[] lastmsgTime = {"8:45 pm","9:00 am","7:34 pm","6:32 am","5:76 am",
-                "5:00 am","7:34 pm","2:32 am","7:76 am"};
+        String[] name = {"Attivitàaaaaaaaaaaa1","Uscita al parcooooooooooooooooooo","Nuoto","Calcio pazzo in via delle rive ","Mike","Michael","Toa","Ivana"," "};
+        String[] lastMessage = {"Descrizione","Andiamo al parco alle 5","Passaggio nuoto ore 3","Trasporto verso campo da calcio ore 6","prova",
+                "i'm in meeting","Gotcha","Let's Go","RIGA DA SVUOTARE PER BELLEZZA"};
+        String[] lastmsgTime = {"3.0/5","5.0/5","4.2/5","3.7/5","1.0/5",
+                "3.0/5","2.7/5","4.5/5"," "};
         String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
                 "9439043232","7534354323","6545543211","7654432343"};
         String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};

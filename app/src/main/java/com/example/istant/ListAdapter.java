@@ -1,6 +1,7 @@
 package com.example.istant;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class ListAdapter extends ArrayAdapter<User> {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -41,6 +44,7 @@ public class ListAdapter extends ArrayAdapter<User> {
 
         imageView.setImageResource(user.imageId);
         userName.setText(user.name);
+        userName.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         lastMsg.setText(user.lastMessage);
         time.setText(user.lastMsgTime);
 
