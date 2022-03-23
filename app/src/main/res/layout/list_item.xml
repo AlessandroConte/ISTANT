@@ -16,10 +16,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_pic"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/ic_user"/>
+                android:src="@drawable/ic_user" />
 
 
             <LinearLayout
@@ -30,32 +30,50 @@
 
                 <TextView
                     android:id="@+id/personName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Christopher"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:autoSizeTextType="uniform"
+                    android:text="NomeAttività"
                     android:textColor="@color/black"
-                    android:textSize="26sp"
-                    android:textStyle="bold"/>
+                    android:lines="2"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/lastMessage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="160dp"
+                    android:layout_height="35dp"
                     android:layout_marginTop="5dp"
-                    android:text="Hi, How Are you"/>
+                    android:textSize="10dp"
+                    android:lines="2"
+                    android:text="Breve descrizione" />
 
             </LinearLayout>
 
 
         </LinearLayout>
 
+        <ImageView
+
+            android:id="@+id/star_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_rowSpan="2"
+            android:layout_marginTop="25dp"
+            android:layout_toLeftOf="@+id/msgtime"
+            android:src="@drawable/ic_star" />
+
         <TextView
             android:id="@+id/msgtime"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="14dp"
+            android:paddingLeft="10dp"
             android:layout_alignParentRight="true"
-            android:text="8:35 pm"/>
+            android:textSize="16dp"
+            android:text="3.3/5"/>
 
 
 
