@@ -7,7 +7,7 @@
     >
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/textView_activities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.15" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switch_activities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@android:id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintStart_toEndOf="@+id/textView_activities"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 

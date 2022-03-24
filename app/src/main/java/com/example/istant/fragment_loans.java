@@ -1,5 +1,6 @@
 package com.example.istant;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+
+import com.example.istant.databinding.FragmentActivitiesBinding;
+import com.example.istant.databinding.FragmentLoansBinding;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +65,53 @@ public class fragment_loans extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        FragmentLoansBinding binding = FragmentLoansBinding.inflate(inflater, container, false);
+
+        int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
+                R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
+        String[] name = {"Prestitooooooooo","Playstation 5 ","Libro Harry Potter","Bicicletta  ","Mike","Michael","Toa","Ivana"," "};
+        String[] description = {"Esempio","Presto play 5 in cambio di Xbox","Scambio HP e il calice di fuoco","Scambio bici rubata","prova",
+                "i'm in meeting","Gotcha","Let's Go","RIGA DA SVUOTARE PER BELLEZZA"};
+        String[] reviews = {"3.0/5","5.0/5","4.2/5","3.7/5","1.0/5",
+                "3.0/5","2.7/5","4.5/5"," "};
+        String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
+                "9439043232","7534354323","6545543211","7654432343"};
+        String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
+
+        ArrayList<User> userArrayList = new ArrayList<>();
+
+        for(int i = 0;i< imageId.length;i++){
+
+            User user = new User(name[i],description[i],reviews[i],phoneNo[i],country[i],imageId[i]);
+            userArrayList.add(user);
+
+        }
+
+
+        ListAdapter listAdapter  = new ListAdapter(getActivity(),userArrayList);
+
+        binding.listview.setAdapter(listAdapter);
+        binding.listview.setClickable(true);
+
+        //data shared with next activity
+        binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent i = new Intent(getActivity(), activity_visualizeactivities.class);
+                i.putExtra("name",name[position]);
+                i.putExtra("phone",phoneNo[position]);
+                i.putExtra("country",country[position]);
+                i.putExtra("imageid",imageId[position]);
+                startActivity(i);
+
+            }
+        });
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loans, container, false);
+        return binding.getRoot();
     }
 }
