@@ -1,0 +1,234 @@
+    // ACTIVITY - write
+    public static void activityWrite(String nameActivity, String address,
+                                     Calendar dateStart, Calendar dateEnd, String description,
+                                     List<String> personInCharge, List<String> photoEvent) {
+        Map<String, Object> activity = new HashMap<>();
+        Date startEvent = dateStart.getTime();
+        Date endEvent = dateEnd.getTime();
+
+        activity.put("address", address);
+        activity.put("dateEnd", new Timestamp(endEvent));
+        activity.put("dateStart", new Timestamp(startEvent));
+        activity.put("description", description);
+        activity.put("personInCharge", personInCharge);
+        activity.put("nameActivity", nameActivity);
+        activity.put("photoEvent", photoEvent);
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("activity").document(id)
+                .set(activity)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+
+    }
+
+    // ACTIVITY-CHILD - write
+    public static void activityChildWrite(String idActivity, String idChild) {
+        Map<String, Object> activityChild = new HashMap<>();
+
+        activityChild.put("idactivity", idActivity);
+        activityChild.put("idchild", idChild);
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("activityChild").document(id)
+                .set(activityChild)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // CHAT - write
+    public static void chatWrite(Calendar createdAt, String displayName,
+                                 String message, String photoUrl, String uid) {
+        Map<String, Object> chat = new HashMap<>();
+        Date timeCreate = createdAt.getTime();
+
+        chat.put("displayName", displayName);
+        chat.put("message", message);
+        chat.put("photoURL", photoUrl);
+        chat.put("uid", uid);
+        chat.put("createdAt", new Timestamp(timeCreate));
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("chat").document(id)
+                .set(chat)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // CHILD - write
+    public static void childWrite(List<String> allergy, Calendar dateBorn, int gender,
+                                  String info, String name, String surname, String parent) {
+
+        Map<String, Object> child = new HashMap<>();
+        Date born = dateBorn.getTime();
+
+        child.put("allergy", allergy);
+        child.put("gender", gender);
+        child.put("info", info);
+        child.put("name", name);
+        child.put("surname", surname);
+        child.put("uid", parent);
+        child.put("bornDate", new Timestamp(born));
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("child").document(id)
+                .set(child)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // LOAN - write
+    public static void loanWrite(Calendar dateStart, Calendar dateEnd,
+                                 String description, String nameLoan, String uid) {
+        Map<String, Object> loan = new HashMap<>();
+        Date startLoan = dateStart.getTime();
+        Date endLoan = dateEnd.getTime();
+
+        loan.put("description", description);
+        loan.put("nameLoan", nameLoan);
+        loan.put("uid", uid);
+        loan.put("dateStart", new Timestamp(startLoan));
+        loan.put("dateEnd", new Timestamp(endLoan));
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("loan").document(id)
+                .set(loan)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // SCORE-ACTIVITY-SCORE - write
+    public static void scoreActivityUserWrite(int score, String comment,
+                                              String idActivity, String uid) {
+        Map<String, Object> scoreActivityUser = new HashMap<>();
+
+        scoreActivityUser.put("score", score);
+        scoreActivityUser.put("comment", comment);
+        scoreActivityUser.put("uid", uid);
+        scoreActivityUser.put("activityid", idActivity);
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("scoreActivityUser").document(id)
+                .set(scoreActivityUser)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // TAKEN-LOAN - write
+    public static void takenLoanWrite(String idLoan, int taken, String uid) {
+        Map<String, Object> takenLoan = new HashMap<>();
+
+        takenLoan.put("taken", taken);
+        takenLoan.put("loanid", idLoan);
+        takenLoan.put("uid", uid);
+        String id = SupportFunctions.generateRandomString();
+
+        db.collection("takenLoan").document(id)
+                .set(takenLoan)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // USER - write
+    public static void userWrite(String id, String address, Calendar dateBorn, String email,
+                                 String fiscalCode, int gender, String photoUrl, String name,
+                                 String surname, int telephoneNumber) {
+        Map<String, Object> user = new HashMap<>();
+        Date born = dateBorn.getTime();
+
+        user.put("address", address);
+        user.put("dateBorn", new Timestamp(born));
+        user.put("email", email);
+        user.put("fiscalCode", fiscalCode);
+        user.put("gender", gender);
+        user.put("photoURL", photoUrl);
+        user.put("name", name);
+        user.put("surname", surname);
+        user.put("telephoneNumber", telephoneNumber);
+
+
+        db.collection("user").document(id)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }

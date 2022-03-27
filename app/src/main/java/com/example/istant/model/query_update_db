@@ -1,0 +1,17 @@
+public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,
+                                               String idDocument, String nameField, T value) {
+        db.collection(collectionName).document(idDocument)
+                .update(nameField, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "Document updated added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error update document", e);
+                    }
+                });
+    }
