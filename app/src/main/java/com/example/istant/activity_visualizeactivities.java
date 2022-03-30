@@ -1,9 +1,12 @@
 package com.example.istant;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.is.istant.model.Child;
@@ -17,12 +20,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class activity_visualizeactivities extends AppCompatActivity {
+    Button button_visualizeParticipants;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualize_activity);
+
+        // retrieve the "visualize participants" button from the gui & set an action on the button
+        // the button, when pressed, sends the user to the list of the participants of the activity
+        button_visualizeParticipants = findViewById( R.id.visualizeactivity_buttonViewParticipants );
+        button_visualizeParticipants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), activity_visualizeactivities_visualizeparticipants.class));
+                finish();
+            }
+        });
+
+
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();

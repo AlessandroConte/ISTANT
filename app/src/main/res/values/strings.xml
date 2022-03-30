@@ -19,6 +19,7 @@
     <string name="textview_description">description</string>
     <string name="textview_participants">participants</string>
     <string name="button_participate">participate</string>
+    <string name="button_viewParticipants">visualize participants</string>
 
 
 </resources>

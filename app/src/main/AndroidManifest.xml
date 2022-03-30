@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ISTANT">
         <activity
+            android:name=".activity_visualizeactivities_visualizeparticipants"
+            android:exported="false" />
+        <activity
             android:name=".activity_guide"
             android:exported="false" />
         <activity
