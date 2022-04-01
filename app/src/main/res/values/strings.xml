@@ -7,11 +7,20 @@
 
 
     <!-- activity_settings -->
-    <string name="changeName_title">change name</string>
-    <string name="changeSurname_title">change surname</string>
-    <string name="reply_title">Default reply action</string>
-    <string name="name">we need to put the name here!</string>
-    <string name="surname">we need to put the surname here!</string>
+    <string name="settings_textview_name">Name</string>
+    <string name="settings_textview_surname">Surname</string>
+    <string name="settings_textview_phonenumber">Phone Number</string>
+    <string name="settings_textview_fiscalcode">Fiscal Code</string>
+    <string name="settings_textview_address">Address</string>
+    <string name="settings_textview_email">Email</string>
+    <string name="settings_textview_gender">Gender</string>
+    <string name="settings_genderradiobutton_m">M</string>
+    <string name="settings_genderradiobutton_f">F</string>
+    <string name="settings_date">Date</string>
+    <string name="settings_textview_dateofbirth">Date of birth</string>
+    <string name="settings_buttonSave">Save changes</string>
+    <string name="settings_buttonManageChildren">Manage Children</string>
+
 
     <!-- activity_visualizeactivities -->
     <string name="textview_where">where</string>
