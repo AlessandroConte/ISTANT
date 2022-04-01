@@ -15,12 +15,12 @@ import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<User> {
+public class listadapter_user extends ArrayAdapter<User> {
 
 
-    public ListAdapter(Context context, ArrayList<User> userArrayList){
+    public listadapter_user(Context context, ArrayList<User> userArrayList){
 
-        super(context,R.layout.list_item,userArrayList);
+        super(context,R.layout.listadapter_user,userArrayList);
 
     }
 
@@ -33,20 +33,19 @@ public class ListAdapter extends ArrayAdapter<User> {
 
         if (convertView == null){
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_user,parent,false);
 
         }
 
         ImageView imageView = convertView.findViewById(R.id.listadapter_user_picture);
         TextView userName = convertView.findViewById(R.id.listadapter_user_namesurname);
-        TextView lastMsg = convertView.findViewById(R.id.listadapter_user_phonenumber);
-        TextView time = convertView.findViewById(R.id.msgtime);
+        TextView userDescription = convertView.findViewById(R.id.listadapter_user_phonenumber);
 
         imageView.setImageResource(user.imageId);
         userName.setText(user.name);
         userName.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        lastMsg.setText(user.lastMessage);
-        time.setText(user.lastMsgTime);
+        userDescription.setText(user.phoneNo);
+        userDescription.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
 
 
         return convertView;

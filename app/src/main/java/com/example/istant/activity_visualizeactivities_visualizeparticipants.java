@@ -32,25 +32,18 @@ public class activity_visualizeactivities_visualizeparticipants extends AppCompa
         listview = findViewById(R.id.visualizeactivity_visualizeparticipants_listparticipants);
 
         // here is the data I'm going to feed the list, all contained in the userArrayList
-        int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
-                R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
-        String[] name = {"Attivitàaaaaaaaaaaa1","Uscita al parcooooooooooooooooooo","Nuoto","Calcio pazzo in via delle rive ","Mike","Michael","Toa","Ivana"," "};
-        String[] description = {"Descrizione","Andiamo al parco alle 5","Passaggio nuoto ore 3","Trasporto verso campo da calcio ore 6","prova",
-                "i'm in meeting","Gotcha","Let's Go","RIGA DA SVUOTARE PER BELLEZZA"};
-        String[] reviews = {"3.0/5","5.0/5","4.2/5","3.7/5","1.0/5",
-                "3.0/5","2.7/5","4.5/5"," "};
+        String[] name = {"Anthony","Leonard","Lucas","Albert","Mike","Michael","Toa","Ivana","Nicholas"};
         String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
                 "9439043232","7534354323","6545543211","7654432343"};
-        String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
         userArrayList = new ArrayList<>();
-        for(int i = 0;i< imageId.length;i++){
-            User user = new User(name[i],description[i],"",phoneNo[i],country[i],imageId[i]);
+        for(int i = 0;i< name.length;i++){
+            User user = new User(name[i],"","",phoneNo[i],"",R.drawable.ic_user);
             userArrayList.add(user);
         }
 
         // Now I'm going to declare the adapter.
         // The adapter is a Java class that allows us to view a list of "complex" objects. These objects are formed by multiple elements.
-        ListAdapter listadapter = new ListAdapter( getApplicationContext(), userArrayList );
+        listadapter_user listadapter = new listadapter_user( getApplicationContext(), userArrayList );
 
         // now we associate the listadapter with the listview
         listview.setAdapter( listadapter );

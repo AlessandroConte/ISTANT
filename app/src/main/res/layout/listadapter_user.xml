@@ -33,7 +33,7 @@
                     android:layout_width="160dp"
                     android:layout_height="40dp"
                     android:autoSizeTextType="uniform"
-                    android:text="NomeAttività"
+                    android:text="@+id/textview_nameSurname"
                     android:textColor="@color/black"
                     android:lines="2"
                     android:textStyle="bold" />
@@ -45,36 +45,12 @@
                     android:layout_marginTop="5dp"
                     android:textSize="10dp"
                     android:lines="2"
-                    android:text="Breve descrizione" />
+                    android:text="@+id/textview_phonenumber" />
 
             </LinearLayout>
 
 
         </LinearLayout>
-
-        <ImageView
-
-            android:id="@+id/star_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_rowSpan="2"
-            android:layout_marginTop="25dp"
-            android:layout_toLeftOf="@+id/msgtime"
-            android:src="@drawable/ic_star" />
-
-        <TextView
-            android:id="@+id/msgtime"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="14dp"
-            android:text="3.3/5"
-            android:textSize="16dp" />
-
 
 
     </RelativeLayout>
