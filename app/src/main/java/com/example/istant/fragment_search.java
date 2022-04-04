@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link fragment_search#newInstance} factory method to
@@ -21,6 +23,10 @@ public class fragment_search extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    // Needed to show the list of users
+    ListView listview;
+    ArrayList<User> userArrayList;
 
 
     ListView l;
@@ -69,6 +75,7 @@ public class fragment_search extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
@@ -76,6 +83,34 @@ public class fragment_search extends Fragment {
         ArrayAdapter<String> arr;
         arr = new ArrayAdapter<String>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, users_list);
         l.setAdapter(arr);
+
+        return rootView;
+
+         */
+
+        // LIST OF INSTRUCTIONS NEEDED TO VIEW THE LIST OF PARTICIPANTS TO THE EVENT
+
+        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+
+        // here I get the reference to the list view I created in the xml file
+        listview = rootView.findViewById(R.id.search_list);
+
+        // here is the data I'm going to feed the list, all contained in the userArrayList
+        String[] name = {"Anthony","Leonard","Lucas","Albert","Mike","Michael","Toa","Ivana","Nicholas"};
+        String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
+                "9439043232","7534354323","6545543211","7654432343"};
+        userArrayList = new ArrayList<>();
+        for(int i = 0;i< name.length;i++){
+            User user = new User(name[i],"","",phoneNo[i],"",R.drawable.ic_user);
+            userArrayList.add(user);
+        }
+
+        // Now I'm going to declare the adapter.
+        // The adapter is a Java class that allows us to view a list of "complex" objects. These objects are formed by multiple elements.
+        listadapter_user listadapter = new listadapter_user( getActivity(), userArrayList );
+
+        // now we associate the listadapter with the listview
+        listview.setAdapter( listadapter );
 
         return rootView;
     }
