@@ -67,4 +67,23 @@ public class User {
         }
         return result;
     }
+    
+    /**
+     * isUserDeleted returns the presence or absence of a user inside a list of User, which should
+     * be coherent with the database, therefore is important that lu is updated
+     * @param id String
+     * @param lu List of User
+     * @return boolean, which indicates the absence or presence of the user
+     */
+    public static boolean isUserDeleted(String id, List<User> lu) {
+        boolean delete = true;
+        for (User u: lu) {
+            if (u.getId().equals(id)) {
+                delete = false;
+                break;
+            }
+        }
+
+        return delete;
+    }
 }
