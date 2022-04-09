@@ -1,0 +1,14 @@
+public class query_update_delete_element_array {
+
+    public static <T> void deleteUpdateDatabaseField(FirebaseFirestore db, String collectionName,
+                                           String idDocument, String nameField, T value,
+                                                     boolean delete) {
+        DocumentReference docRef = db.collection(collectionName).document(idDocument);
+        if (delete) {
+            docRef.update(nameField, FieldValue.arrayRemove(value));
+        } else {
+            docRef.update(nameField, FieldValue.arrayUnion(value));
+        }
+    }
+
+}

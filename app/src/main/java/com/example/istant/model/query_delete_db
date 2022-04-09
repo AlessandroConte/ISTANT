@@ -1,0 +1,21 @@
+public class query_delete_db {
+    // delete a document
+    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName,
+                                               String idDocument) {
+        // asynchronously delete
+        ApiFuture<WriteResult> writeResult = db.collection(collectionName).document(idDocument).delete();
+        Log.d("UPDATE TIME: ", "Update time : " + writeResult.get().getUpdateTime());
+    }
+
+    // delete a field
+    public static void deleteDatabaseField(FirebaseFirestore db, String collectionName,
+                                              String idDocument, String nameField) {
+        DocumentReference docRef = db.collection(collectionName).document(idDocument);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(nameField, FieldValue.delete());
+        ApiFuture<WriteResult> writeResult = docRef.update(updates);
+        Log.d("UPDATE TIME: ", "Update time : " + writeResult.get());
+    }
+
+
+}
