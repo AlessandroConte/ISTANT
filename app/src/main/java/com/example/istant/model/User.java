@@ -1,4 +1,4 @@
-package com.is.istant.model;
+package com.example.istant.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -46,6 +46,8 @@ public class User {
         return surname;
     }
 
+    public String getId() {return id;}
+
     /**
      * isUserSubstring returns a list of users who match,
      * even partially, with the given string sub
@@ -83,7 +85,6 @@ public class User {
                 break;
             }
         }
-
         return delete;
     }
 }

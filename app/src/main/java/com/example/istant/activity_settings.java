@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceFragmentCompat;
 
 public class activity_settings extends AppCompatActivity {
 
@@ -30,7 +28,7 @@ public class activity_settings extends AppCompatActivity {
             actionBar.setTitle("Settings");
         }
 
-        // retrieve the two buttons for the grafical user interface
+        // retrieve the two buttons for the graphical user interface
         btnSaveChanges = findViewById(R.id.settings_buttonSave);
         btnManageChildren = findViewById(R.id.settings_buttonManageChildren);
 
@@ -57,5 +55,4 @@ public class activity_settings extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

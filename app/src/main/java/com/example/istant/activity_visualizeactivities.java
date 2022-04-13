@@ -1,28 +1,15 @@
 package com.example.istant;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-
-import com.is.istant.model.Child;
-
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-
 public class activity_visualizeactivities extends AppCompatActivity {
     Button button_visualizeParticipants;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +27,14 @@ public class activity_visualizeactivities extends AppCompatActivity {
             }
         });
 
-
-
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("Insert activity name here..."); // actionbar's name
         }
-/*
+
+        /*
         ListView participantsList = findViewById(R.id.visualizeactivity_participantslist);
 
 
@@ -60,13 +46,8 @@ public class activity_visualizeactivities extends AppCompatActivity {
 
 
         @SuppressLint("ResourceType") ArrayAdapter<Child> participants = new ArrayAdapter<Child>(this, R.id.activityparticipants_list , cpart);
-*/
-
-
-
-
+        */
     }
-
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
@@ -78,5 +59,4 @@ public class activity_visualizeactivities extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

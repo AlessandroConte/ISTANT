@@ -4,15 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,30 +19,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     AlertDialog.Builder reset_alert;
     LayoutInflater inflater;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -97,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
-
     // Function that creates the menu in the upper right corner of the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.option_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     // Function that manages what is done when you open the options menu and click on one of the items
     @Override
@@ -124,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Aggiorna", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+
                             // validate the email address
                             EditText email = v.findViewById(R.id.resetEmailPop);
                             if (email.getText().toString().isEmpty()){
@@ -203,9 +181,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), activity_guide.class));
         }
 
-
         return super.onOptionsItemSelected(item);
     }
-
-
 }

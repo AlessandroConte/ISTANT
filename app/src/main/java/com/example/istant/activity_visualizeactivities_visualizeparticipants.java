@@ -2,17 +2,14 @@ package com.example.istant;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 public class activity_visualizeactivities_visualizeparticipants extends AppCompatActivity {
     ListView listview;
     ArrayList<User> userArrayList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +57,4 @@ public class activity_visualizeactivities_visualizeparticipants extends AppCompa
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.is.istant.model;
+package com.example.istant.model;
 
 import java.sql.Timestamp;
 import java.util.List;

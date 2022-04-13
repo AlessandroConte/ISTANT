@@ -2,18 +2,15 @@ package com.example.istant;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 public class activity_settings_managechildren extends AppCompatActivity {
     ListView listview;
     ArrayList<User> userArrayList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +23,6 @@ public class activity_settings_managechildren extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("Manage Children");
         }
-
 
         // LIST OF INSTRUCTIONS NEEDED TO VIEW THE LIST OF CHILDREN
 
@@ -50,9 +46,7 @@ public class activity_settings_managechildren extends AppCompatActivity {
         // now we associate the listadapter with the listview
         listview.setAdapter( listadapter );
 
-
     }
-
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
@@ -65,5 +59,4 @@ public class activity_settings_managechildren extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

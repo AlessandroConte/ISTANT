@@ -1,7 +1,6 @@
 package com.example.istant;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class activity_newchild extends AppCompatActivity {
