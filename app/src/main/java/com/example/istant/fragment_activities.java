@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import com.example.istant.databinding.FragmentActivitiesBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 /**
@@ -65,6 +67,8 @@ public class fragment_activities extends Fragment {
 
         FragmentActivitiesBinding binding = FragmentActivitiesBinding.inflate(inflater, container, false);
 
+        View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
+
         int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
                 R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
         String[] name = {"Attivitàaaaaaaaaaaa1","Uscita al parcooooooooooooooooooo","Nuoto","Calcio pazzo in via delle rive ","Mike","Michael","Toa","Ivana"," "};
@@ -106,6 +110,14 @@ public class fragment_activities extends Fragment {
             }
         });
 
+        FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab_activities);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), activity_create_activities.class);
+                startActivity(i);
+            }
+        });
 
 
 
