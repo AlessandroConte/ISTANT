@@ -1,6 +1,7 @@
 package com.example.istant.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class Activity {
     private List<String> personInCharge;
     private List<String> photoEvent;
 
+    // constructor
     public Activity(String id, String nameActivity, String address,
                     Timestamp dateStart, Timestamp dateEnd, String description,
                     List<String> personInCharge, List<String> photoEvent) {
@@ -29,7 +31,73 @@ public class Activity {
         this.photoEvent = photoEvent;
     }
 
+    // getter and setter
     public String getId() {
         return id;
+    }
+
+    public String getNameActivity() {
+        return nameActivity;
+    }
+
+    public void setNameActivity(String nameActivity) {
+        this.nameActivity = nameActivity;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Timestamp getDateStart() {
+        return dateStart;
+    }
+
+    public Timestamp getDateEnd() {
+        return dateEnd;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getPersonInCharge() {
+        return personInCharge;
+    }
+
+    public void setPersonInCharge(List<String> personInCharge) {
+        this.personInCharge = personInCharge;
+    }
+
+    public List<String> getPhotoEvent() {
+        return photoEvent;
+    }
+
+    public void setPhotoEvent(List<String> photoEvent) {
+        this.photoEvent = photoEvent;
+    }
+
+    // methods
+    /**
+     * activitiesUser returns all the activities where the user is engaged
+     * @param idUser String
+     * @param la  List<Activity>
+     * @return ArrayList<Activity>
+     */
+    public static ArrayList<Activity> activitiesUser(String idUser, List<Activity> la) {
+        ArrayList<Activity> result = new ArrayList<>();
+        for (Activity a: la) {
+            if (a.getPersonInCharge().contains(idUser)) {
+                result.add(a);
+            }
+        }
+        return result;
     }
 }

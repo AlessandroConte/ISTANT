@@ -12,6 +12,7 @@ public class ScoreActivityUser {
     private final String idActivity;
     private final String uid;
 
+    // constructor
     public ScoreActivityUser(String id, int score, String comment,
                              String idActivity, String uid) {
         this.id = id;
@@ -21,6 +22,7 @@ public class ScoreActivityUser {
         this.uid = uid;
     }
 
+    // getter and setter
     public String getIdActivity() {
         return idActivity;
     }
@@ -29,6 +31,27 @@ public class ScoreActivityUser {
         return score;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    // methods
     /**
      * getScoreActivities is the method that gives the score of a given activity
      * @param listActivities is the list of the activities

@@ -8,9 +8,9 @@ import java.sql.Timestamp;
 public class Chat {
     private final String id;
     private final Timestamp createdAt;
-    private String displayName;
-    private String message;
-    private String photoUrl;
+    private final String displayName;
+    private final String message;
+    private final String photoUrl;
     private final String uid;
 
     public Chat(String id, Timestamp createdAt, String displayName,
@@ -21,5 +21,29 @@ public class Chat {
         this.message = message;
         this.photoUrl = photoUrl;
         this.uid = uid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public String getUid() {
+        return uid;
     }
 }

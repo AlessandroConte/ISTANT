@@ -19,6 +19,7 @@ public class User {
     private String surname;
     private final int telephoneNumber;
 
+    // constructor
     public User(String id, String address, Timestamp dateBorn, String email,
                 String fiscalCode, int gender, String photoUrl, String name,
                 String surname, int telephoneNumber) {
@@ -34,6 +35,7 @@ public class User {
         this.telephoneNumber = telephoneNumber;
     }
 
+    // getter and setter
     public String getEmail() {
         return email;
     }
@@ -48,15 +50,60 @@ public class User {
 
     public String getId() {return id;}
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Timestamp getDateBorn() {
+        return dateBorn;
+    }
+
+    public String getFiscalCode() {
+        return fiscalCode;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    // methods
     /**
      * isUserSubstring returns a list of users who match,
      * even partially, with the given string sub
      * @param sub String
      * @param lu List of User
-     * @return List of User
+     * @return ArrayList of User
      */
-    public static List<User> isUserSubstring(String sub, List<User> lu) {
-        List<User> result = new ArrayList<>();
+    public static ArrayList<User> isUserSubstring(String sub, List<User> lu) {
+        ArrayList<User> result = new ArrayList<>();
         for (User u: lu) {
             String search_n = u.getName() + " " + u.getSurname();
             String search_s = u.getSurname() + " " + u.getName();
@@ -86,5 +133,20 @@ public class User {
             }
         }
         return delete;
+    }
+
+    /**
+     * getChild returns the User's object given its id
+     * @param idUser String
+     * @param lu List<User>
+     * @return User
+     */
+    public static User getUser(String idUser, List<User> lu) {
+        for (User u: lu) {
+            if (u.getId().equals(idUser)) {
+                return u;
+            }
+        }
+        return null;
     }
 }
