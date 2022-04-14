@@ -9,13 +9,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -23,12 +20,15 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -39,9 +39,11 @@ public class activity_settings extends AppCompatActivity {
     private Button btnSaveChanges, btnManageChildren;
 
     // Variables needed to change the picture of the activity
-    private ImageView activityImage;
+    private ImageView profilePic_settings;
     private Uri imageUri;
+    private String photoURL;
     private StorageReference storageReference;
+    private DocumentReference documentReference;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
@@ -89,6 +91,11 @@ public class activity_settings extends AppCompatActivity {
         rb_sex_m = findViewById(R.id.settings_genderradiobutton_m);
         rb_sex_f = findViewById(R.id.settings_genderradiobutton_f);
 
+        // Firebase variables
+        storageReference = FirebaseStorage.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
 
         // retrieve the button "modify/save" from the gui
         // if the bool "flag" is:
@@ -143,10 +150,30 @@ public class activity_settings extends AppCompatActivity {
 
         // Here I am retrievenig the ImageView and setting an action when this is executed
         // The actions allows the user to change/pic the picture to associate to the given activity
-        activityImage = findViewById(R.id.profilePic_guide);
-        activityImage.setOnClickListener(new View.OnClickListener() {
+        profilePic_settings = findViewById(R.id.profilePic_settings);
+
+        // Getting the "photoURL" field of the current user
+        // If the user has a profile picture, i.e. "photoURL" != "", then set it in the ImageView
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onClick(View view) { choosePicture(); }
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                photoURL = documentSnapshot.get("photoURL").toString();
+                if (!photoURL.equals("")) {
+                    Glide.with(activity_settings.this).load(photoURL).into(profilePic_settings);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Errore:" ,"Url non ottenuto");
+            }
+        });
+
+        profilePic_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choosePicture();
+            }
         });
 
         // set actions to perform when the button btnManageChildren is clicked
@@ -190,7 +217,7 @@ public class activity_settings extends AppCompatActivity {
                         Intent data = result.getData();
                         assert data != null;
                         imageUri = data.getData();
-                        activityImage.setImageURI(imageUri);
+                        profilePic_settings.setImageURI(imageUri);
                         uploadPicture();
                     }
                 }

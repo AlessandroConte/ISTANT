@@ -32,7 +32,7 @@
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/profilePic_guide"
+                android:id="@+id/activityImage"
                 android:layout_width="125dp"
                 android:layout_height="151dp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -31,7 +31,7 @@
 
                 <ImageView
                     android:gravity="center"
-                    android:id="@+id/profilePic_guide"
+                    android:id="@+id/profilePic_settings"
                     android:layout_width="125dp"
                     android:layout_height="151dp"
                     app:layout_constraintBottom_toBottomOf="parent"

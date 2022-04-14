@@ -34,7 +34,7 @@ import java.util.Objects;
 
 public class activity_guide extends AppCompatActivity {
 
-    private ImageView profilePic;
+    private ImageView profilePic_guide;
     private Button choosePic;
     private Uri imageUri;
     private String photoURL;
@@ -48,7 +48,9 @@ public class activity_guide extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__guide);
 
-        profilePic = findViewById(R.id.profilePic_guide);
+        /*
+
+        profilePic_guide = findViewById(R.id.profilePic_guide);
         choosePic = findViewById(R.id.button_pic);
         storageReference = FirebaseStorage.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
@@ -62,7 +64,7 @@ public class activity_guide extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 photoURL = documentSnapshot.get("photoURL").toString();
                 if (!photoURL.equals("")) {
-                    Glide.with(activity_guide.this).load(photoURL).into(profilePic);
+                    Glide.with(activity_guide.this).load(photoURL).into(profilePic_guide);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -79,6 +81,8 @@ public class activity_guide extends AppCompatActivity {
                 choosePicture();
             }
         });
+
+         */
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
@@ -107,7 +111,7 @@ public class activity_guide extends AppCompatActivity {
                         Intent data = result.getData();
                         assert data != null;
                         imageUri = data.getData();
-                        profilePic.setImageURI(imageUri);
+                        profilePic_guide.setImageURI(imageUri);
                         uploadPicture();
                     }
                 }

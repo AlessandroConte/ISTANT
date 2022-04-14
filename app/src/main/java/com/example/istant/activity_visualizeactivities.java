@@ -22,11 +22,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -50,17 +54,20 @@ public class activity_visualizeactivities extends AppCompatActivity {
     // Variables needed to change the picture of the activity
     private ImageView activityImage;
     private Uri imageUri;
+    private String photoURL;
+
+    // Firebase variables
     private StorageReference storageReference;
+    private DocumentReference documentReference;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualize_activity);
+
 
         // retrieve the "visualize participants" button from the gui & set an action on the button
         // the button, when pressed, sends the user to the list of the participants of the activity
@@ -100,6 +107,13 @@ public class activity_visualizeactivities extends AppCompatActivity {
         tv_when = findViewById(R.id.visualizeactivities_edittext_when);
         et_description = findViewById(R.id.visualizeactivities_description);
 
+        // Firebase variables
+        storageReference = FirebaseStorage.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        // TODO: cambiare documentReference prendendo collection "activity" e documento dell'activity selezionata
+        documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
+
 
         // retrieve the button "modify/save" from the gui
         // if the bool "flag" is:
@@ -132,7 +146,26 @@ public class activity_visualizeactivities extends AppCompatActivity {
 
         // Here I am retrievenig the ImageView and setting an action when this is executed
         // The actions allows the user to change/pic the picture to associate to the given activity
-        activityImage = findViewById(R.id.profilePic_guide);
+        activityImage = findViewById(R.id.activityImage);
+
+        // Getting the "photoEvent" field of the selected activity
+        // If the activity has an image, i.e. "photoEvent" != "", then set it in the ImageView
+        // TODO: da cambiare, perchè ora prende l'immagine profilo dell'utente corrente, noi vogliamo quella dell'attività
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                photoURL = documentSnapshot.get("photoURL").toString();
+                if (!photoURL.equals("")) {
+                    Glide.with(activity_visualizeactivities.this).load(photoURL).into(activityImage);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Errore:" ,"Url non ottenuto");
+            }
+        });
+
         activityImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { choosePicture(); }
@@ -179,7 +212,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
                         assert data != null;
                         imageUri = data.getData();
                         activityImage.setImageURI(imageUri);
-                        //uploadPicture(); THIS IS COMMENTED BECAUSE I DON'T KNOW HOW TO UPLOAD THE PICTURE TO FIREBASE!
+                        uploadPicture();
                     }
                 }
             });
@@ -202,9 +235,10 @@ public class activity_visualizeactivities extends AppCompatActivity {
                 });
     }
 
-    /*
+
     // This function uploads the image in the Firebase Storage folder of the user and updates the "photoURL" field in the database,
     // using the function define above
+    // TODO: da modificare anche qua, perchè aggiorna il campo di "user", noi vogliamo aggiornare quello di "activity"
     private void uploadPicture() {
         final ProgressDialog pd = new ProgressDialog(this);
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
@@ -247,5 +281,5 @@ public class activity_visualizeactivities extends AppCompatActivity {
                     }
                 });
     }
-     */
+
 }
