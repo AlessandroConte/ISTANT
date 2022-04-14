@@ -1,255 +1,358 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
 
-            <TextView
-                android:id="@+id/settings_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_name"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/settings_edittext_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                >
 
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <TextView
-                android:id="@+id/settings_surname"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_surname"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/settings_edittext_surname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <TextView
-                android:id="@+id/settings_phonenumber"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_phonenumber"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/settings_edittext_phonenumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number|phone"
-                android:text="" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <TextView
-                android:id="@+id/settings_fiscalcode"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_fiscalcode"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/settings_edittext_fiscalcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <TextView
-                android:id="@+id/settings_address"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_address"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/settings_edittext_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <TextView
-                android:id="@+id/settings_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_email"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/settings_edittext_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text=""
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <TextView
-                android:id="@+id/settings_gender"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_gender"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <RadioButton
-                    android:id="@+id/settings_genderradiobutton_m"
+                <TextView
+                    android:id="@+id/visualizeactivity_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_genderradiobutton_m" />
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:minWidth="150dp"
+                    android:text="@string/textview_image"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/settings_genderradiobutton_f"
+                <ImageView
+                    android:gravity="center"
+                    android:id="@+id/profilePic_guide"
+                    android:layout_width="125dp"
+                    android:layout_height="151dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.253"
+                    app:srcCompat="@drawable/ic_user"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_name"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_name"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/settings_genderradiobutton_f" />
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:text="" />
 
-            </RadioGroup>
-        </TableRow>
+            </TableRow>
 
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
 
-            <TextView
-                android:id="@+id/settings_dateofbirth"
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_surname"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_surname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:text="" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_phonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_phonenumber"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_phonenumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="number|phone"
+                    android:text="" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_fiscalcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_fiscalcode"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_fiscalcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:text="" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_address"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:text="" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_email"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_gender"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <RadioGroup
+                    android:id="@+id/settings_radiogroup_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/settings_genderradiobutton_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/settings_genderradiobutton_m" />
+
+                    <RadioButton
+                        android:id="@+id/settings_genderradiobutton_f"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/settings_genderradiobutton_f" />
+
+                </RadioGroup>
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_dateofbirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_dateofbirth"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/settings_edittext_dateofbirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:inputType="date" />
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <Button
+                    android:gravity="center"
+                    android:id="@+id/settings_buttonSave"
+                    android:layout_width="251dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_buttonSave" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <Button
+                    android:gravity="center"
+                    android:id="@+id/settings_buttonManageChildren"
+                    android:layout_width="251dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_buttonManageChildren" />
+
+            </TableRow>
+
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/settings_textview_dateofbirth"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:layout_marginTop="5dp">
 
-            <EditText
-                android:id="@+id/editTextDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date" />
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/settings_textview_modifysave"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minWidth="150dp"
+                    android:text="@string/settings_textview_modifysave"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/settings_buttonSave"
-                android:layout_width="251dp"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_buttonSave" />
-
-        </TableRow>
+                <Button
+                    android:gravity="center"
+                    android:id="@+id/settings_buttonModifySave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="@string/settings_button_modifysave" />
+            </TableRow>
 
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+        </TableLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/settings_buttonManageChildren"
-                android:layout_width="251dp"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_buttonManageChildren" />
-
-        </TableRow>
-
-
-    </TableLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

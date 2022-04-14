@@ -20,6 +20,8 @@
     <string name="settings_textview_dateofbirth">Date of birth</string>
     <string name="settings_buttonSave">Save changes</string>
     <string name="settings_buttonManageChildren">Manage Children</string>
+    <string name="settings_textview_modifysave">Edit</string>
+    <string name="settings_button_modifysave">Modify</string>
 
 
     <!-- activity_visualizeactivities -->

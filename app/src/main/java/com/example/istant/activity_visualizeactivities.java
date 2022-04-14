@@ -34,18 +34,18 @@ import com.google.firebase.storage.UploadTask;
 import java.util.Objects;
 
 public class activity_visualizeactivities extends AppCompatActivity {
-    Button button_visualizeParticipants;
-    Button button_participate;
-    Button button_modifysave;
-    Button button_delete;
+    private Button button_visualizeParticipants;
+    private Button button_participate;
+    private Button button_modifysave;
+    private Button button_delete;
 
     // variable needed to make the fields editable.
     private boolean flag;
 
     // Retrieveing all of the fileds of the gui in order to enable and disable the edit options
-    TextView tv_where;
-    TextView tv_when;
-    EditText et_description;
+    private TextView tv_where;
+    private TextView tv_when;
+    private EditText et_description;
 
     // Variables needed to change the picture of the activity
     private ImageView activityImage;
