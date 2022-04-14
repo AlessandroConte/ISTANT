@@ -110,7 +110,9 @@ public class fragment_activities extends Fragment {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton)rootView.findViewById(R.id.fab_activities);
+        View view = inflater.inflate(R.layout.fragment_activities, container, false);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_activities);
+        fab.bringToFront();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
