@@ -37,6 +37,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
     Button button_visualizeParticipants;
     Button button_participate;
     Button button_modifysave;
+    Button button_delete;
 
     // variable needed to make the fields editable.
     private boolean flag;
@@ -69,6 +70,18 @@ public class activity_visualizeactivities extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), activity_visualizeactivities_visualizeparticipants.class));
                 finish();
+            }
+        });
+
+        // retrieve the "delete" button from the gui and set the onClickListener
+        button_delete = findViewById(R.id.visualizeactivity_buttondelete);
+        // WE NEED TO SEE IF THE USER THAT IS OPENING THIS SCREEN IS THE CREATER OF THIS ACTIVITY
+        // IF SO WE NEED TO SET THIS BUTTON VISIBLE
+        //button_delete.setVisibility(View.INVISIBLE);  // THIS LINE OF CODE MAKES THE BUTTON INVISIBLE
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // DELETE THE ACTIVITY!!!
             }
         });
 

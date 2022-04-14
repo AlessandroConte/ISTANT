@@ -32,11 +32,13 @@
     <string name="type_a_message">Type a message</string>
     <string name="textview_image">Image</string>
     <string name="button_modifysave">Modify</string>
-    <string name="textview_modifysave">Modify/Save</string>
+    <string name="textview_modifysave">Edit</string>
+    <string name="button_delete">Delete</string>
+    <string name="textview_delete">Delete</string>
 
     <!-- listadapter_user -->
     <string name="textview_phonenumber">user phone number</string>
-    <string name="textview_nameSurname">Name Surname Planceholder</string>
+    <string name="textview_nameSurname">Name Surname Placeholder</string>
 
 
 </resources>
