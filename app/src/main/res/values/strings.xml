@@ -30,6 +30,9 @@
     <string name="button_participate">participate</string>
     <string name="button_viewParticipants">visualize participants</string>
     <string name="type_a_message">Type a message</string>
+    <string name="textview_image">Image</string>
+    <string name="button_modifysave">Modify</string>
+    <string name="textview_modifysave">Modify/Save</string>
 
     <!-- listadapter_user -->
     <string name="textview_phonenumber">user phone number</string>

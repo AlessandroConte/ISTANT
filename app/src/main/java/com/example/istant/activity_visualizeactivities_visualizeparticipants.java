@@ -2,6 +2,8 @@ package com.example.istant;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -52,6 +54,7 @@ public class activity_visualizeactivities_visualizeparticipants extends AppCompa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                startActivity(new Intent(getApplicationContext(), activity_visualizeactivities.class));
                 this.finish();
                 return true;
         }
