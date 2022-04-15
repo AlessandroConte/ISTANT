@@ -37,6 +37,7 @@
     <string name="textview_modifysave">Edit</string>
     <string name="button_delete">Delete</string>
     <string name="textview_delete">Delete</string>
+    <string name="visualizeactivity_textview_rating">Rating</string>
 
     <!-- listadapter_user -->
     <string name="textview_phonenumber">user phone number</string>
