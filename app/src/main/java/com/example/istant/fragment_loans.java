@@ -7,10 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import com.example.istant.databinding.FragmentActivitiesBinding;
+
 import com.example.istant.databinding.FragmentLoansBinding;
+import com.example.istant.model.Loan;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,17 +80,19 @@ public class fragment_loans extends Fragment {
                 "9439043232","7534354323","6545543211","7654432343"};
         String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
 
-        ArrayList<User> userArrayList = new ArrayList<>();
+        Calendar cal = Calendar.getInstance();
+        cal.set(2022,1,1);
+        Date dateStart = cal.getTime();
+        Date dateEnd = cal.getTime();
+
+        ArrayList<Loan> userArrayList = new ArrayList<>();
 
         for(int i = 0;i< imageId.length;i++){
-
-            User user = new User(name[i],description[i],reviews[i],phoneNo[i],country[i],imageId[i]);
-            userArrayList.add(user);
-
+            Loan loan = new Loan(name[i], new Timestamp(dateStart),new Timestamp(dateEnd),description[i],name[i],"");
+            userArrayList.add(loan);
         }
 
-
-        ListAdapter listAdapter  = new ListAdapter(getActivity(),userArrayList);
+        ListAdapter_loans listAdapter  = new ListAdapter_loans(getActivity(),userArrayList);
 
         binding.listview.setAdapter(listAdapter);
         binding.listview.setClickable(true);

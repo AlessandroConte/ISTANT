@@ -1,6 +1,6 @@
 package com.example.istant.model;
 
-import java.sql.Timestamp;
+import com.google.firebase.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +17,12 @@ public class User {
     private String photoUrl;
     private String name;
     private String surname;
-    private final int telephoneNumber;
+    private final String telephoneNumber;
 
     // constructor
     public User(String id, String address, Timestamp dateBorn, String email,
                 String fiscalCode, int gender, String photoUrl, String name,
-                String surname, int telephoneNumber) {
+                String surname, String telephoneNumber) {
         this.id = id;
         this.address = address;
         this.dateBorn = dateBorn;
@@ -90,7 +90,7 @@ public class User {
         this.surname = surname;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 

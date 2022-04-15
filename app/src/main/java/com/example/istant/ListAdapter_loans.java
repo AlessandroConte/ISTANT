@@ -11,15 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
-import com.example.istant.model.Activity;
-import com.example.istant.model.User;
+import com.example.istant.model.Loan;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<Activity> {
+public class ListAdapter_loans extends ArrayAdapter<Loan> {
 
-    public ListAdapter(Context context, ArrayList<Activity> userArrayList){
+    public ListAdapter_loans(Context context, ArrayList<Loan> userArrayList){
         super(context,R.layout.list_item,userArrayList);
     }
 
@@ -27,7 +25,7 @@ public class ListAdapter extends ArrayAdapter<Activity> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Activity activity = getItem(position);
+        Loan loan = getItem(position);
 
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
@@ -40,10 +38,10 @@ public class ListAdapter extends ArrayAdapter<Activity> {
 
         // imageView.setImageResource(activity.getId());
         // TODO: fix
-        userName.setText(activity.getNameActivity());
+        userName.setText(loan.getNameLoan());
         userName.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        lastMsg.setText(activity.getDescription());
-        time.setText(activity.getAddress());
+        lastMsg.setText(loan.getDescription());
+        time.setText(loan.getId());
 
         return convertView;
     }

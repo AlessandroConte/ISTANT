@@ -1,12 +1,24 @@
 package com.example.istant;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+
+import com.example.istant.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -16,6 +28,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class fragment_search extends Fragment {
+    FirebaseFirestore db;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,12 +37,11 @@ public class fragment_search extends Fragment {
 
     // Needed to show the list of users
     ListView listview;
-    ArrayList<User> userArrayList;
+    ArrayList<User_1> userArrayList;
 
 
     ListView l;
-    String users_list[]
-            = { "Algorithms", "Data Structures",
+    String users_list[] = { "Algorithms", "Data Structures",
             "Languages", "Interview Corner",
             "GATE", "ISRO CS",
             "UGC NET CS", "CS Subjects",
@@ -86,29 +98,69 @@ public class fragment_search extends Fragment {
 
          */
 
+        db = FirebaseFirestore.getInstance();
+        db.collection("user")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        EditText inputSearch;
+                        Button buttonSearch;
+                        String inputString;
+
+                        buttonSearch = (Button) getView().findViewById(R.id.Btn_search);
+                        inputSearch = (EditText) getView().findViewById(R.id.et_cercaUtente);
+                        ArrayList<User> users = new ArrayList<>();
+                        buttonSearch.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // inputString = inputSearch.getText().toString();
+                                // TODO: fix
+                            }
+                        });
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getId();
+                                String address = document.getData().get("address").toString();
+                                Timestamp dateBorn = document.getTimestamp("dateBorn");
+                                String email = document.getData().get("email").toString();
+                                String fiscalCode = document.getData().get("fiscalCode").toString();
+
+                                int gender;
+                                if(Boolean.parseBoolean(document.getData().get("gender").toString())){
+                                    gender = 1;
+                                }
+                                else {
+                                    gender = 0;
+                                }
+
+                                String photoUrl = document.getData().get("photoURL").toString();
+                                String name = document.getData().get("name").toString();
+                                String surname = document.getData().get("surname").toString();
+                                String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                                User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                                users.add(user);
+                            }
+
+                            // Now I'm going to declare the adapter.
+                            // The adapter is a Java class that allows us to view a list of "complex" objects. These objects are formed by multiple elements.
+                            listadapter_user listadapter = new listadapter_user(getActivity(), users);
+
+                            // now we associate the list adapter with the listview
+                            listview.setAdapter(listadapter);
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
         // LIST OF INSTRUCTIONS NEEDED TO VIEW THE LIST OF PARTICIPANTS TO THE EVENT
 
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
         // here I get the reference to the list view I created in the xml file
         listview = rootView.findViewById(R.id.search_list);
-
-        // here is the data I'm going to feed the list, all contained in the userArrayList
-        String[] name = {"Anthony","Leonard","Lucas","Albert","Mike","Michael","Toa","Ivana","Nicholas"};
-        String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
-                "9439043232","7534354323","6545543211","7654432343"};
-        userArrayList = new ArrayList<>();
-        for(int i = 0;i< name.length;i++){
-            User user = new User(name[i],"","",phoneNo[i],"",R.drawable.ic_user);
-            userArrayList.add(user);
-        }
-
-        // Now I'm going to declare the adapter.
-        // The adapter is a Java class that allows us to view a list of "complex" objects. These objects are formed by multiple elements.
-        listadapter_user listadapter = new listadapter_user( getActivity(), userArrayList );
-
-        // now we associate the listadapter with the listview
-        listview.setAdapter( listadapter );
 
         return rootView;
     }

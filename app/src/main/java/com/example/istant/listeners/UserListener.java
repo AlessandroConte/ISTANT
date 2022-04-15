@@ -1,7 +1,7 @@
 package com.example.istant.listeners;
 
-import com.example.istant.User;
+import com.example.istant.User_1;
 
 public interface UserListener {
-    void onUserClicked(User user);
+    void onUserClicked(User_1 user);
 }

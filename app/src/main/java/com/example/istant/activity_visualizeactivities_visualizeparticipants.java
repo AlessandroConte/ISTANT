@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class activity_visualizeactivities_visualizeparticipants extends AppCompatActivity {
     ListView listview;
-    ArrayList<User> userArrayList;
+    ArrayList<User_1> userArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +36,16 @@ public class activity_visualizeactivities_visualizeparticipants extends AppCompa
                 "9439043232","7534354323","6545543211","7654432343"};
         userArrayList = new ArrayList<>();
         for(int i = 0;i< name.length;i++){
-            User user = new User(name[i],"","",phoneNo[i],"",R.drawable.ic_user);
-            userArrayList.add(user);
+            //User_1 user = new User_1(name[i],"","",phoneNo[i],"",R.drawable.ic_user);
+            //userArrayList.add(user);
         }
 
         // Now I'm going to declare the adapter.
         // The adapter is a Java class that allows us to view a list of "complex" objects. These objects are formed by multiple elements.
-        listadapter_user listadapter = new listadapter_user( getApplicationContext(), userArrayList );
+        //listadapter_user listadapter = new listadapter_user( getApplicationContext(), userArrayList );
 
         // now we associate the listadapter with the listview
-        listview.setAdapter( listadapter );
+        //listview.setAdapter( listadapter );
 
     }
 

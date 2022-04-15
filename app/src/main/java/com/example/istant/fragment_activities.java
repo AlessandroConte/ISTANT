@@ -2,15 +2,27 @@ package com.example.istant;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import com.example.istant.databinding.FragmentActivitiesBinding;
+import com.example.istant.model.Activity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +30,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class fragment_activities extends Fragment {
-
+    FirebaseFirestore db;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -65,50 +77,57 @@ public class fragment_activities extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        FragmentActivitiesBinding binding = FragmentActivitiesBinding.inflate(inflater, container, false);
+        FragmentActivitiesBinding binding;
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("activity")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        ArrayList<Activity> activities = new ArrayList<>();
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getId();
+                                String nameActivity = document.getData().get("nameActivity").toString();
+                                String address = document.getData().get("address").toString();
+                                Timestamp dateStart = document.getTimestamp("dateStart");
+                                Timestamp dateEnd = document.getTimestamp("dateEnd");
+                                String description = document.getData().get("description").toString();
+                                List<String> personInCharge = (List<String>)(document.get("personInCharge"));
+                                List<String> photoEvent = (List<String>)(document.get("photoEvent"));
+
+                                Activity activity = new Activity(id, nameActivity, address, dateStart, dateEnd, description, personInCharge, photoEvent);
+                                activities.add(activity);
+                            }
+                            //binding = FragmentActivitiesBinding.inflate(inflater, container, false);
+                            ListAdapter listAdapter  = new ListAdapter(getActivity(),activities);
+                            //binding.listview.setAdapter(listAdapter);
+                            //binding.listview.setClickable(true);
+
+                            //data shared with next activity
+                            /*
+                            binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    Intent i = new Intent(getActivity(), activity_visualizeactivities.class);
+                                    i.putExtra("name",activities.get(position).getNameActivity());
+                                    i.putExtra("phone",activities.get(position).getAddress());
+                                    i.putExtra("country",activities.get(position).getId());
+                                    i.putExtra("imageid",activities.get(position).getAddress());
+                                    startActivity(i);
+                                }
+                            });
+
+                             */
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
         View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
-
-        int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
-                R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
-        String[] name = {"Attivitàaaaaaaaaaaa1","Uscita al parcooooooooooooooooooo","Nuoto","Calcio pazzo in via delle rive ","Mike","Michael","Toa","Ivana"," "};
-        String[] description = {"Descrizione","Andiamo al parco alle 5","Passaggio nuoto ore 3","Trasporto verso campo da calcio ore 6","prova",
-                "i'm in meeting","Gotcha","Let's Go","RIGA DA SVUOTARE PER BELLEZZA"};
-        String[] reviews = {"3.0/5","5.0/5","4.2/5","3.7/5","1.0/5",
-                "3.0/5","2.7/5","4.5/5"," "};
-        String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
-                "9439043232","7534354323","6545543211","7654432343"};
-        String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
-
-        ArrayList<User> userArrayList = new ArrayList<>();
-
-        for(int i = 0;i< imageId.length;i++){
-
-            User user = new User(name[i],description[i],reviews[i],phoneNo[i],country[i],imageId[i]);
-            userArrayList.add(user);
-
-        }
-
-
-        ListAdapter listAdapter  = new ListAdapter(getActivity(),userArrayList);
-
-        binding.listview.setAdapter(listAdapter);
-        binding.listview.setClickable(true);
-
-        //data shared with next activity
-        binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent i = new Intent(getActivity(), activity_visualizeactivities.class);
-                i.putExtra("name",name[position]);
-                i.putExtra("phone",phoneNo[position]);
-                i.putExtra("country",country[position]);
-                i.putExtra("imageid",imageId[position]);
-                startActivity(i);
-
-            }
-        });
 
         View view = inflater.inflate(R.layout.fragment_activities, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_activities);
@@ -121,9 +140,8 @@ public class fragment_activities extends Fragment {
             }
         });
 
-
-
         // Inflate the layout for this fragment
-        return binding.getRoot();
+        //return binding.getRoot();
+        return null;
     }
 }

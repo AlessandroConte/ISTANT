@@ -281,5 +281,4 @@ public class activity_visualizeactivities extends AppCompatActivity {
                     }
                 });
     }
-
 }
