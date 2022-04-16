@@ -108,7 +108,7 @@ public class fragment_search extends Fragment {
                         Button buttonSearch;
                         String inputString;
 
-                        buttonSearch = (Button) getView().findViewById(R.id.Btn_search);
+                        buttonSearch = (Button) getView().findViewById(R.id.search_buttonSearch);
                         inputSearch = (EditText) getView().findViewById(R.id.et_cercaUtente);
                         ArrayList<User> users = new ArrayList<>();
                         buttonSearch.setOnClickListener(new View.OnClickListener() {

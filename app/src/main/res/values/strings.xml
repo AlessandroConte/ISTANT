@@ -43,5 +43,11 @@
     <string name="textview_phonenumber">user phone number</string>
     <string name="textview_nameSurname">Name Surname Placeholder</string>
 
+    <!-- activity_visualizeloans -->
+    <string name="visualizeloan_textview_name">Name</string>
+
+    <!-- fragment_search -->
+    <string name="search_button_buttonsearch">Search</string>
+
 
 </resources>
