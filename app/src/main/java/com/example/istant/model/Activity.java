@@ -15,12 +15,12 @@ public class Activity {
     private final Timestamp dateEnd;
     private String description;
     private List<String> personInCharge;
-    private List<String> photoEvent;
+    private String photoEvent;
 
     // constructor
     public Activity(String id, String nameActivity, String address,
                     Timestamp dateStart, Timestamp dateEnd, String description,
-                    List<String> personInCharge, List<String> photoEvent) {
+                    List<String> personInCharge, String photoEvent) {
         this.id = id;
         this.nameActivity = nameActivity;
         this.address = address;
@@ -76,11 +76,11 @@ public class Activity {
         this.personInCharge = personInCharge;
     }
 
-    public List<String> getPhotoEvent() {
+    public String getPhotoEvent() {
         return photoEvent;
     }
 
-    public void setPhotoEvent(List<String> photoEvent) {
+    public void setPhotoEvent(String photoEvent) {
         this.photoEvent = photoEvent;
     }
 
