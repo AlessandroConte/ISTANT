@@ -6,71 +6,118 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment_loans">
 
-    <TextView
-        android:id="@+id/textView_loans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="LISTA PRESTITI"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@android:id/list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
-
-    <Switch
-        android:id="@+id/switch_loans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="35dp"
-        android:text="I miei prestiti"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@android:id/list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView_loans"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_loans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginBottom="90dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="@color/design_default_color_error"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-29dp"
+        tools:layout_editor_absoluteY="54dp"
         tools:context=".fragment_activities">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:id="@+id/textView_loans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:width="150dp"
+                android:gravity="center"
+                android:text="@string/fragmentLoans_textView_title"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Switch
+                android:id="@+id/switch_loans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginEnd="24dp"
+                android:height="48dp"
+                android:gravity="center"
+                android:text="@string/fragmentloans_switchLoans"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.971"
+                app:layout_constraintStart_toEndOf="@+id/textView_loans"
+                tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
+                tools:layout_editor_absoluteY="-7dp" />
+
+            <Button
+                android:id="@+id/fragmentloans_btnNewLoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="8dp"
+                android:width="350dp"
+                android:height="60dp"
+                android:gravity="center"
+                android:text="@string/fragmentLoans_buttonNewLoan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_loans" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="507dp"
+            android:layout_marginTop="15dp"
+            android:clipToPadding="false"
+            android:paddingBottom="75dp"
+            tools:listitem="@layout/list_item" />
+
+    </LinearLayout>
+
+
+    <!--
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_loans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="90dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/design_default_color_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.929"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listview"
-            android:paddingBottom="100dp"
-            android:clipToPadding="false"
-            tools:listitem="@layout/list_item"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="60dp"
+            tools:context=".fragment_activities">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="100dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="16dp"
+                tools:listitem="@layout/list_item" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

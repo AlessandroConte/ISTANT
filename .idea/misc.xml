@@ -86,7 +86,7 @@
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_gr_info.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/fragment_groupinfo.xml" value="0.35260416666666666" />
-        <entry key="app/src/main/res/layout/fragment_loans.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_loans.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listadapter_user.xml" value="0.35260416666666666" />

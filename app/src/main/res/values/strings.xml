@@ -49,5 +49,10 @@
     <!-- fragment_search -->
     <string name="search_button_buttonsearch">Search</string>
 
+    <!-- fragment_loans -->
+    <string name="fragmentLoans_buttonNewLoan">Create New Loan</string>
+    <string name="fragmentloans_switchLoans">My Loans</string>
+    <string name="fragmentLoans_textView_title">My Loans</string>
+
 
 </resources>
