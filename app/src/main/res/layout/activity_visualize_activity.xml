@@ -6,35 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".activity_visualizeactivities">
 
-
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="221dp">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="10dp"
-            >
-
-            <TextView
-                android:id="@+id/visualizeactivity_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:minWidth="150dp"
-                android:text="@string/textview_image"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/activityImage"
-                android:layout_width="125dp"
-                android:layout_height="151dp"
+                android:layout_width="225dp"
+                android:layout_height="251dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -43,198 +33,204 @@
                 app:layout_constraintVertical_bias="0.253"
                 app:srcCompat="@drawable/ic_user" />
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_where"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/textview_where"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/visualizeactivities_edittext_where"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:enabled="false"
-                android:gravity="center"
-                android:inputType="textPersonName"
-                android:text="insert the place..."
-                tools:ignore="TouchTargetSizeCheck" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_where"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_where"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_when"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/textview_when"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <EditText
+                        android:id="@+id/visualizeactivities_edittext_where"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="insert the place..."
+                        tools:ignore="TouchTargetSizeCheck" />
+                </TableRow>
 
-            <EditText
-                android:id="@+id/visualizeactivities_edittext_when"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:enabled="false"
-                android:gravity="center"
-                android:inputType="textPersonName"
-                android:text="insert the date..."
-                tools:ignore="TouchTargetSizeCheck" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_when"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_when"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_description"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/textview_description"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <EditText
+                        android:id="@+id/visualizeactivities_edittext_when"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        android:text="insert the date..."
+                        tools:ignore="TouchTargetSizeCheck" />
+                </TableRow>
 
-            <EditText
-                android:id="@+id/visualizeactivities_description"
-                android:layout_width="wrap_content"
-                android:layout_height="124dp"
-                android:ems="10"
-                android:enabled="false"
-                android:gravity="center"
-                android:inputType="textMultiLine"
-                android:minHeight="100dp"
-                android:text="insert the description..." />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_description"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_rating"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/visualizeactivity_textview_rating"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <EditText
+                        android:id="@+id/visualizeactivities_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="124dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textMultiLine"
+                        android:minHeight="100dp"
+                        android:text="insert the description..." />
+                </TableRow>
 
-            <RatingBar
-                android:id="@+id/visualizeactivity_ratingbar_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_rating"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/visualizeactivity_textview_rating"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_participants"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/textview_participants"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <RatingBar
+                        android:id="@+id/visualizeactivity_ratingbar_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </TableRow>
 
-            <Button
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_buttonViewParticipants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="@string/button_viewParticipants" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_participants"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_participants"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <Button
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_buttonParticipate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="@string/button_participate" />
-        </TableRow>
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_buttonViewParticipants"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/button_viewParticipants" />
+                </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
 
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_textview_modifysave"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/textview_modifysave"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_buttonParticipate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/button_participate" />
+                </TableRow>
 
-            <Button
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_buttonModifySave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="@string/button_modifysave" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp">
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_textview_modifysave"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_modifysave"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_textview_delete"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minWidth="150dp"
-                android:text="@string/textview_delete"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_buttonModifySave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/button_modifysave" />
+                </TableRow>
 
-            <Button
-                android:gravity="center"
-                android:id="@+id/visualizeactivity_buttondelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="@string/button_delete" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp">
 
-    </TableLayout>
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_textview_delete"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_delete"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
 
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_buttondelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/button_delete" />
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
