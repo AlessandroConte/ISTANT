@@ -95,7 +95,7 @@ public class fragment_activities extends Fragment {
                                 Timestamp dateEnd = document.getTimestamp("dateEnd");
                                 String description = document.getData().get("description").toString();
                                 List<String> personInCharge = (List<String>)(document.get("personInCharge"));
-                                List<String> photoEvent = (List<String>)(document.get("photoEvent"));
+                                String photoEvent = (String)(document.get("photoEvent"));
 
                                 Activity activity = new Activity(id, nameActivity, address, dateStart, dateEnd, description, personInCharge, photoEvent);
                                 activities.add(activity);
