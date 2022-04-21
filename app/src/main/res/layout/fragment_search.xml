@@ -24,25 +24,20 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/et_cercaUtente"
-            android:layout_width="287dp"
-            android:layout_height="48dp"
+            android:id="@+id/et_searchUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
             android:layout_marginTop="20dp"
             android:ems="10"
             android:gravity="center"
             android:hint="Inserisci nome utente"
             android:inputType="textPersonName"
+            android:drawableRight="@android:drawable/ic_menu_search"
             android:minWidth="200dp" />
 
-        <Button
-            android:id="@+id/search_buttonSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/search_button_buttonsearch" />
-
         <ListView
-            android:id="@+id/search_list"
+            android:id="@+id/users_listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="30dp"

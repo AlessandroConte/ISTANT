@@ -1,84 +1,149 @@
 package com.example.istant;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import com.example.istant.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import java.util.Objects;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import java.util.ArrayList;
 
 public class activity_guide extends AppCompatActivity {
 
-    private ImageView profilePic_guide;
-    private Button choosePic;
-    private Uri imageUri;
-    private String photoURL;
-    private StorageReference storageReference;
-    private DocumentReference documentReference;
-    private FirebaseAuth auth;
+    /*
     private FirebaseFirestore db;
+    private ListView usersListView;
+    private ArrayAdapter<User> adapter;
+    private EditText searchBox;
 
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__guide);
 
         /*
-
-        profilePic_guide = findViewById(R.id.profilePic_guide);
-        choosePic = findViewById(R.id.button_pic);
-        storageReference = FirebaseStorage.getInstance().getReference();
-        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
+        usersListView = findViewById(R.id.guide_listView);
+        searchBox = findViewById(R.id.searchBox);
 
-        // Getting the "photoURL" field of the current user
-        // If the user has a profile picture, i.e. "photoURL" != "", then set it in the ImageView
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        adapter = new UserAdapter(this, new ArrayList<User>());
+        usersListView.setAdapter(adapter);
+
+        db.collection("user")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                ArrayList<User> users = new ArrayList<>();
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                    String id = document.getId();
+                                    String address = document.getData().get("address").toString();
+                                    Timestamp dateBorn = document.getTimestamp("dateBorn");
+                                    String email = document.getData().get("email").toString();
+                                    String fiscalCode = document.getData().get("fiscalCode").toString();
+                                    int gender = Integer.parseInt(document.getData().get("gender").toString());
+                                    String photoUrl = document.getData().get("photoURL").toString();
+                                    String name = document.getData().get("name").toString();
+                                    String surname = document.getData().get("surname").toString();
+                                    String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                                    User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                                    users.add(user);
+                                }
+                                adapter.clear();
+                                adapter.addAll(users);
+                            }
+                        });
+
+        searchBox.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                photoURL = documentSnapshot.get("photoURL").toString();
-                if (!photoURL.equals("")) {
-                    Glide.with(activity_guide.this).load(photoURL).into(profilePic_guide);
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d("FIRESTORE - SEARCH", "Searchbox has changed to: " + editable.toString());
+
+                if (editable.toString().isEmpty()){
+                    db.collection("user")
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    ArrayList<User> users = new ArrayList<>();
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        String id = document.getId();
+                                        String address = document.getData().get("address").toString();
+                                        Timestamp dateBorn = document.getTimestamp("dateBorn");
+                                        String email = document.getData().get("email").toString();
+                                        String fiscalCode = document.getData().get("fiscalCode").toString();
+                                        int gender = Integer.parseInt(document.getData().get("gender").toString());
+                                        String photoUrl = document.getData().get("photoURL").toString();
+                                        String name = document.getData().get("name").toString();
+                                        String surname = document.getData().get("surname").toString();
+                                        String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                                        User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                                        users.add(user);
+                                    }
+                                    adapter.clear();
+                                    adapter.addAll(users);
+                                }
+                            });
                 }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("Errore:" ,"Url non ottenuto");
-            }
-        });
+                else {
+                    db.collection("user")
+                            .whereEqualTo("name", editable.toString())
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    ArrayList<User> users = new ArrayList<>();
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        String id = document.getId();
+                                        String address = document.getData().get("address").toString();
+                                        Timestamp dateBorn = document.getTimestamp("dateBorn");
+                                        String email = document.getData().get("email").toString();
+                                        String fiscalCode = document.getData().get("fiscalCode").toString();
+                                        int gender = Integer.parseInt(document.getData().get("gender").toString());
+                                        String photoUrl = document.getData().get("photoURL").toString();
+                                        String name = document.getData().get("name").toString();
+                                        String surname = document.getData().get("surname").toString();
+                                        String telephoneNumber = document.getData().get("telephoneNumber").toString();
 
-        // Listener of the button
-        choosePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choosePicture();
+                                        User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                                        users.add(user);
+                                    }
+                                    adapter.clear();
+                                    adapter.addAll(users);
+                                }
+                            });
+                }
             }
         });
 
@@ -92,93 +157,34 @@ public class activity_guide extends AppCompatActivity {
         }
     }
 
-    // The following functions are called when the user clicks the button for changing the image picture
+    /*
+    private class UserAdapter extends ArrayAdapter<User> {
+        ArrayList<User> users;
 
-    // These functions open the gallery and allow the user to select his profile picture
-    private void choosePicture() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        activityGuideResultLauncher.launch(intent);
+        public UserAdapter(@NonNull Context context, ArrayList<User> users) {
+            super(context, 0, users);
+            this.users = users;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if(convertView == null){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_list_item,parent, false);
+            }
+
+            TextView userName = convertView.findViewById(R.id.itemName);
+            TextView userPhoneNumber = convertView.findViewById(R.id.itemTelephoneNumber);
+
+            User user = users.get(position);
+            userName.setText(user.getName());
+            userPhoneNumber.setText(user.getTelephoneNumber());
+
+            return convertView;
+        }
     }
 
-    ActivityResultLauncher<Intent> activityGuideResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        assert data != null;
-                        imageUri = data.getData();
-                        profilePic_guide.setImageURI(imageUri);
-                        uploadPicture();
-                    }
-                }
-            });
-
-    // Support function that allows to update the given field of the given collection
-    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,  String idDocument, String nameField, T value) {
-        db.collection(collectionName).document(idDocument)
-                .update(nameField, value)
-                .addOnSuccessListener(new OnSuccessListener<Void>(){
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "Document updated added");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("TAG", "Error update document", e);
-                    }
-                });
-    }
-
-    // This function uploads the image in the Firebase Storage folder of the user and updates the "photoURL" field in the database,
-    // using the function define above
-    private void uploadPicture() {
-        final ProgressDialog pd = new ProgressDialog(this);
-        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
-
-        pd.setTitle("Uploading Image..");
-        pd.show();
-
-        ref.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        pd.dismiss();
-                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                updateDatabaseField(db,"user", auth.getCurrentUser().getUid(),"photoURL", uri.toString());
-                                Toast.makeText(activity_guide.this, "Caricamento nel db avvenuto correttamente", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(activity_guide.this, "Errore nel caricamento nel db", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.",Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double progressPercent = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        pd.setMessage("Percentage: " + (int) progressPercent + "%");
-                    }
-                });
-    }
+     */
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity

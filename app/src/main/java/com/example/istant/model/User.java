@@ -1,5 +1,7 @@
 package com.example.istant.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +94,12 @@ public class User {
 
     public String getTelephoneNumber() {
         return telephoneNumber;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.name + " " + this.telephoneNumber;
     }
 
     // methods

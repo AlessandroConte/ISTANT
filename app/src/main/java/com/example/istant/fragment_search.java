@@ -1,25 +1,26 @@
 package com.example.istant;
 
+import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import com.example.istant.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 
 /**
@@ -28,24 +29,16 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class fragment_search extends Fragment {
-    FirebaseFirestore db;
+    private ListView userslistview;
+    private FirebaseFirestore db;
+    private ArrayAdapter<User> adapter;
+    private EditText searchBox;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // Needed to show the list of users
-    ListView listview;
-    ArrayList<User_1> userArrayList;
-
-
-    ListView l;
-    String users_list[] = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -85,83 +78,141 @@ public class fragment_search extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*
-        // Inflate the layout for this fragment
+
+        context = container.getContext();
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-
-        l = rootView.findViewById(R.id.search_list);
-        ArrayAdapter<String> arr;
-        arr = new ArrayAdapter<String>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, users_list);
-        l.setAdapter(arr);
-
-        return rootView;
-
-         */
-
         db = FirebaseFirestore.getInstance();
+        userslistview = rootView.findViewById(R.id.users_listView);
+        searchBox = rootView.findViewById(R.id.et_searchUser);
+
+        adapter = new UserAdapter(context, new ArrayList<User>());
+        userslistview.setAdapter(adapter);
+
         db.collection("user")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        EditText inputSearch;
-                        Button buttonSearch;
-                        String inputString;
-
-                        buttonSearch = (Button) getView().findViewById(R.id.search_buttonSearch);
-                        inputSearch = (EditText) getView().findViewById(R.id.et_cercaUtente);
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         ArrayList<User> users = new ArrayList<>();
-                        buttonSearch.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                // inputString = inputSearch.getText().toString();
-                                // TODO: fix
-                            }
-                        });
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String id = document.getId();
-                                String address = document.getData().get("address").toString();
-                                Timestamp dateBorn = document.getTimestamp("dateBorn");
-                                String email = document.getData().get("email").toString();
-                                String fiscalCode = document.getData().get("fiscalCode").toString();
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String id = document.getId();
+                            String address = document.getData().get("address").toString();
+                            Timestamp dateBorn = document.getTimestamp("dateBorn");
+                            String email = document.getData().get("email").toString();
+                            String fiscalCode = document.getData().get("fiscalCode").toString();
+                            int gender = Integer.parseInt(document.getData().get("gender").toString());
+                            String photoUrl = document.getData().get("photoURL").toString();
+                            String name = document.getData().get("name").toString();
+                            String surname = document.getData().get("surname").toString();
+                            String telephoneNumber = document.getData().get("telephoneNumber").toString();
 
-                                int gender;
-                                if(Boolean.parseBoolean(document.getData().get("gender").toString())){
-                                    gender = 1;
-                                }
-                                else {
-                                    gender = 0;
-                                }
-
-                                String photoUrl = document.getData().get("photoURL").toString();
-                                String name = document.getData().get("name").toString();
-                                String surname = document.getData().get("surname").toString();
-                                String telephoneNumber = document.getData().get("telephoneNumber").toString();
-
-                                User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
-                                users.add(user);
-                            }
-
-                            // Now I'm going to declare the adapter.
-                            // The adapter is a Java class that allows us to view a list of "complex" objects. These objects are formed by multiple elements.
-                            listadapter_user listadapter = new listadapter_user(getActivity(), users);
-
-                            // now we associate the list adapter with the listview
-                            listview.setAdapter(listadapter);
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
+                            User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                            users.add(user);
                         }
+                        adapter.clear();
+                        adapter.addAll(users);
                     }
                 });
 
-        // LIST OF INSTRUCTIONS NEEDED TO VIEW THE LIST OF PARTICIPANTS TO THE EVENT
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+            }
 
-        // here I get the reference to the list view I created in the xml file
-        listview = rootView.findViewById(R.id.search_list);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d("FIRESTORE - SEARCH", "Searchbox has changed to: " + editable.toString());
+
+                if (editable.toString().isEmpty()){
+                    db.collection("user")
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    ArrayList<User> users = new ArrayList<>();
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        String id = document.getId();
+                                        String address = document.getData().get("address").toString();
+                                        Timestamp dateBorn = document.getTimestamp("dateBorn");
+                                        String email = document.getData().get("email").toString();
+                                        String fiscalCode = document.getData().get("fiscalCode").toString();
+                                        int gender = Integer.parseInt(document.getData().get("gender").toString());
+                                        String photoUrl = document.getData().get("photoURL").toString();
+                                        String name = document.getData().get("name").toString();
+                                        String surname = document.getData().get("surname").toString();
+                                        String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                                        User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                                        users.add(user);
+                                    }
+                                    adapter.clear();
+                                    adapter.addAll(users);
+                                }
+                            });
+                }
+                else {
+                    db.collection("user")
+                            .whereEqualTo("name", editable.toString())
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    ArrayList<User> users = new ArrayList<>();
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        String id = document.getId();
+                                        String address = document.getData().get("address").toString();
+                                        Timestamp dateBorn = document.getTimestamp("dateBorn");
+                                        String email = document.getData().get("email").toString();
+                                        String fiscalCode = document.getData().get("fiscalCode").toString();
+                                        int gender = Integer.parseInt(document.getData().get("gender").toString());
+                                        String photoUrl = document.getData().get("photoURL").toString();
+                                        String name = document.getData().get("name").toString();
+                                        String surname = document.getData().get("surname").toString();
+                                        String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                                        User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                                        users.add(user);
+                                    }
+                                    adapter.clear();
+                                    adapter.addAll(users);
+                                }
+                            });
+                }
+            }
+        });
 
         return rootView;
+    }
+
+    private class UserAdapter extends ArrayAdapter<User> {
+        ArrayList<User> users;
+
+        public UserAdapter(@NonNull Context context, ArrayList<User> users) {
+            super(context, 0, users);
+            this.users = users;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if(convertView == null){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_list_item,parent, false);
+            }
+
+            TextView userName = convertView.findViewById(R.id.itemName);
+            TextView userPhoneNumber = convertView.findViewById(R.id.itemTelephoneNumber);
+
+            User user = users.get(position);
+            userName.setText(user.getName());
+            userPhoneNumber.setText(user.getTelephoneNumber());
+
+            return convertView;
+        }
     }
 }
