@@ -102,7 +102,7 @@ public class fragment_loans extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(getActivity(), activity_visualizeactivities.class);
+                Intent i = new Intent(getActivity(), activity_visualizeloans.class);
                 i.putExtra("name",name[position]);
                 i.putExtra("phone",phoneNo[position]);
                 i.putExtra("country",country[position]);

@@ -54,5 +54,10 @@
     <string name="fragmentloans_switchLoans">My Loans</string>
     <string name="fragmentLoans_textView_title">My Loans</string>
 
+    <!-- activity_visualizeloans -->
+    <string name="visualizeloans_textview_description">Description</string>
+    <string name="visualizeloans_textview_datestart">Start date</string>
+    <string name="visualizeloans_textview_dateend">End date</string>
+    <string name="visualizeloans_participate">Participate</string>
 
 </resources>

@@ -6,33 +6,195 @@
     android:layout_height="match_parent"
     tools:context=".activity_visualizeloans">
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="221dp">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/visualizeloan_name"
+            <ImageView
+                android:id="@+id/activityImage"
+                android:layout_width="225dp"
+                android:layout_height="251dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.253"
+                app:srcCompat="@drawable/ic_user" />
+
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:minWidth="150dp"
-                android:text="@string/visualizeloan_textview_name"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:layout_height="match_parent">
 
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/visualizeloans_textview_description"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/visualizeloans_edittext_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="124dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textMultiLine"
+                        android:minHeight="100dp"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_datestart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/visualizeloans_textview_datestart"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/visualizeloans_edittext_datestart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:layout_column="1"
+                        android:inputType="date" />
+
+                </TableRow>
 
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_dateend"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/visualizeloans_textview_dateend"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/visualizeloans_edittext_dateend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:layout_column="1"
+                        android:inputType="date" />
+
+                </TableRow>
 
 
-    </TableLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_textview_modifysave"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_modifysave"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_buttonModifySave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/button_modifysave" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_textview_delete"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_delete"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivity_buttondelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/button_delete" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_textview_participate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/visualizeloans_participate"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:gravity="center"
+                        android:id="@+id/visualizeloans_button_participate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="@string/visualizeloans_participate" />
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
