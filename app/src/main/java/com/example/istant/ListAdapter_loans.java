@@ -28,20 +28,16 @@ public class ListAdapter_loans extends ArrayAdapter<Loan> {
         Loan loan = getItem(position);
 
         if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_loan,parent,false);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.listadapter_user_picture);
-        TextView userName = convertView.findViewById(R.id.listadapter_user_namesurname);
-        TextView lastMsg = convertView.findViewById(R.id.listadapter_user_phonenumber);
-        TextView time = convertView.findViewById(R.id.msgtime);
+        ImageView imageView = convertView.findViewById(R.id.listadapter_loan_picture);
+        TextView userName = convertView.findViewById(R.id.listadapter_loan_name);
 
         // imageView.setImageResource(activity.getId());
         // TODO: fix
         userName.setText(loan.getNameLoan());
         userName.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        lastMsg.setText(loan.getDescription());
-        time.setText(loan.getId());
 
         return convertView;
     }

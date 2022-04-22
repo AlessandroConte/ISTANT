@@ -44,12 +44,13 @@
                 android:layout_marginEnd="24dp"
                 android:height="48dp"
                 android:gravity="center"
+                android:minHeight="48dp"
                 android:text="@string/fragmentloans_switchLoans"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.971"
                 app:layout_constraintStart_toEndOf="@+id/textView_loans"
-                tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
+                tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck"
                 tools:layout_editor_absoluteY="-7dp" />
 
             <Button

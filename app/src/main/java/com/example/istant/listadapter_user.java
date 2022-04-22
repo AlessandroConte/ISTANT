@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.bumptech.glide.Glide;
 import com.example.istant.model.User;
 
 import java.util.ArrayList;
@@ -34,8 +33,8 @@ public class listadapter_user extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_user,parent,false);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.listadapter_user_picture);
-        TextView userName = convertView.findViewById(R.id.listadapter_user_namesurname);
+        ImageView imageView = convertView.findViewById(R.id.listadapter_loan_picture);
+        TextView userName = convertView.findViewById(R.id.listadapter_loan_name);
         TextView userDescription = convertView.findViewById(R.id.listadapter_user_phonenumber);
 
         //Glide.with(get.this).load(user.getPhotoUrl()).into(imageView);

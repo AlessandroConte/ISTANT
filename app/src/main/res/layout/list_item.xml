@@ -15,7 +15,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/listadapter_user_picture"
+                android:id="@+id/listadapter_loan_picture"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -29,7 +29,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/listadapter_user_namesurname"
+                    android:id="@+id/listadapter_loan_name"
                     android:layout_width="160dp"
                     android:layout_height="40dp"
                     android:autoSizeTextType="uniform"

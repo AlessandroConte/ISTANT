@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.istant.model.Activity;
-import com.example.istant.model.User;
 
 import java.util.ArrayList;
 
@@ -33,8 +32,8 @@ public class ListAdapter extends ArrayAdapter<Activity> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.listadapter_user_picture);
-        TextView userName = convertView.findViewById(R.id.listadapter_user_namesurname);
+        ImageView imageView = convertView.findViewById(R.id.listadapter_loan_picture);
+        TextView userName = convertView.findViewById(R.id.listadapter_loan_name);
         TextView lastMsg = convertView.findViewById(R.id.listadapter_user_phonenumber);
         TextView time = convertView.findViewById(R.id.msgtime);
 
