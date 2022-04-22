@@ -60,4 +60,9 @@
     <string name="visualizeloans_textview_dateend">End date</string>
     <string name="visualizeloans_participate">Participate</string>
 
+    <!-- fragment_groupinfo -->
+    <string name="groupinfo_nomegruppo">Grest Estivo del paese</string>
+    <string name="groupinfo_descrizionegruppo">Descrizione Gruppo</string>
+    <string name="groupinfo_textview_descrizione">Gruppo di gestione del Grest Estivo del paese. Qui ci organizzeremo per gestire tutte le attività!</string>
+
 </resources>

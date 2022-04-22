@@ -71,14 +71,7 @@ public class fragment_loans extends Fragment {
 
         int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
                 R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
-        String[] name = {"Prestitooooooooo","Playstation 5 ","Libro Harry Potter","Bicicletta  ","Mike","Michael","Toa","Ivana"," "};
-        String[] description = {"Esempio","Presto play 5 in cambio di Xbox","Scambio HP e il calice di fuoco","Scambio bici rubata","prova",
-                "i'm in meeting","Gotcha","Let's Go","RIGA DA SVUOTARE PER BELLEZZA"};
-        String[] reviews = {"3.0/5","5.0/5","4.2/5","3.7/5","1.0/5",
-                "3.0/5","2.7/5","4.5/5"," "};
-        String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
-                "9439043232","7534354323","6545543211","7654432343"};
-        String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
+        String[] name = {"Prestitooooooooo","Playstation 5 ","Libro Harry Potter","Bicicletta  ","Mike","Michael","Toa","Ivana","Loan"};
 
         Calendar cal = Calendar.getInstance();
         cal.set(2022,1,1);
@@ -88,7 +81,7 @@ public class fragment_loans extends Fragment {
         ArrayList<Loan> userArrayList = new ArrayList<>();
 
         for(int i = 0;i< imageId.length;i++){
-            Loan loan = new Loan(name[i], new Timestamp(dateStart),new Timestamp(dateEnd),description[i],name[i],"");
+            Loan loan = new Loan(name[i], new Timestamp(dateStart),new Timestamp(dateEnd),"",name[i],"");
             userArrayList.add(loan);
         }
 
@@ -104,8 +97,6 @@ public class fragment_loans extends Fragment {
 
                 Intent i = new Intent(getActivity(), activity_visualizeloans.class);
                 i.putExtra("name",name[position]);
-                i.putExtra("phone",phoneNo[position]);
-                i.putExtra("country",country[position]);
                 i.putExtra("imageid",imageId[position]);
                 startActivity(i);
 
