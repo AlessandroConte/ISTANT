@@ -8,16 +8,20 @@ import java.util.List;
  * entity 'loan' of the database
  */
 public class Loan {
-    private final String id;
-    private final Timestamp dateStart;
-    private final Timestamp dateEnd;
+    private String id;
+    private Timestamp dateStart;
+    private Timestamp dateEnd;
     private String description;
     private String nameLoan;
-    private final String uid;
+    private String uid;
 
     // constructor
-    public Loan(String id, Timestamp dateStart, Timestamp dateEnd,
-                String description, String nameLoan, String uid) {
+
+
+    public Loan() {
+    }
+
+    public Loan(String id, Timestamp dateStart, Timestamp dateEnd, String description, String nameLoan, String uid) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;

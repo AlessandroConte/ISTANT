@@ -14,13 +14,6 @@
             android:layout_marginVertical="10dp"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/listadapter_loan_picture"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/ic_user" />
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -29,23 +22,36 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/listadapter_loan_name"
+                    android:id="@+id/listadapter_userName"
                     android:layout_width="160dp"
                     android:layout_height="20dp"
                     android:autoSizeTextType="uniform"
                     android:lines="2"
-                    android:text="@+id/textview_nameSurname"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/listadapter_user_phonenumber"
+                    android:id="@+id/listadapter_userSurname"
                     android:layout_width="160dp"
-                    android:layout_height="25dp"
+                    android:layout_height="20dp"
                     android:layout_marginTop="5dp"
+                    android:autoSizeTextType="uniform"
                     android:lines="2"
-                    android:text="@+id/textview_phonenumber"
-                    android:textSize="10dp" />
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/listadapter_userPhoneNumber"
+                    android:layout_width="160dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:autoSizeTextType="uniform"
+                    android:lines="2"
+                    android:text=""
+                    android:textColor="@color/black" />
+
 
             </LinearLayout>
 

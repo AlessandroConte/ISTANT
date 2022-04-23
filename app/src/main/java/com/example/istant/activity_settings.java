@@ -50,7 +50,7 @@ public class activity_settings extends AppCompatActivity {
     // variable needed to make the fields editable.
     private boolean flag;
 
-    // Retrieveing all of the fileds of the gui in order to enable and disable the edit options
+    // Retrieveing all of the fields of the gui in order to enable and disable the edit options
     private TextView tv_name;
     private TextView tv_surname;
     private TextView tv_phonenumber;
@@ -146,7 +146,7 @@ public class activity_settings extends AppCompatActivity {
         btnManageChildren = findViewById(R.id.settings_buttonManageChildren);
 
         // set actions to perform when the btnSaveChanges is clicked
-        // TO DO
+        // TODO
 
         // Here I am retrievenig the ImageView and setting an action when this is executed
         // The actions allows the user to change/pic the picture to associate to the given activity

@@ -17,9 +17,9 @@ import com.example.istant.model.User;
 
 import java.util.ArrayList;
 
-public class listadapter_user extends ArrayAdapter<User> {
+public class ListAdapter_user extends ArrayAdapter<User> {
 
-    public listadapter_user(Context context, ArrayList<User> userArrayList){
+    public ListAdapter_user(Context context, ArrayList<User> userArrayList){
         super(context,R.layout.listadapter_user,userArrayList);
     }
 

@@ -1,6 +1,8 @@
 package com.example.istant;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -34,6 +37,8 @@ public class fragment_search extends Fragment {
     private ArrayAdapter<User> adapter;
     private EditText searchBox;
     private Context context;
+    private ArrayList<User> users;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,13 +92,14 @@ public class fragment_search extends Fragment {
 
         adapter = new UserAdapter(context, new ArrayList<User>());
         userslistview.setAdapter(adapter);
+        userslistview.setClickable(true);
+        users = new ArrayList<User>();
 
         db.collection("user")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        ArrayList<User> users = new ArrayList<>();
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String id = document.getId();
                             String address = document.getData().get("address").toString();
@@ -113,6 +119,15 @@ public class fragment_search extends Fragment {
                         adapter.addAll(users);
                     }
                 });
+
+        userslistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), activity_visualizeloans.class);
+                // intent.putExtra("user", users.get(i));
+                startActivity(intent);
+            }
+        });
 
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -202,14 +217,17 @@ public class fragment_search extends Fragment {
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             if(convertView == null){
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_list_item,parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_user,parent, false);
             }
 
-            TextView userName = convertView.findViewById(R.id.itemName);
-            TextView userPhoneNumber = convertView.findViewById(R.id.itemTelephoneNumber);
+            TextView userName = convertView.findViewById(R.id.listadapter_userName);
+            TextView userSurname = convertView.findViewById(R.id.listadapter_userSurname);
+            TextView userPhoneNumber = convertView.findViewById(R.id.listadapter_userPhoneNumber);
 
             User user = users.get(position);
+
             userName.setText(user.getName());
+            userSurname.setText(user.getSurname());
             userPhoneNumber.setText(user.getTelephoneNumber());
 
             return convertView;

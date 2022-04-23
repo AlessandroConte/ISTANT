@@ -1,28 +1,39 @@
 package com.example.istant;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-
-import com.example.istant.databinding.FragmentLoansBinding;
 import com.example.istant.model.Loan;
-import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link fragment_loans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_loans extends Fragment {
+public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoanListener{
+
+    private RecyclerView recyclerView;
+    private ArrayList<Loan> loanArrayList;
+    private ListAdapter_loans adapterLoans;
+    private FirebaseFirestore db;
+    private ProgressDialog pd;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,10 +76,51 @@ public class fragment_loans extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        FragmentLoansBinding binding = FragmentLoansBinding.inflate(inflater, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.fragment_loans, container, false);
+        context = container.getContext();
+
+        loanArrayList = new ArrayList<Loan>();
+        adapterLoans = new ListAdapter_loans(context, loanArrayList,this);
+
+        recyclerView = rootView.findViewById(R.id.recyclerView_fragmentLoans);
+        recyclerView.setAdapter(adapterLoans);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        pd = new ProgressDialog(context);
+        pd.setCancelable(false);
+        pd.setMessage("Fetching data..");
+        pd.show();
+
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("loan").orderBy("dateStart", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            if (pd.isShowing()){
+                                pd.dismiss();
+                            }
+                            Log.d("Firestore error", error.getMessage());
+                            return;
+                        }
+
+                        for (DocumentChange dc : value.getDocumentChanges()){
+                            if (dc.getType() == DocumentChange.Type.ADDED){
+                                loanArrayList.add(dc.getDocument().toObject(Loan.class));
+                            }
+                            adapterLoans.notifyDataSetChanged();
+                            if (pd.isShowing()){
+                                pd.dismiss();
+                            }
+                        }
+                    }
+                });
+
+        /*
         int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
                 R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
         String[] name = {"Prestitooooooooo","Playstation 5 ","Libro Harry Potter","Bicicletta  ","Mike","Michael","Toa","Ivana","Loan"};
@@ -103,10 +155,18 @@ public class fragment_loans extends Fragment {
             }
         });
 
-
-
+         */
 
         // Inflate the layout for this fragment
-        return binding.getRoot();
+        return rootView;
+    }
+
+    @Override
+    public void onLoanClick(int position) {
+        Intent intent = new Intent(context, activity_visualizeloans.class);
+        //intent.putExtra("loan", loanArrayList.get(position));
+        // TODO: quando invochiamo la nuova schermata, dobbiamo portarci le info del prestito cliccato
+        startActivity(intent);
+        Log.d("RecyclerView Item","position = " + position);
     }
 }
