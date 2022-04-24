@@ -12,9 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
 import com.example.istant.model.User;
-
 import java.util.ArrayList;
 
 public class ListAdapter_user extends ArrayAdapter<User> {
@@ -33,17 +31,17 @@ public class ListAdapter_user extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_user,parent,false);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.listadapter_loan_picture);
-        TextView userName = convertView.findViewById(R.id.listadapter_loan_name);
-        TextView userDescription = convertView.findViewById(R.id.listadapter_user_phonenumber);
+        // ImageView imageView = convertView.findViewById(R.id.listadapter_loanPicture);
+        TextView userName = convertView.findViewById(R.id.listadapter_loanName);
+        //TextView userDescription = convertView.findViewById(R.id.listadapter_userPhonenumber);
 
         //Glide.with(get.this).load(user.getPhotoUrl()).into(imageView);
 
-        imageView.setImageURI(Uri.parse(user.getPhotoUrl()));
+        // imageView.setImageURI(Uri.parse(user.getPhotoUrl()));
         userName.setText(user.getName());
         userName.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        userDescription.setText(user.getTelephoneNumber());
-        userDescription.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        //userDescription.setText(user.getTelephoneNumber());
+        // userDescription.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
 
         return convertView;
     }

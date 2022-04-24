@@ -167,6 +167,6 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
         //intent.putExtra("loan", loanArrayList.get(position));
         // TODO: quando invochiamo la nuova schermata, dobbiamo portarci le info del prestito cliccato
         startActivity(intent);
-        Log.d("RecyclerView Item","position = " + position);
+        // Log.d("RecyclerView Item","position = " + position);
     }
 }

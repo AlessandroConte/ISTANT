@@ -8,16 +8,19 @@ import java.util.List;
  * entity 'activity' of the database
  */
 public class Activity {
-    private final String id;
+    private String id;
     private String nameActivity;
     private String address;
-    private final Timestamp dateStart;
-    private final Timestamp dateEnd;
+    private Timestamp dateStart;
+    private Timestamp dateEnd;
     private String description;
     private List<String> personInCharge;
     private String photoEvent;
 
     // constructor
+
+    public Activity () {}
+
     public Activity(String id, String nameActivity, String address,
                     Timestamp dateStart, Timestamp dateEnd, String description,
                     List<String> personInCharge, String photoEvent) {

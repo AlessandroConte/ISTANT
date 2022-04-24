@@ -1,32 +1,39 @@
 package com.example.istant;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.istant.databinding.FragmentActivitiesBinding;
 import com.example.istant.model.Activity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link fragment_activities#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_activities extends Fragment {
-    FirebaseFirestore db;
+public class fragment_activities extends Fragment implements ListAdapter_activities.OnActivityListener{
+
+    private RecyclerView recyclerView;
+    private ArrayList<Activity> activityArrayList;
+    private ListAdapter_activities adapterActivities;
+    private FirebaseFirestore db;
+    private ProgressDialog pd;
+    private Context context;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -70,13 +77,31 @@ public class fragment_activities extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        FragmentActivitiesBinding binding;
+        View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
+        context = container.getContext();
+
+        activityArrayList = new ArrayList<Activity>();
+        adapterActivities = new ListAdapter_activities(context, activityArrayList, this);
+
+        recyclerView = rootView.findViewById(R.id.recyclerView_fragmentActivities);
+        recyclerView.setAdapter(adapterActivities);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        pd = new ProgressDialog(context);
+        pd.setCancelable(false);
+        pd.setMessage("Fetching data..");
+        pd.show();
+
+        // FragmentActivitiesBinding binding;
 
         db = FirebaseFirestore.getInstance();
-        db.collection("activity")
+
+        db.collection("activity").orderBy("dateStart", Query.Direction.DESCENDING)
+
+                /*
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -96,13 +121,13 @@ public class fragment_activities extends Fragment {
                                 Activity activity = new Activity(id, nameActivity, address, dateStart, dateEnd, description, personInCharge, photoEvent);
                                 activities.add(activity);
                             }
-                            //binding = FragmentActivitiesBinding.inflate(inflater, container, false);
-                            ListAdapter listAdapter  = new ListAdapter(getActivity(),activities);
-                            //binding.listview.setAdapter(listAdapter);
-                            //binding.listview.setClickable(true);
+                            binding = FragmentActivitiesBinding.inflate(inflater, container, false);
+                            ListAdapter_activities listAdapterActivities = new ListAdapter_activities(getActivity(),activities);
+                            binding.listview.setAdapter(listAdapter);
+                            binding.listview.setClickable(true);
 
-                            //data shared with next activity
-                            /*
+                            data shared with next activity
+
                             binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -115,16 +140,37 @@ public class fragment_activities extends Fragment {
                                     startActivity(i);
                                 }
                             });
-
-                             */
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
                 });
+                 */
 
-        View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
+        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null){
+                    if (pd.isShowing()) {
+                        pd.dismiss();
+                    }
+                    Log.d("Firestore error", error.getMessage());
+                    return;
+                }
 
+                for (DocumentChange dc : value.getDocumentChanges()){
+                    if (dc.getType() == DocumentChange.Type.ADDED){
+                        activityArrayList.add(dc.getDocument().toObject(Activity.class));
+                    }
+                    adapterActivities.notifyDataSetChanged();
+                    if (pd.isShowing()){
+                        pd.dismiss();
+                    }
+                }
+            }
+        });
+
+        /*
         View view = inflater.inflate(R.layout.fragment_activities, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_activities);
         fab.bringToFront();
@@ -139,5 +185,18 @@ public class fragment_activities extends Fragment {
         // Inflate the layout for this fragment
         //return binding.getRoot();
         return null;
+
+         */
+
+        return rootView;
+    }
+
+    @Override
+    public void onActivityClick(int position) {
+        Log.d("RecyclerView item", "position = " + position);
+        Intent intent = new Intent(context, activity_visualizeactivities.class);
+        // intent.putExtra("activity", activityArrayList.get(position));
+        // TODO: implementare il putExtra
+        startActivity(intent);
     }
 }
