@@ -8,23 +8,21 @@ import java.util.List;
  * entity 'loan' of the database
  */
 public class Loan {
-    private String id;
-    private Timestamp dateStart;
-    private Timestamp dateEnd;
+    private final String id;
+    private final Timestamp dateStart;
+    private final Timestamp dateEnd;
+    private String photoLoan;
     private String description;
     private String nameLoan;
-    private String uid;
+    private final String uid;
 
     // constructor
-
-
-    public Loan() {
-    }
-
-    public Loan(String id, Timestamp dateStart, Timestamp dateEnd, String description, String nameLoan, String uid) {
+    public Loan(String id, Timestamp dateStart, Timestamp dateEnd,
+                String photoLoan, String description, String nameLoan, String uid) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+        this.photoLoan = photoLoan;
         this.description = description;
         this.nameLoan = nameLoan;
         this.uid = uid;
@@ -61,6 +59,14 @@ public class Loan {
 
     public String getUid() {
         return uid;
+    }
+
+    public String getPhotoLoan() {
+        return photoLoan;
+    }
+
+    public void setPhotoLoan(String photoLoan) {
+        this.photoLoan = photoLoan;
     }
 
     // methods

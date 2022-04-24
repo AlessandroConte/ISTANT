@@ -120,6 +120,7 @@ db.collection("scoreActivityUser")
 	}
     }
 });
+
 // LOAN - read
 
 db.collection("loan")
@@ -134,11 +135,12 @@ db.collection("loan")
 		Timestamp dateEnd = document.getTimestamp("dateEnd");
 		String description = document.getData().get("description").toString();;
 		String nameLoan = document.getData().get("nameLoan").toString();
+		String photoLoanObj = document.getData().get("photoLoan").toString();
 		String uid = document.getData().get("uid").toString();
 
-		Loan loan = new Loan(id, dateStart, dateEnd, description, nameLoan, uid);
-
+		Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, uid);
 		//loans.add(loan);
+
 	    }
 	} else {
 	    Log.d("TAG", "Error getting documents: ", task.getException());
