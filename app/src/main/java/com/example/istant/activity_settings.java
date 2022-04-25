@@ -33,10 +33,11 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class activity_settings extends AppCompatActivity {
-    private Button btnSaveChanges, btnManageChildren;
 
     // Variables needed to change the picture of the activity
     private ImageView profilePic_settings;
@@ -50,6 +51,16 @@ public class activity_settings extends AppCompatActivity {
     // variable needed to make the fields editable.
     private boolean flag;
 
+    // variables needed to retrieve the fields of the EditText
+    private String name;
+    private String surname;
+    private String phoneNumber;
+    private String fiscalCode;
+    private String address;
+    private String email;
+    private String bornDate;
+
+
     // Retrieveing all of the fields of the gui in order to enable and disable the edit options
     private TextView tv_name;
     private TextView tv_surname;
@@ -62,7 +73,10 @@ public class activity_settings extends AppCompatActivity {
     private RadioButton rb_sex_f;
 
     // button used to modify / save the user information
-    private Button button_modifysave;
+    private Button btnModify;
+    private Button btnSaveChanges; // TODO: da mostrare solo quando clicco su btnModify, in modo da salvare le modifiche
+    private Button btnManageChildren;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,66 +105,50 @@ public class activity_settings extends AppCompatActivity {
         rb_sex_m = findViewById(R.id.settings_genderradiobutton_m);
         rb_sex_f = findViewById(R.id.settings_genderradiobutton_f);
 
-        // Firebase variables
+        // Setting the Firebase variables
         storageReference = FirebaseStorage.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
 
-        // retrieve the button "modify/save" from the gui
-        // if the bool "flag" is:
-        // false -> the textfields aren't editable and only show the data present at the given moment in the db. The button_modifisave has as text "modify"
-        // true -> the textfields are editable and the user can change the fileds. The button has as text "save"
-        button_modifysave = findViewById(R.id.settings_buttonModifySave);
-        button_modifysave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // false - it enables the fileds and the user can modify them, at the end it puts the flag as true
-                if ( flag == false ) {
-                    button_modifysave.setText("Save");
-                    tv_name.setEnabled(true);
-                    tv_surname.setEnabled(true);
-                    tv_phonenumber.setEnabled(true);
-                    tv_fiscalcode.setEnabled(true);
-                    tv_address.setEnabled(true);
-                    tv_address.setEnabled(true);
-                    tv_email.setEnabled(true);
-                    tv_dateofbirth.setEnabled(true);
-                    rb_sex_m.setEnabled(true);
-                    rb_sex_f.setEnabled(true);
-                    flag = true;
-                }
-                // true - the user modified the field/s and now wants to save. It saves the modified values, it disables the fileds and then sets the falg to false.
-                else {
-                    // save the values contained in the fileds in the activity info
-                    button_modifysave.setText("Modify");
-                    tv_name.setEnabled(false);
-                    tv_surname.setEnabled(false);
-                    tv_phonenumber.setEnabled(false);
-                    tv_fiscalcode.setEnabled(false);
-                    tv_address.setEnabled(false);
-                    tv_address.setEnabled(false);
-                    tv_email.setEnabled(false);
-                    tv_dateofbirth.setEnabled(false);
-                    rb_sex_m.setEnabled(false);
-                    rb_sex_f.setEnabled(false);
-                    flag = false;
-                }
+        // Retrieving the two buttons
+        btnSaveChanges = findViewById(R.id.settings_buttonSave);
+        btnModify = findViewById(R.id.settings_buttonModify);
+        btnManageChildren = findViewById(R.id.settings_buttonManageChildren);
 
+
+        // Retrieving the ImageView
+        profilePic_settings = findViewById(R.id.profilePic_settings);
+
+
+        // Setting all the EditText with the field of the DB
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String name = documentSnapshot.get("name").toString();
+                String surname = documentSnapshot.get("surname").toString();
+                String phoneNumber = documentSnapshot.get("telephoneNumber").toString();
+                String fiscalCode = documentSnapshot.get("fiscalCode").toString();
+                String address = documentSnapshot.get("address").toString();
+                String email = documentSnapshot.get("email").toString();
+                String bornDate = documentSnapshot.get("dateBorn").toString(); // TODO: fix
+                // TODO: gender
+
+                tv_name.setText(name);
+                tv_surname.setText(surname);
+                tv_phonenumber.setText(phoneNumber);
+                tv_fiscalcode.setText(fiscalCode);
+                tv_address.setText(address);
+                tv_email.setText(email);
+                tv_dateofbirth.setText(bornDate);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Firebase error", e.toString());
             }
         });
 
-
-        // retrieve the two buttons for the graphical user interface
-        btnSaveChanges = findViewById(R.id.settings_buttonSave);
-        btnManageChildren = findViewById(R.id.settings_buttonManageChildren);
-
-        // set actions to perform when the btnSaveChanges is clicked
-        // TODO
-
-        // Here I am retrievenig the ImageView and setting an action when this is executed
-        // The actions allows the user to change/pic the picture to associate to the given activity
-        profilePic_settings = findViewById(R.id.profilePic_settings);
 
         // Getting the "photoURL" field of the current user
         // If the user has a profile picture, i.e. "photoURL" != "", then set it in the ImageView
@@ -169,14 +167,90 @@ public class activity_settings extends AppCompatActivity {
             }
         });
 
-        profilePic_settings.setOnClickListener(new View.OnClickListener() {
+
+        // Now we handle the buttons and the ImageView
+
+        // ModifyButton
+        // if the bool "flag" is:
+        // false -> the textfields aren't editable and only show the data present at the given moment in the db. The button_modifysave has as text "modify"
+        // true -> the textfields are editable and the user can change the fields. The button has as text "save"
+        btnModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                choosePicture();
+                // false - it enables the field and the user can modify them, at the end it puts the flag as true
+                if ( flag == false ) {
+                    btnModify.setText("Salva");
+                    tv_name.setEnabled(true);
+                    tv_surname.setEnabled(true);
+                    tv_phonenumber.setEnabled(true);
+                    tv_fiscalcode.setEnabled(true);
+                    tv_address.setEnabled(true);
+                    tv_address.setEnabled(true);
+                    tv_email.setEnabled(true);
+                    tv_dateofbirth.setEnabled(true);
+                    rb_sex_m.setEnabled(true);
+                    rb_sex_f.setEnabled(true);
+                    flag = true;
+                }
+                // true - the user modified the field/s and now wants to save. It saves the modified values, it disables the fileds and then sets the falg to false.
+                else {
+                    // save the values contained in the fields in the activity info
+                    btnModify.setText("Modifica");
+                    tv_name.setEnabled(false);
+                    tv_surname.setEnabled(false);
+                    tv_phonenumber.setEnabled(false);
+                    tv_fiscalcode.setEnabled(false);
+                    tv_address.setEnabled(false);
+                    tv_address.setEnabled(false);
+                    tv_email.setEnabled(false);
+                    tv_dateofbirth.setEnabled(false);
+                    rb_sex_m.setEnabled(false);
+                    rb_sex_f.setEnabled(false);
+                    flag = false;
+                }
+
             }
         });
 
-        // set actions to perform when the button btnManageChildren is clicked
+
+        // SaveChanges
+        btnSaveChanges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = tv_name.getText().toString();
+                surname = tv_surname.getText().toString();
+                phoneNumber = tv_phonenumber.getText().toString();
+                fiscalCode = tv_fiscalcode.getText().toString();
+                address = tv_address.getText().toString();
+                email = tv_email.getText().toString();
+                bornDate = tv_dateofbirth.getText().toString();
+
+                Map<String,Object> user = new HashMap<>();
+                user.put("address", address);
+                user.put("dateBorn", bornDate);
+                user.put("email", email);
+                user.put("fiscalCode", fiscalCode);
+                user.put("name", name);
+                user.put("surname", surname);
+                user.put("telephoneNumer", phoneNumber);
+
+                db.collection("user").document(auth.getCurrentUser().getUid())
+                        .update(user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d("Success", "Campi aggiornati in modo corretto");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Firebase error ", e.toString());
+                    }
+                });
+            }
+        });
+
+        // ManageChildren
         btnManageChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -184,6 +258,15 @@ public class activity_settings extends AppCompatActivity {
                 finish();
             }
         });
+
+        // ProfilePicture
+        profilePic_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choosePicture();
+            }
+        });
+
     }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
@@ -242,7 +325,7 @@ public class activity_settings extends AppCompatActivity {
     }
 
     // This function uploads the image in the Firebase Storage folder of the user and updates the "photoURL" field in the database,
-    // using the function define above
+    // using the function defined above
     private void uploadPicture() {
         final ProgressDialog pd = new ProgressDialog(this);
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());

@@ -326,22 +326,22 @@
                     android:layout_marginBottom="20dp">
 
                     <TextView
-                        android:id="@+id/settings_textview_modifysave"
+                        android:id="@+id/settings_textview_modify"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_modifysave"
+                        android:text="@string/settings_textview_modify"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/settings_buttonModifySave"
+                        android:id="@+id/settings_buttonModify"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
                         android:gravity="center"
-                        android:text="@string/settings_button_modifysave" />
+                        android:text="@string/settings_button_modify" />
                 </TableRow>
 
 
