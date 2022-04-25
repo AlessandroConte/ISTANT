@@ -1,5 +1,8 @@
 package com.example.istant.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.Timestamp;
@@ -9,19 +12,32 @@ import java.util.List;
 /**
  * entity 'user' of the database
  */
-public class User {
-    private final String id;
+public class User implements Parcelable {
+    private String id;
     private String address;
-    private final Timestamp dateBorn;
-    private final String email;
-    private final String fiscalCode;
+    private Timestamp dateBorn;
+    private String email;
+    private String fiscalCode;
     private int gender;
     private String photoUrl;
     private String name;
     private String surname;
-    private final String telephoneNumber;
+    private String telephoneNumber;
 
     // constructor
+
+    protected User(Parcel in){
+        // this.id = in.readString();
+        this.address = in.readString();
+        this.email = in.readString();
+        this.fiscalCode = in.readString();
+        // this.gender = in.readInt();
+        this.photoUrl = in.readString();
+        this.name = in.readString();
+        this.surname = in.readString();
+        this.telephoneNumber = in.readString();
+    }
+
     public User(String id, String address, Timestamp dateBorn, String email,
                 String fiscalCode, int gender, String photoUrl, String name,
                 String surname, String telephoneNumber) {
@@ -157,4 +173,37 @@ public class User {
         }
         return null;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        // parcel.writeString(id);
+        parcel.writeString(address);
+        // parcel.writeString(dateBorn.toString()); TODO: fix
+        parcel.writeString(email);
+        parcel.writeString(fiscalCode);
+        // parcel.writeInt(gender);
+        parcel.writeString(name);
+        parcel.writeString(photoUrl);
+        parcel.writeString(surname);
+        parcel.writeString(telephoneNumber);
+    }
+
+    public static final Creator<User> CREATOR = new Parcelable.Creator<User>() {
+
+        @Override
+        public User createFromParcel(Parcel parcel) {
+            return new User(parcel);
+        }
+
+        @Override
+        public User[] newArray(int i) {
+            return new User[0];
+        }
+    };
 }

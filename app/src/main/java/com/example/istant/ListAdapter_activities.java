@@ -33,7 +33,6 @@ public class ListAdapter_activities extends RecyclerView.Adapter<ListAdapter_act
         TextView time = convertView.findViewById(R.id.msgtime);
 
         // imageView.setImageResource(activity.getId());
-        // TODO: fix
         userName.setText(activity.getNameActivity());
         userName.setAutoSizeTextTypeWithDefaults(userName.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         lastMsg.setText(activity.getDescription());

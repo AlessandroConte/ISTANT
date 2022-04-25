@@ -62,6 +62,7 @@ public class fragment_search extends Fragment {
      * @return A new instance of fragment fragment_cerca.
      */
     // TODO: Rename and change types and number of parameters
+    // TODO: da cancellare???
     public static fragment_search newInstance(String param1, String param2) {
         fragment_search fragment = new fragment_search();
         Bundle args = new Bundle();
@@ -123,8 +124,8 @@ public class fragment_search extends Fragment {
         userslistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_visualizeloans.class);
-                // intent.putExtra("user", users.get(i));
+                Intent intent = new Intent(getActivity(), activity_guide.class); // TODO: nuova actvity da caricare è activity_visualizeuser
+                intent.putExtra("user", users.get(i)); // TODO: implementare putExtra()
                 startActivity(intent);
             }
         });
