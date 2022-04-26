@@ -47,7 +47,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_name"
+                        android:text="@string/activityguide_textview_name"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -76,7 +76,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_surname"
+                        android:text="@string/activityguide_textview_surname"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
