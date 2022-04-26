@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
+
+import com.example.istant.model.User;
+
 import java.util.ArrayList;
 
 public class activity_visualizeactivities_visualizeparticipants extends AppCompatActivity {
     ListView listview;
-    ArrayList<User_1> userArrayList;
+    ArrayList<User> userArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
