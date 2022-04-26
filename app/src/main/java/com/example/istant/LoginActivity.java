@@ -111,11 +111,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
     protected void onStart(){
         super.onStart();
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
+        }
+        else {
+            // this piece of code signals that the user is logging in.
+            ((JustLoggedIn) this.getApplication()).setJustLogged(true);
         }
     }
 }

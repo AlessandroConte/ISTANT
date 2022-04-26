@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     LayoutInflater inflater;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    // Alert dialog
+    AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,9 +54,30 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         auth = FirebaseAuth.getInstance();
-
         reset_alert = new AlertDialog.Builder(this);
         inflater = this.getLayoutInflater();
+
+
+        // Alert dialog that prompts the user to view the guide page
+        if ( ((JustLoggedIn) this.getApplication()).getJustLogged() == true ) {
+            builder = new AlertDialog.Builder(this);
+            builder.setMessage("Do you want to view the guide page?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivity(new Intent(getApplicationContext(), activity_guide.class));
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            }
+                    );
+            builder.show();
+        }
 
         /*
         if(!auth.getCurrentUser().isEmailVerified()){

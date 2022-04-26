@@ -69,7 +69,6 @@
 
 
     <!-- activity__guide -->
-    <string name="activityguide_textview_name">Name</string>
-    <string name="activityguide_textview_surname">Surname</string>
+    <string name="guide">guida</string>
 
 </resources>
