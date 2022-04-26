@@ -71,4 +71,28 @@
     <!-- activity__guide -->
     <string name="guide">guida</string>
 
+    <!-- activity_GDPR -->
+    <string name="activityGDPR_title">GDPR - ISTANT App</string>
+
+
+    <!-- activity_login.xml -->
+    <string name="activitylogin_edittext_emaillogin">email</string>
+    <string name="activitylogin_edittext_passwordlogin">passowrd</string>
+    <string name="activitylogin_button_login">Login</string>
+    <string name="activitylogin_button_createaccount">Create Account</string>
+    <string name="activitylogin_button_passwordforgotten">Passowrd Forgotten?</string>
+
+
+    <!-- activity_registration.xml -->
+    <string name="activityregistration_edittext_name">Name</string>
+    <string name="activityregistration_edittext_registrationemail">Registration Email</string>
+    <string name="activityregistration_edittext_registationpassword">Password</string>
+    <string name="activityregistration_edittext_reenterregistationpassword">Re-enter registration passowrd</string>
+    <string name="activityregistration_button_registration">Registration</string>
+    <string name="activityregistration_edittext_regitrationsurname">Surname</string>
+    <string name="activityregistration_button_gotologin">Go to Login</string>
+    <string name="activityregistration_button_gdpr">GDPR</string>
+
+
+
 </resources>

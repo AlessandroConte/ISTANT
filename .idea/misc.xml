@@ -13,7 +13,6 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_activities.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_loans.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_main.xml" value="0.18034447821681865" />
-        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_visualize_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/background_content_top.xml" value="0.1953125" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_activities.xml" value="0.33" />
@@ -21,7 +20,7 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_groupinfo.xml" value="0.18034447821681865" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_loans.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_search.xml" value="0.25" />
-        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_user.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/item_container_received_message.xml" value="0.1" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/item_container_sent_message.xml" value="0.1778115501519757" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/list_item.xml" value="0.5" />
@@ -77,10 +76,11 @@
         <entry key="app/src/main/res/drawable/impostazioni.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/info.xml" value="0.354" />
         <entry key="app/src/main/res/layout/activity__guide.xml" value="0.2807971014492754" />
+        <entry key="app/src/main/res/layout/activity_gdpr.xml" value="0.20108695652173914" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_newchild.xml" value="0.3233695652173913" />
-        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.27350427350427353" />
         <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_settings_managechildren.xml" value="0.35260416666666666" />
