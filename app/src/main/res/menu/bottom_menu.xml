@@ -3,21 +3,21 @@
     <item
         android:id="@+id/fragment_groupinfo"
         android:icon="@drawable/info"
-        android:title="info" />
+        android:title="Info" />
     <item
         android:id="@+id/fragment_loans"
         android:icon="@drawable/loans"
-        android:title="loans" />
+        android:title="Loans" />
     <item
         android:id="@+id/fragment_search"
         android:icon="@drawable/search"
-        android:title="search" />
+        android:title="Search" />
     <item
         android:id="@+id/fragment_activities"
         android:icon="@drawable/activities"
-        android:title="activities" />
+        android:title="Activities" />
     <item
-        android:id="@+id/fragment_chat"
-        android:icon="@drawable/chat"
-        android:title="chat" />
+        android:id="@+id/fragment_user"
+        android:icon="@drawable/ic_user_menu"
+        android:title="User" />
 </menu>
