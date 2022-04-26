@@ -115,35 +115,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
         documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
 
 
-        // retrieve the button "modify/save" from the gui
-        // if the bool "flag" is:
-        // false -> the textfields aren't editable and only show the data present at the given moment in the db. The button_modifisave has as text "modify"
-        // true -> the textfields are editable and the user can change the fileds. The button has as text "save"
-        button_modifysave = findViewById(R.id.visualizeactivity_buttonModifySave);
-        button_modifysave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // false - it enables the fileds and the user can modify them, at the end it puts the flag as true
-                if ( flag == false ) {
-                    button_modifysave.setText("Save");
-                    tv_where.setEnabled(true);
-                    tv_when.setEnabled(true);
-                    et_description.setEnabled(true);
-                    flag = true;
-                }
-                // true - the user modified the field/s and now wants to save. It saves the modified values, it disables the fileds and then sets the falg to false.
-                else {
-                    // save the values contained in the fileds in the activity info
-                    button_modifysave.setText("Modify");
-                    tv_where.setEnabled(false);
-                    tv_when.setEnabled(false);
-                    et_description.setEnabled(false);
-                    flag = false;
-                }
-
-            }
-        });
-
         // Here I am retrievenig the ImageView and setting an action when this is executed
         // The actions allows the user to change/pic the picture to associate to the given activity
         activityImage = findViewById(R.id.activityImage);

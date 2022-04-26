@@ -16,7 +16,7 @@ public class activity_settings_managechildren extends AppCompatActivity {
     // TODO: da modificare
 
     ListView listview;
-    ArrayList<User_1> userArrayList;
+    ArrayList<User> userArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
