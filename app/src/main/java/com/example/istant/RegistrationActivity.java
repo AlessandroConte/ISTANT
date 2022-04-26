@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegistrationActivity extends AppCompatActivity {
 
     EditText regNome, regCognome, regEmail, regPass, regConfPass;
-    Button regButton,gotoLogin;
+    Button regButton,gotoLogin, gdpr;
     FirebaseAuth fAuth;
 
     @Override
@@ -94,6 +94,15 @@ public class RegistrationActivity extends AppCompatActivity {
                         Toast.makeText(RegistrationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        gdpr = findViewById(R.id.gotogdpr);
+        gdpr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), activity_GDPR.class));
+                finish();
             }
         });
     }
