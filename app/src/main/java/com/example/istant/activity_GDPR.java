@@ -20,13 +20,13 @@ public class activity_GDPR extends AppCompatActivity {
         // load the webpage (hosted on GitHub) with the GDPR.
         view = findViewById(R.id.activitygdpr_webview);
         view.setWebViewClient(new WebViewClient());
-        view.loadUrl("https://raw.githubusercontent.com/AlessandroConte/ISTANT/master/app/src/main/res/values/gdpr.xml");
+        view.loadUrl("https://raw.githubusercontent.com/AlessandroConte/ISTANT/master/gdpr");
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("@string/activityGDPR_title"); // actionbar's name
+            actionBar.setTitle("GDPR"); // actionbar's name
         }
     }
 
