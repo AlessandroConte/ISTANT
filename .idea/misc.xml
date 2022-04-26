@@ -13,6 +13,7 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_activities.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_loans.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_main.xml" value="0.18034447821681865" />
+        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_visualize_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/background_content_top.xml" value="0.1953125" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_activities.xml" value="0.33" />
@@ -20,7 +21,7 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_groupinfo.xml" value="0.18034447821681865" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_loans.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_search.xml" value="0.25" />
-        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_user.xml" value="0.25" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/item_container_received_message.xml" value="0.1" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/item_container_sent_message.xml" value="0.1778115501519757" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/list_item.xml" value="0.5" />
