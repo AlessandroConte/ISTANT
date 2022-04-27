@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -41,6 +38,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.type.Date;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +57,7 @@ public class UserFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // Variables needed to change the picture of the activity
-    private ImageView profilePic_settings;
+    private ImageView profilePic_userfragment;
     private Uri imageUri;
     private String photoURL;
     private StorageReference storageReference;
@@ -133,10 +131,11 @@ public class UserFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+
         if (savedInstanceState == null) {
             getParentFragmentManager()
                     .beginTransaction()
@@ -146,19 +145,19 @@ public class UserFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Settings");
+            actionBar.setTitle("Profilo");
         }
 
         // retrieving the different fields of the gui
-        tv_name = (TextView) view.findViewById(R.id.settings_edittext_name);
-        tv_surname = (TextView) view.findViewById(R.id.settings_edittext_surname);
-        tv_phonenumber = (TextView) view.findViewById(R.id.settings_edittext_phonenumber);
-        tv_fiscalcode = (TextView) view.findViewById(R.id.settings_edittext_fiscalcode);
-        tv_address = (TextView) view.findViewById(R.id.settings_edittext_address);
-        tv_email = (TextView) view.findViewById(R.id.settings_edittext_email);
-        tv_dateofbirth = (TextView) view.findViewById(R.id.settings_edittext_dateofbirth);
-        rb_sex_m = (RadioButton) view.findViewById(R.id.settings_genderradiobutton_m);
-        rb_sex_f = (RadioButton) view.findViewById(R.id.settings_genderradiobutton_f);
+        tv_name = view.findViewById(R.id.fragmentUser_edittext_name);
+        tv_surname = view.findViewById(R.id.fragmentUser_edittext_surname);
+        tv_phonenumber = view.findViewById(R.id.fragmentUser_edittext_phonenumber);
+        tv_fiscalcode = view.findViewById(R.id.fragmentUser_edittext_fiscalcode);
+        tv_address = view.findViewById(R.id.fragmentUser_edittext_address);
+        tv_email = view.findViewById(R.id.fragmentUser_edittext_email);
+        tv_dateofbirth = view.findViewById(R.id.fragmentUser_edittext_dateofbirth);
+        rb_sex_m = view.findViewById(R.id.fragmentUser_genderradiobutton_m);
+        rb_sex_f = view.findViewById(R.id.fragmentUser_genderradiobutton_f);
 
         // Setting the Firebase variables
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -167,13 +166,13 @@ public class UserFragment extends Fragment {
         documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
 
         // Retrieving the two buttons
-        btnSaveChanges = (Button) view.findViewById(R.id.settings_buttonSave);
-        btnModify = (Button) view.findViewById(R.id.settings_buttonModify);
-        btnManageChildren = (Button) view.findViewById(R.id.settings_buttonManageChildren);
+        btnSaveChanges = view.findViewById(R.id.fragmentUser_buttonSave);
+        btnModify = view.findViewById(R.id.fragmentUser_buttonModify);
+        btnManageChildren = view.findViewById(R.id.fragmentUser_buttonManageChildren);
 
 
         // Retrieving the ImageView
-        profilePic_settings =  (ImageView) view.findViewById(R.id.profilePic_settings);
+        profilePic_userfragment = view.findViewById(R.id.profilePic_fragmentUser);
 
 
         // Setting all the EditText with the field of the DB
@@ -212,7 +211,7 @@ public class UserFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 photoURL = documentSnapshot.get("photoURL").toString();
                 if (!photoURL.equals("")) {
-                    Glide.with(UserFragment.this).load(photoURL).into(profilePic_settings);
+                    Glide.with(UserFragment.this).load(photoURL).into(profilePic_userfragment);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -263,7 +262,6 @@ public class UserFragment extends Fragment {
                     rb_sex_f.setEnabled(false);
                     flag = false;
                 }
-
             }
         });
 
@@ -287,7 +285,7 @@ public class UserFragment extends Fragment {
                 user.put("fiscalCode", fiscalCode);
                 user.put("name", name);
                 user.put("surname", surname);
-                user.put("telephoneNumer", phoneNumber);
+                user.put("telephoneNumber", phoneNumber);
 
                 db.collection("user").document(auth.getCurrentUser().getUid())
                         .update(user)
@@ -315,7 +313,7 @@ public class UserFragment extends Fragment {
         });
 
         // ProfilePicture
-        profilePic_settings.setOnClickListener(new View.OnClickListener() {
+        profilePic_userfragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 choosePicture();
@@ -324,9 +322,14 @@ public class UserFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
@@ -359,7 +362,7 @@ public class UserFragment extends Fragment {
                         Intent data = result.getData();
                         assert data != null;
                         imageUri = data.getData();
-                        profilePic_settings.setImageURI(imageUri);
+                        profilePic_userfragment.setImageURI(imageUri);
                         uploadPicture();
                     }
                 }

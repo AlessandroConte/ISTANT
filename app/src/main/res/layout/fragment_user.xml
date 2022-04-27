@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/profilePic_settings"
+                android:id="@+id/profilePic_fragmentUser"
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
@@ -45,7 +45,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_name"
+                        android:id="@+id/fragmentUser_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -55,12 +55,13 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_name"
+                        android:id="@+id/fragmentUser_edittext_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
+                        android:visibility="visible"
                         android:inputType="textPersonName"
                         android:text=""
                         tools:ignore="SpeakableTextPresentCheck" />
@@ -74,7 +75,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_surname"
+                        android:id="@+id/fragmentUser_surname"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -84,7 +85,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_surname"
+                        android:id="@+id/fragmentUser_edittext_surname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -102,7 +103,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_phonenumber"
+                        android:id="@+id/fragmentUser_phonenumber"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -112,7 +113,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_phonenumber"
+                        android:id="@+id/fragmentUser_edittext_phonenumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -130,7 +131,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_fiscalcode"
+                        android:id="@+id/fragmentUser_fiscalcode"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -140,7 +141,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_fiscalcode"
+                        android:id="@+id/fragmentUser_edittext_fiscalcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -158,7 +159,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_address"
+                        android:id="@+id/fragmentUser_address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -168,7 +169,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_address"
+                        android:id="@+id/fragmentUser_edittext_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -186,7 +187,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_email"
+                        android:id="@+id/fragmentUser_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -196,7 +197,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_email"
+                        android:id="@+id/fragmentUser_edittext_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -215,7 +216,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_gender"
+                        android:id="@+id/fragmentUser_gender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -225,20 +226,20 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/settings_radiogroup_sex"
+                        android:id="@+id/fragmentUser_radiogroup_sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center">
 
                         <RadioButton
-                            android:id="@+id/settings_genderradiobutton_m"
+                            android:id="@+id/fragmentUser_genderradiobutton_m"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
                             android:text="@string/settings_genderradiobutton_m" />
 
                         <RadioButton
-                            android:id="@+id/settings_genderradiobutton_f"
+                            android:id="@+id/fragmentUser_genderradiobutton_f"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -254,7 +255,7 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/settings_dateofbirth"
+                        android:id="@+id/fragmentUser_dateofbirth"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -264,7 +265,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/settings_edittext_dateofbirth"
+                        android:id="@+id/fragmentUser_edittext_dateofbirth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -290,7 +291,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/settings_buttonSave"
+                        android:id="@+id/fragmentUser_buttonSave"
                         android:layout_width="251dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -313,7 +314,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/settings_buttonManageChildren"
+                        android:id="@+id/fragmentUser_buttonManageChildren"
                         android:layout_width="251dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -329,7 +330,7 @@
                     android:layout_marginBottom="20dp">
 
                     <TextView
-                        android:id="@+id/settings_textview_modify"
+                        android:id="@+id/fragmentUser_textview_modify"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -339,7 +340,7 @@
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/settings_buttonModify"
+                        android:id="@+id/fragmentUser_buttonModify"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
