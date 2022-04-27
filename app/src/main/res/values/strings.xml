@@ -94,5 +94,12 @@
     <string name="activityregistration_button_gdpr">GDPR</string>
 
 
+    <!-- activity_create_new_loan.xml -->
+    <string name="createNewLoan_buttontext_create">Create</string>
+    <string name="createNewLoan_textview_dateend">End Date</string>
+    <string name="createNewLoan_textview_datestart">Start Date</string>
+    <string name="createNewLoan_textview_description">Description</string>
+    <string name="createNewLoan_textview_name">Name</string>
+
 
 </resources>

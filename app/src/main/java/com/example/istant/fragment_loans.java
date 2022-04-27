@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.example.istant.model.Loan;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -34,6 +36,8 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
     private FirebaseFirestore db;
     private ProgressDialog pd;
     private Context context;
+
+    private Button newLoan;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,6 +93,14 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+        newLoan = rootView.findViewById(R.id.fragmentloans_btnNewLoan);
+        newLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, activity_createNewLoan.class));
+            }
+        });
+
         pd = new ProgressDialog(context);
         pd.setCancelable(false);
         pd.setMessage("Fetching data..");
@@ -119,44 +131,6 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
                         }
                     }
                 });
-
-        /*
-        int[] imageId = {R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,R.drawable.ic_user,
-                R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
-        String[] name = {"Prestitooooooooo","Playstation 5 ","Libro Harry Potter","Bicicletta  ","Mike","Michael","Toa","Ivana","Loan"};
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(2022,1,1);
-        Date dateStart = cal.getTime();
-        Date dateEnd = cal.getTime();
-
-        ArrayList<Loan> userArrayList = new ArrayList<>();
-
-        for(int i = 0;i< imageId.length;i++){
-            Loan loan = new Loan(name[i], new Timestamp(dateStart),new Timestamp(dateEnd),"",name[i],"");
-            userArrayList.add(loan);
-        }
-
-        ListAdapter_loans listAdapter  = new ListAdapter_loans(getActivity(),userArrayList);
-
-        binding.listview.setAdapter(listAdapter);
-        binding.listview.setClickable(true);
-
-        //data shared with next activity
-        binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent i = new Intent(getActivity(), activity_visualizeloans.class);
-                i.putExtra("name",name[position]);
-                i.putExtra("imageid",imageId[position]);
-                startActivity(i);
-
-            }
-        });
-
-         */
-
         // Inflate the layout for this fragment
         return rootView;
     }
