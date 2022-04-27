@@ -142,11 +142,11 @@ public class UserFragment extends Fragment {
                     //.replace(R.id.settings, new SettingsFragment())
                     .commit();
         }
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        /**ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("Profilo");
-        }
+        }**/
 
         // retrieving the different fields of the gui
         tv_name = view.findViewById(R.id.fragmentUser_edittext_name);

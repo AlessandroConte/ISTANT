@@ -124,8 +124,8 @@ public class fragment_search extends Fragment {
         userslistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_guide.class); // TODO: nuova actvity da caricare è activity_visualizeuser
-                intent.putExtra("user", users.get(i)); // TODO: implementare putExtra()
+                Intent intent = new Intent(getActivity(), activity_visualizeusers.class);
+                intent.putExtra("user", users.get(i));
                 startActivity(intent);
             }
         });
