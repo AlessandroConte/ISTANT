@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ISTANT">
         <activity
+            android:name=".activity_createNewLoan"
+            android:exported="false" />
+        <activity
             android:name=".activity_GDPR"
             android:exported="false" />
         <activity
