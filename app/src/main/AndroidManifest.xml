@@ -45,10 +45,7 @@
             android:name=".activity_visualizeactivities"
             android:exported="false" />
         <activity
-            android:name=".activity_create_activities"
-            android:exported="false" />
-        <activity
-            android:name=".activity_create_loans"
+            android:name=".activity_createNewActivities"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

@@ -77,6 +77,9 @@
         <entry key="app/src/main/res/drawable/impostazioni.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/info.xml" value="0.354" />
         <entry key="app/src/main/res/layout/activity__guide.xml" value="0.2807971014492754" />
+        <entry key="app/src/main/res/layout/activity_create_activities.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/activity_create_loans.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/activity_create_new_activities.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_create_new_loan.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_gdpr.xml" value="0.20108695652173914" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
@@ -89,11 +92,11 @@
         <entry key="app/src/main/res/layout/activity_visualize_activity.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_visualizeactivities_visualizeparticipants.xml" value="0.3328804347826087" />
         <entry key="app/src/main/res/layout/activity_visualizeloans.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_activities.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_activities.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_gr_info.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/fragment_groupinfo.xml" value="0.35260416666666666" />
-        <entry key="app/src/main/res/layout/fragment_loans.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_loans.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listadapter_loan.xml" value="0.35260416666666666" />

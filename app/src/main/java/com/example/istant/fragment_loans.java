@@ -93,7 +93,7 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        newLoan = rootView.findViewById(R.id.fragmentloans_btnNewLoan);
+        newLoan = rootView.findViewById(R.id.fragmentActivities_btnNewLoan);
         newLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.example.istant.model.Activity;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -34,6 +36,8 @@ public class fragment_activities extends Fragment implements ListAdapter_activit
     private FirebaseFirestore db;
     private ProgressDialog pd;
     private Context context;
+
+    private Button newActivity;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -89,6 +93,16 @@ public class fragment_activities extends Fragment implements ListAdapter_activit
         recyclerView.setAdapter(adapterActivities);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        // Manage the button to create a new activity
+        newActivity = rootView.findViewById(R.id.fragmentActivities_btnNewLoan);
+        newActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, activity_createNewActivities.class));
+            }
+        });
+
 
         pd = new ProgressDialog(context);
         pd.setCancelable(false);

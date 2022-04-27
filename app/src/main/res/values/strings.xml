@@ -52,7 +52,13 @@
     <!-- fragment_loans -->
     <string name="fragmentLoans_buttonNewLoan">Create New Loan</string>
     <string name="fragmentloans_switchLoans">My Loans</string>
-    <string name="fragmentLoans_textView_title">My Loans</string>
+    <string name="fragmentLoans_textView_title">Loans</string>
+
+    <!-- fragment_activities -->
+    <string name="fragmentActivities_textView_title">Activities</string>
+    <string name="fragmentActivities_switchActivities">My Activities</string>
+    <string name="fragmentActivities_buttonNewActivity">Create New Activity</string>
+
 
     <!-- activity_visualizeloans -->
     <string name="visualizeloans_textview_description">Description</string>
@@ -100,6 +106,14 @@
     <string name="createNewLoan_textview_datestart">Start Date</string>
     <string name="createNewLoan_textview_description">Description</string>
     <string name="createNewLoan_textview_name">Name</string>
+
+    <!-- activity_create_new_activities.xml -->
+    <string name="createNewActivity_textview_name">Name</string>
+    <string name="createNewActivity_textview_description">Description</string>
+    <string name="createNewActivity_textview_datestart">Start Date</string>
+    <string name="createNewActivity_textview_dateend">End Date</string>
+    <string name="createNewActivity_textview_address">Address</string>
+    <string name="createNewActivity_textview_personInCharge">Person In Charge</string>
 
 
 </resources>
