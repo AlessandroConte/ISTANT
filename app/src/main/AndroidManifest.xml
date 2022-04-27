@@ -25,6 +25,8 @@
         <activity
             android:name=".activity_visualizeactivities_visualizeparticipants"
             android:exported="false" />
+        <activity android:name=".activity_visualizeusers"
+            android:exported="false" />
         <activity
             android:name=".activity_guide"
             android:exported="false" />
