@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/activityImage"
+                android:id="@+id/visualizeloans_image"
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
@@ -161,7 +161,7 @@
 
                     <Button
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_buttondelete"
+                        android:id="@+id/visualizeloans_buttonDelete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -186,7 +186,7 @@
 
                     <Button
                         android:gravity="center"
-                        android:id="@+id/visualizeloans_button_participate"
+                        android:id="@+id/visualizeloans_buttonParticipate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"

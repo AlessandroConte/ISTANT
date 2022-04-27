@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_groupinfo" />
     <fragment
         android:id="@+id/fragment_user"
-        android:name="com.example.istant.UserFragment"
+        android:name="com.example.istant.fragment_user"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
     <fragment

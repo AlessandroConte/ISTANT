@@ -1,13 +1,10 @@
 package com.example.istant;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,8 +21,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,18 +33,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.type.Date;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link UserFragment#newInstance} factory method to
+ * Use the {@link fragment_user#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserFragment extends Fragment {
+public class fragment_user extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,7 +92,7 @@ public class UserFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public UserFragment() {
+    public fragment_user() {
         // Required empty public constructor
     }
 
@@ -112,8 +105,8 @@ public class UserFragment extends Fragment {
      * @return A new instance of fragment UserFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static UserFragment newInstance(String param1, String param2) {
-        UserFragment fragment = new UserFragment();
+    public static fragment_user newInstance(String param1, String param2) {
+        fragment_user fragment = new fragment_user();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -211,7 +204,7 @@ public class UserFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 photoURL = documentSnapshot.get("photoURL").toString();
                 if (!photoURL.equals("")) {
-                    Glide.with(UserFragment.this).load(photoURL).into(profilePic_userfragment);
+                    Glide.with(fragment_user.this).load(photoURL).into(profilePic_userfragment);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

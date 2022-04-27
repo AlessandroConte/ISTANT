@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.example.istant.model.Loan;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -93,7 +92,7 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        newLoan = rootView.findViewById(R.id.fragmentActivities_btnNewLoan);
+        newLoan = rootView.findViewById(R.id.fragmentloans_btnNewLoan);
         newLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,8 +137,7 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
     @Override
     public void onLoanClick(int position) {
         Intent intent = new Intent(context, activity_visualizeloans.class);
-        //intent.putExtra("loan", loanArrayList.get(position));
-        // TODO: quando invochiamo la nuova schermata, dobbiamo portarci le info del prestito cliccato
+        intent.putExtra("loan", loanArrayList.get(position));
         startActivity(intent);
         // Log.d("RecyclerView Item","position = " + position);
     }
