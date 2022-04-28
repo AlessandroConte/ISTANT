@@ -1,12 +1,14 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/_50sdp"
-    android:layout_marginLeft="@dimen/_10sdp"
-    android:layout_marginRight="@dimen/_10sdp"
     tools:context=".fragment_user"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,6 +28,7 @@
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
+                android:contentDescription="TODO"
                 android:gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,8 +44,8 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -50,8 +53,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_name"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_name"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -60,19 +63,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
-                        android:visibility="visible"
                         android:inputType="textPersonName"
                         android:text=""
+                        android:visibility="visible"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </TableRow>
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -80,8 +84,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_surname"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_surname"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -90,6 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textPersonName"
@@ -99,8 +104,8 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -108,8 +113,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_phonenumber"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_phonenumber"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -118,6 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="number|phone"
@@ -127,8 +133,8 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -136,8 +142,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_fiscalcode"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_fiscalcode"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -146,6 +152,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textPersonName"
@@ -155,8 +162,8 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -164,8 +171,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_address"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_address"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -174,6 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textPersonName"
@@ -183,8 +191,8 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -192,8 +200,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_email"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_email"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -202,6 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textPersonName"
@@ -212,8 +221,8 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -221,8 +230,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_gender"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_gender"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -237,22 +246,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:text="@string/settings_genderradiobutton_m" />
+                            android:maxWidth="100dp"
+                            android:text="@string/fragmentuser_genderradiobutton_m" />
 
                         <RadioButton
                             android:id="@+id/fragmentUser_genderradiobutton_f"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:text="@string/settings_genderradiobutton_f" />
+                            android:maxWidth="100dp"
+                            android:text="@string/fragmentuser_genderradiobutton_f" />
 
                     </RadioGroup>
                 </TableRow>
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -260,8 +271,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_dateofbirth"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_dateofbirth"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -270,6 +281,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:maxWidth="100dp"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="date" />
@@ -279,37 +291,15 @@
 
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/fragmentUser_buttonSave"
-                        android:layout_width="251dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/settings_buttonSave" />
-
-                </TableRow>
-
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="5dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:maxWidth="100dp"
                         android:orientation="horizontal">
 
                     </LinearLayout>
@@ -317,9 +307,10 @@
                     <Button
                         android:id="@+id/fragmentUser_buttonManageChildren"
                         android:layout_width="251dp"
+                        android:maxWidth="100dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/settings_buttonManageChildren" />
+                        android:text="@string/fragmentuser_buttonManageChildren" />
 
                 </TableRow>
 
@@ -335,18 +326,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:minWidth="150dp"
-                        android:text="@string/settings_textview_modify"
+                        android:maxWidth="100dp"
+                        android:text="@string/fragmentuser_textview_modify"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/fragmentUser_buttonModify"
                         android:layout_width="wrap_content"
+                        android:maxWidth="100dp"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
                         android:gravity="center"
-                        android:text="@string/settings_button_modify" />
+                        android:text="@string/fragmentuser_button_modify" />
                 </TableRow>
 
 

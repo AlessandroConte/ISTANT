@@ -47,7 +47,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_name"
+                        android:text="@string/fragmentuser_textview_name"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -76,7 +76,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_surname"
+                        android:text="@string/fragmentuser_textview_surname"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -104,7 +104,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_phonenumber"
+                        android:text="@string/fragmentuser_textview_phonenumber"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -132,7 +132,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_fiscalcode"
+                        android:text="@string/fragmentuser_textview_fiscalcode"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -160,7 +160,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_address"
+                        android:text="@string/fragmentuser_textview_address"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -188,7 +188,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_email"
+                        android:text="@string/fragmentuser_textview_email"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -217,7 +217,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_gender"
+                        android:text="@string/fragmentuser_textview_gender"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -232,14 +232,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:text="@string/settings_genderradiobutton_m" />
+                            android:text="@string/fragmentuser_genderradiobutton_m" />
 
                         <RadioButton
                             android:id="@+id/visualizeuser_genderradiobutton_f"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:text="@string/settings_genderradiobutton_f" />
+                            android:text="@string/fragmentuser_genderradiobutton_f" />
 
                     </RadioGroup>
                 </TableRow>
@@ -256,7 +256,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:minWidth="150dp"
-                        android:text="@string/settings_textview_dateofbirth"
+                        android:text="@string/fragmentuser_textview_dateofbirth"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 

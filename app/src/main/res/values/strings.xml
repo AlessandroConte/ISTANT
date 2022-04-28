@@ -6,22 +6,22 @@
      THE ACTIVITY IN WHICH THEY ARE LOCATED (example: activity_settings) -->
 
 
-    <!-- activity_settings -->
-    <string name="settings_textview_name">Nome</string>
-    <string name="settings_textview_surname">Cognome</string>
-    <string name="settings_textview_phonenumber">Numero di telefono</string>
-    <string name="settings_textview_fiscalcode">Codice Fiscale</string>
-    <string name="settings_textview_address">Indirizzo</string>
-    <string name="settings_textview_email">Email</string>
-    <string name="settings_textview_gender">Sesso</string>
-    <string name="settings_genderradiobutton_m">M</string>
-    <string name="settings_genderradiobutton_f">F</string>
-    <string name="settings_date">Date</string>
-    <string name="settings_textview_dateofbirth">Data di nascita</string>
-    <string name="settings_buttonSave">Salva modifiche</string>
-    <string name="settings_buttonManageChildren">Gestisci i tuoi bambini</string>
-    <string name="settings_textview_modify">Modifica</string>
-    <string name="settings_button_modify">Modifica</string>
+    <!-- fragment_user -->
+    <string name="fragmentuser_textview_name">Nome</string>
+    <string name="fragmentuser_textview_surname">Cognome</string>
+    <string name="fragmentuser_textview_phonenumber">Cellulare</string>
+    <string name="fragmentuser_textview_fiscalcode">Codice Fiscale</string>
+    <string name="fragmentuser_textview_address">Indirizzo</string>
+    <string name="fragmentuser_textview_email">Email</string>
+    <string name="fragmentuser_textview_gender">Sesso</string>
+    <string name="fragmentuser_genderradiobutton_m">M</string>
+    <string name="fragmentuser_genderradiobutton_f">F</string>
+    <string name="fragmentuser_date">Date</string>
+    <string name="fragmentuser_textview_dateofbirth">Data di nascita</string>
+    <string name="fragmentuser_buttonSave">Salva modifiche</string>
+    <string name="fragmentuser_buttonManageChildren">Gestisci figli</string>
+    <string name="fragmentuser_textview_modify">Modifica</string>
+    <string name="fragmentuser_button_modify">Modifica</string>
 
 
     <!-- activity_visualizeactivities -->

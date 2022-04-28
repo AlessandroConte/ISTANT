@@ -48,6 +48,9 @@ import java.util.Objects;
  */
 public class fragment_user extends Fragment {
 
+    // variable needed to make the fields editable.
+    private boolean flag;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,9 +64,6 @@ public class fragment_user extends Fragment {
     private DocumentReference documentReference;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
-
-    // variable needed to make the fields editable.
-    private boolean flag;
 
     // variables needed to retrieve the fields of the EditText
     private String name;
@@ -88,7 +88,6 @@ public class fragment_user extends Fragment {
 
     // button used to modify / save the user information
     private Button btnModify;
-    private Button btnSaveChanges; // TODO: da mostrare solo quando clicco su btnModify, in modo da salvare le modifiche
     private Button btnManageChildren;
 
 
@@ -152,9 +151,9 @@ public class fragment_user extends Fragment {
         tv_fiscalcode = view.findViewById(R.id.fragmentUser_edittext_fiscalcode);
         tv_address = view.findViewById(R.id.fragmentUser_edittext_address);
         tv_email = view.findViewById(R.id.fragmentUser_edittext_email);
-        tv_dateofbirth = view.findViewById(R.id.fragmentUser_edittext_dateofbirth);
         rb_sex_m = view.findViewById(R.id.fragmentUser_genderradiobutton_m);
         rb_sex_f = view.findViewById(R.id.fragmentUser_genderradiobutton_f);
+        tv_dateofbirth = view.findViewById(R.id.fragmentUser_edittext_dateofbirth);
 
         // Setting the Firebase variables
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -162,8 +161,8 @@ public class fragment_user extends Fragment {
         db = FirebaseFirestore.getInstance();
         documentReference = db.collection("user").document(auth.getCurrentUser().getUid());
 
+
         // Retrieving the two buttons
-        btnSaveChanges = view.findViewById(R.id.fragmentUser_buttonSave);
         btnModify = view.findViewById(R.id.fragmentUser_buttonModify);
         btnManageChildren = view.findViewById(R.id.fragmentUser_buttonManageChildren);
 
@@ -255,7 +254,6 @@ public class fragment_user extends Fragment {
                     tv_address.setEnabled(true);
                     tv_address.setEnabled(true);
                     tv_email.setEnabled(true);
-                    tv_dateofbirth.setEnabled(true);
                     rb_sex_m.setEnabled(true);
                     rb_sex_f.setEnabled(true);
                     flag = true;
@@ -264,6 +262,36 @@ public class fragment_user extends Fragment {
                 else {
                     // save the values contained in the fields in the activity info
                     btnModify.setText("Modifica");
+                    // Save changes
+                    name = tv_name.getText().toString();
+                    surname = tv_surname.getText().toString();
+                    phoneNumber = tv_phonenumber.getText().toString();
+                    fiscalCode = tv_fiscalcode.getText().toString();
+                    address = tv_address.getText().toString();
+                    email = tv_email.getText().toString();
+
+                    Map<String,Object> user = new HashMap<>();
+                    user.put("address", address);
+                    user.put("email", email);
+                    user.put("fiscalCode", fiscalCode);
+                    user.put("name", name);
+                    user.put("surname", surname);
+                    user.put("telephoneNumber", phoneNumber);
+
+                    db.collection("user").document(auth.getCurrentUser().getUid())
+                            .update(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("Success", "Campi aggiornati in modo corretto");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("Firebase error ", e.toString());
+                        }
+                    });
+                    // disable
                     tv_name.setEnabled(false);
                     tv_surname.setEnabled(false);
                     tv_phonenumber.setEnabled(false);
@@ -271,7 +299,6 @@ public class fragment_user extends Fragment {
                     tv_address.setEnabled(false);
                     tv_address.setEnabled(false);
                     tv_email.setEnabled(false);
-                    tv_dateofbirth.setEnabled(false);
                     rb_sex_m.setEnabled(false);
                     rb_sex_f.setEnabled(false);
                     flag = false;
@@ -280,42 +307,6 @@ public class fragment_user extends Fragment {
         });
 
 
-        // SaveChanges
-        btnSaveChanges.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name = tv_name.getText().toString();
-                surname = tv_surname.getText().toString();
-                phoneNumber = tv_phonenumber.getText().toString();
-                fiscalCode = tv_fiscalcode.getText().toString();
-                address = tv_address.getText().toString();
-                email = tv_email.getText().toString();
-                bornDate = tv_dateofbirth.getText().toString();
-
-                Map<String,Object> user = new HashMap<>();
-                user.put("address", address);
-                user.put("dateBorn", bornDate);
-                user.put("email", email);
-                user.put("fiscalCode", fiscalCode);
-                user.put("name", name);
-                user.put("surname", surname);
-                user.put("telephoneNumber", phoneNumber);
-
-                db.collection("user").document(auth.getCurrentUser().getUid())
-                        .update(user)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Log.d("Success", "Campi aggiornati in modo corretto");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Firebase error ", e.toString());
-                    }
-                });
-            }
-        });
 
         // ManageChildren
         btnManageChildren.setOnClickListener(new View.OnClickListener() {
