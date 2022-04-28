@@ -9,8 +9,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.istant.model.Loan;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.Calendar;
+import java.util.Date;
 
 public class activity_visualizeloans extends AppCompatActivity {
+
+    private FirebaseFirestore db;
+    private DocumentReference documentReference;
 
     private ImageView image_loan;
     private EditText loan_description;
@@ -24,7 +34,6 @@ public class activity_visualizeloans extends AppCompatActivity {
     // variable needed to retrieve the intent
     private Loan loan;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +43,10 @@ public class activity_visualizeloans extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Insert loan name here..."); // actionbar's name
+            actionBar.setTitle("Scheda del prestito"); // actionbar's name
         }
 
+        db = FirebaseFirestore.getInstance();
         loan = getIntent().getParcelableExtra("loan");
 
         image_loan = findViewById(R.id.visualizeloans_image);
@@ -48,7 +58,35 @@ public class activity_visualizeloans extends AppCompatActivity {
         button_partecipate = findViewById(R.id.visualizeloans_buttonParticipate);
 
         // Getting the information from the clicked item
-        // TODO: mancano dateStart e dateEnd
+        String id = loan.getId();
+        documentReference = db.collection("loan").document(id);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Timestamp dateStart = (Timestamp) documentSnapshot.get("dateStart");
+                Timestamp dateEnd = (Timestamp) documentSnapshot.get("dateEnd");
+
+                String time_start = String.valueOf(dateStart.getSeconds());
+                String time_end = String.valueOf(dateEnd.getSeconds());
+                long timestamp_start = Long.parseLong(time_start)*1000;
+                long timestamp_end = Long.parseLong(time_end)*1000;
+                Date start = new Date(timestamp_start);
+                Date end = new Date(timestamp_end);
+                Calendar cstart = Calendar.getInstance();
+                Calendar cend = Calendar.getInstance();
+                cstart.setTime(start);
+                cend.setTime(end);
+                int year_start = cstart.get(Calendar.YEAR);
+                int year_end = cend.get(Calendar.YEAR);
+                int month_start = cstart.get(Calendar.MONTH);
+                int month_end = cend.get(Calendar.MONTH);
+                int date_start = cstart.get(Calendar.DATE);
+                int date_end = cend.get(Calendar.DATE);
+
+                loan_startDate.setText(String.valueOf(date_start).concat(" - ").concat(String.valueOf(month_start + 1)).concat(" - ").concat(String.valueOf(year_start)));
+                loan_endDate.setText(String.valueOf(date_end).concat(" - ").concat(String.valueOf(month_end + 1)).concat(" - ").concat(String.valueOf(year_end)));
+            }
+        });
         if (!loan.getPhotoLoan().equals("")){
             Glide.with(this).load(loan.getPhotoLoan()).into(image_loan);
         }

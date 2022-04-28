@@ -34,13 +34,11 @@ public class Loan implements Parcelable {
     }
 
     protected Loan(Parcel in){
-        // this.id = in.readString();
-        // this.dateStart = in.readString();
-        // this.dateEnd = in.readString();
+        this.id = in.readString();
         this.photoLoan = in.readString();
         this.description = in.readString();
-        this.nameLoan = in.readString();
-        // this.uid = in.readString();
+        // this.nameLoan = in.readString();
+        // this.uid = in.readString(); TODO: volendo da passare per mostrare il nome di chi l'ha creato..aggiungere textview su activity_visualizeloans.xml
     }
 
     // getter and setter
@@ -108,13 +106,11 @@ public class Loan implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        // parcel.writeString(id);
-        // parcel.writeString(dateStart);
-        // parcel.writeString(dateEnd);
+        parcel.writeString(id);
         parcel.writeString(photoLoan);
         parcel.writeString(description);
-        parcel.writeString(nameLoan);
-        // parcel.writeString(uid);
+        // parcel.writeString(nameLoan);
+        // parcel.writeString(uid); TODO
     }
 
     public static final Creator<Loan> CREATOR = new Parcelable.Creator<Loan>() {

@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,14 +14,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.example.istant.model.Loan;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
+
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -27,16 +41,15 @@ import java.util.ArrayList;
  * Use the {@link fragment_loans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoanListener{
+public class fragment_loans extends Fragment {
 
-    private RecyclerView recyclerView;
-    private ArrayList<Loan> loanArrayList;
-    private ListAdapter_loans adapterLoans;
+    private ListView loanslistview;
     private FirebaseFirestore db;
+    private ArrayAdapter<Loan> adapter;
+    private Button newLoan;
+    private ArrayList<Loan> loanArrayList;
     private ProgressDialog pd;
     private Context context;
-
-    private Button newLoan;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,14 +96,13 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
 
         View rootView = inflater.inflate(R.layout.fragment_loans, container, false);
         context = container.getContext();
-
+        db = FirebaseFirestore.getInstance();
+        loanslistview = rootView.findViewById(R.id.listView_fragmentloans);
+        adapter = new LoanAdapter(context, new ArrayList<Loan>());
         loanArrayList = new ArrayList<Loan>();
-        adapterLoans = new ListAdapter_loans(context, loanArrayList,this);
 
-        recyclerView = rootView.findViewById(R.id.recyclerView_fragmentLoans);
-        recyclerView.setAdapter(adapterLoans);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        loanslistview.setAdapter(adapter);
+        loanslistview.setClickable(true);
 
         newLoan = rootView.findViewById(R.id.fragmentloans_btnNewLoan);
         newLoan.setOnClickListener(new View.OnClickListener() {
@@ -105,40 +117,67 @@ public class fragment_loans extends Fragment implements ListAdapter_loans.OnLoan
         pd.setMessage("Fetching data..");
         pd.show();
 
-        db = FirebaseFirestore.getInstance();
 
-        db.collection("loan").orderBy("dateStart", Query.Direction.DESCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null){
-                            if (pd.isShowing()){
-                                pd.dismiss();
-                            }
-                            Log.d("Firestore error", error.getMessage());
-                            return;
-                        }
+        db.collection("loan").
+                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    String id = document.getId();
+                    Timestamp dateEnd = document.getTimestamp("dateEnd");
+                    Timestamp dateStart = document.getTimestamp("dateStart");
+                    String description = document.get("description").toString();
+                    String nameLoan = document.get("nameLoan").toString();
+                    String photoLoan = document.get("photoLoan").toString();
+                    String uid = document.get("uid").toString();
 
-                        for (DocumentChange dc : value.getDocumentChanges()){
-                            if (dc.getType() == DocumentChange.Type.ADDED){
-                                loanArrayList.add(dc.getDocument().toObject(Loan.class));
-                            }
-                            adapterLoans.notifyDataSetChanged();
-                            if (pd.isShowing()){
-                                pd.dismiss();
-                            }
-                        }
+                    Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, uid);
+                    loanArrayList.add(loan);
+
+                    if (pd.isShowing()){
+                        pd.dismiss();
                     }
-                });
+                }
+                adapter.clear();
+                adapter.addAll(loanArrayList);
+            }
+        });
+
+        loanslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), activity_visualizeloans.class);
+                intent.putExtra("loan", loanArrayList.get(i));
+                startActivity(intent);
+            }
+        });
+
+
         // Inflate the layout for this fragment
         return rootView;
     }
 
-    @Override
-    public void onLoanClick(int position) {
-        Intent intent = new Intent(context, activity_visualizeloans.class);
-        intent.putExtra("loan", loanArrayList.get(position));
-        startActivity(intent);
-        // Log.d("RecyclerView Item","position = " + position);
+    private class LoanAdapter extends ArrayAdapter<Loan> {
+        ArrayList<Loan> loans;
+
+        public LoanAdapter (@NonNull Context context, ArrayList<Loan> loans){
+            super(context, 0, loans);
+            this.loans = loans;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if (convertView == null){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_loan, parent, false);
+            }
+
+            TextView loanName = convertView.findViewById(R.id.listadapter_loanName);
+            Loan loan = loanArrayList.get(position);
+
+            loanName.setText(loan.getNameLoan());
+
+            return convertView;
+        }
     }
 }

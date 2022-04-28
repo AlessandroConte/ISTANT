@@ -72,10 +72,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ListView
+            android:id="@+id/listView_fragmentloans"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_fragmentLoans"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        -->
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
