@@ -3,13 +3,19 @@ package com.example.istant;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.istant.model.User;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.Calendar;
+import java.util.Date;
 
 public class activity_visualizeusers extends AppCompatActivity {
 
@@ -27,7 +33,9 @@ public class activity_visualizeusers extends AppCompatActivity {
     private TextView tv_fiscalcode;
     private TextView tv_address;
     private TextView tv_email;
-    private TextView tv_dateofbirth; // TODO: fix
+    private TextView tv_dateofbirth;
+    private RadioButton rb_m;
+    private RadioButton rb_f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,7 @@ public class activity_visualizeusers extends AppCompatActivity {
         setContentView(R.layout.activity_visualizeusers);
 
         user = getIntent().getParcelableExtra("user");
+        db = FirebaseFirestore.getInstance();
 
         tv_name = findViewById(R.id.visualizeuser_edittext_name);
         tv_surname = findViewById(R.id.visualizeuser_edittext_surname);
@@ -42,24 +51,57 @@ public class activity_visualizeusers extends AppCompatActivity {
         tv_fiscalcode = findViewById(R.id.visualizeuser_edittext_fiscalcode);
         tv_address = findViewById(R.id.visualizeuser_edittext_address);
         tv_email = findViewById(R.id.visualizeuser_edittext_email);
-
+        tv_dateofbirth = findViewById(R.id.visualizeuser_edittext_dateofbirth);
+        rb_m = findViewById(R.id.visualizeuser_genderradiobutton_m);
+        rb_f = findViewById(R.id.visualizeuser_genderradiobutton_f);
         profilePic_visualizeuser = findViewById(R.id.profilePic_visualizeuser);
+
+        String id = user.getId();
+        documentReference = db.collection("user").document(id);
 
         tv_address.setText(user.getAddress());
         tv_email.setText(user.getEmail());
         tv_fiscalcode.setText(user.getFiscalCode());
+
+        if (user.getGender() == 0){
+            rb_m.toggle();
+        }
+        else {
+            rb_f.toggle();
+        }
+
+        if (!user.getPhotoUrl().equals("")) {
+            Glide.with(activity_visualizeusers.this).load(user.getPhotoUrl()).into(profilePic_visualizeuser);
+        }
+
         tv_name.setText(user.getName());
         tv_surname.setText(user.getSurname());
-        Glide.with(activity_visualizeusers.this).load(user.getPhotoUrl()).into(profilePic_visualizeuser);
         tv_phonenumber.setText(user.getTelephoneNumber());
 
-        // TODO: fixare i bug
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Timestamp bornDate = (Timestamp) documentSnapshot.get("dateBorn");
+                String time = String.valueOf(bornDate.getSeconds());
+                long timestampLong = Long.parseLong(time)*1000;
+                Date d = new Date(timestampLong);
+                Calendar c = Calendar.getInstance();
+                c.setTime(d);
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int date = c.get(Calendar.DATE);
+
+                tv_dateofbirth.setText(String.valueOf(date).concat(" - ").concat(String.valueOf(month + 1)).concat(" - ").concat(String.valueOf(year)));
+            }
+        });
+
+        // TODO: gender
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("User Guide"); // actionbar's name
+            actionBar.setTitle("Profilo utente"); // actionbar's name
         }
     }
 

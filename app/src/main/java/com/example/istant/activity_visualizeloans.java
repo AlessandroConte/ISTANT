@@ -12,7 +12,6 @@ import com.example.istant.model.Loan;
 
 public class activity_visualizeloans extends AppCompatActivity {
 
-
     private ImageView image_loan;
     private EditText loan_description;
     private EditText loan_startDate;

@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,6 +34,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -178,8 +182,18 @@ public class fragment_user extends Fragment {
                 String fiscalCode = documentSnapshot.get("fiscalCode").toString();
                 String address = documentSnapshot.get("address").toString();
                 String email = documentSnapshot.get("email").toString();
-                String bornDate = documentSnapshot.get("dateBorn").toString(); // TODO: fix
-                // TODO: gender
+                Timestamp bornDate = (Timestamp) documentSnapshot.get("dateBorn");
+                Long gender = (Long) documentSnapshot.get("gender");
+
+                String time = String.valueOf(bornDate.getSeconds());
+                long timestampLong = Long.parseLong(time)*1000;
+                Date d = new Date(timestampLong);
+                Calendar c = Calendar.getInstance();
+                c.setTime(d);
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int date = c.get(Calendar.DATE);
+
 
                 tv_name.setText(name);
                 tv_surname.setText(surname);
@@ -187,7 +201,14 @@ public class fragment_user extends Fragment {
                 tv_fiscalcode.setText(fiscalCode);
                 tv_address.setText(address);
                 tv_email.setText(email);
-                tv_dateofbirth.setText(bornDate);
+                tv_dateofbirth.setText(String.valueOf(date).concat(" - ").concat(String.valueOf(month + 1)).concat(" - ").concat(String.valueOf(year)));
+
+                if (gender == 0){
+                    rb_sex_m.toggle();
+                }
+                else {
+                    rb_sex_f.toggle();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -2,11 +2,10 @@ package com.example.istant.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
-
 import com.google.firebase.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,11 +26,11 @@ public class User implements Parcelable {
     // constructor
 
     protected User(Parcel in){
-        // this.id = in.readString();
+        this.id = in.readString();
         this.address = in.readString();
         this.email = in.readString();
         this.fiscalCode = in.readString();
-        // this.gender = in.readInt();
+        this.gender = in.readInt();
         this.photoUrl = in.readString();
         this.name = in.readString();
         this.surname = in.readString();
@@ -182,14 +181,13 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        // parcel.writeString(id);
+        parcel.writeString(id);
         parcel.writeString(address);
-        // parcel.writeString(dateBorn.toString()); TODO: fix
         parcel.writeString(email);
         parcel.writeString(fiscalCode);
-        // parcel.writeInt(gender);
-        parcel.writeString(name);
+        parcel.writeInt(gender);
         parcel.writeString(photoUrl);
+        parcel.writeString(name);
         parcel.writeString(surname);
         parcel.writeString(telephoneNumber);
     }
