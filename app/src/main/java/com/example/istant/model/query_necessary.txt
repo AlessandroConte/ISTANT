@@ -1,0 +1,147 @@
+    // list of loans of the connected user
+    auth = FirebaseAuth.getInstance();
+    db.collection("loan")
+            .whereEqualTo("uid", auth.getCurrentUser().getUid())
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getDocument().getId();
+                                Timestamp dateStart = document.getTimestamp("dateStart");
+                                Timestamp dateEnd = document.getTimestamp("dateEnd");
+                                String description = document.getData().get("description").toString();;
+                                String nameLoan = document.getData().get("nameLoan").toString();
+                                String photoLoanObj = document.getData().get("photoLoan").toString();
+                                String uid = document.getData().get("uid").toString();
+
+                                Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj,
+                                        description, nameLoan, uid);
+                                //loans.add(loan);
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+    // list of activities of the connected user
+    auth = FirebaseAuth.getInstance();
+    db.collection("activity")
+            .whereArrayContains("personInCharge", auth.getCurrentUser().getUid())
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getDocument().getId();
+                                String nameActivity = document.getData().get("nameActivity").toString();
+                                String address = document.getData().get("address").toString();
+                                Timestamp dateStart = document.getTimestamp("dateStart");
+                                Timestamp dateEnd = document.getTimestamp("dateEnd");
+                                String description = document.getData().get("description").toString();
+                                List<String> personInCharge = (List<String>)(document.get("personInCharge"));
+                                List<String> photoEvent = (List<String>)(document.get("photoEvent"));
+
+                                Activity activity = new Activity(id, nameActivity, address, dateStart, dateEnd, description, personInCharge, photoEvent);
+                                //activities.add(activity);
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+    // children of the connected user
+    auth = FirebaseAuth.getInstance();
+    db.collection("child")
+            .whereEqualTo("uid", auth.getCurrentUser().getUid())
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String id = document.getDocument().getId();
+                            List<String> allergy = (List<String>)(document.get("allergy"));
+                            Timestamp dateBorn = document.getTimestamp("bornDate");
+                            int gender = Integer.parseInt(document.getData().get("gender").toString());
+                            String info = document.getData().get("info").toString();
+                            String name = document.getData().get("name").toString();
+                            String surname = document.getData().get("surname").toString();
+                            String parent = document.getData().get("uid").toString();
+
+                            Child child = new Child(id, allergy, dateBorn, gender, info, name, surname, parent);
+                            //children.add(child);
+
+                        }
+                    } else {
+                        Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+
+
+
+    // get score of activity given (if you want you can get also the comments)
+    String idActivity;
+    db.collection("scoreActivityUser")
+            .whereEqualTo("activityid", idActivity)
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int total_stars = 0;
+                            int number_score = 0;
+                            ArrayList<String> comments = new ArrayList<>();
+                            float result;
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                number_score += 1;
+                                comments.add(document.getData().get("comment").toString());
+                                int score = Integer.parseInt(document.getData().get("score").toString());
+                                total_stars += score;
+                            }
+
+                            result = (float) total_stars / number_score;
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    // given loan, it says whether the loan is taken or not
+    String idLoan;
+    db.collection("takenLoan")
+            .whereEqualTo("loanid", idLoan)
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        boolean free = true;
+                        String person_loan = null;
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String id = document.getDocument().getId();
+                            String idLoan = document.getData().get("loanid").toString();
+                            int taken = Boolean.parseBoolean(document.getData().get("taken").toString()) ? 1 : 0;
+                            String uid = document.getData().get("uid").toString();
+                            if (taken == 1) {
+                                free = false;
+                                person_loan = uid;
+                            }
+
+                            TakenLoan takenloan = new TakenLoan(id, idLoan, taken, uid);
+                            //takenloans.add(takenloan);
+                        }
+
+                    } else {
+                        Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
