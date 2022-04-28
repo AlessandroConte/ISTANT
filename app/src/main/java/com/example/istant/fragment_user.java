@@ -313,7 +313,7 @@ public class fragment_user extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity().getApplicationContext(), activity_settings_managechildren.class));
-                getActivity().finish();
+                //getActivity().finish();
             }
         });
 

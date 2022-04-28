@@ -3,20 +3,14 @@
 
     <item
         android:id="@+id/resetPassword"
-        android:title="Reset Password" />
-    <item
-        android:id="@+id/updateEmailMenu"
-        android:title="Update Email" />
+        android:title="@string/optionmenu_resetpassword" />
     <item
         android:id="@+id/deleteAccountMenu"
-        android:title="Delete Account" />
+        android:title="@string/optionmenu_deleteaccount" />
     <item
         android:id="@+id/logout"
-        android:title="Logout" />
-    <item
-        android:id="@+id/settings"
-        android:title="Settings" />
+        android:title="@string/optionmenu_logout" />
     <item
         android:id="@+id/userguide"
-        android:title="User Guide" />
+        android:title="@string/optionmenu_userguide" />
 </menu>

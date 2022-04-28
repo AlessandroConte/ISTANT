@@ -116,4 +116,10 @@
     <string name="createNewActivity_textview_personInCharge">Person In Charge</string>
 
 
+    <!-- option_menu.xml -->
+    <string name="optionmenu_resetpassword">Reset Password</string>
+    <string name="optionmenu_deleteaccount">Delete Account</string>
+    <string name="optionmenu_logout">Logout</string>
+    <string name="optionmenu_userguide">User Guide</string>
+
 </resources>

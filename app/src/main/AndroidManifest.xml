@@ -34,10 +34,6 @@
             android:name=".activity_guide"
             android:exported="false" />
         <activity
-            android:name=".activity_settings"
-            android:exported="false"
-            android:label="@string/title_activity_settings" />
-        <activity
             android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity

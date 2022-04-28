@@ -117,40 +117,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
         }
 
-        // Update email option
-        if (item.getItemId() == R.id.updateEmailMenu){
-            View v = inflater.inflate(R.layout.reset_pop,null);
-            reset_alert.setTitle("Vuoi reimpostare l'email?")
-                    .setMessage("Inserisci la nuova mail")
-                    .setPositiveButton("Aggiorna", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                            // validate the email address
-                            EditText email = v.findViewById(R.id.resetEmailPop);
-                            if (email.getText().toString().isEmpty()){
-                                email.setError("La mail deve essere fornita");
-                                return;
-                            }
-
-                            FirebaseUser user = auth.getCurrentUser();
-                            user.updateEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(MainActivity.this, "Email aggiornata!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    }).setNegativeButton("Cancel", null)
-                    .setView(v)
-                    .create().show();
-        }
-
         // Delete account option
         if (item.getItemId() == R.id.deleteAccountMenu){
             reset_alert.setTitle("Vuoi cancellare l'account?")
@@ -193,11 +159,6 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .setNegativeButton("Cancel", null)
                     .create().show();
-        }
-
-        // Settings option
-        if (item.getItemId() == R.id.settings) {
-            startActivity(new Intent(getApplicationContext(), activity_settings.class));
         }
 
         // User Guide option
