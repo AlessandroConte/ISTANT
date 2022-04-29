@@ -14,6 +14,7 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_loans.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_new_loan.xml" value="0.2796875" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_main.xml" value="0.18034447821681865" />
+        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_settings_managechildren.xml" value="0.13601823708206687" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_visualize_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/background_content_top.xml" value="0.1953125" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/fragment_activities.xml" value="0.33" />
@@ -25,6 +26,8 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/item_container_received_message.xml" value="0.1" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/item_container_sent_message.xml" value="0.1778115501519757" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/list_item.xml" value="0.5" />
+        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/listadapter_activity.xml" value="0.2796875" />
+        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/listadapter_children.xml" value="0.45" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/listadapter_user.xml" value="0.1" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/menu/bottom_menu.xml" value="0.24722222222222223" />
         <entry key="..\:/Users/aless/StudioProjects/ISTANT/app/src/main/res/drawable/button_bg_round.xml" value="0.26296296296296295" />

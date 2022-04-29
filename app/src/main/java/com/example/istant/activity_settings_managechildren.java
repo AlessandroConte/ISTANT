@@ -1,15 +1,36 @@
 package com.example.istant;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.istant.model.Child;
 import com.example.istant.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class activity_settings_managechildren extends AppCompatActivity {
 
@@ -17,6 +38,14 @@ public class activity_settings_managechildren extends AppCompatActivity {
 
     ListView listview;
     ArrayList<User> userArrayList;
+    Child child;
+
+    private ListView childrenlistview;
+    private FirebaseFirestore db;
+    private ArrayAdapter<Child> adapter;
+    private EditText searchBox;
+    private Context context;
+    private ArrayList<Child> children;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +81,40 @@ public class activity_settings_managechildren extends AppCompatActivity {
         // now we associate the listadapter with the listview
         //listview.setAdapter( listadapter );
 
+
+        db = FirebaseFirestore.getInstance();
+        childrenlistview = findViewById(R.id.settings_managechildren_childrenlist);
+
+
+        adapter = new ChildrenAdapter(this, new ArrayList<Child>());
+        childrenlistview.setAdapter(adapter);
+        childrenlistview.setClickable(true);
+        children = new ArrayList<Child>();
+
+        db.collection("child")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Timestamp dateBorn = document.getTimestamp("bornDate");
+                                int gender = Integer.parseInt(document.getData().get("gender").toString());
+                                String name = document.getData().get("name").toString();
+                                String surname = document.getData().get("surname").toString();
+
+                                Child child = new Child("", null, dateBorn, gender, "", name, surname, "");
+                                children.add(child);
+
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                        adapter.clear();
+                        adapter.addAll(children);
+                    }
+                });
+
     }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
@@ -63,5 +126,42 @@ public class activity_settings_managechildren extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private class ChildrenAdapter extends ArrayAdapter<Child> {
+        ArrayList<Child> children;
+
+        public ChildrenAdapter(@NonNull Context context, ArrayList<Child> children) {
+            super(context, 0, children);
+            this.children = children;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if(convertView == null){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_children,parent, false);
+            }
+
+            TextView childName = convertView.findViewById(R.id.listadapter_childName);
+            TextView childSurname = convertView.findViewById(R.id.listadapter_childSurname);
+            TextView childGender = convertView.findViewById(R.id.listadapter_childGender);
+            TextView childAge = convertView.findViewById(R.id.listadapter_childDate);
+
+            Child child = children.get(position);
+
+            childName.setText(child.getName());
+            childSurname.setText(child.getSurname());
+            if(child.getGender() == 1){
+                childGender.setText("M");
+            }
+            else{
+                childGender.setText("F");
+            }
+            childAge.setText(child.getDateBorn().toString());
+
+            return convertView;
+        }
     }
 }

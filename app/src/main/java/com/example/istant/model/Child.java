@@ -8,14 +8,16 @@ import java.util.List;
  * entity 'child' of the database
  */
 public class Child {
-    private final String id;
+    private String id;
     private List<String> allergy;
-    private final Timestamp dateBorn;
+    private Timestamp dateBorn;
     private int gender;
     private String info;
     private String name;
     private String surname;
-    private final String parent;
+    private String parent;
+
+    public Child(){};
 
     // constructor
     public Child(String id, List<String> allergy, Timestamp dateBorn, int gender,

@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/listadapter_activity" />
+            tools:listitem="@layout/listadapter_children" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
