@@ -1,11 +1,16 @@
 package com.example.istant;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,49 +18,57 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.istant.model.SupportFunctions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class activity_createNewLoan extends AppCompatActivity {
 
+    private ImageView loanImage;
+    private EditText name;
+    private EditText description;
+    private EditText sdate;
+    private EditText fdate;
+    private Button btn;
 
-    EditText name;
-    EditText descr;
-    EditText sdate;
-    EditText fdate;
-    Button btn;
-
-    Calendar dateStart = Calendar.getInstance();
-
-    Calendar dateEnd = Calendar.getInstance();
-
-
+    private Calendar dateStart = Calendar.getInstance();
+    private Calendar dateEnd = Calendar.getInstance();
+    private Uri loanUri;
+    private String loanUrl;
+    private StorageReference storageReference;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_loan);
 
-        name = (EditText)findViewById(R.id.creteNewLoan_edittext_name);
-        descr = (EditText)findViewById(R.id.creteNewLoan_edittext_description);
-        sdate = (EditText)findViewById(R.id.createNewLoan_edittext_datestart);
-        fdate = (EditText)findViewById(R.id.createNewLoan_edittext_dateend);
-        btn = (Button)findViewById(R.id.createNewLoan_button_create);
+        storageReference = FirebaseStorage.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+        loanUrl = "";
+
+        loanImage = findViewById(R.id.createNewLoan_imageview_image);
+        name = findViewById(R.id.creteNewLoan_edittext_name);
+        description = findViewById(R.id.creteNewLoan_edittext_description);
+        sdate = findViewById(R.id.createNewLoan_edittext_datestart);
+        fdate = findViewById(R.id.createNewLoan_edittext_dateend);
+        btn = findViewById(R.id.createNewLoan_button_create);
 
         DatePickerDialog.OnDateSetListener dateS = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -77,6 +90,13 @@ public class activity_createNewLoan extends AppCompatActivity {
             }
         };
 
+        loanImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choosePicture();
+            }
+        });
+
         sdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,44 +111,72 @@ public class activity_createNewLoan extends AppCompatActivity {
             }
         });
 
-        btn.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                String textName = name.getText().toString();
+                String textDescr = description.getText().toString();
 
-                        String textName = name.getText().toString();
-                        String textDescr = descr.getText().toString();
-
-
-
-                        try{
-                            Log.d("Ciao", textDescr);
-
-
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                            dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
-
-                            dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
-
-                            loanWrite(dateStart, dateEnd, textDescr, textName, "",
-                                    FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
-
-                            Toast.makeText(getApplicationContext(),"Aggiunto con successo",Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception e){}
-
-
-                    }
-                });
+                try{
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
+                    dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
+                    loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+                    Toast.makeText(getApplicationContext(),"Aggiunto con successo",Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e){}
+                loanUrl = "";
+                loanImage.setImageDrawable(null);
+                name.getText().clear();
+                description.getText().clear();
+                sdate.getText().clear();
+                fdate.getText().clear();
+            }
+        });
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Create New Loan"); // actionbar's name
+            actionBar.setTitle("Crea un nuovo prestito"); // actionbar's name
         }
+    }
 
+    private void choosePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        activityCreateNewLoan.launch(intent);
+    }
+
+    ActivityResultLauncher<Intent> activityCreateNewLoan = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        assert data != null;
+                        loanUri = data.getData();
+                        loanImage.setImageURI(loanUri);
+                        uploadPicture();
+                    }
+                }
+            });
+
+    private void uploadPicture() {
+        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
+        ref.putFile(loanUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        loanUrl = uri.toString();
+                    }
+                });
+            }
+        });
     }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
@@ -142,14 +190,10 @@ public class activity_createNewLoan extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public static void loanWrite(Calendar dateStart, Calendar dateEnd,
-                                 String description, String nameLoan,
-                                 String photoLoanObj, String uid, FirebaseFirestore db) {
+    public static void loanWrite(Calendar dateStart, Calendar dateEnd, String description, String nameLoan, String photoLoanObj, String uid, FirebaseFirestore db) {
         Map<String, Object> loan = new HashMap<>();
         Date startLoan = dateStart.getTime();
         Date endLoan = dateEnd.getTime();
-
 
         loan.put("description", description);
         loan.put("nameLoan", nameLoan);

@@ -34,7 +34,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -330,11 +329,13 @@ public class fragment_user extends Fragment {
         return view;
     }
 
+    /*
     @Override
     public void onResume() {
         super.onResume();
 
     }
+     */
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
@@ -355,10 +356,10 @@ public class fragment_user extends Fragment {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        activityGuideResultLauncher.launch(intent);
+        fragmentUserResultLauncher.launch(intent);
     }
 
-    ActivityResultLauncher<Intent> activityGuideResultLauncher = registerForActivityResult(
+    ActivityResultLauncher<Intent> fragmentUserResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -394,7 +395,7 @@ public class fragment_user extends Fragment {
     // This function uploads the image in the Firebase Storage folder of the user and updates the "photoURL" field in the database,
     // using the function defined above
     private void uploadPicture() {
-        final ProgressDialog pd = new ProgressDialog(getActivity()); //Controlla se va ------------------------------------------------------------
+        final ProgressDialog pd = new ProgressDialog(getActivity());
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
 
         pd.setTitle("Uploading Image..");
