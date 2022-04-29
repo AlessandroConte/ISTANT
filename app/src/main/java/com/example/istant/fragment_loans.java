@@ -58,6 +58,10 @@ public class fragment_loans extends Fragment {
     private Context context;
     private Switch switchMyLoan;
 
+    private Button modifyButton;
+    private Button deleteButton;
+    private Button partecipateButton;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -103,6 +107,7 @@ public class fragment_loans extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_loans, container, false);
         context = container.getContext();
+
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         loanslistview = rootView.findViewById(R.id.listView_fragmentloans);
@@ -127,6 +132,7 @@ public class fragment_loans extends Fragment {
                 if (b) {
                     adapter.clear();
                     loanArrayList.clear();
+
                     db.collection("loan")
                             .whereEqualTo("uid", auth.getCurrentUser().getUid())
                             .get()

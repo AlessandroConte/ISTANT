@@ -39,7 +39,6 @@ public class fragment_search extends Fragment {
     private Context context;
     private ArrayList<User> users;
 
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -143,15 +142,12 @@ public class fragment_search extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Log.d("FIRESTORE - SEARCH", "Searchbox has changed to: " + editable.toString());
-
                 if (editable.toString().isEmpty()){
                     db.collection("user")
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    ArrayList<User> users = new ArrayList<>();
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                         String id = document.getId();
                                         String address = document.getData().get("address").toString();
@@ -173,13 +169,13 @@ public class fragment_search extends Fragment {
                             });
                 }
                 else {
+                    users.clear();
                     db.collection("user")
                             .whereEqualTo("name", editable.toString())
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    ArrayList<User> users = new ArrayList<>();
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                         String id = document.getId();
                                         String address = document.getData().get("address").toString();

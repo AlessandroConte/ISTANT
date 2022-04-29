@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.istant.model.Loan;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,6 +23,7 @@ public class activity_visualizeloans extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private DocumentReference documentReference;
+    private FirebaseAuth auth;
 
     private ImageView image_loan;
     private EditText loan_description;
@@ -47,12 +50,14 @@ public class activity_visualizeloans extends AppCompatActivity {
         }
 
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         loan = getIntent().getParcelableExtra("loan");
 
         image_loan = findViewById(R.id.visualizeloans_image);
         loan_description = findViewById(R.id.visualizeloans_edittext_description);
         loan_startDate = findViewById(R.id.visualizeloans_edittext_datestart);
         loan_endDate = findViewById(R.id.visualizeloans_edittext_dateend);
+
         button_modify = findViewById(R.id.visualizeloans_buttonModifySave);
         button_delete = findViewById(R.id.visualizeloans_buttonDelete);
         button_partecipate = findViewById(R.id.visualizeloans_buttonParticipate);
@@ -92,7 +97,18 @@ public class activity_visualizeloans extends AppCompatActivity {
         }
         loan_description.setText(loan.getDescription());
 
-        // TODO: implementare l'onClick dei bottoni
+        if (loan.getUid().equals(auth.getCurrentUser().getUid())) {
+            button_partecipate.setVisibility(View.INVISIBLE);
+            button_modify.setVisibility(View.VISIBLE);
+            button_delete.setVisibility(View.VISIBLE);
+            // TODO: implementare l'onClick dei bottoni
+        }
+        else {
+            button_partecipate.setVisibility(View.VISIBLE);
+            button_modify.setVisibility(View.INVISIBLE);
+            button_delete.setVisibility(View.INVISIBLE);
+            // TODO: implementare l'onClick dei bottoni
+        }
     }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
