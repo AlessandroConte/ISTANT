@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:layout_column="1"
                         android:inputType="text"  />
@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="124dp"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:inputType="textMultiLine"
                         android:minHeight="100dp"
@@ -105,16 +105,24 @@
                         android:text="@string/createNewLoan_textview_datestart"
                         android:textAlignment="center"
                         android:textSize="20sp" />
-
+    <!--
                     <EditText
                         android:id="@+id/createNewLoan_edittext_datestart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:layout_column="1"
-                        android:inputType="date" />
+                        android:inputType="date" /> -->
+
+                    <EditText
+                        android:id="@+id/createNewLoan_edittext_datestart"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        />
 
                 </TableRow>
 
@@ -133,16 +141,24 @@
                         android:text="@string/createNewLoan_textview_dateend"
                         android:textAlignment="center"
                         android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/visualizeloans_edittext_dateend"
+a
+                   <!-- <EditText
+                        android:id="@+id/createNewLoan_edittext_dateend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
                         android:layout_column="1"
-                        android:inputType="date" />
+                        android:inputType="date" /> -->
+
+                    <EditText
+                        android:id="@+id/createNewLoan_edittext_dateend"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        />
                 </TableRow>
 
             </TableLayout>

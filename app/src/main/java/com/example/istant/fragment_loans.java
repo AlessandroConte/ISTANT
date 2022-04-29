@@ -230,6 +230,7 @@ public class fragment_loans extends Fragment {
         return rootView;
     }
 
+
     private class LoanAdapter extends ArrayAdapter<Loan> {
         ArrayList<Loan> loans;
 
