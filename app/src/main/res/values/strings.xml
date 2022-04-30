@@ -25,19 +25,20 @@
 
 
     <!-- activity_visualizeactivities -->
-    <string name="textview_where">where</string>
-    <string name="textview_when">when</string>
-    <string name="textview_description">description</string>
-    <string name="textview_participants">participants</string>
-    <string name="button_participate">participate</string>
-    <string name="button_viewParticipants">visualize participants</string>
+    <string name="textview_address">Indirizzo</string>
+    <string name="textview_dateStart">Data di inizio</string>
+    <string name="textview_dateEnd">Data di termine</string>
+    <string name="textview_description">Descrizione</string>
+    <string name="textview_participants">Partecipanti</string>
+    <string name="button_participate">Partecipa</string>
+    <string name="button_viewParticipants">Visualizza i partecipanti</string>
     <string name="type_a_message">Type a message</string>
-    <string name="textview_image">Image</string>
-    <string name="button_modifysave">Modify</string>
-    <string name="textview_modifysave">Edit</string>
-    <string name="button_delete">Delete</string>
-    <string name="textview_delete">Delete</string>
-    <string name="visualizeactivity_textview_rating">Rating</string>
+    <string name="textview_image">Immagine</string>
+    <string name="button_modifysave">Modifica</string>
+    <string name="textview_modifysave">Modifica</string>
+    <string name="button_delete">Elimina</string>
+    <string name="textview_delete">Elimina</string>
+    <string name="visualizeactivity_textview_rating">Valutazione</string>
 
     <!-- listadapter_user -->
     <string name="textview_phonenumber">user phone number</string>

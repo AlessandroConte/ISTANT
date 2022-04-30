@@ -73,8 +73,8 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_fragmentActivities"
+        <ListView
+            android:id="@+id/listView_fragmentactivities"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

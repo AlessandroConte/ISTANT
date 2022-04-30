@@ -4,22 +4,23 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-
+import android.widget.ListView;
+import android.widget.TextView;
 import com.example.istant.model.Activity;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
@@ -28,17 +29,16 @@ import java.util.ArrayList;
  * Use the {@link fragment_activities#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_activities extends Fragment implements ListAdapter_activities.OnActivityListener{
+public class fragment_activities extends Fragment{
 
-    private RecyclerView recyclerView;
-    private ArrayList<Activity> activityArrayList;
-    private ListAdapter_activities adapterActivities;
+    private ListView activitieslistview;
     private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    private ArrayAdapter<Activity> adapter;
+    private ArrayList<Activity> activityArrayList;
+    private Button newActivity;
     private ProgressDialog pd;
     private Context context;
-
-    private Button newActivity;
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,13 +86,14 @@ public class fragment_activities extends Fragment implements ListAdapter_activit
         View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
         context = container.getContext();
 
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        adapter = new ActivityAdapter(context, new ArrayList<Activity>());
         activityArrayList = new ArrayList<Activity>();
-        adapterActivities = new ListAdapter_activities(context, activityArrayList, this);
+        activitieslistview = rootView.findViewById(R.id.listView_fragmentactivities);
 
-        recyclerView = rootView.findViewById(R.id.recyclerView_fragmentActivities);
-        recyclerView.setAdapter(adapterActivities);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        activitieslistview.setAdapter(adapter);
+        activitieslistview.setClickable(true);
 
         // Manage the button to create a new activity
         newActivity = rootView.findViewById(R.id.fragmentActivities_btnNewLoan);
@@ -109,108 +110,69 @@ public class fragment_activities extends Fragment implements ListAdapter_activit
         pd.setMessage("Fetching data..");
         pd.show();
 
-        // FragmentActivitiesBinding binding;
-
-        db = FirebaseFirestore.getInstance();
-
-        db.collection("activity").orderBy("dateStart", Query.Direction.DESCENDING)
-
-                /*
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        ArrayList<Activity> activities = new ArrayList<>();
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String id = document.getId();
-                                String nameActivity = document.getData().get("nameActivity").toString();
-                                String address = document.getData().get("address").toString();
-                                Timestamp dateStart = document.getTimestamp("dateStart");
-                                Timestamp dateEnd = document.getTimestamp("dateEnd");
-                                String description = document.getData().get("description").toString();
-                                List<String> personInCharge = (List<String>)(document.get("personInCharge"));
-                                String photoEvent = (String)(document.get("photoEvent"));
-
-                                Activity activity = new Activity(id, nameActivity, address, dateStart, dateEnd, description, personInCharge, photoEvent);
-                                activities.add(activity);
-                            }
-                            binding = FragmentActivitiesBinding.inflate(inflater, container, false);
-                            ListAdapter_activities listAdapterActivities = new ListAdapter_activities(getActivity(),activities);
-                            binding.listview.setAdapter(listAdapter);
-                            binding.listview.setClickable(true);
-
-                            data shared with next activity
-
-                            binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                    Intent i = new Intent(getActivity(), activity_visualizeactivities.class);
-                                    i.putExtra("name",activities.get(position).getNameActivity());
-                                    i.putExtra("phone",activities.get(position).getAddress());
-                                    i.putExtra("country",activities.get(position).getId());
-                                    i.putExtra("imageid",activities.get(position).getAddress());
-                                    startActivity(i);
-                                }
-                            });
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-                 */
-
-        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("activity").
+                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null){
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    String id = document.getId();
+                    String name = document.get("nameActivity").toString();
+                    String address = document.get("address").toString();
+                    Timestamp dateStart = document.getTimestamp("dateStart");
+                    Timestamp dateEnd = document.getTimestamp("dateEnd");
+                    String description = document.get("description").toString();
+                    // List<String> personInCharge = document.get("personInCharge").toString(); TODO: risolvere
+                    String photo = document.get("photoEvent").toString();
+
+                    Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, null, photo);
+                    activityArrayList.add(activity);
+
                     if (pd.isShowing()) {
                         pd.dismiss();
                     }
-                    Log.d("Firestore error", error.getMessage());
-                    return;
                 }
-
-                for (DocumentChange dc : value.getDocumentChanges()){
-                    if (dc.getType() == DocumentChange.Type.ADDED){
-                        activityArrayList.add(dc.getDocument().toObject(Activity.class));
-                    }
-                    adapterActivities.notifyDataSetChanged();
-                    if (pd.isShowing()){
-                        pd.dismiss();
-                    }
-                }
+                adapter.clear();
+                adapter.addAll(activityArrayList);
             }
         });
 
-        /*
-        View view = inflater.inflate(R.layout.fragment_activities, container, false);
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_activities);
-        fab.bringToFront();
-        fab.setOnClickListener(new View.OnClickListener() {
+        activitieslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), activity_create_activities.class);
-                startActivity(i);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), activity_visualizeactivities.class);
+                intent.putExtra("activity", activityArrayList.get(i));
+                startActivity(intent);
             }
         });
-
-        // Inflate the layout for this fragment
-        //return binding.getRoot();
-        return null;
-
-         */
 
         return rootView;
     }
 
-    @Override
-    public void onActivityClick(int position) {
-        Log.d("RecyclerView item", "position = " + position);
-        Intent intent = new Intent(context, activity_visualizeactivities.class);
-        // intent.putExtra("activity", activityArrayList.get(position));
-        // TODO: implementare il putExtra
-        startActivity(intent);
+    private class ActivityAdapter extends ArrayAdapter<Activity> {
+        ArrayList<Activity> activities;
+
+        public ActivityAdapter(@NonNull Context context, ArrayList<Activity> activities) {
+            super(context, 0, activities);
+            this.activities = activities;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if (convertView == null){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_activity, parent, false);
+            }
+
+            TextView activityName = convertView.findViewById(R.id.listadapter_activityName);
+            TextView activityDescription = convertView.findViewById(R.id.listadapter_activityDescription);
+            // de.hdodenhof.circleimageview.CircleImageView activityImage = convertView.findViewById(R.id.listadapter_activityPicture);
+
+            Activity activity = activities.get(position);
+            activityName.setText(activity.getNameActivity());
+            activityDescription.setText(activity.getDescription());
+            // Glide.with(getActivity()).load(Uri.parse(activity.getPhotoEvent())).into(activityImage); TODO: da implementare
+
+            return convertView;
+        }
     }
 }

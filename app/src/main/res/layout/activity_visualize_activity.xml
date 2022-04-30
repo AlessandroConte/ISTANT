@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/activityImage"
+                android:id="@+id/visualizeactivities_image"
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
@@ -44,23 +44,22 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_where"
+                        android:id="@+id/visualizeactivities_address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/textview_where"
+                        android:text="@string/textview_address"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/visualizeactivities_edittext_where"
+                        android:id="@+id/visualizeactivities_edittext_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textPersonName"
-                        android:text="insert the place..."
                         tools:ignore="TouchTargetSizeCheck" />
                 </TableRow>
 
@@ -71,23 +70,22 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_when"
+                        android:id="@+id/visualizeactivities_dateStart"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/textview_when"
+                        android:text="@string/textview_dateStart"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/visualizeactivities_edittext_when"
+                        android:id="@+id/visualizeactivities_edittext_dateStart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textPersonName"
-                        android:text="insert the date..."
                         tools:ignore="TouchTargetSizeCheck" />
                 </TableRow>
 
@@ -98,7 +96,33 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_description"
+                        android:id="@+id/visualizeactivities_dateEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_dateEnd"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/visualizeactivities_edittext_dateEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivities_description"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
@@ -107,15 +131,14 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/visualizeactivities_description"
+                        android:id="@+id/visualizeactivities_edittext_description"
                         android:layout_width="wrap_content"
                         android:layout_height="124dp"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textMultiLine"
-                        android:minHeight="100dp"
-                        android:text="insert the description..." />
+                        android:minHeight="100dp" />
                 </TableRow>
 
                 <TableRow
@@ -125,7 +148,7 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_rating"
+                        android:id="@+id/visualizeactivities_rating"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
@@ -134,7 +157,7 @@
                         android:textSize="20sp" />
 
                     <RatingBar
-                        android:id="@+id/visualizeactivity_ratingbar_rating"
+                        android:id="@+id/visualizeactivities_ratingbar_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -148,7 +171,7 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_participants"
+                        android:id="@+id/visualizeactivities_participants"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
@@ -158,7 +181,7 @@
 
                     <Button
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_buttonViewParticipants"
+                        android:id="@+id/visualizeactivities_buttonVisualizeParticipants"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -172,7 +195,7 @@
 
                     <Button
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_buttonParticipate"
+                        android:id="@+id/visualizeactivities_buttonParticipate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
@@ -188,7 +211,7 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_textview_delete"
+                        android:id="@+id/visualizeactivities_textview_delete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
@@ -198,7 +221,7 @@
 
                     <Button
                         android:gravity="center"
-                        android:id="@+id/visualizeactivity_buttondelete"
+                        android:id="@+id/visualizeactivities_buttonDelete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
