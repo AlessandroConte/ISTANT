@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -114,6 +115,16 @@ public class activity_settings_managechildren extends AppCompatActivity {
                         adapter.addAll(children);
                     }
                 });
+
+
+        Button newChild = findViewById(R.id.btn_createchildren);
+        newChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity_settings_managechildren.this, activity_createNewChild.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

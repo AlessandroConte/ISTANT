@@ -46,6 +46,9 @@
             android:name=".activity_createNewActivities"
             android:exported="false" />
         <activity
+            android:name=".activity_createNewChild"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
