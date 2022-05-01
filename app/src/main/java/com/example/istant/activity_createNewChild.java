@@ -117,7 +117,13 @@ public class activity_createNewChild extends AppCompatActivity {
                         String textName = tv_name.getText().toString();
                         String textSurname = tv_surname.getText().toString();
                         Log.d("ok", rb_sex_m.getText().toString());
-                        int textGender = Integer.parseInt(rb_sex_m.getText().toString());
+                        int textGender;
+                        if((rb_sex_m.getText().toString() == "M")) {
+                            textGender = 1;
+                        }
+                        else{
+                            textGender = 0;
+                        }
 
 
                         try{
