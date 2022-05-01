@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -52,28 +52,6 @@
 
         </LinearLayout>
 
-        <ImageView
-
-            android:id="@+id/star_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_rowSpan="2"
-            android:layout_marginTop="25dp"
-            android:layout_toLeftOf="@+id/msgtime"
-            android:src="@drawable/ic_star" />
-
-        <TextView
-            android:id="@+id/msgtime"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="14dp"
-            android:text="3.3/5"
-            android:textSize="16dp" />
 
 
 
