@@ -138,7 +138,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Insert activity name here..."); // actionbar's name
+            actionBar.setTitle("Scheda dell'attivtià"); // actionbar's name
         }
     }
 

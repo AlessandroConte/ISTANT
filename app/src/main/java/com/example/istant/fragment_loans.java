@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,10 +47,8 @@ public class fragment_loans extends Fragment {
     private ProgressDialog pd;
     private Context context;
     private Switch switchMyLoan;
+    private SwipeRefreshLayout refreshLayout;
 
-    private Button modifyButton;
-    private Button deleteButton;
-    private Button partecipateButton;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,14 +99,19 @@ public class fragment_loans extends Fragment {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         loanslistview = rootView.findViewById(R.id.listView_fragmentloans);
+        newLoan = rootView.findViewById(R.id.fragmentloans_btnNewLoan);
         switchMyLoan = rootView.findViewById(R.id.switch_loans);
+        refreshLayout = rootView.findViewById(R.id.swipeRefresh_fragmentLoans);
         adapter = new LoanAdapter(context, new ArrayList<Loan>());
         loanArrayList = new ArrayList<Loan>();
 
         loanslistview.setAdapter(adapter);
         loanslistview.setClickable(true);
 
-        newLoan = rootView.findViewById(R.id.fragmentloans_btnNewLoan);
+        pd = new ProgressDialog(context);
+        pd.setCancelable(false);
+        pd.setMessage("Fetching data..");
+
         newLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,76 +119,70 @@ public class fragment_loans extends Fragment {
             }
         });
 
+        pd.show();
+        displayLoans();
+
         switchMyLoan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     adapter.clear();
                     loanArrayList.clear();
+                    displayUserLoans();
 
-                    db.collection("loan")
-                            .whereEqualTo("uid", auth.getCurrentUser().getUid())
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            String id = document.getId();
-                                            Timestamp dateStart = document.getTimestamp("dateStart");
-                                            Timestamp dateEnd = document.getTimestamp("dateEnd");
-                                            String description = document.getData().get("description").toString();;
-                                            String nameLoan = document.getData().get("nameLoan").toString();
-                                            String photoLoanObj = document.getData().get("photoLoan").toString();
-                                            String uid = document.getData().get("uid").toString();
+                    refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            adapter.clear();
+                            loanArrayList.clear();
+                            displayUserLoans();
+                            refreshLayout.setRefreshing(false);
+                        }
+                    });
 
-                                            Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, uid);
-                                            loanArrayList.add(loan);
-                                        }
-                                        adapter.clear();
-                                        adapter.addAll(loanArrayList);
-                                    } else {
-                                        Log.d("TAG", "Error getting documents: ", task.getException());
-                                    }
-                                }
-                            });
                 }
                 else {
                     adapter.clear();
                     loanArrayList.clear();
-                    db.collection("loan").
-                            get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    displayLoans();
+
+                    refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                         @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                String id = document.getId();
-                                Timestamp dateEnd = document.getTimestamp("dateEnd");
-                                Timestamp dateStart = document.getTimestamp("dateStart");
-                                String description = document.get("description").toString();
-                                String nameLoan = document.get("nameLoan").toString();
-                                String photoLoan = document.get("photoLoan").toString();
-                                String uid = document.get("uid").toString();
-
-                                Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, uid);
-                                loanArrayList.add(loan);
-
-                                if (pd.isShowing()){
-                                    pd.dismiss();
-                                }
-                            }
+                        public void onRefresh() {
                             adapter.clear();
-                            adapter.addAll(loanArrayList);
+                            loanArrayList.clear();
+                            displayLoans();
+                            refreshLayout.setRefreshing(false);
                         }
                     });
                 }
             }
         });
 
-        pd = new ProgressDialog(context);
-        pd.setCancelable(false);
-        pd.setMessage("Fetching data..");
-        pd.show();
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                loanArrayList.clear();
+                displayLoans();
+                refreshLayout.setRefreshing(false);
+            }
+        });
 
+        loanslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), activity_visualizeloans.class);
+                intent.putExtra("loan", loanArrayList.get(i));
+                startActivity(intent);
+            }
+        });
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    private void displayLoans() {
         db.collection("loan").
                 get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -208,21 +207,36 @@ public class fragment_loans extends Fragment {
                 adapter.addAll(loanArrayList);
             }
         });
-
-        loanslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_visualizeloans.class);
-                intent.putExtra("loan", loanArrayList.get(i));
-                startActivity(intent);
-            }
-        });
-
-
-        // Inflate the layout for this fragment
-        return rootView;
     }
 
+    private void displayUserLoans () {
+        db.collection("loan")
+                .whereEqualTo("uid", auth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getId();
+                                Timestamp dateStart = document.getTimestamp("dateStart");
+                                Timestamp dateEnd = document.getTimestamp("dateEnd");
+                                String description = document.getData().get("description").toString();;
+                                String nameLoan = document.getData().get("nameLoan").toString();
+                                String photoLoanObj = document.getData().get("photoLoan").toString();
+                                String uid = document.getData().get("uid").toString();
+
+                                Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, uid);
+                                loanArrayList.add(loan);
+                            }
+                            adapter.clear();
+                            adapter.addAll(loanArrayList);
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
 
     private class LoanAdapter extends ArrayAdapter<Loan> {
         ArrayList<Loan> loans;

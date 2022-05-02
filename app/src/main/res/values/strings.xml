@@ -40,32 +40,24 @@
     <string name="textview_delete">Elimina</string>
     <string name="visualizeactivity_textview_rating">Valutazione</string>
 
-    <!-- listadapter_user -->
-    <string name="textview_phonenumber">user phone number</string>
-    <string name="textview_nameSurname">Name Surname Placeholder</string>
-
-    <!-- activity_visualizeloans -->
-    <string name="visualizeloan_textview_name">Name</string>
-
     <!-- fragment_search -->
     <string name="search_button_buttonsearch">Search</string>
 
     <!-- fragment_loans -->
-    <string name="fragmentLoans_buttonNewLoan">Create New Loan</string>
-    <string name="fragmentloans_switchLoans">My Loans</string>
-    <string name="fragmentLoans_textView_title">Loans</string>
+    <string name="fragmentLoans_buttonNewLoan">Crea un nuovo prestito</string>
+    <string name="fragmentloans_switchLoans">I miei prestiti</string>
+    <string name="fragmentLoans_textView_title">Prestiti</string>
 
     <!-- fragment_activities -->
-    <string name="fragmentActivities_textView_title">Activities</string>
-    <string name="fragmentActivities_switchActivities">My Activities</string>
-    <string name="fragmentActivities_buttonNewActivity">Create New Activity</string>
-
+    <string name="fragmentActivities_textView_title">Attività</string>
+    <string name="fragmentActivities_switchActivities">Le mie attività</string>
+    <string name="fragmentActivities_buttonNewActivity">Crea nuova attività</string>
 
     <!-- activity_visualizeloans -->
-    <string name="visualizeloans_textview_description">Description</string>
-    <string name="visualizeloans_textview_datestart">Start date</string>
-    <string name="visualizeloans_textview_dateend">End date</string>
-    <string name="visualizeloans_participate">Participate</string>
+    <string name="visualizeloans_textview_description">Descrizione</string>
+    <string name="visualizeloans_textview_datestart">Data di inizio</string>
+    <string name="visualizeloans_textview_dateend">Data di termine</string>
+    <string name="visualizeloans_participate">Partecipa</string>
 
     <!-- fragment_groupinfo -->
     <string name="groupinfo_nomegruppo">Grest Estivo del paese</string>
@@ -83,30 +75,30 @@
 
 
     <!-- activity_login.xml -->
-    <string name="activitylogin_edittext_emaillogin">email</string>
-    <string name="activitylogin_edittext_passwordlogin">passowrd</string>
+    <string name="activitylogin_edittext_emaillogin">Email</string>
+    <string name="activitylogin_edittext_passwordlogin">Password</string>
     <string name="activitylogin_button_login">Login</string>
-    <string name="activitylogin_button_createaccount">Create Account</string>
-    <string name="activitylogin_button_passwordforgotten">Passowrd Forgotten?</string>
+    <string name="activitylogin_button_createaccount">Crea un nuovo account</string>
+    <string name="activitylogin_button_passwordforgotten">Hai dimenticato la password?</string>
 
 
     <!-- activity_registration.xml -->
-    <string name="activityregistration_edittext_name">Name</string>
-    <string name="activityregistration_edittext_registrationemail">Registration Email</string>
-    <string name="activityregistration_edittext_registationpassword">Password</string>
-    <string name="activityregistration_edittext_reenterregistationpassword">Re-enter registration passowrd</string>
-    <string name="activityregistration_button_registration">Registration</string>
-    <string name="activityregistration_edittext_regitrationsurname">Surname</string>
-    <string name="activityregistration_button_gotologin">Go to Login</string>
+    <string name="activityregistration_edittext_name">Nome</string>
+    <string name="activityregistration_edittext_registrationemail">Email</string>
+    <string name="activityregistration_edittext_registationpassword">Inserici la password</string>
+    <string name="activityregistration_edittext_reenterregistationpassword">Conferma password</string>
+    <string name="activityregistration_button_registration">Registrazione</string>
+    <string name="activityregistration_edittext_regitrationsurname">Cognome</string>
+    <string name="activityregistration_button_gotologin">Torna al login</string>
     <string name="activityregistration_button_gdpr">GDPR</string>
 
 
     <!-- activity_create_new_loan.xml -->
-    <string name="createNewLoan_buttontext_create">Create</string>
-    <string name="createNewLoan_textview_dateend">End Date</string>
-    <string name="createNewLoan_textview_datestart">Start Date</string>
-    <string name="createNewLoan_textview_description">Description</string>
-    <string name="createNewLoan_textview_name">Name</string>
+    <string name="createNewLoan_buttontext_create">Crea</string>
+    <string name="createNewLoan_textview_dateend">Data di termine</string>
+    <string name="createNewLoan_textview_datestart">Data di inizio</string>
+    <string name="createNewLoan_textview_description">Descrizione</string>
+    <string name="createNewLoan_textview_name">Nome</string>
 
     <!-- activity_create_new_activities.xml -->
     <string name="createNewActivity_textview_name">Name</string>

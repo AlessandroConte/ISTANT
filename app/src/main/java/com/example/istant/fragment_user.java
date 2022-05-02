@@ -329,13 +329,6 @@ public class fragment_user extends Fragment {
         return view;
     }
 
-    /*
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-     */
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity

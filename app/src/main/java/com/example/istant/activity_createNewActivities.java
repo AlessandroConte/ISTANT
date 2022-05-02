@@ -21,8 +21,6 @@ public class activity_createNewActivities extends AppCompatActivity {
         }
     }
 
-
-
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
     public boolean onOptionsItemSelected(MenuItem item) {
