@@ -17,19 +17,24 @@ public class Loan implements Parcelable {
     private String photoLoan;
     private String description;
     private String nameLoan;
+    private int isTaken;
+    private String takenUser;
     private String uid;
 
     // constructors
 
     public Loan () {}
 
-    public Loan(String id, Timestamp dateStart, Timestamp dateEnd, String photoLoan, String description, String nameLoan, String uid) {
+    public Loan(String id, Timestamp dateStart, Timestamp dateEnd, String photoLoan,
+                String description, String nameLoan, int isTaken, String takenUser, String uid) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.photoLoan = photoLoan;
         this.description = description;
         this.nameLoan = nameLoan;
+        this.isTaken = isTaken;
+        this.takenUser = takenUser;
         this.uid = uid;
     }
 
@@ -80,6 +85,22 @@ public class Loan implements Parcelable {
 
     public void setPhotoLoan(String photoLoan) {
         this.photoLoan = photoLoan;
+    }
+
+    public int getIsTaken() {
+        return isTaken;
+    }
+
+    public void setIsTaken(int isTaken) {
+        this.isTaken = isTaken;
+    }
+
+    public String getTakenUser() {
+        return takenUser;
+    }
+
+    public void setTakenUser(String takenUser) {
+        this.takenUser = takenUser;
     }
 
     // methods

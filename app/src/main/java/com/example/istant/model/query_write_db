@@ -120,7 +120,7 @@
     // LOAN - write
     public static void loanWrite(Calendar dateStart, Calendar dateEnd,
                                  String description, String nameLoan,
-                                 String photoLoanObj, String uid) {
+                                 String photoLoanObj, int isTaken, String takenUser, String uid) {
         Map<String, Object> loan = new HashMap<>();
         Date startLoan = dateStart.getTime();
         Date endLoan = dateEnd.getTime();
@@ -128,6 +128,8 @@
         loan.put("description", description);
         loan.put("nameLoan", nameLoan);
         loan.put("photoLoan", photoLoanObj);
+        loan.put("isTaken", isTaken);
+        loan.put("takenUser", takenUser);
         loan.put("uid", uid);
         loan.put("dateStart", new Timestamp(startLoan));
         loan.put("dateEnd", new Timestamp(endLoan));

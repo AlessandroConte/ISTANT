@@ -136,9 +136,12 @@ db.collection("loan")
 		String description = document.getData().get("description").toString();;
 		String nameLoan = document.getData().get("nameLoan").toString();
 		String photoLoanObj = document.getData().get("photoLoan").toString();
+		String takenUser = document.getData().get("takenUser").toString();
+		int isTaken = Integer.parseInt(document.getData().get("isTaken").toString());
 		String uid = document.getData().get("uid").toString();
 
-		Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, uid);
+		Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan,
+		                    isTaken, takenUser, uid);
 		//loans.add(loan);
 
 	    }
