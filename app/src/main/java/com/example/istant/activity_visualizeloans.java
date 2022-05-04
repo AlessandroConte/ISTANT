@@ -2,8 +2,8 @@ package com.example.istant;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -93,6 +95,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                 loan_endDate.setText(String.valueOf(date_end).concat(" - ").concat(String.valueOf(month_end + 1)).concat(" - ").concat(String.valueOf(year_end)));
             }
         });
+
         if (!loan.getPhotoLoan().equals("")){
             Glide.with(this).load(loan.getPhotoLoan()).into(image_loan);
         }
@@ -109,6 +112,27 @@ public class activity_visualizeloans extends AppCompatActivity {
             button_modify.setVisibility(View.INVISIBLE);
             button_delete.setVisibility(View.INVISIBLE);
             // TODO: implementare l'onClick dei bottoni
+
+            if (loan.getIsTaken() == 0) {
+                button_partecipate.setBackgroundColor(Color.GREEN);
+            }
+
+            if (loan.getIsTaken() == 1) {
+                if (loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
+                    button_partecipate.setText("Restituisci");
+                    button_partecipate.setBackgroundColor(Color.YELLOW);
+                }
+                else {
+                    button_partecipate.setText("Occupato");
+                    button_partecipate.setBackgroundColor(Color.RED);
+                    button_partecipate.setClickable(false);
+                }
+            }
+
+            // se libero -> verde
+            // se occupato da me -> arancione + possibilità di liberarlo
+            // se occupato da qualcun altro -> rosso
+
         }
     }
 

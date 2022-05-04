@@ -73,10 +73,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ListView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swipeRefresh_fragmentActivities"
+            >
+            <ListView
             android:id="@+id/listView_fragmentactivities"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

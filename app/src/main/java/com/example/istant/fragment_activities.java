@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import com.example.istant.model.Activity;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +41,8 @@ public class fragment_activities extends Fragment{
     private Button newActivity;
     private ProgressDialog pd;
     private Context context;
+    private Switch switchMyActivities;
+    private SwipeRefreshLayout refreshLayout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,14 +93,19 @@ public class fragment_activities extends Fragment{
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         adapter = new ActivityAdapter(context, new ArrayList<Activity>());
+        newActivity = rootView.findViewById(R.id.fragmentActivities_btnNewLoan);
+        switchMyActivities = rootView.findViewById(R.id.switch_activities);
+        refreshLayout = rootView.findViewById(R.id.swipeRefresh_fragmentActivities);
         activityArrayList = new ArrayList<Activity>();
         activitieslistview = rootView.findViewById(R.id.listView_fragmentactivities);
 
         activitieslistview.setAdapter(adapter);
         activitieslistview.setClickable(true);
 
-        // Manage the button to create a new activity
-        newActivity = rootView.findViewById(R.id.fragmentActivities_btnNewLoan);
+        pd = new ProgressDialog(context);
+        pd.setCancelable(false);
+        pd.setMessage("Fetching data..");
+
         newActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,12 +113,34 @@ public class fragment_activities extends Fragment{
             }
         });
 
-
-        pd = new ProgressDialog(context);
-        pd.setCancelable(false);
-        pd.setMessage("Fetching data..");
         pd.show();
+        displayActivities();
 
+        // TODO: implementare switch (+ refresh) + metodo displayUserActivities
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                activityArrayList.clear();
+                displayActivities();
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
+        activitieslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), activity_visualizeactivities.class);
+                intent.putExtra("activity", activityArrayList.get(i));
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
+    }
+
+    private void displayActivities () {
         db.collection("activity").
                 get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -135,17 +166,6 @@ public class fragment_activities extends Fragment{
                 adapter.addAll(activityArrayList);
             }
         });
-
-        activitieslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_visualizeactivities.class);
-                intent.putExtra("activity", activityArrayList.get(i));
-                startActivity(intent);
-            }
-        });
-
-        return rootView;
     }
 
     private class ActivityAdapter extends ArrayAdapter<Activity> {

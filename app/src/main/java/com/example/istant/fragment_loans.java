@@ -3,12 +3,15 @@ package com.example.istant;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -192,11 +195,13 @@ public class fragment_loans extends Fragment {
                     Timestamp dateEnd = document.getTimestamp("dateEnd");
                     Timestamp dateStart = document.getTimestamp("dateStart");
                     String description = document.get("description").toString();
+                    int isTaken = Integer.parseInt(document.get("isTaken").toString());
                     String nameLoan = document.get("nameLoan").toString();
                     String photoLoan = document.get("photoLoan").toString();
+                    String takenUser = document.get("takenUser").toString();
                     String uid = document.get("uid").toString();
 
-                    Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, uid);
+                    Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, isTaken, takenUser, uid);
                     loanArrayList.add(loan);
 
                     if (pd.isShowing()){
@@ -211,7 +216,7 @@ public class fragment_loans extends Fragment {
 
     private void displayUserLoans () {
         db.collection("loan")
-                .whereEqualTo("uid", auth.getCurrentUser().getUid())
+                .whereEqualTo("takenUser", auth.getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -222,11 +227,13 @@ public class fragment_loans extends Fragment {
                                 Timestamp dateStart = document.getTimestamp("dateStart");
                                 Timestamp dateEnd = document.getTimestamp("dateEnd");
                                 String description = document.getData().get("description").toString();;
+                                int isTaken = Integer.parseInt(document.get("isTaken").toString());
                                 String nameLoan = document.getData().get("nameLoan").toString();
                                 String photoLoanObj = document.getData().get("photoLoan").toString();
+                                String takenUser = document.get("takenUser").toString();
                                 String uid = document.getData().get("uid").toString();
 
-                                Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, uid);
+                                Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, isTaken, takenUser, uid);
                                 loanArrayList.add(loan);
                             }
                             adapter.clear();
@@ -254,8 +261,23 @@ public class fragment_loans extends Fragment {
             }
 
             TextView loanName = convertView.findViewById(R.id.listadapter_loanName);
+            View layout = convertView.findViewById(R.id.rowLayout_loanId);
             Loan loan = loanArrayList.get(position);
 
+            if (loan.getIsTaken() == 0) {
+                if (loan.getUid().equals(auth.getCurrentUser().getUid())) {
+                    layout.setBackgroundColor(Color.WHITE);
+                }
+                layout.setBackgroundColor(Color.GREEN);
+            }
+            else {
+                if (loan.getIsTaken() == 1 && loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
+                    layout.setBackgroundColor(Color.YELLOW);
+                }
+                else {
+                    layout.setBackgroundColor(Color.RED);
+                }
+            }
             loanName.setText(loan.getNameLoan());
 
             return convertView;

@@ -121,7 +121,7 @@ public class activity_createNewLoan extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                     dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
                     dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
-                    loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+                    loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, 0, "", FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
                     Toast.makeText(getApplicationContext(),"Aggiunto con successo",Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){}
@@ -190,7 +190,9 @@ public class activity_createNewLoan extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void loanWrite(Calendar dateStart, Calendar dateEnd, String description, String nameLoan, String photoLoanObj, String uid, FirebaseFirestore db) {
+    public static void loanWrite(Calendar dateStart, Calendar dateEnd,
+                                 String description, String nameLoan,
+                                 String photoLoanObj, int isTaken, String takenUser, String uid, FirebaseFirestore db) {
         Map<String, Object> loan = new HashMap<>();
         Date startLoan = dateStart.getTime();
         Date endLoan = dateEnd.getTime();
@@ -198,6 +200,8 @@ public class activity_createNewLoan extends AppCompatActivity {
         loan.put("description", description);
         loan.put("nameLoan", nameLoan);
         loan.put("photoLoan", photoLoanObj);
+        loan.put("isTaken", isTaken);
+        loan.put("takenUser", takenUser);
         loan.put("uid", uid);
         loan.put("dateStart", new Timestamp(startLoan));
         loan.put("dateEnd", new Timestamp(endLoan));

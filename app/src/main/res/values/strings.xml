@@ -57,7 +57,7 @@
     <string name="visualizeloans_textview_description">Descrizione</string>
     <string name="visualizeloans_textview_datestart">Data di inizio</string>
     <string name="visualizeloans_textview_dateend">Data di termine</string>
-    <string name="visualizeloans_participate">Partecipa</string>
+    <string name="visualizeloans_participate">Prendi in prestito</string>
 
     <!-- fragment_groupinfo -->
     <string name="groupinfo_nomegruppo">Grest Estivo del paese</string>

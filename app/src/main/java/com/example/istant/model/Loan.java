@@ -44,6 +44,8 @@ public class Loan implements Parcelable {
         this.description = in.readString();
         // this.nameLoan = in.readString();
         this.uid = in.readString();
+        this.isTaken = in.readInt();
+        this.takenUser = in.readString();
     }
 
     // getter and setter
@@ -132,6 +134,8 @@ public class Loan implements Parcelable {
         parcel.writeString(description);
         // parcel.writeString(nameLoan);
         parcel.writeString(uid);
+        parcel.writeInt(isTaken);
+        parcel.writeString(takenUser);
     }
 
     public static final Creator<Loan> CREATOR = new Parcelable.Creator<Loan>() {

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -30,12 +32,14 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class fragment_search extends Fragment {
+
     private ListView userslistview;
     private FirebaseFirestore db;
     private ArrayAdapter<User> adapter;
     private EditText searchBox;
     private Context context;
     private ArrayList<User> users;
+    private SwipeRefreshLayout refreshLayout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,44 +83,31 @@ public class fragment_search extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        context = container.getContext();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+        context = container.getContext();
+
         db = FirebaseFirestore.getInstance();
         userslistview = rootView.findViewById(R.id.users_listView);
         searchBox = rootView.findViewById(R.id.et_searchUser);
-
+        refreshLayout = rootView.findViewById(R.id.swipeRefresh_fragmentSearch);
         adapter = new UserAdapter(context, new ArrayList<User>());
-        userslistview.setAdapter(adapter);
-        userslistview.setClickable(true);
         users = new ArrayList<User>();
 
-        db.collection("user")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String id = document.getId();
-                            String address = document.getData().get("address").toString();
-                            Timestamp dateBorn = document.getTimestamp("dateBorn");
-                            String email = document.getData().get("email").toString();
-                            String fiscalCode = document.getData().get("fiscalCode").toString();
-                            int gender = Integer.parseInt(document.getData().get("gender").toString());
-                            String photoUrl = document.getData().get("photoURL").toString();
-                            String name = document.getData().get("name").toString();
-                            String surname = document.getData().get("surname").toString();
-                            String telephoneNumber = document.getData().get("telephoneNumber").toString();
+        userslistview.setAdapter(adapter);
+        userslistview.setClickable(true);
 
-                            User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
-                            users.add(user);
-                        }
-                        adapter.clear();
-                        adapter.addAll(users);
-                    }
-                });
+        displayUsers();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                users.clear();
+                displayUsers();
+                refreshLayout.setRefreshing(false);
+            }
+        });
 
         userslistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -141,63 +132,89 @@ public class fragment_search extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().isEmpty()){
-                    db.collection("user")
-                            .get()
-                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                @Override
-                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                        String id = document.getId();
-                                        String address = document.getData().get("address").toString();
-                                        Timestamp dateBorn = document.getTimestamp("dateBorn");
-                                        String email = document.getData().get("email").toString();
-                                        String fiscalCode = document.getData().get("fiscalCode").toString();
-                                        int gender = Integer.parseInt(document.getData().get("gender").toString());
-                                        String photoUrl = document.getData().get("photoURL").toString();
-                                        String name = document.getData().get("name").toString();
-                                        String surname = document.getData().get("surname").toString();
-                                        String telephoneNumber = document.getData().get("telephoneNumber").toString();
-
-                                        User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
-                                        users.add(user);
-                                    }
-                                    adapter.clear();
-                                    adapter.addAll(users);
-                                }
-                            });
+                    displayUsers();
+                    refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            adapter.clear();
+                            users.clear();
+                            displayUsers();
+                            refreshLayout.setRefreshing(false);
+                        }
+                    });
                 }
                 else {
                     users.clear();
-                    db.collection("user")
-                            .whereEqualTo("name", editable.toString())
-                            .get()
-                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                @Override
-                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                        String id = document.getId();
-                                        String address = document.getData().get("address").toString();
-                                        Timestamp dateBorn = document.getTimestamp("dateBorn");
-                                        String email = document.getData().get("email").toString();
-                                        String fiscalCode = document.getData().get("fiscalCode").toString();
-                                        int gender = Integer.parseInt(document.getData().get("gender").toString());
-                                        String photoUrl = document.getData().get("photoURL").toString();
-                                        String name = document.getData().get("name").toString();
-                                        String surname = document.getData().get("surname").toString();
-                                        String telephoneNumber = document.getData().get("telephoneNumber").toString();
-
-                                        User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
-                                        users.add(user);
-                                    }
-                                    adapter.clear();
-                                    adapter.addAll(users);
-                                }
-                            });
+                    displaySearchedUsers(editable);
+                    refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            adapter.clear();
+                            users.clear();
+                            displaySearchedUsers(editable);
+                            refreshLayout.setRefreshing(false);
+                        }
+                    });
                 }
             }
         });
 
         return rootView;
+    }
+
+    private void displayUsers () {
+        db.collection("user")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String id = document.getId();
+                            String address = document.getData().get("address").toString();
+                            Timestamp dateBorn = document.getTimestamp("dateBorn");
+                            String email = document.getData().get("email").toString();
+                            String fiscalCode = document.getData().get("fiscalCode").toString();
+                            int gender = Integer.parseInt(document.getData().get("gender").toString());
+                            String photoUrl = document.getData().get("photoURL").toString();
+                            String name = document.getData().get("name").toString();
+                            String surname = document.getData().get("surname").toString();
+                            String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                            User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                            users.add(user);
+                        }
+                        adapter.clear();
+                        adapter.addAll(users);
+                    }
+                });
+    }
+
+    private void displaySearchedUsers (Editable editable) {
+        db.collection("user")
+                .whereEqualTo("name", editable.toString())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String id = document.getId();
+                            String address = document.getData().get("address").toString();
+                            Timestamp dateBorn = document.getTimestamp("dateBorn");
+                            String email = document.getData().get("email").toString();
+                            String fiscalCode = document.getData().get("fiscalCode").toString();
+                            int gender = Integer.parseInt(document.getData().get("gender").toString());
+                            String photoUrl = document.getData().get("photoURL").toString();
+                            String name = document.getData().get("name").toString();
+                            String surname = document.getData().get("surname").toString();
+                            String telephoneNumber = document.getData().get("telephoneNumber").toString();
+
+                            User user = new User(id, address, dateBorn, email, fiscalCode, gender, photoUrl, name, surname, telephoneNumber);
+                            users.add(user);
+                        }
+                        adapter.clear();
+                        adapter.addAll(users);
+                    }
+                });
     }
 
     private class UserAdapter extends ArrayAdapter<User> {
