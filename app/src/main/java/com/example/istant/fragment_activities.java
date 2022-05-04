@@ -113,6 +113,32 @@ public class fragment_activities extends Fragment{
             }
         });
 
+        db.collection("activity").
+                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    String id = document.getId();
+                    String name = document.get("nameActivity").toString();
+                    String address = document.get("address").toString();
+                    Timestamp dateStart = document.getTimestamp("dateStart");
+                    Timestamp dateEnd = document.getTimestamp("dateEnd");
+                    String description = document.get("description").toString();
+                    // List<String> personInCharge = document.get("personInCharge").toString(); TODO: risolvere
+                    String photo = document.get("photoEvent").toString();
+
+                    Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, null, photo);
+                    activityArrayList.add(activity);
+
+                    if (pd.isShowing()) {
+                        pd.dismiss();
+                    }
+                }
+                adapter.clear();
+                adapter.addAll(activityArrayList);
+            }
+        });
+
         pd.show();
         displayActivities();
 

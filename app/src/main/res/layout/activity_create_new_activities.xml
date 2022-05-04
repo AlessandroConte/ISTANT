@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:layout_column="1"
                         android:inputType="text"  />
@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="124dp"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:inputType="textMultiLine"
                         android:minHeight="100dp"
@@ -111,10 +111,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:layout_column="1"
-                        android:inputType="date" />
+                        android:inputType="date"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+
+                        />
 
                 </TableRow>
 
@@ -139,10 +145,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
                         android:layout_column="1"
-                        android:inputType="date" />
+                        android:inputType="date"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        />
                 </TableRow>
 
                 <TableRow
@@ -165,45 +176,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:gravity="center"
-                        android:layout_column="1"
-                        android:inputType="date" />
+                        android:layout_column="1" />
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:gravity="center"
-                        android:id="@+id/createNewActivity_textview_personInCharge"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:minWidth="150dp"
-                        android:text="@string/createNewActivity_textview_personInCharge"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/creteNewActivity_edittext_personInCharge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="124dp"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:gravity="center"
-                        android:inputType="textMultiLine"
-                        android:minHeight="100dp"
-                        android:text="" />
-                </TableRow>
 
 
             </TableLayout>
 
 
             <Button
-                android:id="@+id/createNewLoan_button_create"
+                android:id="@+id/createNewActivity_button_create"
                 android:layout_width="387dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

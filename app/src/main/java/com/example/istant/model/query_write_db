@@ -1,7 +1,7 @@
     // ACTIVITY - write
     public static void activityWrite(String nameActivity, String address,
                                      Calendar dateStart, Calendar dateEnd, String description,
-                                     List<String> personInCharge, List<String> photoEvent) {
+                                     List<String> personInCharge, String photoEvent) {
         Map<String, Object> activity = new HashMap<>();
         Date startEvent = dateStart.getTime();
         Date endEvent = dateEnd.getTime();
