@@ -72,6 +72,7 @@
 
     <!-- activity_GDPR -->
     <string name="activityGDPR_title">GDPR - ISTANT App</string>
+    <string name="activityGDPR_textview_info">Iscrivendoti accetti integralmente il documento GDPR (visionabile cliccando il bottone soprastante).</string>
 
 
     <!-- activity_login.xml -->

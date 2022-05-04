@@ -70,7 +70,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="16dp"
         android:text="@string/activityregistration_button_registration"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +121,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationConfPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/registrationConfPassword"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="369dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="37dp"
+        android:text="@string/activityGDPR_textview_info"
+        app:layout_constraintBottom_toTopOf="@+id/registrationButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gotogdpr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
