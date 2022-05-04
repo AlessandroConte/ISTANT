@@ -1,16 +1,21 @@
 package com.example.istant;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.istant.model.Loan;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +24,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.WriteResult;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,12 +37,16 @@ public class activity_visualizeloans extends AppCompatActivity {
 
     private ImageView image_loan;
     private EditText loan_description;
+    private EditText loan_name;
     private EditText loan_startDate;
     private EditText loan_endDate;
 
     private Button button_modify;
     private Button button_partecipate;
     private Button button_delete;
+
+    private boolean free = false;
+    private boolean editable = true;
 
     // variable needed to retrieve the intent
     private Loan loan;
@@ -58,6 +69,7 @@ public class activity_visualizeloans extends AppCompatActivity {
 
         image_loan = findViewById(R.id.visualizeloans_image);
         loan_description = findViewById(R.id.visualizeloans_edittext_description);
+        loan_name = findViewById(R.id.visualizeloans_edittext_name);
         loan_startDate = findViewById(R.id.visualizeloans_edittext_datestart);
         loan_endDate = findViewById(R.id.visualizeloans_edittext_dateend);
 
@@ -100,21 +112,52 @@ public class activity_visualizeloans extends AppCompatActivity {
             Glide.with(this).load(loan.getPhotoLoan()).into(image_loan);
         }
         loan_description.setText(loan.getDescription());
+        loan_name.setText(loan.getNameLoan());
 
         if (loan.getUid().equals(auth.getCurrentUser().getUid())) {
             button_partecipate.setVisibility(View.INVISIBLE);
             button_modify.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
             // TODO: implementare l'onClick dei bottoni
+
+            button_modify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!editable) {
+                        button_modify.setText("Salva");
+
+                        loan_name.setEnabled(true);
+                        loan_description.setEnabled(true);
+                        loan_startDate.setEnabled(true);
+                        loan_endDate.setEnabled(true);
+
+                        editable = true;
+                    }
+                    else {
+                        button_modify.setText("Modifica");
+
+                        // TODO : guarda crea loan
+                    }
+                }
+            });
+
+            button_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteDatabaseDocument(db, "loan", loan.getId());
+                    Toast.makeText(activity_visualizeloans.this, "Prestito cancellato correttamente", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
         else {
             button_partecipate.setVisibility(View.VISIBLE);
             button_modify.setVisibility(View.INVISIBLE);
             button_delete.setVisibility(View.INVISIBLE);
-            // TODO: implementare l'onClick dei bottoni
 
             if (loan.getIsTaken() == 0) {
                 button_partecipate.setBackgroundColor(Color.GREEN);
+                free = true;
             }
 
             if (loan.getIsTaken() == 1) {
@@ -129,11 +172,48 @@ public class activity_visualizeloans extends AppCompatActivity {
                 }
             }
 
-            // se libero -> verde
-            // se occupato da me -> arancione + possibilità di liberarlo
-            // se occupato da qualcun altro -> rosso
+            button_partecipate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (free) {
+                        updateDatabaseField(db, "loan", loan.getId(), "isTaken", 1);
+                        updateDatabaseField(db, "loan", loan.getId(), "takenUser", auth.getCurrentUser().getUid());
+                        Toast.makeText(activity_visualizeloans.this, "Oggetto preso in prestito correttamente!", Toast.LENGTH_SHORT).show();
+                        // TODO: implementare tornare indietro
+                    }
+                    else {
+                        updateDatabaseField(db, "loan", loan.getId(), "isTaken", 0);
+                        updateDatabaseField(db, "loan", loan.getId(), "takenUser", "");
+                        Toast.makeText(activity_visualizeloans.this, "Hai restituito correttamente il prestito!", Toast.LENGTH_SHORT).show();
+                        // TODO: implementare tornare indietro
+                    }
+                }
+            });
 
         }
+    }
+
+    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,
+                                               String idDocument, String nameField, T value) {
+        db.collection(collectionName).document(idDocument)
+                .update(nameField, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "Document updated added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error update document", e);
+                    }
+                });
+    }
+
+    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName,
+                                              String idDocument) {
+        db.collection(collectionName).document(idDocument).delete();
     }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was

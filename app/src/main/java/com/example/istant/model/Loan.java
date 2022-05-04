@@ -42,7 +42,7 @@ public class Loan implements Parcelable {
         this.id = in.readString();
         this.photoLoan = in.readString();
         this.description = in.readString();
-        // this.nameLoan = in.readString();
+        this.nameLoan = in.readString();
         this.uid = in.readString();
         this.isTaken = in.readInt();
         this.takenUser = in.readString();
@@ -132,7 +132,7 @@ public class Loan implements Parcelable {
         parcel.writeString(id);
         parcel.writeString(photoLoan);
         parcel.writeString(description);
-        // parcel.writeString(nameLoan);
+        parcel.writeString(nameLoan);
         parcel.writeString(uid);
         parcel.writeInt(isTaken);
         parcel.writeString(takenUser);

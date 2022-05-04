@@ -21,6 +21,85 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/registrationSurname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/activityregistration_edittext_regitrationsurname"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationName" />
+
+    <EditText
+        android:id="@+id/registrationAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/activityregistration_edittext_regitrationsurname"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationSurname" />
+
+    <EditText
+        android:id="@+id/registrationFiscalCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/activityregistration_edittext_regitrationsurname"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationAddress" />
+
+
+    <TextView
+        android:id="@+id/registration_gender"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:maxWidth="100dp"
+        android:text="@string/fragmentuser_textview_gender"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/registrationFiscalCode"/>
+        <!--
+        <RadioGroup
+            android:id="@+id/registration_radiogroup_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/registration_genderradiobutton_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:maxWidth="100dp"
+                android:text="@string/fragmentuser_genderradiobutton_m" />
+
+            <RadioButton
+                android:id="@+id/registration_genderradiobutton_f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:maxWidth="100dp"
+                android:text="@string/fragmentuser_genderradiobutton_f" />
+
+        </RadioGroup>
+        -->
+
+    <EditText
         android:id="@+id/registrationEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -78,19 +157,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registrationConfPassword" />
 
-    <EditText
-        android:id="@+id/registrationSurname"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/activityregistration_edittext_regitrationsurname"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationName" />
 
     <Button
         android:id="@+id/gotologinButton"

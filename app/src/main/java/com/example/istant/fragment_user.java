@@ -244,7 +244,7 @@ public class fragment_user extends Fragment {
             @Override
             public void onClick(View view) {
                 // false - it enables the field and the user can modify them, at the end it puts the flag as true
-                if ( flag == false ) {
+                if (!flag) {
                     btnModify.setText("Salva");
                     tv_name.setEnabled(true);
                     tv_surname.setEnabled(true);

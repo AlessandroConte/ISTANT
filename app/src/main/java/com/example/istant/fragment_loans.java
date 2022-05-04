@@ -268,7 +268,9 @@ public class fragment_loans extends Fragment {
                 if (loan.getUid().equals(auth.getCurrentUser().getUid())) {
                     layout.setBackgroundColor(Color.WHITE);
                 }
-                layout.setBackgroundColor(Color.GREEN);
+                else {
+                    layout.setBackgroundColor(Color.GREEN);
+                }
             }
             else {
                 if (loan.getIsTaken() == 1 && loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
