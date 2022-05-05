@@ -10,14 +10,12 @@
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/drawable/background_sent_message.xml" value="0.1" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/drawable/ic_add.xml" value="0.316" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/drawable/ic_loan.xml" value="0.103" />
-        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/drawable/info.xml" value="0.196" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_activities.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_loans.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_new_activities.xml" value="0.18" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_new_child.xml" value="0.2796875" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_new_loan.xml" value="0.33" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_main.xml" value="0.18034447821681865" />
-        <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_registration.xml" value="0.33" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_settings_managechildren.xml" value="0.165" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_visualize_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aless/Documents/GitHub/ISTANT/app/src/main/res/layout/background_content_top.xml" value="0.1953125" />
@@ -61,6 +59,7 @@
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/drawable/ic_user_menu.xml" value="0.231" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/activity__guide.xml" value="0.22282608695652173" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/activity_create_new_loan.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/activity_main.xml" value="0.1082427536231884" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/activity_registration.xml" value="0.275" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/activity_settings.xml" value="0.22282608695652173" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/activity_visualize_activity.xml" value="0.275" />
@@ -74,6 +73,7 @@
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/listadapter_loan.xml" value="0.18840579710144928" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/listadapter_user.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/layout/user_list_item.xml" value="0.2558876811594203" />
+        <entry key="..\:/Users/naggi/ISTANTnuovo/app/src/main/res/menu/option_menu.xml" value="0.275" />
         <entry key="..\:/Users/user/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_activity.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_create_loan.xml" value="0.4" />
         <entry key="..\:/Users/user/Documents/GitHub/ISTANT/app/src/main/res/layout/activity_guida.xml" value="0.264" />

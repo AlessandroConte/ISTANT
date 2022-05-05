@@ -28,8 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView verifyMsg;
-    Button verifyEmail;
     FirebaseAuth auth;
     AlertDialog.Builder reset_alert;
     LayoutInflater inflater;
@@ -61,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
         // Alert dialog that prompts the user to view the guide page
         if ( ((JustLoggedIn) this.getApplication()).getJustLogged() == true ) {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Do you want to view the guide page?")
+            builder.setMessage("Vuoi visualizzare la guida")
                     .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             startActivity(new Intent(getApplicationContext(), activity_guide.class));
@@ -78,26 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     );
             builder.show();
         }
-
-        /*
-        if(!auth.getCurrentUser().isEmailVerified()){
-            verifyEmail.setVisibility(View.VISIBLE);
-            verifyMsg.setVisibility(View.VISIBLE);
-        }
-
-        verifyEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(MainActivity.this, "Email di verifica inviata", Toast.LENGTH_SHORT).show();
-                        verifyEmail.setVisibility(View.GONE);
-                        verifyMsg.setVisibility(View.GONE);
-                    }
-                });
-            }
-        });*/
     }
 
     // Function that creates the menu in the upper right corner of the screen
@@ -125,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             FirebaseUser user = auth.getCurrentUser();
+                            deleteDatabaseDocument(db, "user", user.getUid());
                             user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
@@ -167,5 +146,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName,
+                                              String idDocument) {
+        db.collection(collectionName).document(idDocument).delete();
     }
 }

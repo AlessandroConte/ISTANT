@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/profilePic_fragmentUser"
+                android:id="@+id/registrationProfilePicture"
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
@@ -78,6 +78,34 @@
                 app:layout_constraintTop_toBottomOf="@+id/registrationSurname" />
 
             <EditText
+                android:id="@+id/registrationPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="Numero di telefono"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registrationSurname" />
+
+            <EditText
+                android:id="@+id/registrationBornDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="Data di nascita"
+                android:focusableInTouchMode="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registrationSurname" />
+
+            <EditText
                 android:id="@+id/registrationFiscalCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,14 +152,12 @@
                             android:id="@+id/registration_genderradiobutton_m"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:enabled="false"
                             android:text="@string/fragmentuser_genderradiobutton_m" />
 
                         <RadioButton
                             android:id="@+id/registration_genderradiobutton_f"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:enabled="false"
                             android:text="@string/fragmentuser_genderradiobutton_f" />
 
                     </RadioGroup>

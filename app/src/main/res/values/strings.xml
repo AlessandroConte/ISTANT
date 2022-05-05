@@ -111,9 +111,9 @@
 
 
     <!-- option_menu.xml -->
-    <string name="optionmenu_resetpassword">Reset Password</string>
-    <string name="optionmenu_deleteaccount">Delete Account</string>
+    <string name="optionmenu_resetpassword">Reimposta password</string>
+    <string name="optionmenu_deleteaccount">Cancella l\'account</string>
     <string name="optionmenu_logout">Logout</string>
-    <string name="optionmenu_userguide">User Guide</string>
+    <string name="optionmenu_userguide">Guida</string>
 
 </resources>
