@@ -3,6 +3,7 @@ package com.example.istant;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -33,11 +34,17 @@ public class activity_GDPR extends AppCompatActivity {
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        Intent myIntent = new Intent(getApplicationContext(), RegistrationActivity.class);
+        startActivity(myIntent);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent i=new Intent(activity_GDPR.this,RegistrationActivity.class);
+        startActivity(i);
+        finish();
+        super.onBackPressed();
     }
 }

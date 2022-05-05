@@ -3,10 +3,12 @@ package com.example.istant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    TextView tv_gdpr;
     EditText regNome, regCognome, regEmail, regPass, regConfPass;
     Button regButton,gotoLogin, gdpr;
     FirebaseAuth fAuth;
@@ -31,8 +34,11 @@ public class RegistrationActivity extends AppCompatActivity {
         regConfPass = findViewById(R.id.registrationConfPassword);
         regButton = findViewById(R.id.registrationButton);
         gotoLogin = findViewById(R.id.gotologinButton);
+        tv_gdpr = findViewById(R.id.tv_gdpr);
 
         fAuth = FirebaseAuth.getInstance();
+
+        tv_gdpr.setPaintFlags(tv_gdpr.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
         gotoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +103,13 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        gdpr = findViewById(R.id.gotogdpr);
-        gdpr.setOnClickListener(new View.OnClickListener() {
+        tv_gdpr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), activity_GDPR.class));
                 finish();
             }
         });
+
     }
 }

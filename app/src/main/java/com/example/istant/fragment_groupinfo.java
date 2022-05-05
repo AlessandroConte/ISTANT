@@ -62,7 +62,7 @@ public class fragment_groupinfo extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_groupinfo, container, false);
 
         ImageView image = (ImageView)rootView.findViewById(R.id.gr_image);
-        image.setImageResource(R.drawable.gr_info);
+        image.setImageResource(R.drawable.grouplogo);
 
         return rootView;
     }
