@@ -1,37 +1,54 @@
 package com.example.istant;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.istant.model.Loan;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.WriteResult;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class activity_visualizeloans extends AppCompatActivity {
 
     private FirebaseFirestore db;
+    private StorageReference storageReference;
     private DocumentReference documentReference;
     private FirebaseAuth auth;
 
@@ -46,10 +63,16 @@ public class activity_visualizeloans extends AppCompatActivity {
     private Button button_delete;
 
     private boolean free = false;
-    private boolean editable = true;
+    private boolean editable;
 
     // variable needed to retrieve the intent
     private Loan loan;
+
+    private Uri imageUri;
+    private String name;
+    private String description;
+    private Calendar dateStart;
+    private Calendar dateEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +88,10 @@ public class activity_visualizeloans extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         loan = getIntent().getParcelableExtra("loan");
+        dateStart = Calendar.getInstance();
+        dateEnd = Calendar.getInstance();
 
         image_loan = findViewById(R.id.visualizeloans_image);
         loan_description = findViewById(R.id.visualizeloans_edittext_description);
@@ -76,6 +102,28 @@ public class activity_visualizeloans extends AppCompatActivity {
         button_modify = findViewById(R.id.visualizeloans_buttonModifySave);
         button_delete = findViewById(R.id.visualizeloans_buttonDelete);
         button_partecipate = findViewById(R.id.visualizeloans_buttonParticipate);
+
+        image_loan.setClickable(false);
+
+        DatePickerDialog.OnDateSetListener dateS = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                dateStart.set(Calendar.DAY_OF_MONTH, day);
+                dateStart.set(Calendar.MONTH, month);
+                dateStart.set(Calendar.YEAR, year);
+                updateLabelStart();
+            }
+        };
+
+        DatePickerDialog.OnDateSetListener dateE = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                dateEnd.set(Calendar.DAY_OF_MONTH, day);
+                dateEnd.set(Calendar.MONTH, month);
+                dateEnd.set(Calendar.YEAR, year);
+                updateLabelEnd();
+            }
+        };
 
         // Getting the information from the clicked item
         String id = loan.getId();
@@ -96,6 +144,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                 Calendar cend = Calendar.getInstance();
                 cstart.setTime(start);
                 cend.setTime(end);
+                /*
                 int year_start = cstart.get(Calendar.YEAR);
                 int year_end = cend.get(Calendar.YEAR);
                 int month_start = cstart.get(Calendar.MONTH);
@@ -103,14 +152,21 @@ public class activity_visualizeloans extends AppCompatActivity {
                 int date_start = cstart.get(Calendar.DATE);
                 int date_end = cend.get(Calendar.DATE);
 
-                loan_startDate.setText(String.valueOf(date_start).concat(" - ").concat(String.valueOf(month_start + 1)).concat(" - ").concat(String.valueOf(year_start)));
-                loan_endDate.setText(String.valueOf(date_end).concat(" - ").concat(String.valueOf(month_end + 1)).concat(" - ").concat(String.valueOf(year_end)));
+                 */
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
+
+                // loan_startDate.setText(String.valueOf(date_start).concat(" - ").concat(String.valueOf(month_start + 1)).concat(" - ").concat(String.valueOf(year_start)));
+                // loan_endDate.setText(String.valueOf(date_end).concat(" - ").concat(String.valueOf(month_end + 1)).concat(" - ").concat(String.valueOf(year_end)));
+
+                loan_startDate.setText(dateFormat.format(start));
+                loan_endDate.setText(dateFormat.format(end));
             }
         });
 
         if (!loan.getPhotoLoan().equals("")){
             Glide.with(this).load(loan.getPhotoLoan()).into(image_loan);
         }
+
         loan_description.setText(loan.getDescription());
         loan_name.setText(loan.getNameLoan());
 
@@ -118,7 +174,6 @@ public class activity_visualizeloans extends AppCompatActivity {
             button_partecipate.setVisibility(View.INVISIBLE);
             button_modify.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
-            // TODO: implementare l'onClick dei bottoni
 
             button_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -126,17 +181,76 @@ public class activity_visualizeloans extends AppCompatActivity {
                     if (!editable) {
                         button_modify.setText("Salva");
 
+                        image_loan.setClickable(true);
                         loan_name.setEnabled(true);
                         loan_description.setEnabled(true);
                         loan_startDate.setEnabled(true);
                         loan_endDate.setEnabled(true);
+
+                        image_loan.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                choosePicture();
+                            }
+                        });
+
+                        loan_startDate.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                new DatePickerDialog(activity_visualizeloans.this, dateS, dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH)).show();
+                            }
+                        });
+
+                        loan_endDate.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                new DatePickerDialog(activity_visualizeloans.this, dateE, dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH)).show();
+                            }
+                        });
 
                         editable = true;
                     }
                     else {
                         button_modify.setText("Modifica");
 
-                        // TODO : guarda crea loan
+                        name = loan_name.getText().toString();
+                        description = loan_description.getText().toString();
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
+                        try {
+                            dateStart.setTime(dateFormat.parse(loan_startDate.getText().toString()));
+                            dateEnd.setTime(dateFormat.parse(loan_endDate.getText().toString()));
+
+                            Map<String, Object> loan = new HashMap<>();
+                            loan.put("nameLoan", name);
+                            loan.put("description", description);
+                            loan.put("dateStart", new Timestamp(dateStart.getTime()));
+                            loan.put("dateEnd", new Timestamp(dateEnd.getTime()));
+
+                            db.collection("loan").document(id)
+                                    .update(loan)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(activity_visualizeloans.this, "Aggiornamento avvenuto con successo", Toast.LENGTH_LONG).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(activity_visualizeloans.this, "Aggiornamento fallito", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        image_loan.setClickable(false);
+                        loan_name.setEnabled(false);
+                        loan_description.setEnabled(false);
+                        loan_startDate.setEnabled(false);
+                        loan_endDate.setEnabled(false);
+
+                        editable = false;
                     }
                 }
             });
@@ -145,10 +259,9 @@ public class activity_visualizeloans extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     deleteDatabaseDocument(db, "loan", loan.getId());
-                    Toast.makeText(activity_visualizeloans.this, "Prestito cancellato correttamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity_visualizeloans.this, "Prestito cancellato correttamente", Toast.LENGTH_LONG).show();
                 }
             });
-
         }
         else {
             button_partecipate.setVisibility(View.VISIBLE);
@@ -192,6 +305,84 @@ public class activity_visualizeloans extends AppCompatActivity {
 
         }
     }
+
+    private void updateLabelEnd() {
+        String myFormat = "dd-MM-yyyy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ITALY);
+        loan_endDate.setText(dateFormat.format(dateEnd.getTime()));
+    }
+
+    private void updateLabelStart() {
+        String myFormat = "dd-MM-yyyy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ITALY);
+        loan_startDate.setText(dateFormat.format(dateStart.getTime()));
+    }
+
+    private void choosePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        visualizeLoansResultLauncher.launch(intent);
+    }
+
+    ActivityResultLauncher<Intent> visualizeLoansResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        assert data != null;
+                        imageUri = data.getData();
+                        image_loan.setImageURI(imageUri);
+                        uploadPicture();
+                    }
+                }
+            });
+
+    private void uploadPicture() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
+
+        pd.setTitle("Uploading Image..");
+        pd.show();
+
+        ref.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        pd.dismiss();
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                updateDatabaseField(db,"loan", loan.getId(),"photoLoan", uri.toString());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(activity_visualizeloans.this, "Errore nel caricamento", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Snackbar.make(activity_visualizeloans.this.findViewById(android.R.id.content), "Immagine caricata!",Snackbar.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(activity_visualizeloans.this.getApplicationContext(), "Caricamento fallito!", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        double progressPercent = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                        pd.setMessage("Percentage: " + (int) progressPercent + "%");
+                    }
+                });
+    }
+
 
     public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,
                                                String idDocument, String nameField, T value) {

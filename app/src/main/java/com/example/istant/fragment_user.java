@@ -71,7 +71,6 @@ public class fragment_user extends Fragment {
     private String fiscalCode;
     private String address;
     private String email;
-    private String bornDate;
 
 
     // Retrieveing all of the fields of the gui in order to enable and disable the edit options
@@ -168,6 +167,7 @@ public class fragment_user extends Fragment {
 
         // Retrieving the ImageView
         profilePic_userfragment = view.findViewById(R.id.profilePic_fragmentUser);
+        profilePic_userfragment.setClickable(false);
 
 
         // Setting all the EditText with the field of the DB
@@ -246,6 +246,8 @@ public class fragment_user extends Fragment {
                 // false - it enables the field and the user can modify them, at the end it puts the flag as true
                 if (!flag) {
                     btnModify.setText("Salva");
+
+                    profilePic_userfragment.setClickable(true);
                     tv_name.setEnabled(true);
                     tv_surname.setEnabled(true);
                     tv_phonenumber.setEnabled(true);
@@ -255,6 +257,15 @@ public class fragment_user extends Fragment {
                     tv_email.setEnabled(true);
                     rb_sex_m.setEnabled(true);
                     rb_sex_f.setEnabled(true);
+
+                    // ProfilePicture
+                    profilePic_userfragment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            choosePicture();
+                        }
+                    });
+
                     flag = true;
                 }
                 // true - the user modified the field/s and now wants to save. It saves the modified values, it disables the fileds and then sets the falg to false.
@@ -312,18 +323,8 @@ public class fragment_user extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity().getApplicationContext(), activity_settings_managechildren.class));
-                //getActivity().finish();
             }
         });
-
-        // ProfilePicture
-        profilePic_userfragment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choosePicture();
-            }
-        });
-
 
         // Inflate the layout for this fragment
         return view;
