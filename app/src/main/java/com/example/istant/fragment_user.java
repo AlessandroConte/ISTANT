@@ -192,7 +192,6 @@ public class fragment_user extends Fragment {
                 int month = c.get(Calendar.MONTH);
                 int date = c.get(Calendar.DATE);
 
-
                 tv_name.setText(name);
                 tv_surname.setText(surname);
                 tv_phonenumber.setText(phoneNumber);

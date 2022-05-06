@@ -33,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -186,8 +187,8 @@ public class fragment_loans extends Fragment {
     }
 
     private void displayLoans() {
-        db.collection("loan").
-                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("loan")
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
@@ -201,8 +202,10 @@ public class fragment_loans extends Fragment {
                     String takenUser = document.get("takenUser").toString();
                     String uid = document.get("uid").toString();
 
-                    Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, isTaken, takenUser, uid);
-                    loanArrayList.add(loan);
+                    if (dateEnd.toDate().after(new Date())) {
+                        Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, isTaken, takenUser, uid);
+                        loanArrayList.add(loan);
+                    }
 
                     if (pd.isShowing()){
                         pd.dismiss();
@@ -233,8 +236,10 @@ public class fragment_loans extends Fragment {
                                 String takenUser = document.get("takenUser").toString();
                                 String uid = document.getData().get("uid").toString();
 
-                                Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, isTaken, takenUser, uid);
-                                loanArrayList.add(loan);
+                                if (dateEnd.toDate().after(new Date())) {
+                                    Loan loan = new Loan(id, dateStart, dateEnd, photoLoanObj, description, nameLoan, isTaken, takenUser, uid);
+                                    loanArrayList.add(loan);
+                                }
                             }
                             adapter.clear();
                             adapter.addAll(loanArrayList);

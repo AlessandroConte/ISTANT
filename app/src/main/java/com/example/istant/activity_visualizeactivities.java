@@ -137,8 +137,9 @@ public class activity_visualizeactivities extends AppCompatActivity {
         button_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), VisualizeReviewActivity.class));
-                finish();
+                Intent intent = new Intent(activity_visualizeactivities.this, VisualizeReviewActivity.class);
+                intent.putExtra("activity", activity);
+                startActivity(intent);
             }
         });
 

@@ -11,7 +11,7 @@
         android:id="@+id/tv_children"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LISTA DI FIGLI"
+        android:text="LISTA DEI FIGLI "
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,14 +3,11 @@ package com.example.istant;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -187,21 +184,10 @@ public class fragment_activities extends Fragment{
 
             TextView activityName = convertView.findViewById(R.id.listadapter_activityName);
             TextView activityDescription = convertView.findViewById(R.id.listadapter_activityDescription);
-            View layout = convertView.findViewById(R.id.rowLayout_activity);
-            // de.hdodenhof.circleimageview.CircleImageView activityImage = convertView.findViewById(R.id.listadapter_activityPicture);
 
             Activity activity = activities.get(position);
             activityName.setText(activity.getNameActivity());
             activityDescription.setText(activity.getDescription());
-            // Glide.with(getActivity()).load(Uri.parse(activity.getPhotoEvent())).into(activityImage); TODO: da implementare
-
-            List<String> personInCharge = activity.getPersonInCharge();
-
-            /*
-            if (personInCharge != null && !personInCharge.isEmpty() && personInCharge.contains(auth.getCurrentUser().getUid())) {
-                layout.setBackgroundColor(Color.GREEN);
-            }
-             */
 
             return convertView;
         }

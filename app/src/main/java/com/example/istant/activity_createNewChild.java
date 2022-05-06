@@ -1,10 +1,6 @@
 package com.example.istant;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,34 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.bumptech.glide.Glide;
 import com.example.istant.model.SupportFunctions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,17 +26,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 public class activity_createNewChild extends AppCompatActivity {
 
-
-    Calendar dateBorn = Calendar.getInstance();
-
+    private Calendar dateBorn = Calendar.getInstance();
 
     // Retrieveing all of the fields of the gui in order to enable and disable the edit options
-    private TextView tv_name;
-    private TextView tv_surname;
+    private EditText tv_name;
+    private EditText tv_surname;
+    private TextView tv_gender;
     private EditText dateB;
     private RadioButton rb_sex_m;
     private RadioButton rb_sex_f;
@@ -65,28 +42,23 @@ public class activity_createNewChild extends AppCompatActivity {
     // button used to modify / save the user information
     private Button btnCreate;
 
-
-
+    private int gender = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_child);
 
-
         // retrieving the different fields of the gui
-        tv_name = (EditText)findViewById(R.id.fragmentChild_edittext_name);
+        tv_name = (EditText) findViewById(R.id.fragmentChild_edittext_name);
         tv_surname = (EditText)findViewById(R.id.fragmentChild_edittext_surname);
+        tv_gender = (TextView) findViewById(R.id.fragmentChild_gender);
         rb_sex_m = (RadioButton) findViewById(R.id.fragmentChild_genderradiobutton_m);
         rb_sex_f = (RadioButton) findViewById(R.id.fragmentChild_genderradiobutton_f);
-        dateB = (EditText)findViewById(R.id.fragmentChild_edittext_dateofbirth);
-
-
+        dateB = (EditText) findViewById(R.id.fragmentChild_edittext_dateofbirth);
 
         // Retrieving the two buttons
-        btnCreate = (Button)findViewById(R.id.fragmentChild_buttonCreate);
-
-
+        btnCreate = (Button) findViewById(R.id.fragmentChild_buttonCreate);
 
         DatePickerDialog.OnDateSetListener dateBo = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -105,45 +77,66 @@ public class activity_createNewChild extends AppCompatActivity {
             }
         });
 
+        rb_sex_m.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gender = 0;
+            }
+        });
+
+        rb_sex_f.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gender = 1;
+            }
+        });
 
         // Now we handle the buttons and the ImageView
 
         btnCreate.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
+                new View.OnClickListener() {
+                    public void onClick(View view) {
 
                         String textName = tv_name.getText().toString();
                         String textSurname = tv_surname.getText().toString();
-                        Log.d("ok", rb_sex_m.getText().toString());
-                        int textGender;
-                        if((rb_sex_m.getText().toString() == "M")) {
-                            textGender = 1;
-                        }
-                        else{
-                            textGender = 0;
+
+                        if (textName.isEmpty()) {
+                            tv_name.setError("Il nome deve essere fornito!");
                         }
 
-
-                        try{
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                            dateBorn.setTime(dateFormat.parse(dateB.getText().toString()));
-
-                            childWrite(null, dateBorn, textGender, "", textName, textSurname,
-                                    FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
-
-                            Toast.makeText(getApplicationContext(),"Aggiunto con successo",Toast.LENGTH_SHORT).show();
+                        if (textSurname.isEmpty()) {
+                            tv_surname.setError("Il cognome deve essere fornito!");
                         }
-                        catch (Exception e){}
 
+                        if (rb_sex_m.getText().toString().isEmpty() && rb_sex_f.getText().toString().isEmpty()) {
+                            rb_sex_m.setError("Il sesso deve essere fornito!");
+                        }
 
+                        if (dateB.getText().toString().isEmpty()) {
+                            dateB.setError("La data di nascita deve essere fornita!");
+                        }
+                        else {
+                            try{
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
+                                dateBorn.setTime(dateFormat.parse(dateB.getText().toString()));
+
+                                childWrite(null, dateBorn, gender, "", textName, textSurname, FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+
+                                tv_name.getText().clear();
+                                tv_surname.getText().clear();
+                                rb_sex_m.setChecked(false);
+                                rb_sex_f.setChecked(false);
+                                dateB.getText().clear();
+
+                                Toast.makeText(activity_createNewChild.this,"Figlio aggiunto con successo!",Toast.LENGTH_SHORT).show();
+                            }
+                            catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 });
-
-
     }
-
 
     // CHILD - write
     public static void childWrite(List<String> allergy, Calendar dateBorn, int gender,
@@ -180,7 +173,6 @@ public class activity_createNewChild extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
@@ -199,6 +191,5 @@ public class activity_createNewChild extends AppCompatActivity {
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
         dateB.setText(dateFormat.format(dateBorn.getTime()));
     }
-
 
 }

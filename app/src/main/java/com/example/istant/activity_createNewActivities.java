@@ -145,7 +145,6 @@ public class activity_createNewActivities extends AppCompatActivity {
             }
         });
 
-
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -154,14 +153,12 @@ public class activity_createNewActivities extends AppCompatActivity {
         }
     }
 
-
     private void choosePicture() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activityCreateNewActivities.launch(intent);
     }
-
 
     ActivityResultLauncher<Intent> activityCreateNewActivities = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -177,7 +174,6 @@ public class activity_createNewActivities extends AppCompatActivity {
                     }
                 }
             });
-
 
     private void uploadPicture() {
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
@@ -204,8 +200,6 @@ public class activity_createNewActivities extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     public static void actWrite(String nameActivity, String address,
                                 Calendar dateStart, Calendar dateEnd, String description,

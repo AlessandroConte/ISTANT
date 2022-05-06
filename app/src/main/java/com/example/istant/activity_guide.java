@@ -50,7 +50,7 @@ public class activity_guide extends AppCompatActivity{
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("User Guide"); // actionbar's name
+            actionBar.setTitle("Guida utente"); // actionbar's name
         }
     }
 
