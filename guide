@@ -1,0 +1,24 @@
+L'applicazione mobile ISTANT è una piattaforma che permette ad un gruppo di ragazzi/bambini, i quali sono gestiti dai loro genitori, di organizzare attività, prestiti e di comunicare tra loro.
+L'obiettivo della piattaforma è quello di creare un ambiente sicuro e controllato dove si possa fare tutto ciò.
+Per facilitare l'uso dell'applicazione mobile e per fornire utili approfondimenti e spiegazioni generali sull'utilizzo forniamo questa breve guida.
+
+
+SCHERMATA HOME (con la bottom nav bar)
+
+In questa scermata abbiamo la barra di navigazione in basso che ci permette di raggiungere le diverse funzionalità offerte dall'applicazione. 
+Ogni icona, quando selezionata, mostra anche un breve testo per descrivere l'azione.
+Le schermate sono (ordinate da sinistra verso destra): info gruppo, prestiti, cerca, attività, utente.
+
+Sulla schermata info gruppo troviamo le informazioni generali del gruppo.
+
+Sulla schermata prestiti troviamo la lista di tutti i prestiti disponibili. Cliccando su un prestito andiamo a vedere le specifiche di un determinato prestito.
+Inoltre, se questo prestito è stato creato da noi possiamo gestirlo. Se il prestito non è ancora stato preso in prestito da qualcuno possiamo prenderlo in prestito noi utilizzando l'apposito bottone presente sulla schermata.
+Un'altra funzionalità della schermata è quella di poter creare un nuovo prestito tramite il bottone che si trova sopra la lista dei prestiti.
+
+La schermata cerca ci permette di cercare un utente registrato nell'applicazione e di vedere le sue informazioni di base. Cliccando sull'utente possiamo vedere le sue specifiche.
+
+Sulla schermata attività troviamo la lista di tutte le attività disponibili. Per ogni elemento della lista vediamo una foto, un nome ed una breve descrizione. Cliccando su una di esse andiamo a vedere le sue specifiche.
+Cliccando su una attività entriamo sulla schermata che ce la fa visualizzare. Su questa schermata possiamo partecipare a questa attività, eliminarla (se ne siamo i proprietari) ed anche visualizzare tutti i partecipanti.
+
+Infine, sulla schermata utente possiamo gestire le nostre informazioni utente utilizzando il bottone modifica presente in fondo alla pagina.
+Inoltre possiamo utilizzare il pulsante gestione figli per poter arrivare sull'apposita schermata che ci permetterà di aggiungere nuovi figli e di gestirli.
