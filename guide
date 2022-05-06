@@ -1,24 +1,53 @@
-L'applicazione mobile ISTANT è una piattaforma che permette ad un gruppo di ragazzi/bambini, i quali sono gestiti dai loro genitori, di organizzare attività, prestiti e di comunicare tra loro.
-L'obiettivo della piattaforma è quello di creare un ambiente sicuro e controllato dove si possa fare tutto ciò.
-Per facilitare l'uso dell'applicazione mobile e per fornire utili approfondimenti e spiegazioni generali sull'utilizzo forniamo questa breve guida.
+L'applicazione mobile ISTANT è una piattaforma che permette ai genitori o tutori di ragazzi di organizzare attività e valutarle, creare prestiti e mettere oggetti in prestito e tanto altro ancora, tutto per il loro bene e per far sì che voi stiate tranquilli.
+  L'obiettivo della piattaforma è quello di creare un ambiente sicuro e controllato dove si possa fare tutto ciò.
+  Per facilitare l'uso dell'applicazione mobile e per fornire utili approfondimenti e spiegazioni generali sull'utilizzo forniamo questa breve guida, così da poter sfruttare tutte le potenzialità di Families-Share.
+
+L'applicazione si compone di 5 schermate principali, raggiungibili dalle 5 icone nella parte inferiore della schermata, le quali offrono le funzionalità principali dell'applicazione:
+
+- INFO GRUPPO
+In questa schermata l’utente può vedere la descrizione e la foto di presentazione del gruppo. Qui sono presenti tutte le informazioni principali che l’utente ha bisogno di sapere sul gruppo.
 
 
-SCHERMATA HOME (con la bottom nav bar)
+- PRESTITI
+Nella parte prestiti a sua volta la schermata si divide in due sezioni, i miei prestiti che sono quelli che ho preso io in prestito e che devo restituire e la parte prestiti generali dove compaiono tutti i prestiti messi a disposizione da parte degli utenti al gruppo.
+La schermata prestiti a sua volta è composta da una lista che vanno appunto ad indicare tutti i prestiti a disposizione a sua volta però essi sono colorati in tal modo:
+  - rosso: prestito non disponibile perchè è già stato occupato
+  - giallo: prestito l'hai preso te e devi riconsegnarlo entro la data di scadenza prevista
+  - verde: prestito è disponibile ad essere preso
+  - bianco: prestito che ho creato io
+Cliccando poi uno dei seguenti prestiti si apre una schermata la quale mostra le specifiche di un determinato prestito (foto, nome, descrizione, dta di inizio e fine prestito ed altro), con i relativi bottoni in base se lo vuoi lasciare nel caso lo hai preso te, puoi cancellare un prestito nel caso tu lo abbia creato o prendere te in prestito l'oggetto se è disponibile.
+Inoltre nella schermata dei prestiti puoi ovviamente creare il tuo prestito che vuoi condivere con il gruppo, ed in questa sezione metti il nome, descrizione e che date è disponibile.
 
-In questa scermata abbiamo la barra di navigazione in basso che ci permette di raggiungere le diverse funzionalità offerte dall'applicazione. 
-Ogni icona, quando selezionata, mostra anche un breve testo per descrivere l'azione.
-Le schermate sono (ordinate da sinistra verso destra): info gruppo, prestiti, cerca, attività, utente.
 
-Sulla schermata info gruppo troviamo le informazioni generali del gruppo.
+- CERCA
+Cerca è il cavallo di battaglia per un genitore o un tutore, spesso succede che hai bisogno di contattare un altra persona per un favore o per dirgli qualcosa, allora non preoccuparti cerca il suo nome nella barra di ricerca, simboleggiata da una lenta di ingrandimento e cerca la persona a te desiderata.
+Una volta trovata ci puoi cliccare sopra e ti appaiono tutte le info utili per scambiarci due chiacchere.
+Una cosa importante da sottolineare è che la ricerca è totale e parziale, di conseguenza se digiti Clau invece di Claudia il risultato non apparirà allo schermo, perchè da noi la completezza è tutto.
+Tutti gli utenti che visualizzi sono utenti registrati e che fanno parte del gruppo e non sono esterni ad essi.
 
-Sulla schermata prestiti troviamo la lista di tutti i prestiti disponibili. Cliccando su un prestito andiamo a vedere le specifiche di un determinato prestito.
-Inoltre, se questo prestito è stato creato da noi possiamo gestirlo. Se il prestito non è ancora stato preso in prestito da qualcuno possiamo prenderlo in prestito noi utilizzando l'apposito bottone presente sulla schermata.
-Un'altra funzionalità della schermata è quella di poter creare un nuovo prestito tramite il bottone che si trova sopra la lista dei prestiti.
 
-La schermata cerca ci permette di cercare un utente registrato nell'applicazione e di vedere le sue informazioni di base. Cliccando sull'utente possiamo vedere le sue specifiche.
+- ATTIVITA'
+La parte di attività è forse la preferita dei vostri figli ma siamo sicuri anche per voi dopo tutto, in essa puoi trovare la lista di tutte le attività presenti nel gruppo e se premi lo switch poi recarti nelle attività doev partecipi.
+Inoltre non è finita qui, puoi anche te crearla aggiungendo un'attività a te di piacere. Nelle attività che partecipi inoltre hai la possibilità di votarla così anche gli altri sanno un po' come va e qual'è lo score.
+Sei preoccupato del giudizio o commento che metti? Non serve, il tutto è anonimato e abbiamo fatto in modo che gli altri vedino solo il commento e lo score totale.
 
-Sulla schermata attività troviamo la lista di tutte le attività disponibili. Per ogni elemento della lista vediamo una foto, un nome ed una breve descrizione. Cliccando su una di esse andiamo a vedere le sue specifiche.
-Cliccando su una attività entriamo sulla schermata che ce la fa visualizzare. Su questa schermata possiamo partecipare a questa attività, eliminarla (se ne siamo i proprietari) ed anche visualizzare tutti i partecipanti.
 
-Infine, sulla schermata utente possiamo gestire le nostre informazioni utente utilizzando il bottone modifica presente in fondo alla pagina.
-Inoltre possiamo utilizzare il pulsante gestione figli per poter arrivare sull'apposita schermata che ci permetterà di aggiungere nuovi figli e di gestirli.
+- UTENTE
+L'ultima schermata è quella utente, che racchiude tutte le tue informazioni che ci hai fornito (foto, nome, cognome, email, ...), le quali puoi modificare o se sei stato della nostra applicazione (anche se sarebbe strano :-)) puoi cancellare tutti i tuoi dati.
+Inoltre puoi vedere i figli che gestisci nell'applicazione e puoi modificarli, aggiungere, etc.
+
+
+Oltre a queste 5 schermate principali della nostra schermata puoi trovare in altro a destra i tre punti in veriticale dove dentro c'è: (reimposta password, cancella, logout, guida).
+- Reimposta password serve a reimpostare la password;
+- Cancella a cancellare il tuo account;
+- Logout ad uscire dall'applicazione e poi per rientrare di verrà chiesto di autenticarti di nuovo;
+- Guida è dove ti trovi ora, il posto dove ti guida nell'applicazione spiegandoti tutte le sue funzionalità.
+
+Infine vi sono altre cose che la nostra applicazione fornisce:
+- La schermata di login che è quella che vedi all'inizio necessaria per loggarti ed usare l'app;
+- La schermata di registrazione necessaria per registrarti ed usare l'app nel caso non hai un'account;
+- La schermata di password dimenticata per recuperare la password, sai com'è tutti dimenticano la password;
+
+Tutte le seguenti schermate utilizzano sì i tuoi dati ma ogni dato che ti chiediamo segue tutte le leggi in vigore tra le quali quelle del GDPR e non prendiamo mai nulla che tu non ci vuoi dare.
+Con noi stai al sicuro e non solo te ma anche i tuoi figli.
+
