@@ -16,10 +16,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.istant.model.Activity;
 import com.example.istant.model.ScoreActivityUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,10 +35,13 @@ public class VisualizeReviewActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayAdapter<ScoreActivityUser> adapter;
     private ArrayList<ScoreActivityUser> review;
+    private FirebaseAuth auth;
 
     private String idActivity;
     private Activity activity;
     private Button newReview;
+    private Button deleteReview;
+    private String idDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +61,16 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         reviewlistview = findViewById(R.id.review_list);
         newReview = findViewById(R.id.create_review_btn);
+        deleteReview = findViewById(R.id.delete_review_btn);
         score = findViewById(R.id.vis_rev_tv_title);
 
+        auth = FirebaseAuth.getInstance();
         adapter = new VisualizeReviewActivity.ReviewAdapter(this, new ArrayList<ScoreActivityUser>());
         reviewlistview.setAdapter(adapter);
         review = new ArrayList<ScoreActivityUser>();
+
+        newReview.setVisibility(View.VISIBLE);
+        deleteReview.setVisibility(View.INVISIBLE);
 
         db.collection("scoreActivityUser")
                 .whereEqualTo("activityid", idActivity)
@@ -85,6 +96,8 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                             score.setText("Punteggio medio = " + res);
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
+                            Toast.makeText(getApplicationContext(), "Errore lato server, ci scusiamo per il disagio!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -105,15 +118,22 @@ public class VisualizeReviewActivity extends AppCompatActivity {
 
                                 ScoreActivityUser scoreActUser = new ScoreActivityUser(id, score, comment, idActivity, uid);
 
+                                if (uid.equals(auth.getCurrentUser().getUid())) {
+                                    newReview.setVisibility(View.INVISIBLE);
+                                    deleteReview.setVisibility(View.VISIBLE);
+                                    idDelete = id;
+                                }
                                 review.add(scoreActUser);
                             }
                             adapter.clear();
                             adapter.addAll(review);
 
-                            // controllo
+
 
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
+                            Toast.makeText(getApplicationContext(), "Errore lato server, ci scusiamo per il disagio!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -126,6 +146,20 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        deleteReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteComment(db, "scoreActivityUser", idDelete);
+                Toast.makeText(getApplicationContext(), "Cancellazione avvenuta con successo!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public static void deleteComment(FirebaseFirestore db, String collectionName,
+                                              String idDocument) {
+        db.collection(collectionName).document(idDocument).delete();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
