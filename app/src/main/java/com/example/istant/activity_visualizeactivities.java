@@ -40,7 +40,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
     private ImageView activity_image;
     private List<String> personInCharge;
 
-    private Button button_visualizeParticipants;
+    private Button button_review;
     private Button button_participate;
     private Button button_delete;
 
@@ -61,11 +61,10 @@ public class activity_visualizeactivities extends AppCompatActivity {
         activity_dateStart = findViewById(R.id.visualizeactivities_edittext_dateStart);
         activity_dateEnd = findViewById(R.id.visualizeactivities_edittext_dateEnd);
         activity_description = findViewById(R.id.visualizeactivities_edittext_description);
-        activity_ratingBar = findViewById(R.id.visualizeactivities_ratingbar_rating);
         activity_image = findViewById(R.id.visualizeactivities_image);
 
         // retrieving the buttons
-        button_visualizeParticipants = findViewById(R.id.visualizeactivities_buttonVisualizeParticipants);
+        button_review = findViewById(R.id.visualizeactivities_buttonReview);
         button_delete = findViewById(R.id.visualizeactivities_buttonDelete);
         button_participate = findViewById(R.id.visualizeactivities_buttonParticipate);
 
@@ -135,10 +134,10 @@ public class activity_visualizeactivities extends AppCompatActivity {
         }
 
         // the button, when pressed, sends the user to the list of the participants of the activity
-        button_visualizeParticipants.setOnClickListener(new View.OnClickListener() {
+        button_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), activity_visualizeactivities_visualizeparticipants.class));
+                startActivity(new Intent(getApplicationContext(), VisualizeReviewActivity.class));
                 finish();
             }
         });

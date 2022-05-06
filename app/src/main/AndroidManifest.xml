@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ISTANT">
         <activity
+            android:name=".CreateReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VisualizeReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity_createNewLoan"
             android:exported="false" />
         <activity
@@ -26,9 +32,7 @@
             android:name=".activity_settings_managechildren"
             android:exported="false" />
         <activity
-            android:name=".activity_visualizeactivities_visualizeparticipants"
-            android:exported="false" />
-        <activity android:name=".activity_visualizeusers"
+            android:name=".activity_visualizeusers"
             android:exported="false" />
         <activity
             android:name=".activity_guide"

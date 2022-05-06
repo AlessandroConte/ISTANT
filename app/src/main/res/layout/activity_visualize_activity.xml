@@ -141,6 +141,7 @@
                         android:minHeight="100dp" />
                 </TableRow>
 
+                <!--
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -162,13 +163,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         tools:ignore="SpeakableTextPresentCheck" />
-                </TableRow>
+                </TableRow> -->
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
-<!--
+
                     <TextView
                         android:gravity="center"
                         android:id="@+id/visualizeactivities_participants"
@@ -178,58 +179,55 @@
                         android:text="@string/textview_participants"
                         android:textAlignment="center"
                         android:textSize="20sp" />
--->
-                    <Button
-                        android:gravity="center"
-                        android:id="@+id/visualizeactivities_buttonVisualizeParticipants"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:text="@string/button_viewParticipants" />
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <Button
-                        android:gravity="center"
-                        android:id="@+id/visualizeactivities_buttonParticipate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:text="@string/button_participate" />
-                </TableRow>
-
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="20dp">
-<!--
-                    <TextView
-                        android:gravity="center"
-                        android:id="@+id/visualizeactivities_textview_delete"
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:minWidth="150dp"
-                        android:text="@string/textview_delete"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
--->
-                    <Button
-                        android:gravity="center"
-                        android:id="@+id/visualizeactivities_buttonDelete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:text="@string/button_delete" />
+                        android:layout_height="100dp">
+
+                        <ListView
+                            android:id="@+id/list_parecipants"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </ListView>
+
+                    </ScrollView>
+
                 </TableRow>
 
             </TableLayout>
 
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="50dp">
+
+            <Button
+                android:id="@+id/visualizeactivities_buttonReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RECENSIONI" />
+
+            <Button
+                android:id="@+id/visualizeactivities_buttonParticipate"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_participate" />
+
+            <Button
+                android:id="@+id/visualizeactivities_buttonDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="@string/button_delete" />
+
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
