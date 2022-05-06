@@ -1,7 +1,9 @@
 package com.example.istant;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +42,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
 
     private Button button_visualizeParticipants;
     private Button button_participate;
-    private Button button_modifysave;
     private Button button_delete;
 
     // variable needed to retrieve the intent
@@ -66,9 +67,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
         // retrieving the buttons
         button_visualizeParticipants = findViewById(R.id.visualizeactivities_buttonVisualizeParticipants);
         button_delete = findViewById(R.id.visualizeactivities_buttonDelete);
-        // WE NEED TO SEE IF THE USER THAT IS OPENING THIS SCREEN IS THE CREATER OF THIS ACTIVITY
-        // IF SO WE NEED TO SET THIS BUTTON VISIBLE
-        //button_delete.setVisibility(View.INVISIBLE);  // THIS LINE OF CODE MAKES THE BUTTON INVISIBLE
         button_participate = findViewById(R.id.visualizeactivities_buttonParticipate);
 
         String id = activity.getId();
@@ -104,8 +102,33 @@ public class activity_visualizeactivities extends AppCompatActivity {
         activity_address.setText(activity.getAddress());
         activity_description.setText(activity.getDescription());
 
-        // personInCharge = activity.getPersonInCharge(); TODO: da implementare personInCharge
-        // Log.d("PERSON IN CHARGE", "" + personInCharge.size());
+        button_delete.setBackgroundColor(Color.RED);
+        button_participate.setBackgroundColor(Color.GREEN);
+
+        List<String> personInCharge = activity.getPersonInCharge();
+
+        if (personInCharge != null && !personInCharge.isEmpty() && personInCharge.contains(auth.getCurrentUser().getUid())) {
+            button_delete.setVisibility(View.VISIBLE);
+            button_participate.setVisibility(View.INVISIBLE);
+
+            button_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // DELETE THE ACTIVITY!!!
+                }
+            });
+        }
+        else {
+            button_delete.setVisibility(View.INVISIBLE);
+            button_participate.setVisibility(View.VISIBLE);
+
+            button_participate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // ADD ACTIONS TO PARTICIPATE !!!
+                }
+            });
+        }
 
         if (!activity.getPhotoEvent().equals("")) {
             Glide.with(this).load(activity.getPhotoEvent()).into(activity_image);
@@ -117,20 +140,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), activity_visualizeactivities_visualizeparticipants.class));
                 finish();
-            }
-        });
-
-        button_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // DELETE THE ACTIVITY!!!
-            }
-        });
-
-        button_participate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // ADD ACTIONS TO PARTICIPATE !!!
             }
         });
 
@@ -152,5 +161,4 @@ public class activity_visualizeactivities extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

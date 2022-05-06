@@ -30,8 +30,8 @@
     <string name="textview_dateEnd">Data di termine</string>
     <string name="textview_description">Descrizione</string>
     <string name="textview_participants">Partecipanti</string>
-    <string name="button_participate">Partecipa</string>
-    <string name="button_viewParticipants">Visualizza i partecipanti</string>
+    <string name="button_participate">Partecipa come organizzatore</string>
+    <string name="button_viewParticipants">Visualizza gli organizzatori</string>
     <string name="type_a_message">Type a message</string>
     <string name="textview_image">Immagine</string>
     <string name="button_modifysave">Modifica</string>
@@ -102,11 +102,11 @@
     <string name="createNewLoan_textview_name">Nome</string>
 
     <!-- activity_create_new_activities.xml -->
-    <string name="createNewActivity_textview_name">Name</string>
-    <string name="createNewActivity_textview_description">Description</string>
-    <string name="createNewActivity_textview_datestart">Start Date</string>
-    <string name="createNewActivity_textview_dateend">End Date</string>
-    <string name="createNewActivity_textview_address">Address</string>
+    <string name="createNewActivity_textview_name">Nome</string>
+    <string name="createNewActivity_textview_description">Descrizione</string>
+    <string name="createNewActivity_textview_datestart">Data di inzio</string>
+    <string name="createNewActivity_textview_dateend">Data di termine</string>
+    <string name="createNewActivity_textview_address">Indirizzo</string>
     <string name="createNewActivity_textview_personInCharge">Person In Charge</string>
 
 

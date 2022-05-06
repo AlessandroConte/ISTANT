@@ -39,7 +39,7 @@ public class Activity implements Parcelable {
         // this.nameActivity = parcel.readString();
         this.address = parcel.readString();
         this.description = parcel.readString();
-        // this.personInCharge = parcel.readStringArray();
+        this.personInCharge = parcel.createStringArrayList();
         this.photoEvent = parcel.readString();
     }
 
@@ -124,7 +124,7 @@ public class Activity implements Parcelable {
         // parcel.writeString(nameActivity);
         parcel.writeString(address);
         parcel.writeString(description);
-        // parcel.writeStringArray(personInCharge.toArray(new String[0]));
+        parcel.writeStringList(personInCharge);
         parcel.writeString(photoEvent);
     }
 

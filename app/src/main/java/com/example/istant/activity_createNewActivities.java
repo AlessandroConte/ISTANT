@@ -6,44 +6,29 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.StorageReference;
-
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.istant.model.SupportFunctions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,7 +50,6 @@ public class activity_createNewActivities extends AppCompatActivity {
     private EditText person;
 
     private Button btn;
-
 
     private Calendar dateStart = Calendar.getInstance();
     private Calendar dateEnd = Calendar.getInstance();
@@ -166,7 +150,7 @@ public class activity_createNewActivities extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Create New Activity"); // actionbar's name
+            actionBar.setTitle("Crea una nuova attività"); // actionbar's name
         }
     }
 
@@ -177,8 +161,6 @@ public class activity_createNewActivities extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activityCreateNewActivities.launch(intent);
     }
-
-
 
 
     ActivityResultLauncher<Intent> activityCreateNewActivities = registerForActivityResult(

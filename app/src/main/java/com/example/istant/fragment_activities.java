@@ -3,11 +3,14 @@ package com.example.istant;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -104,7 +108,7 @@ public class fragment_activities extends Fragment{
 
         pd = new ProgressDialog(context);
         pd.setCancelable(false);
-        pd.setMessage("Fetching data..");
+        pd.setMessage("Caricamento..");
 
         newActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,36 +117,8 @@ public class fragment_activities extends Fragment{
             }
         });
 
-        db.collection("activity").
-                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                    String id = document.getId();
-                    String name = document.get("nameActivity").toString();
-                    String address = document.get("address").toString();
-                    Timestamp dateStart = document.getTimestamp("dateStart");
-                    Timestamp dateEnd = document.getTimestamp("dateEnd");
-                    String description = document.get("description").toString();
-                    // List<String> personInCharge = document.get("personInCharge").toString(); TODO: risolvere
-                    String photo = document.get("photoEvent").toString();
-
-                    Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, null, photo);
-                    activityArrayList.add(activity);
-
-                    if (pd.isShowing()) {
-                        pd.dismiss();
-                    }
-                }
-                adapter.clear();
-                adapter.addAll(activityArrayList);
-            }
-        });
-
         pd.show();
         displayActivities();
-
-        // TODO: implementare switch (+ refresh) + metodo displayUserActivities
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -178,10 +154,10 @@ public class fragment_activities extends Fragment{
                     Timestamp dateStart = document.getTimestamp("dateStart");
                     Timestamp dateEnd = document.getTimestamp("dateEnd");
                     String description = document.get("description").toString();
-                    // List<String> personInCharge = document.get("personInCharge").toString(); TODO: risolvere
+                    List<String> personInCharge = (List<String>) document.get("personInCharge");
                     String photo = document.get("photoEvent").toString();
 
-                    Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, null, photo);
+                    Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, personInCharge, photo);
                     activityArrayList.add(activity);
 
                     if (pd.isShowing()) {
@@ -211,12 +187,21 @@ public class fragment_activities extends Fragment{
 
             TextView activityName = convertView.findViewById(R.id.listadapter_activityName);
             TextView activityDescription = convertView.findViewById(R.id.listadapter_activityDescription);
+            View layout = convertView.findViewById(R.id.rowLayout_activity);
             // de.hdodenhof.circleimageview.CircleImageView activityImage = convertView.findViewById(R.id.listadapter_activityPicture);
 
             Activity activity = activities.get(position);
             activityName.setText(activity.getNameActivity());
             activityDescription.setText(activity.getDescription());
             // Glide.with(getActivity()).load(Uri.parse(activity.getPhotoEvent())).into(activityImage); TODO: da implementare
+
+            List<String> personInCharge = activity.getPersonInCharge();
+
+            /*
+            if (personInCharge != null && !personInCharge.isEmpty() && personInCharge.contains(auth.getCurrentUser().getUid())) {
+                layout.setBackgroundColor(Color.GREEN);
+            }
+             */
 
             return convertView;
         }
