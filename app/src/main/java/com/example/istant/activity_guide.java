@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -32,10 +34,17 @@ import java.util.ArrayList;
 
 public class activity_guide extends AppCompatActivity{
 
+    private WebView view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__guide);
+
+        // load the webpage (hosted on GitHub) with the GDPR.
+        view = findViewById(R.id.activityguide_webview);
+        view.setWebViewClient(new WebViewClient());
+        view.loadUrl("https://raw.githubusercontent.com/AlessandroConte/ISTANT/master/guide");
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
