@@ -3,6 +3,7 @@ package com.example.istant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +33,7 @@ public class CreateReviewActivity extends AppCompatActivity {
     private Button createReview;
 
     private String activityId;
-    private int score;
+    private float score;
     private String comment;
 
     @Override
@@ -50,22 +51,29 @@ public class CreateReviewActivity extends AppCompatActivity {
         textInputEditText = findViewById(R.id.editTextreview);
         createReview = findViewById(R.id.btn_create_rev);
 
-        score = ratingBar.getNumStars();
-        comment = textInputEditText.getText().toString();
 
         createReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                comment = textInputEditText.getText().toString();
+                score = ratingBar.getRating();
+
                 scoreActivityUserWrite(score, comment, activityId, auth.getCurrentUser().getUid(), db);
 
                 ratingBar.setRating(0F);
                 textInputEditText.getText().clear();
+
+                Intent intent = new Intent(CreateReviewActivity.this, VisualizeReviewActivity.class);
+                intent.putExtra("activity",activity);
+                startActivity(intent);
             }
         });
 
     }
 
-    public static void scoreActivityUserWrite(int score, String comment,
+    public static void scoreActivityUserWrite(float score, String comment,
                                               String idActivity, String uid, FirebaseFirestore db) {
         Map<String, Object> scoreActivityUser = new HashMap<>();
 

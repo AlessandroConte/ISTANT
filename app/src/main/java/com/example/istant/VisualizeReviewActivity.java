@@ -87,7 +87,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 number_score += 1;
                                 comments.add(document.getData().get("comment").toString());
-                                int score = Integer.parseInt(document.getData().get("score").toString());
+                                float score = Float.parseFloat(document.getData().get("score").toString());
                                 total_stars += score;
                             }
 
@@ -111,7 +111,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String id = document.getId();
-                                int score = Integer.parseInt(document.getData().get("score").toString());
+                                float score = Float.parseFloat(document.getData().get("score").toString());
                                 String comment = document.getData().get("comment").toString();
                                 String idActivity = document.getData().get("activityid").toString();
                                 String uid = document.getData().get("uid").toString();
@@ -183,17 +183,18 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_reviews,parent, false);
             }
 
-            // TextView revName = convertView.findViewById(R.id.listadapter_revName);
-            // TextView revScore = convertView.findViewById(R.id.listadapter_revScore);
+            TextView revName = convertView.findViewById(R.id.listadapter_revName);
+            TextView revScore = convertView.findViewById(R.id.listadapter_revScore);
             TextView revText = convertView.findViewById(R.id.listadapter_revText);
 
             ScoreActivityUser rev = review.get(position);
 
-            // revName.setText(rev.getUid());
-            // revScore.setText(rev.getScore());
+            revName.setText(rev.getUid());
+            revScore.setText(Float.toString(rev.getScore()));
             revText.setText(rev.getComment());
 
             return convertView;
         }
     }
+
 }

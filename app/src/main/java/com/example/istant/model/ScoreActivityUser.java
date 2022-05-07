@@ -7,13 +7,13 @@ import java.util.List;
  */
 public class ScoreActivityUser {
     private final String id;
-    private int score;
+    private float score;
     private String comment;
     private final String idActivity;
     private final String uid;
 
     // constructor
-    public ScoreActivityUser(String id, int score, String comment,
+    public ScoreActivityUser(String id, float score, String comment,
                              String idActivity, String uid) {
         this.id = id;
         this.score = score;
@@ -27,7 +27,7 @@ public class ScoreActivityUser {
         return idActivity;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
