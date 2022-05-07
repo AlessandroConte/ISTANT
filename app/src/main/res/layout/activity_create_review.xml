@@ -92,11 +92,26 @@
 
     <EditText
         android:id="@+id/editTextreview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Recensione"
+
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="6"
+
+        android:background="@drawable/edit_text_border"
+
+        android:scrollbars="vertical"
+
         app:layout_constraintBottom_toTopOf="@+id/btn_create_rev"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

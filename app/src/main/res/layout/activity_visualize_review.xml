@@ -37,11 +37,14 @@
         android:id="@+id/vis_rev_tv_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:text="Info: nel caso avessi creato un commento e desideri cambiarlo devi cancellare e rifarlo"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vis_rev_tv_title" />
 
