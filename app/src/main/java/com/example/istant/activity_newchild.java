@@ -21,26 +21,28 @@ public class activity_newchild extends AppCompatActivity {
         setContentView(R.layout.activity_newchild);
 
         // Check if there is connectivity
-        if(isConnectingToInternet(getApplicationContext()) == false)   {
-            builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
-                    .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        }
-                    })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
+        if(isConnectingToInternet(getApplicationContext()) == false)   // Check if there is connectivity
+            if(isConnectingToInternet(getApplicationContext()) == false)   {
+                builder = new AlertDialog.Builder(this);
+                builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
+                        .setCancelable(true)
+                        .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
-                    );
-            builder.show();
-        }
+                        })
+                        .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                    }
+                                }
+                        );
+                builder.show();
+            }
+
     }
 
 

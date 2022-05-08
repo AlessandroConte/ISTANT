@@ -60,16 +60,16 @@ public class activity_createNewChild extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -131,19 +131,19 @@ public class activity_createNewChild extends AppCompatActivity {
                         String textSurname = tv_surname.getText().toString();
 
                         if (textName.isEmpty()) {
-                            tv_name.setError("Il nome deve essere fornito!");
+                            tv_name.setError("");
                         }
                         else {
                             if (textSurname.isEmpty()) {
-                                tv_surname.setError("Il cognome deve essere fornito!");
+                                tv_surname.setError(getString(R.string.activitycreatenewchild_givename));
                             }
                             else {
                                 if (rb_sex_m.getText().toString().isEmpty() && rb_sex_f.getText().toString().isEmpty()) {
-                                    rb_sex_m.setError("Il sesso deve essere fornito!");
+                                    rb_sex_m.setError(getString(R.string.activitycreatenewchild_givesex));
                                 }
                                 else {
                                     if (dateB.getText().toString().isEmpty()) {
-                                        dateB.setError("La data di nascita deve essere fornita!");
+                                        dateB.setError(getString(R.string.activitycreatenewchild_givedateofbirth));
                                     }
                                     else {
                                         try{
@@ -158,7 +158,7 @@ public class activity_createNewChild extends AppCompatActivity {
                                             rb_sex_f.setChecked(false);
                                             dateB.getText().clear();
 
-                                            Toast.makeText(activity_createNewChild.this,"Figlio aggiunto con successo!",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(activity_createNewChild.this,getString(R.string.activitycreatenewchild_addedchild),Toast.LENGTH_SHORT).show();
                                         }
                                         catch (Exception e){
                                             e.printStackTrace();

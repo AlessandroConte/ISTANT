@@ -403,29 +403,29 @@ public class fragment_user extends Fragment {
                             @Override
                             public void onSuccess(Uri uri) {
                                 updateDatabaseField(db,"user", auth.getCurrentUser().getUid(),"photoURL", uri.toString());
-                                Toast.makeText(getActivity(), "Caricamento nel db avvenuto correttamente", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), getString(R.string.fragmentuser_loading), Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getActivity(), "Errore nel caricamento nel db", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), getString(R.string.fragmentuser_loadingerror), Toast.LENGTH_SHORT).show();
                             }
                         });
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Image Uploaded.",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), getString(R.string.fragmentuser_imageuploadedcorrectly),Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(getActivity().getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.fragmentuser_loadingerror), Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         double progressPercent = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        pd.setMessage("Percentage: " + (int) progressPercent + "%");
+                        pd.setMessage( getString(R.string.fragmentuser_percentage) + ": " + (int) progressPercent + "%");
                     }
                 });
     }

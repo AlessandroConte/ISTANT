@@ -50,17 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
-            builder2 = new AlertDialog.Builder(this);
-            builder2.setMessage("Internet Connection NOT available")
+            builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -87,15 +87,15 @@ public class MainActivity extends AppCompatActivity {
         // Alert dialog that prompts the user to view the guide page
         if ( ((JustLoggedIn) this.getApplication()).getJustLogged() == true ) {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Vuoi visualizzare la guida")
+            builder.setMessage(getString(R.string.mainactivity_guidealert_title))
                     .setCancelable(false)
-                    .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.mainactivity_guidealert_positivebutton), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             startActivity(new Intent(getApplicationContext(), activity_guide.class));
                         }
                     })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.mainactivity_guidealert_negativebutton), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -125,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Delete account option
         if (item.getItemId() == R.id.deleteAccountMenu){
-            reset_alert.setTitle("Vuoi cancellare l'account?")
-                    .setMessage("Sei sicuro?")
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            reset_alert.setTitle(getString(R.string.mainactivity_deleteaccountalert))
+                    .setMessage(getString(R.string.mainactivity_deleteaccountalert_message))
+                    .setPositiveButton(getString(R.string.mainactivity_deleteaccountalert_positivebutton), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             FirebaseUser user = auth.getCurrentUser();
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                             user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(MainActivity.this, "Account eliminato!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, getString(R.string.mainactivity_accountdeleted), Toast.LENGTH_SHORT).show();
                                     auth.signOut();
                                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                     finish();
@@ -148,15 +148,15 @@ public class MainActivity extends AppCompatActivity {
                             });
                         }
                     })
-                    .setNegativeButton("Cancel", null)
+                    .setNegativeButton(getString(R.string.mainactivity_deleteaccountalert_negativebutton), null)
                     .create().show();
         }
 
         // Logout option
         if (item.getItemId() == R.id.logout){
-            reset_alert.setTitle("Vuoi sloggarti?")
-                    .setMessage("Sei sicuro?")
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            reset_alert.setTitle(getString(R.string.mainactivity_logoutalert))
+                    .setMessage(getString(R.string.mainactivity_logoutalert_message))
+                    .setPositiveButton(getString(R.string.mainactivity_logoutalert_positivebutton), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             FirebaseAuth.getInstance().signOut();
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                         }
                     })
-                    .setNegativeButton("Cancel", null)
+                    .setNegativeButton(getString(R.string.mainactivity_logoutalert_negativebutton), null)
                     .create().show();
         }
 

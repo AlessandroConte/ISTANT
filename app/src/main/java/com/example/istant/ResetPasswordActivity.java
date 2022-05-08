@@ -36,16 +36,16 @@ public class ResetPasswordActivity extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -65,24 +65,24 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (userPassword.getText().toString().isEmpty()){
-                    userPassword.setError("La nuova password deve essere fornita");
+                    userPassword.setError(getString(R.string.resetpasswordactivity_newpasswordrequired));
                     return;
                 }
 
                 if (userConfirmPassword.getText().toString().isEmpty()){
-                    userConfirmPassword.setError("La nuova password deve essere fornita");
+                    userConfirmPassword.setError(getString(R.string.resetpasswordactivity_newpasswordrequired));
                     return;
                 }
 
                 if (!userPassword.getText().toString().equals(userConfirmPassword.getText().toString())){
-                    userConfirmPassword.setError("Le password sono diverse");
+                    userConfirmPassword.setError(getString(R.string.resetpasswordactivity_thepasswordsaredifferent));
                     return;
                 }
 
                 user.updatePassword(userPassword.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ResetPasswordActivity.this, "Password aggiornata!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ResetPasswordActivity.this, getString(R.string.resetpasswordactivity_passwordupdated), Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }

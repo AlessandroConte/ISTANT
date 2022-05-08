@@ -107,7 +107,7 @@ public class fragment_activities extends Fragment{
 
         pd = new ProgressDialog(context);
         pd.setCancelable(false);
-        pd.setMessage("Caricamento..");
+        pd.setMessage(getString(R.string.fragmentactivities_loading));
 
         newActivity.setOnClickListener(new View.OnClickListener() {
             @Override

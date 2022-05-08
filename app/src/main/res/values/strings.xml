@@ -5,8 +5,13 @@
     <!-- PLEASE WHEN YOU INSERT NEW STRINGS PLACE A COMMENT AT THE BEGINNING OF THE STRINGS CONTAINING THE NAME OF
      THE ACTIVITY IN WHICH THEY ARE LOCATED (example: activity_settings) -->
 
+    <!-- STRINGS USED IN THE ALERDIALOG FOR CHEKING THE INTERNET CONNECTION -->
+    <string name="checkinternetconnectivity_alertnointernetmessage">Connessione Internet assente</string>
+    <string name="checkinternetconnectivity_alertnointernetmessage_checkagain">Controlla nuovamente</string>
+    <string name="checkinternetconnectivity_alertnointernetmessage_close">Chiudi</string>
 
-    <!-- fragment_user -->
+
+    <!-- fragment_user.xml -->
     <string name="fragmentuser_textview_name">Nome</string>
     <string name="fragmentuser_textview_surname">Cognome</string>
     <string name="fragmentuser_textview_phonenumber">Cellulare</string>
@@ -24,7 +29,7 @@
     <string name="fragmentuser_button_modify">Modifica</string>
 
 
-    <!-- activity_visualizeactivities -->
+    <!-- activity_visualizeactivities.xml -->
     <string name="textview_address">Indirizzo</string>
     <string name="textview_dateStart">Data di inizio</string>
     <string name="textview_dateEnd">Data di termine</string>
@@ -40,26 +45,26 @@
     <string name="textview_delete">Elimina</string>
     <string name="visualizeactivity_textview_rating">Valutazione</string>
 
-    <!-- fragment_search -->
+    <!-- fragment_search.xml -->
     <string name="search_button_buttonsearch">Search</string>
 
-    <!-- fragment_loans -->
+    <!-- fragment_loans.xml -->
     <string name="fragmentLoans_buttonNewLoan">Crea un nuovo prestito</string>
     <string name="fragmentloans_switchLoans">I miei prestiti</string>
     <string name="fragmentLoans_textView_title">Prestiti</string>
 
-    <!-- fragment_activities -->
+    <!-- fragment_activities.xml -->
     <string name="fragmentActivities_textView_title">Attività</string>
     <string name="fragmentActivities_switchActivities">Le mie attività</string>
     <string name="fragmentActivities_buttonNewActivity">Crea nuova attività</string>
 
-    <!-- activity_visualizeloans -->
+    <!-- activity_visualizeloans.xml -->
     <string name="visualizeloans_textview_description">Descrizione</string>
     <string name="visualizeloans_textview_datestart">Data di inizio</string>
     <string name="visualizeloans_textview_dateend">Data di termine</string>
     <string name="visualizeloans_participate">Prendi in prestito</string>
 
-    <!-- fragment_groupinfo -->
+    <!-- fragment_groupinfo.xml -->
     <string name="groupinfo_nomegruppo">Grest Estivo del paese</string>
     <string name="groupinfo_descrizionegruppo">Descrizione Gruppo</string>
     <string name="groupinfo_textview_descrizione">Gruppo di gestione del Grest Estivo del paese. Qui ci organizzeremo per gestire tutte le attività!</string>
@@ -67,10 +72,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <!-- activity__guide -->
+    <!-- activity__guide.xml -->
     <string name="guide">guida</string>
 
-    <!-- activity_GDPR -->
+    <!-- activity_GDPR.xml -->
     <string name="activityGDPR_title">GDPR - ISTANT App</string>
     <string name="activityGDPR_textview_info">Iscrivendoti accetti integralmente il documento GDPR (visionabile cliccando il bottone soprastante).</string>
 
@@ -93,7 +98,6 @@
     <string name="activityregistration_button_gotologin">Torna al login</string>
     <string name="activityregistration_button_gdpr">GDPR</string>
 
-
     <!-- activity_create_new_loan.xml -->
     <string name="createNewLoan_buttontext_create">Crea</string>
     <string name="createNewLoan_textview_dateend">Data di termine</string>
@@ -109,11 +113,122 @@
     <string name="createNewActivity_textview_address">Indirizzo</string>
     <string name="createNewActivity_textview_personInCharge">Person In Charge</string>
 
-
     <!-- option_menu.xml -->
     <string name="optionmenu_resetpassword">Reimposta password</string>
     <string name="optionmenu_deleteaccount">Cancella l\'account</string>
     <string name="optionmenu_logout">Logout</string>
     <string name="optionmenu_userguide">Guida</string>
+
+    <!-- activity_createNewActivities.java -->
+    <string name="createnewactivity_addactivity">Aggiunto con successo</string>
+    <string name="createnewactivity_actionbar">Crea una nuova attività</string>
+
+    <!-- activity_createNewChild.java -->
+    <string name="activitycreatenewchild_givename">Il nome deve essere fornito!</string>
+    <string name="activitycreatenewchild_givesex">Il sesso deve essere fornito!</string>
+    <string name="activitycreatenewchild_givedateofbirth">La data di nascita deve essere fornita!</string>
+    <string name="activitycreatenewchild_addedchild">Figlio aggiunto con successo!</string>
+
+    <!-- activity_createNewLoan.java -->
+    <string name="activitycreatenewloan_givename">Il nome deve essere fornito!</string>
+    <string name="activitycreatenewloan_givedescription">La descrizione deve essere fornita!</string>
+    <string name="activitycreatenewloan_givedatestart">La data di inizio deve essere fornita!</string>
+    <string name="activitycreatenewloan_giveenddate">La data di termine deve essere fornita!</string>
+    <string name="activitycreatenewloan_addedloansuccessfully">Prestito aggiunto con successo!</string>
+    <string name="activitycreatenewloan_errordate">La data di termine deve essere successiva a quella di inizio!</string>
+    <string name="activitycreatenewloan_createnewloan">Crea un nuovo prestito</string>
+
+    <!-- activity_GDPR.java -->
+    <string name="activityGDPR_actionbarname">GDPR</string>
+
+    <!-- activity_guide.java -->
+    <string name="activityguideactionbarname">Guida</string>
+
+    <!-- activity_settings_managechildren.java -->
+    <string name="activitysettingsmanagechildren_managechildren">Gestisci i tuoi figli</string>
+
+    <!-- activity_visualizeactivities.java -->
+    <string name="activityvisualizeactivities_actionbarname">Scheda dell'attività</string>
+
+    <!-- activity_visualizeloans.java -->
+    <string name="activityvisualizeloans_save">Salva</string>
+    <string name="activityvisualizeloans_modifiy">Modifica</string>
+    <string name="activityvisualizeloans_successfullupdate">Aggiornamento avvenuto con successo</string>
+    <string name="activityvisualizeloans_failedupdate">Aggiornamento fallito</string>
+    <string name="activityvisualizeloans_successfullloandeletion">Prestito cancellato correttamente</string>
+    <string name="activityvisualizeloans_giveback">Restituisci</string>
+    <string name="activityvisualizeloans_notavailable">Occupato</string>
+    <string name="activityvisualizeloans_loanstartedcorrectly">Oggetto preso in prestito correttamente!</string>7
+    <string name="activityvisualizeloans_gavebackloan">Hai restituito correttamente il prestito!</string>
+    <string name="activityvisualizeloans_loadingerror">Errore nel caricamento</string>
+    <string name="activityvisualizeloans_imageloaded">Immagine caricata!</string>
+    <string name="activityvisualizeloans_unsuccessfullupload">Caricamento fallito!</string>
+
+    <!-- activity_visualizeusers.java -->
+    <string name="activityvisualizeusers_actionbarname">Profilo utente</string>
+
+    <!-- CreateReviewActivity.java -->
+    <string name="createreviewactivity_insertcomment">E' necessario inserire un commento nella recensione!</string>
+
+    <!-- LoginActivity.java -->
+    <string name="loginactivity_alertpasswortreset_name">Vuoi reimpostare la password?</string>
+    <string name="loginactivity_alertpasswortreset_message">Inserisci la mail per il reset della password</string>
+    <string name="loginactivity_alertpasswortreset_givemail">La mail deve essere fornita</string>
+    <string name="loginactivity_alertpasswortreset_emailsent">Email spedita</string>
+    <string name="loginactivity_alertpasswortreset_cancel">Cancel</string>
+    <string name="loginactivity_loginbutton_noemail">L'email non è stata fornita</string>
+    <string name="loginactivity_loginbutton_nopassword">La password non è stata fornita</string>
+
+    <!-- MainActivity.java -->
+    <string name="mainactivity_guidealert_title">Vuoi visualizzare la guida</string>
+    <string name="mainactivity_guidealert_positivebutton">Sì</string>
+    <string name="mainactivity_guidealert_negativebutton">No</string>
+    <string name="mainactivity_deleteaccountalert">Vuoi cancellare l'account?</string>
+    <string name="mainactivity_deleteaccountalert_message">Sei sicuro?</string>
+    <string name="mainactivity_deleteaccountalert_positivebutton">Ok</string>
+    <string name="mainactivity_accountdeleted">Account eliminato!</string>
+    <string name="mainactivity_deleteaccountalert_negativebutton">Cancel</string>
+    <string name="mainactivity_logoutalert">Vuoi sloggarti?</string>
+    <string name="mainactivity_logoutalert_message">Sei sicuro?</string>
+    <string name="mainactivity_logoutalert_positivebutton">Ok</string>
+    <string name="mainactivity_logoutalert_negativebutton">Cancel</string>
+
+    <!-- RegistrationActivity.java -->
+    <string name="registrationactivity_namerequired">Il nome è richiesto</string>
+    <string name="registrationactivity_surnamerequired">Il cognome è richiesto</string>
+    <string name="registrationactivity_dateofbirthrequired">La data di nascita deve essere fornita!</string>
+    <string name="registrationactivity_emailrequired">L'email è richiesta</string>
+    <string name="registrationactivity_passwordrequired">La password è richiesta</string>
+    <string name="registrationactivity_samepasswordsrequired">Le password devono essere uguali</string>
+    <string name="registrationactivity_datacorrect">I dati inseriti sono corretti</string>
+    <string name="registrationactivity_imageuploading">Uploading dell'immagine..</string>
+    <string name="registrationactivity_uploaderror">Errore nel caricamento</string>
+    <string name="registrationactivity_imageuploaded">Immagine caricata!</string>
+    <string name="registrationactivity_uploadfailed">Caricamento fallito!</string>
+    <string name="registrationactivity_percentage">Percentuale</string>
+
+    <!-- ResetPasswordActivity.java -->
+    <string name="resetpasswordactivity_newpasswordrequired">La nuova password deve essere fornita</string>
+    <string name="resetpasswordactivity_thepasswordsaredifferent">Le password sono diverse</string>
+    <string name="resetpasswordactivity_passwordupdated">Password aggiornata!</string>
+
+    <!-- VisualizeReviewActivity.java -->
+    <string name="visualizereviewactivity_actionbarname">Recensioni</string>
+    <string name="visualizereviewactivity_successfulldelete">Cancellazione avvenuta con successo!</string>
+    <string name="visualizereviewactivity_servererror">Errore lato server, ci scusiamo per il disagio!</string>
+
+    <!-- fragment_activities.java -->
+    <string name="fragmentactivities_loading">Caricamento..</string>
+
+    <!-- fragment_loans.java -->
+    <string name="fragmentloans_loading">Fetching data..</string>
+
+    <!-- fragment_user.java -->
+    <string name="fragmentuser_loading">Caricamento nel db avvenuto correttamente</string>
+    <string name="fragmentuser_loadingerror">Errore nel caricamento nel db</string>
+    <string name="fragmentuser_imageuploadedcorrectly">Immagine caricata.</string>
+    <string name="fragmentuser_percentage">Percentuale</string>
+
+
 
 </resources>

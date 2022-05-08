@@ -114,7 +114,7 @@ public class fragment_loans extends Fragment {
 
         pd = new ProgressDialog(context);
         pd.setCancelable(false);
-        pd.setMessage("Fetching data..");
+        pd.setMessage(getString(R.string.fragmentloans_loading));
 
         newLoan.setOnClickListener(new View.OnClickListener() {
             @Override

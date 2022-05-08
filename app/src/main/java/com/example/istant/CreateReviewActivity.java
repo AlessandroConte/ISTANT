@@ -48,16 +48,16 @@ public class CreateReviewActivity extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -84,7 +84,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 score = ratingBar.getRating();
 
                 if (comment.isEmpty()) {
-                    textInputEditText.setError("E' necessario inserire un commento nella recensione!");
+                    textInputEditText.setError(getString(R.string.createreviewactivity_insertcomment));
                 }
                 else {
                     scoreActivityUserWrite(score, comment, activityId, auth.getCurrentUser().getUid(), db);

@@ -40,16 +40,16 @@ public class LoginActivity extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -81,15 +81,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // start alert dialog
                 View v = inflater.inflate(R.layout.reset_pop,null);
-                reset_alert.setTitle("Vuoi reimpostare la password?")
-                        .setMessage("Inserisci la mail per il reset della password")
+                reset_alert.setTitle(getString(R.string.loginactivity_alertpasswortreset_name))
+                        .setMessage(getString(R.string.loginactivity_alertpasswortreset_message))
                         .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // validate the email address
                                 EditText email = v.findViewById(R.id.resetEmailPop);
                                 if (email.getText().toString().isEmpty()){
-                                    email.setError("La mail deve essere fornita");
+                                    email.setError(getString(R.string.loginactivity_alertpasswortreset_givemail));
                                     return;
                                 }
 
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                 fAuth.sendPasswordResetEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(LoginActivity.this, "Email spedita",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, getString(R.string.loginactivity_alertpasswortreset_emailsent),Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-                        }).setNegativeButton("Cancel", null)
+                        }).setNegativeButton(getString(R.string.loginactivity_alertpasswortreset_cancel), null)
                         .setView(v)
                         .create().show();
             }
@@ -116,12 +116,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (username.getText().toString().isEmpty()){
-                    username.setError("L'email non è stata fornita");
+                    username.setError(getString(R.string.loginactivity_loginbutton_noemail));
                     return;
                 }
 
                 if (password.getText().toString().isEmpty()){
-                    password.setError("La password non è stata fornita");
+                    password.setError(getString(R.string.loginactivity_loginbutton_nopassword));
                     return;
                 }
 

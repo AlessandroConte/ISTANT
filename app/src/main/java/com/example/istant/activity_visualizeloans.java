@@ -96,16 +96,16 @@ public class activity_visualizeloans extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -208,7 +208,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (!editable) {
-                        button_modify.setText("Salva");
+                        button_modify.setText(getString(R.string.activityvisualizeloans_save));
 
                         image_loan.setClickable(true);
                         loan_name.setEnabled(true);
@@ -240,7 +240,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                         editable = true;
                     }
                     else {
-                        button_modify.setText("Modifica");
+                        button_modify.setText(getString(R.string.activityvisualizeloans_modifiy));
 
                         name = loan_name.getText().toString();
                         description = loan_description.getText().toString();
@@ -261,12 +261,12 @@ public class activity_visualizeloans extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(activity_visualizeloans.this, "Aggiornamento avvenuto con successo", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_successfullupdate), Toast.LENGTH_LONG).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(activity_visualizeloans.this, "Aggiornamento fallito", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_failedupdate), Toast.LENGTH_LONG).show();
                                 }
                             });
                         } catch (ParseException e) {
@@ -288,7 +288,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     deleteDatabaseDocument(db, "loan", loan.getId());
-                    Toast.makeText(activity_visualizeloans.this, "Prestito cancellato correttamente", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_successfullloandeletion), Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
                     startActivity(intent);
@@ -308,11 +308,11 @@ public class activity_visualizeloans extends AppCompatActivity {
 
             if (loan.getIsTaken() == 1) {
                 if (loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
-                    button_partecipate.setText("Restituisci");
+                    button_partecipate.setText(getString(R.string.activityvisualizeloans_giveback));
                     button_partecipate.setBackgroundColor(Color.YELLOW);
                 }
                 else {
-                    button_partecipate.setText("Occupato");
+                    button_partecipate.setText(getString(R.string.activityvisualizeloans_notavailable));
                     button_partecipate.setBackgroundColor(Color.RED);
                     button_partecipate.setClickable(false);
                 }
@@ -324,7 +324,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                     if (free) {
                         updateDatabaseField(db, "loan", loan.getId(), "isTaken", 1);
                         updateDatabaseField(db, "loan", loan.getId(), "takenUser", auth.getCurrentUser().getUid());
-                        Toast.makeText(activity_visualizeloans.this, "Oggetto preso in prestito correttamente!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_loanstartedcorrectly), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
                         startActivity(intent);
@@ -333,7 +333,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                     else {
                         updateDatabaseField(db, "loan", loan.getId(), "isTaken", 0);
                         updateDatabaseField(db, "loan", loan.getId(), "takenUser", "");
-                        Toast.makeText(activity_visualizeloans.this, "Hai restituito correttamente il prestito!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_gavebackloan), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
                         startActivity(intent);
@@ -400,17 +400,17 @@ public class activity_visualizeloans extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(activity_visualizeloans.this, "Errore nel caricamento", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_loadingerror), Toast.LENGTH_SHORT).show();
                             }
                         });
-                        Snackbar.make(activity_visualizeloans.this.findViewById(android.R.id.content), "Immagine caricata!",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(activity_visualizeloans.this.findViewById(android.R.id.content), getString(R.string.activityvisualizeloans_imageloaded),Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(activity_visualizeloans.this.getApplicationContext(), "Caricamento fallito!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity_visualizeloans.this.getApplicationContext(), getString(R.string.activityvisualizeloans_unsuccessfullupload), Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

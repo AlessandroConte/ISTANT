@@ -61,22 +61,22 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Recensioni");
+            actionBar.setTitle(getString(R.string.visualizereviewactivity_actionbarname));
         }
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -130,7 +130,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 deleteComment(db, "scoreActivityUser", idDelete);
-                Toast.makeText(getApplicationContext(), "Cancellazione avvenuta con successo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.visualizereviewactivity_successfulldelete), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(VisualizeReviewActivity.this, activity_visualizeactivities.class);
                 intent.putExtra("activity", activity);
@@ -190,7 +190,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
-                            Toast.makeText(getApplicationContext(), "Errore lato server, ci scusiamo per il disagio!",
+                            Toast.makeText(getApplicationContext(), getString(R.string.visualizereviewactivity_servererror),
                                     Toast.LENGTH_LONG).show();
                         }
                     }
@@ -225,7 +225,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                             adapter.addAll(review);
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
-                            Toast.makeText(getApplicationContext(), "Errore lato server, ci scusiamo per il disagio!",
+                            Toast.makeText(getApplicationContext(), getString(R.string.visualizereviewactivity_servererror),
                                     Toast.LENGTH_LONG).show();
                         }
                     }

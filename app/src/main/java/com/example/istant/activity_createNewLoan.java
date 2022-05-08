@@ -69,16 +69,16 @@ public class activity_createNewLoan extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -147,19 +147,19 @@ public class activity_createNewLoan extends AppCompatActivity {
                 String textDescr = description.getText().toString();
 
                 if (textName.isEmpty()) {
-                    name.setError("Il nome deve essere fornito!");
+                    name.setError(getString(R.string.activitycreatenewloan_givename));
                 }
                 else {
                     if (textDescr.isEmpty()) {
-                        description.setError("La descrizione deve essere fornita!");
+                        description.setError(getString(R.string.activitycreatenewloan_givedescription));
                     }
                     else {
                         if (sdate.getText().toString().isEmpty()) {
-                            sdate.setError("La data di inizio deve essere fornita!");
+                            sdate.setError(getString(R.string.activitycreatenewloan_givedatestart));
                         }
                         else {
                             if (fdate.getText().toString().isEmpty()) {
-                                fdate.setError("La data di termine deve essere fornita!");
+                                fdate.setError(getString(R.string.activitycreatenewloan_giveenddate));
                             }
                             else {
                                 try{
@@ -177,10 +177,10 @@ public class activity_createNewLoan extends AppCompatActivity {
                                         sdate.getText().clear();
                                         fdate.getText().clear();
 
-                                        Toast.makeText(activity_createNewLoan.this,"Prestito aggiunto con successo!",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(activity_createNewLoan.this,getString(R.string.activitycreatenewloan_addedloansuccessfully),Toast.LENGTH_SHORT).show();
                                     }
                                     else {
-                                        fdate.setError("La data di termine deve essere successiva a quella di inizio!");
+                                        fdate.setError(getString(R.string.activitycreatenewloan_errordate));
                                     }
                                 }
                                 catch (Exception e){
@@ -197,7 +197,7 @@ public class activity_createNewLoan extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Crea un nuovo prestito"); // actionbar's name
+            actionBar.setTitle(getString(R.string.activitycreatenewloan_createnewloan)); // actionbar's name
         }
     }
 

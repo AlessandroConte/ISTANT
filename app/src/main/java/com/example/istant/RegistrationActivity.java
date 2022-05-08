@@ -82,16 +82,16 @@ public class RegistrationActivity extends AppCompatActivity {
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Internet Connection NOT available")
+            builder.setMessage(getString(R.string.checkinternetconnectivity_alertnointernetmessage))
                     .setCancelable(true)
-                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.checkinternetconnectivity_alertnointernetmessage_checkagain), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
-                            startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     })
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( getString(R.string.checkinternetconnectivity_alertnointernetmessage_close), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -187,31 +187,31 @@ public class RegistrationActivity extends AppCompatActivity {
                 confpass = regConfPass.getText().toString();
 
                 if (nome.isEmpty()){
-                    regNome.setError("Il nome è richiesto");
+                    regNome.setError(getString(R.string.registrationactivity_namerequired));
                 }
                 else {
                     if (cognome.isEmpty()){
-                        regCognome.setError("Il cognome è richiesto");
+                        regCognome.setError(getString(R.string.registrationactivity_surnamerequired));
                     }
                     else {
                         if (regBornDate.getText().toString().isEmpty()) {
-                            regBornDate.setError("La data di nascita deve essere fornita!");
+                            regBornDate.setError(getString(R.string.registrationactivity_dateofbirthrequired));
                         }
                         else {
                             if(email.isEmpty()){
-                                regEmail.setError("L'email è richiesta");
+                                regEmail.setError(getString(R.string.registrationactivity_emailrequired));
                             }
                             else {
                                 if(pass.isEmpty()){
-                                    regPass.setError("La password è richiesta");
+                                    regPass.setError(getString(R.string.registrationactivity_passwordrequired));
                                 }
                                 else {
                                     if(confpass.isEmpty()){
-                                        regConfPass.setError("La password è richiesta");
+                                        regConfPass.setError(getString(R.string.registrationactivity_passwordrequired));
                                     }
                                     else {
                                         if (!pass.equals(confpass)){
-                                            regConfPass.setError("Le password devono essere uguali");
+                                            regConfPass.setError(getString(R.string.registrationactivity_samepasswordsrequired));
                                         }
                                         else {
                                             try {
@@ -231,7 +231,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                             id = fAuth.getCurrentUser().getUid();
 
                                                             userWrite(id, indirizzo, dataNascita, email, CF, sesso, "", nome, cognome, numeroTelefono, db);
-                                                            Toast.makeText(RegistrationActivity.this, "I dati inseriti sono corretti", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(RegistrationActivity.this, getString(R.string.registrationactivity_datacorrect), Toast.LENGTH_SHORT).show();
                                                             uploadPicture();
 
                                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -295,7 +295,7 @@ public class RegistrationActivity extends AppCompatActivity {
         final ProgressDialog pd = new ProgressDialog(this);
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(fAuth.getCurrentUser()).getUid() + "/" + fAuth.getCurrentUser().getUid());
 
-        pd.setTitle("Uploading Image..");
+        pd.setTitle(getString(R.string.registrationactivity_imageuploading));
         pd.show();
 
         ref.putFile(imageUri)
@@ -312,24 +312,24 @@ public class RegistrationActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(RegistrationActivity.this, "Errore nel caricamento", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegistrationActivity.this, getString(R.string.registrationactivity_uploaderror), Toast.LENGTH_SHORT).show();
                             }
                         });
-                        Snackbar.make(RegistrationActivity.this.findViewById(android.R.id.content), "Immagine caricata!",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(RegistrationActivity.this.findViewById(android.R.id.content), getString(R.string.registrationactivity_imageuploaded),Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(RegistrationActivity.this.getApplicationContext(), "Caricamento fallito!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationActivity.this.getApplicationContext(), getString(R.string.registrationactivity_uploadfailed), Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         double progressPercent = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        pd.setMessage("Percentage: " + (int) progressPercent + "%");
+                        pd.setMessage( getString(R.string.registrationactivity_percentage) + ": " + (int) progressPercent + "%");
                     }
                 });
     }
