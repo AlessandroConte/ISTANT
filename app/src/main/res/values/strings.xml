@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ISTANT</string>
-    <string name="title_activity_settings">activity_settings</string>
+    <string name="app_name" translatable="false">ISTANT</string>
+    <string name="title_activity_settings" translatable="false">activity_settings</string>
 
     <!-- PLEASE WHEN YOU INSERT NEW STRINGS PLACE A COMMENT AT THE BEGINNING OF THE STRINGS CONTAINING THE NAME OF
      THE ACTIVITY IN WHICH THEY ARE LOCATED (example: activity_settings) -->
@@ -37,7 +37,7 @@
     <string name="textview_participants">Partecipanti</string>
     <string name="button_participate">Partecipa come organizzatore</string>
     <string name="button_viewParticipants">Visualizza gli organizzatori</string>
-    <string name="type_a_message">Type a message</string>
+    <string name="type_a_message">Scrivi un messaggio</string>
     <string name="textview_image">Immagine</string>
     <string name="button_modifysave">Modifica</string>
     <string name="textview_modifysave">Modifica</string>
@@ -46,7 +46,7 @@
     <string name="visualizeactivity_textview_rating">Valutazione</string>
 
     <!-- fragment_search.xml -->
-    <string name="search_button_buttonsearch">Search</string>
+    <string name="search_button_buttonsearch">Cerca</string>
 
     <!-- fragment_loans.xml -->
     <string name="fragmentLoans_buttonNewLoan">Crea un nuovo prestito</string>
@@ -81,9 +81,9 @@
 
 
     <!-- activity_login.xml -->
-    <string name="activitylogin_edittext_emaillogin">Email</string>
-    <string name="activitylogin_edittext_passwordlogin">Password</string>
-    <string name="activitylogin_button_login">Login</string>
+    <string name="activitylogin_edittext_emaillogin" translatable="false">Email</string>
+    <string name="activitylogin_edittext_passwordlogin" translatable="false">Password</string>
+    <string name="activitylogin_button_login" translatable="false">Login</string>
     <string name="activitylogin_button_createaccount">Crea un nuovo account</string>
     <string name="activitylogin_button_passwordforgotten">Hai dimenticato la password?</string>
 
@@ -96,7 +96,7 @@
     <string name="activityregistration_button_registration">Registrazione</string>
     <string name="activityregistration_edittext_regitrationsurname">Cognome</string>
     <string name="activityregistration_button_gotologin">Torna al login</string>
-    <string name="activityregistration_button_gdpr">GDPR</string>
+    <string name="activityregistration_button_gdpr" translatable="false">GDPR</string>
 
     <!-- activity_create_new_loan.xml -->
     <string name="createNewLoan_buttontext_create">Crea</string>
@@ -111,12 +111,11 @@
     <string name="createNewActivity_textview_datestart">Data di inzio</string>
     <string name="createNewActivity_textview_dateend">Data di termine</string>
     <string name="createNewActivity_textview_address">Indirizzo</string>
-    <string name="createNewActivity_textview_personInCharge">Person In Charge</string>
 
     <!-- option_menu.xml -->
     <string name="optionmenu_resetpassword">Reimposta password</string>
     <string name="optionmenu_deleteaccount">Cancella l\'account</string>
-    <string name="optionmenu_logout">Logout</string>
+    <string name="optionmenu_logout" translatable="false">Logout</string>
     <string name="optionmenu_userguide">Guida</string>
 
     <!-- activity_createNewActivities.java -->
@@ -139,7 +138,7 @@
     <string name="activitycreatenewloan_createnewloan">Crea un nuovo prestito</string>
 
     <!-- activity_GDPR.java -->
-    <string name="activityGDPR_actionbarname">GDPR</string>
+    <string name="activityGDPR_actionbarname" translatable="false">GDPR</string>
 
     <!-- activity_guide.java -->
     <string name="activityguideactionbarname">Guida</string>
@@ -175,23 +174,23 @@
     <string name="loginactivity_alertpasswortreset_message">Inserisci la mail per il reset della password</string>
     <string name="loginactivity_alertpasswortreset_givemail">La mail deve essere fornita</string>
     <string name="loginactivity_alertpasswortreset_emailsent">Email spedita</string>
-    <string name="loginactivity_alertpasswortreset_cancel">Cancel</string>
+    <string name="loginactivity_alertpasswortreset_cancel" translatable="false">Cancel</string>
     <string name="loginactivity_loginbutton_noemail">L'email non è stata fornita</string>
     <string name="loginactivity_loginbutton_nopassword">La password non è stata fornita</string>
 
     <!-- MainActivity.java -->
-    <string name="mainactivity_guidealert_title">Vuoi visualizzare la guida</string>
+    <string name="mainactivity_guidealert_title">Vuoi visualizzare la guida?</string>
     <string name="mainactivity_guidealert_positivebutton">Sì</string>
-    <string name="mainactivity_guidealert_negativebutton">No</string>
+    <string name="mainactivity_guidealert_negativebutton" translatable="false">No</string>
     <string name="mainactivity_deleteaccountalert">Vuoi cancellare l'account?</string>
     <string name="mainactivity_deleteaccountalert_message">Sei sicuro?</string>
-    <string name="mainactivity_deleteaccountalert_positivebutton">Ok</string>
+    <string name="mainactivity_deleteaccountalert_positivebutton" translatable="false">Ok</string>
     <string name="mainactivity_accountdeleted">Account eliminato!</string>
-    <string name="mainactivity_deleteaccountalert_negativebutton">Cancel</string>
+    <string name="mainactivity_deleteaccountalert_negativebutton" translatable="false">Cancel</string>
     <string name="mainactivity_logoutalert">Vuoi sloggarti?</string>
     <string name="mainactivity_logoutalert_message">Sei sicuro?</string>
-    <string name="mainactivity_logoutalert_positivebutton">Ok</string>
-    <string name="mainactivity_logoutalert_negativebutton">Cancel</string>
+    <string name="mainactivity_logoutalert_positivebutton" translatable="false">Ok</string>
+    <string name="mainactivity_logoutalert_negativebutton" translatable="false">Cancel</string>
 
     <!-- RegistrationActivity.java -->
     <string name="registrationactivity_namerequired">Il nome è richiesto</string>
@@ -221,14 +220,14 @@
     <string name="fragmentactivities_loading">Caricamento..</string>
 
     <!-- fragment_loans.java -->
-    <string name="fragmentloans_loading">Fetching data..</string>
+    <string name="fragmentloans_loading" translatable="false">Fetching data..</string>
 
     <!-- fragment_user.java -->
     <string name="fragmentuser_loading">Caricamento nel db avvenuto correttamente</string>
     <string name="fragmentuser_loadingerror">Errore nel caricamento nel db</string>
     <string name="fragmentuser_imageuploadedcorrectly">Immagine caricata.</string>
     <string name="fragmentuser_percentage">Percentuale</string>
-
+    <string name="createNewActivity_textview_personInCharge">Responsabile</string>
 
 
 </resources>
