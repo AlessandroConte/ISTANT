@@ -260,6 +260,10 @@ public class activity_visualizeloans extends AppCompatActivity {
                 public void onClick(View view) {
                     deleteDatabaseDocument(db, "loan", loan.getId());
                     Toast.makeText(activity_visualizeloans.this, "Prestito cancellato correttamente", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -292,13 +296,19 @@ public class activity_visualizeloans extends AppCompatActivity {
                         updateDatabaseField(db, "loan", loan.getId(), "isTaken", 1);
                         updateDatabaseField(db, "loan", loan.getId(), "takenUser", auth.getCurrentUser().getUid());
                         Toast.makeText(activity_visualizeloans.this, "Oggetto preso in prestito correttamente!", Toast.LENGTH_SHORT).show();
-                        // TODO: implementare tornare indietro
+
+                        Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                     else {
                         updateDatabaseField(db, "loan", loan.getId(), "isTaken", 0);
                         updateDatabaseField(db, "loan", loan.getId(), "takenUser", "");
                         Toast.makeText(activity_visualizeloans.this, "Hai restituito correttamente il prestito!", Toast.LENGTH_SHORT).show();
-                        // TODO: implementare tornare indietro
+
+                        Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             });

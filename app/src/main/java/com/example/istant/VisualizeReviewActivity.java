@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +38,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
     private ArrayAdapter<ScoreActivityUser> adapter;
     private ArrayList<ScoreActivityUser> review;
     private FirebaseAuth auth;
+    private SwipeRefreshLayout refreshLayout;
 
     private String idActivity;
     private Activity activity;
@@ -63,6 +66,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         newReview = findViewById(R.id.create_review_btn);
         deleteReview = findViewById(R.id.delete_review_btn);
         score = findViewById(R.id.vis_rev_tv_title);
+        refreshLayout = findViewById(R.id.swipeRefresh_visualizeReviews);
 
         auth = FirebaseAuth.getInstance();
         adapter = new VisualizeReviewActivity.ReviewAdapter(this, new ArrayList<ScoreActivityUser>());
@@ -72,6 +76,63 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         newReview.setVisibility(View.VISIBLE);
         deleteReview.setVisibility(View.INVISIBLE);
 
+        visualizeScore();
+        visualizeReviews();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                review.clear();
+                visualizeReviews();
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
+        newReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VisualizeReviewActivity.this, CreateReviewActivity.class);
+                intent.putExtra("activity",activity);
+                startActivity(intent);
+            }
+        });
+
+        deleteReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteComment(db, "scoreActivityUser", idDelete);
+                Toast.makeText(getApplicationContext(), "Cancellazione avvenuta con successo!", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(VisualizeReviewActivity.this, activity_visualizeactivities.class);
+                intent.putExtra("activity", activity);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public static void deleteComment(FirebaseFirestore db, String collectionName, String idDocument) {
+        db.collection(collectionName).document(idDocument).delete();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), activity_visualizeactivities.class);
+        myIntent.putExtra("activity", activity);
+        startActivity(myIntent);
+        this.finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(VisualizeReviewActivity.this, activity_visualizeactivities.class);
+        intent.putExtra("activity", activity);
+        startActivity(intent);
+        this.finish();
+        super.onBackPressed();
+    }
+
+    public void visualizeScore () {
         db.collection("scoreActivityUser")
                 .whereEqualTo("activityid", idActivity)
                 .get()
@@ -91,9 +152,14 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                                 total_stars += score;
                             }
 
-                            result = (float) total_stars / number_score;
-                            String res = String.format("%.1f", result);
-                            score.setText("Punteggio medio = " + res);
+                            if (number_score == 0) {
+                                score.setText("Nessuna recensione");
+                            }
+                            else {
+                                result = (float) total_stars / number_score;
+                                String res = String.format("%.1f", result);
+                                score.setText("Punteggio medio = " + res);
+                            }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                             Toast.makeText(getApplicationContext(), "Errore lato server, ci scusiamo per il disagio!",
@@ -101,7 +167,9 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
 
+    public void visualizeReviews () {
         db.collection("scoreActivityUser")
                 .whereEqualTo("activityid", idActivity)
                 .get()
@@ -127,9 +195,6 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                             }
                             adapter.clear();
                             adapter.addAll(review);
-
-
-
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                             Toast.makeText(getApplicationContext(), "Errore lato server, ci scusiamo per il disagio!",
@@ -137,35 +202,6 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-        newReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(VisualizeReviewActivity.this, CreateReviewActivity.class);
-                intent.putExtra("activity",activity);
-                startActivity(intent);
-            }
-        });
-
-        deleteReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteComment(db, "scoreActivityUser", idDelete);
-                Toast.makeText(getApplicationContext(), "Cancellazione avvenuta con successo!",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public static void deleteComment(FirebaseFirestore db, String collectionName,
-                                              String idDocument) {
-        db.collection(collectionName).document(idDocument).delete();
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), activity_visualizeactivities.class);
-        startActivity(myIntent);
-        return true;
     }
 
     private class ReviewAdapter extends ArrayAdapter<ScoreActivityUser> {

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -117,6 +119,42 @@ public class fragment_activities extends Fragment{
         pd.show();
         displayActivities();
 
+        switchMyActivities.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    adapter.clear();
+                    activityArrayList.clear();
+                    displayMyActivities();
+
+                    refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            adapter.clear();
+                            activityArrayList.clear();
+                            displayMyActivities();
+                            refreshLayout.setRefreshing(false);
+                        }
+                    });
+                }
+                else {
+                    adapter.clear();
+                    activityArrayList.clear();
+                    displayActivities();
+
+                    refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            adapter.clear();
+                            activityArrayList.clear();
+                            displayActivities();
+                            refreshLayout.setRefreshing(false);
+                        }
+                    });
+                }
+            }
+        });
+
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -154,9 +192,41 @@ public class fragment_activities extends Fragment{
                     List<String> personInCharge = (List<String>) document.get("personInCharge");
                     String photo = document.get("photoEvent").toString();
 
-                    Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, personInCharge, photo);
-                    activityArrayList.add(activity);
+                    if (dateEnd.toDate().after(new Date())) {
+                        Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, personInCharge, photo);
+                        activityArrayList.add(activity);
+                    }
 
+                    if (pd.isShowing()) {
+                        pd.dismiss();
+                    }
+                }
+                adapter.clear();
+                adapter.addAll(activityArrayList);
+            }
+        });
+    }
+
+    private void displayMyActivities () {
+        db.collection("activity")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    String id = document.getId();
+                    String name = document.get("nameActivity").toString();
+                    String address = document.get("address").toString();
+                    Timestamp dateStart = document.getTimestamp("dateStart");
+                    Timestamp dateEnd = document.getTimestamp("dateEnd");
+                    String description = document.get("description").toString();
+                    List<String> personInCharge = (List<String>) document.get("personInCharge");
+                    String photo = document.get("photoEvent").toString();
+
+                    if (dateEnd.toDate().after(new Date()) && personInCharge.contains(auth.getCurrentUser().getUid())) {
+                        Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, personInCharge, photo);
+                        activityArrayList.add(activity);
+                    }
                     if (pd.isShowing()) {
                         pd.dismiss();
                     }

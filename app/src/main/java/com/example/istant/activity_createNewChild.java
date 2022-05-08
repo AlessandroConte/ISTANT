@@ -103,35 +103,38 @@ public class activity_createNewChild extends AppCompatActivity {
                         if (textName.isEmpty()) {
                             tv_name.setError("Il nome deve essere fornito!");
                         }
-
-                        if (textSurname.isEmpty()) {
-                            tv_surname.setError("Il cognome deve essere fornito!");
-                        }
-
-                        if (rb_sex_m.getText().toString().isEmpty() && rb_sex_f.getText().toString().isEmpty()) {
-                            rb_sex_m.setError("Il sesso deve essere fornito!");
-                        }
-
-                        if (dateB.getText().toString().isEmpty()) {
-                            dateB.setError("La data di nascita deve essere fornita!");
-                        }
                         else {
-                            try{
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
-                                dateBorn.setTime(dateFormat.parse(dateB.getText().toString()));
-
-                                childWrite(null, dateBorn, gender, "", textName, textSurname, FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
-
-                                tv_name.getText().clear();
-                                tv_surname.getText().clear();
-                                rb_sex_m.setChecked(false);
-                                rb_sex_f.setChecked(false);
-                                dateB.getText().clear();
-
-                                Toast.makeText(activity_createNewChild.this,"Figlio aggiunto con successo!",Toast.LENGTH_SHORT).show();
+                            if (textSurname.isEmpty()) {
+                                tv_surname.setError("Il cognome deve essere fornito!");
                             }
-                            catch (Exception e){
-                                e.printStackTrace();
+                            else {
+                                if (rb_sex_m.getText().toString().isEmpty() && rb_sex_f.getText().toString().isEmpty()) {
+                                    rb_sex_m.setError("Il sesso deve essere fornito!");
+                                }
+                                else {
+                                    if (dateB.getText().toString().isEmpty()) {
+                                        dateB.setError("La data di nascita deve essere fornita!");
+                                    }
+                                    else {
+                                        try{
+                                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
+                                            dateBorn.setTime(dateFormat.parse(dateB.getText().toString()));
+
+                                            childWrite(null, dateBorn, gender, "", textName, textSurname, FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+
+                                            tv_name.getText().clear();
+                                            tv_surname.getText().clear();
+                                            rb_sex_m.setChecked(false);
+                                            rb_sex_f.setChecked(false);
+                                            dateB.getText().clear();
+
+                                            Toast.makeText(activity_createNewChild.this,"Figlio aggiunto con successo!",Toast.LENGTH_SHORT).show();
+                                        }
+                                        catch (Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

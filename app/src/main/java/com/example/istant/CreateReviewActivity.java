@@ -2,7 +2,6 @@ package com.example.istant;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,15 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
-
 import com.example.istant.model.Activity;
 import com.example.istant.model.SupportFunctions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,26 +47,27 @@ public class CreateReviewActivity extends AppCompatActivity {
         textInputEditText = findViewById(R.id.editTextreview);
         createReview = findViewById(R.id.btn_create_rev);
 
-
         createReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 comment = textInputEditText.getText().toString();
                 score = ratingBar.getRating();
 
-                scoreActivityUserWrite(score, comment, activityId, auth.getCurrentUser().getUid(), db);
+                if (comment.isEmpty()) {
+                    textInputEditText.setError("E' necessario inserire un commento nella recensione!");
+                }
+                else {
+                    scoreActivityUserWrite(score, comment, activityId, auth.getCurrentUser().getUid(), db);
 
-                ratingBar.setRating(0F);
-                textInputEditText.getText().clear();
+                    ratingBar.setRating(0F);
+                    textInputEditText.getText().clear();
 
-                Intent intent = new Intent(CreateReviewActivity.this, VisualizeReviewActivity.class);
-                intent.putExtra("activity",activity);
-                startActivity(intent);
+                    Intent intent = new Intent(CreateReviewActivity.this, VisualizeReviewActivity.class);
+                    intent.putExtra("activity",activity);
+                    startActivity(intent);
+                }
             }
         });
-
     }
 
     public static void scoreActivityUserWrite(float score, String comment,

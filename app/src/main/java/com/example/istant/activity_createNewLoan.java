@@ -120,42 +120,44 @@ public class activity_createNewLoan extends AppCompatActivity {
                 if (textName.isEmpty()) {
                     name.setError("Il nome deve essere fornito!");
                 }
-
-                if (textDescr.isEmpty()) {
-                    description.setError("La descrizione deve essere fornita!");
-                }
-
-                if (sdate.getText().toString().isEmpty()) {
-                    sdate.setError("La data di inizio deve essere fornita!");
-                }
                 else {
-                    if (fdate.getText().toString().isEmpty()) {
-                        fdate.setError("La data di termine deve essere fornita!");
+                    if (textDescr.isEmpty()) {
+                        description.setError("La descrizione deve essere fornita!");
                     }
                     else {
-                        try{
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                            dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
-                            dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
-
-                            if (dateStart.compareTo(dateEnd) <= 0) {
-                                loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, 0, "", FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
-
-                                loanUrl = "";
-                                loanImage.setImageDrawable(null);
-                                name.getText().clear();
-                                description.getText().clear();
-                                sdate.getText().clear();
-                                fdate.getText().clear();
-
-                                Toast.makeText(activity_createNewLoan.this,"Prestito ggiunto con successo!",Toast.LENGTH_SHORT).show();
+                        if (sdate.getText().toString().isEmpty()) {
+                            sdate.setError("La data di inizio deve essere fornita!");
+                        }
+                        else {
+                            if (fdate.getText().toString().isEmpty()) {
+                                fdate.setError("La data di termine deve essere fornita!");
                             }
                             else {
-                                fdate.setError("La data di termine deve essere successiva a quella di inizio!");
+                                try{
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                                    dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
+                                    dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
+
+                                    if (dateStart.compareTo(dateEnd) <= 0) {
+                                        loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, 0, "", FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+
+                                        loanUrl = "";
+                                        loanImage.setImageDrawable(null);
+                                        name.getText().clear();
+                                        description.getText().clear();
+                                        sdate.getText().clear();
+                                        fdate.getText().clear();
+
+                                        Toast.makeText(activity_createNewLoan.this,"Prestito aggiunto con successo!",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        fdate.setError("La data di termine deve essere successiva a quella di inizio!");
+                                    }
+                                }
+                                catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
-                        }
-                        catch (Exception e){
-                            e.printStackTrace();
                         }
                     }
                 }

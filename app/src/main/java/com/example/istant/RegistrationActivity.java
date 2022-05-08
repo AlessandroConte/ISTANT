@@ -22,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.istant.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,11 +33,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -155,69 +152,76 @@ public class RegistrationActivity extends AppCompatActivity {
                 cognome = regCognome.getText().toString();
                 indirizzo = regAddress.getText().toString();
                 numeroTelefono = regPhoneNumber.getText().toString();
-
-                try {
-                    dateBorn.setTime(dateFormat.parse(regBornDate.getText().toString()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                dataNascita = new Timestamp(dateBorn.getTime());
-
                 CF = regFiscalCode.getText().toString();
                 email = regEmail.getText().toString();
                 pass = regPass.getText().toString();
                 confpass = regConfPass.getText().toString();
 
-                if(nome.isEmpty()){
+                if (nome.isEmpty()){
                     regNome.setError("Il nome è richiesto");
-                    return;
                 }
-                if(cognome.isEmpty()){
-                    regCognome.setError("Il cognome è richiesto");
-                    return;
-                }
-                if(email.isEmpty()){
-                    regEmail.setError("L'email è richiesta");
-                    return;
-                }
-                if(pass.isEmpty()){
-                    regPass.setError("La password è richiesta");
-                    return;
-                }
-                if(confpass.isEmpty()){
-                    regConfPass.setError("La password è richiesta");
-                    return;
-                }
-                if (!pass.equals(confpass)){
-                    regConfPass.setError("Le password devono essere uguali");
-                    return;
-                }
-
-                Toast.makeText(RegistrationActivity.this, "I dati inseriti sono corretti", Toast.LENGTH_SHORT).show();
-
-                fAuth.createUserWithEmailAndPassword(email, pass)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        // AdditionalUserInfo info = authResult.getAdditionalUserInfo();
-                        // String id = info.getProviderId();
-
-                        id = fAuth.getCurrentUser().getUid();
-
-                        userWrite(id, indirizzo, dataNascita, email, CF, sesso, "", nome, cognome, numeroTelefono, db);
-
-                        uploadPicture();
-
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                else {
+                    if (cognome.isEmpty()){
+                        regCognome.setError("Il cognome è richiesto");
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(RegistrationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    else {
+                        if (regBornDate.getText().toString().isEmpty()) {
+                            regBornDate.setError("La data di nascita deve essere fornita!");
+                        }
+                        else {
+                            if(email.isEmpty()){
+                                regEmail.setError("L'email è richiesta");
+                            }
+                            else {
+                                if(pass.isEmpty()){
+                                    regPass.setError("La password è richiesta");
+                                }
+                                else {
+                                    if(confpass.isEmpty()){
+                                        regConfPass.setError("La password è richiesta");
+                                    }
+                                    else {
+                                        if (!pass.equals(confpass)){
+                                            regConfPass.setError("Le password devono essere uguali");
+                                        }
+                                        else {
+                                            try {
+                                                dateBorn.setTime(dateFormat.parse(regBornDate.getText().toString()));
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            dataNascita = new Timestamp(dateBorn.getTime());
+
+                                            fAuth.createUserWithEmailAndPassword(email, pass)
+                                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                                        @Override
+                                                        public void onSuccess(AuthResult authResult) {
+                                                            // AdditionalUserInfo info = authResult.getAdditionalUserInfo();
+                                                            // String id = info.getProviderId();
+
+                                                            id = fAuth.getCurrentUser().getUid();
+
+                                                            userWrite(id, indirizzo, dataNascita, email, CF, sesso, "", nome, cognome, numeroTelefono, db);
+                                                            Toast.makeText(RegistrationActivity.this, "I dati inseriti sono corretti", Toast.LENGTH_SHORT).show();
+                                                            uploadPicture();
+
+                                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(RegistrationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                });
+                }
             }
         });
 
