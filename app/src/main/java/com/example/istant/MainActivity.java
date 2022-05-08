@@ -7,9 +7,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,13 +39,36 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     // Alert dialog
-    AlertDialog.Builder builder;
+    private AlertDialog.Builder builder;
+    private AlertDialog.Builder builder2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check if there is connectivity
+        if(isConnectingToInternet(getApplicationContext()) == false)   {
+            builder2 = new AlertDialog.Builder(this);
+            builder2.setMessage("Internet Connection NOT available")
+                    .setCancelable(true)
+                    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
+                    })
+                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            }
+                    );
+            builder.show();
+        }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottombar);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
@@ -151,5 +179,33 @@ public class MainActivity extends AppCompatActivity {
     public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName,
                                               String idDocument) {
         db.collection(collectionName).document(idDocument).delete();
+    }
+
+    // Function that checks if there is internet connection
+    private boolean isConnectingToInternet(Context applicationContext){
+        ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            String s = "true";
+            Log.i("true wifi",s);
+            return true;
+        }
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            String s = "true";
+            Log.i("true mobileNetwork",s);
+            return true;
+        }
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            String s = "true activeNetwork";
+            Log.i("true",s);
+            return true;
+        }
+        String s = "false";
+        Log.i("false",s);
+        return false;
     }
 }
