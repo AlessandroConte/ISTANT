@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">ISTANT</string>
+    <string name="app_name">ISTANT</string>
     <string name="title_activity_settings" translatable="false">activity_settings</string>
 
     <!-- PLEASE WHEN YOU INSERT NEW STRINGS PLACE A COMMENT AT THE BEGINNING OF THE STRINGS CONTAINING THE NAME OF
@@ -147,7 +147,7 @@
     <string name="activitysettingsmanagechildren_managechildren">Gestisci i tuoi figli</string>
 
     <!-- activity_visualizeactivities.java -->
-    <string name="activityvisualizeactivities_actionbarname">Scheda dell'attività</string>
+    <string name="activityvisualizeactivities_actionbarname">Scheda della attività</string>
 
     <!-- activity_visualizeloans.java -->
     <string name="activityvisualizeloans_save">Salva</string>
@@ -167,7 +167,7 @@
     <string name="activityvisualizeusers_actionbarname">Profilo utente</string>
 
     <!-- CreateReviewActivity.java -->
-    <string name="createreviewactivity_insertcomment">E' necessario inserire un commento nella recensione!</string>
+    <string name="createreviewactivity_insertcomment">Necessario inserire un commento nella recensione!</string>
 
     <!-- LoginActivity.java -->
     <string name="loginactivity_alertpasswortreset_name">Vuoi reimpostare la password?</string>
@@ -175,14 +175,14 @@
     <string name="loginactivity_alertpasswortreset_givemail">La mail deve essere fornita</string>
     <string name="loginactivity_alertpasswortreset_emailsent">Email spedita</string>
     <string name="loginactivity_alertpasswortreset_cancel" translatable="false">Cancel</string>
-    <string name="loginactivity_loginbutton_noemail">L'email non è stata fornita</string>
+    <string name="loginactivity_loginbutton_noemail">La email non è stata fornita</string>
     <string name="loginactivity_loginbutton_nopassword">La password non è stata fornita</string>
 
     <!-- MainActivity.java -->
     <string name="mainactivity_guidealert_title">Vuoi visualizzare la guida?</string>
     <string name="mainactivity_guidealert_positivebutton">Sì</string>
     <string name="mainactivity_guidealert_negativebutton" translatable="false">No</string>
-    <string name="mainactivity_deleteaccountalert">Vuoi cancellare l'account?</string>
+    <string name="mainactivity_deleteaccountalert">Vuoi cancellare il tuo account?</string>
     <string name="mainactivity_deleteaccountalert_message">Sei sicuro?</string>
     <string name="mainactivity_deleteaccountalert_positivebutton" translatable="false">Ok</string>
     <string name="mainactivity_accountdeleted">Account eliminato!</string>
@@ -196,11 +196,11 @@
     <string name="registrationactivity_namerequired">Il nome è richiesto</string>
     <string name="registrationactivity_surnamerequired">Il cognome è richiesto</string>
     <string name="registrationactivity_dateofbirthrequired">La data di nascita deve essere fornita!</string>
-    <string name="registrationactivity_emailrequired">L'email è richiesta</string>
+    <string name="registrationactivity_emailrequired">La email è richiesta</string>
     <string name="registrationactivity_passwordrequired">La password è richiesta</string>
     <string name="registrationactivity_samepasswordsrequired">Le password devono essere uguali</string>
     <string name="registrationactivity_datacorrect">I dati inseriti sono corretti</string>
-    <string name="registrationactivity_imageuploading">Uploading dell'immagine..</string>
+    <string name="registrationactivity_imageuploading">Uploading della immagine..</string>
     <string name="registrationactivity_uploaderror">Errore nel caricamento</string>
     <string name="registrationactivity_imageuploaded">Immagine caricata!</string>
     <string name="registrationactivity_uploadfailed">Caricamento fallito!</string>
