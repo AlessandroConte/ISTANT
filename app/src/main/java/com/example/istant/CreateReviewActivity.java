@@ -3,12 +3,8 @@ package com.example.istant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< Updated upstream
-=======
-
 import android.content.Context;
 import android.content.DialogInterface;
->>>>>>> Stashed changes
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;

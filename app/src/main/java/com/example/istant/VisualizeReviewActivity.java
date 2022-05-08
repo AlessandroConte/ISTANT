@@ -247,13 +247,11 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_reviews,parent, false);
             }
 
-            TextView revName = convertView.findViewById(R.id.listadapter_revName);
             TextView revScore = convertView.findViewById(R.id.listadapter_revScore);
             TextView revText = convertView.findViewById(R.id.listadapter_revText);
 
             ScoreActivityUser rev = review.get(position);
 
-            revName.setText(rev.getUid());
             revScore.setText(Float.toString(rev.getScore()));
             revText.setText(rev.getComment());
 

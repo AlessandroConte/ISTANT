@@ -1,10 +1,7 @@
 package com.example.istant;
 
 import android.content.Context;
-<<<<<<< Updated upstream
-=======
 import android.content.DialogInterface;
->>>>>>> Stashed changes
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -297,7 +294,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
 
 <<<<<<< Updated upstream
      */
-=======
     // Function that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
@@ -325,5 +321,4 @@ public class activity_visualizeactivities extends AppCompatActivity {
         Log.i("false",s);
         return false;
     }
->>>>>>> Stashed changes
 }
