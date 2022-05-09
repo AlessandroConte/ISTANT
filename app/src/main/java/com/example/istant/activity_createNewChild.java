@@ -159,6 +159,9 @@ public class activity_createNewChild extends AppCompatActivity {
                                             dateB.getText().clear();
 
                                             Toast.makeText(activity_createNewChild.this,getString(R.string.activitycreatenewchild_addedchild),Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(activity_createNewChild.this, activity_settings_managechildren.class);
+                                            startActivity(intent);
+
                                         }
                                         catch (Exception e){
                                             e.printStackTrace();
