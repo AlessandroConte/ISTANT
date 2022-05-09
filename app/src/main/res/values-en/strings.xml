@@ -84,7 +84,7 @@
     <string name="activitycreatenewloan_givedescription">Description required</string>
     <string name="activitycreatenewloan_givedatestart">Start Date required</string>
     <string name="activitycreatenewloan_giveenddate">End Date required</string>
-    <string name="activitycreatenewloan_addedloansuccessfully">Loan added succesfully</string>
+    <string name="activitycreatenewloan_addedloansuccessfully">Loan added successfully</string>
     <string name="activitycreatenewloan_errordate">Start Date needs to be prior to the end date</string>
     <string name="activitycreatenewloan_createnewloan">Create a new load</string>
     <string name="activityguideactionbarname">Guide</string>
@@ -133,10 +133,10 @@
     <string name="resetpasswordactivity_thepasswordsaredifferent">The two passwords are different</string>
     <string name="resetpasswordactivity_passwordupdated">Password updated!</string>
     <string name="visualizereviewactivity_actionbarname">Reviews</string>
-    <string name="visualizereviewactivity_successfulldelete">Successfull deletion!</string>
+    <string name="visualizereviewactivity_successfulldelete">Successful deletion!</string>
     <string name="visualizereviewactivity_servererror">Server-side error, sorry for the inconvenience!</string>
     <string name="fragmentactivities_loading">Loading...</string>
-    <string name="fragmentuser_loading">Successfull db loading</string>
+    <string name="fragmentuser_loading">Successful db loading</string>
     <string name="fragmentuser_loadingerror">Error in db loading.</string>
     <string name="fragmentuser_imageuploadedcorrectly">Image uploaded successfully</string>
     <string name="fragmentuser_percentage">Percentage</string>

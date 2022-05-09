@@ -65,6 +65,15 @@ public class activity_createNewActivities extends AppCompatActivity {
     private StorageReference storageReference;
     private FirebaseAuth auth;
 
+    private String default_id;
+
+    private static final String piedibus = "PiediBus";
+    private static final String allnuoto = "AllenamentoNuoto";
+    private static final String allcalc = "AllenamentoCalcio";
+    private static final String partten = "PartitaTennis";
+    private static final String corscant = "CorsoCanto";
+    private static final String personal = "Personalizzata";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +112,42 @@ public class activity_createNewActivities extends AppCompatActivity {
         fdate = findViewById(R.id.createNewActivity_edittext_dateend);
         address = findViewById(R.id.createNewActivity_edittext_address);
         btn = findViewById(R.id.createNewActivity_button_create);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("key");
+            //The key argument here must match that used in the other activity
+            default_id = value;
+        }
+
+        if(default_id.equals(piedibus)){
+            name.setText("PiediBus");
+            description.setText("Andiamo a scuola con il piedibus");
+        }
+
+        if(default_id.equals(allnuoto)){
+            name.setText("Allenamento di nuoto");
+            description.setText("Portiamo i figli all'allenamento di nuoto");
+        }
+
+        if(default_id.equals(allcalc)){
+            name.setText("Allenamento di calcio");
+            description.setText("Portiamo i figli all'allenamento di calcio");
+        }
+
+        if(default_id.equals(partten)){
+            name.setText("Partita di tennis");
+            description.setText("Portiamo i figli alla partita di tennis");
+        }
+
+        if(default_id.equals(corscant)){
+            name.setText("Corso di canto");
+            description.setText("Portiamo i figli al corso di canto extrascolastico");
+        }
+
+        if(default_id.equals(personal)){
+            name.setText("");
+        }
 
         DatePickerDialog.OnDateSetListener dateS = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -153,24 +198,57 @@ public class activity_createNewActivities extends AppCompatActivity {
                 String addr = address.getText().toString();
                 ArrayList<String> uic = new ArrayList<>();
 
-                try{
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
-                    dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
-
-                    uic.add(auth.getCurrentUser().getUid());
-
-                    actWrite(textName, addr, dateStart, dateEnd, textDescr, uic, actUrl, FirebaseFirestore.getInstance());
-                    Toast.makeText(getApplicationContext(), getString(R.string.createnewactivity_addactivity),Toast.LENGTH_SHORT).show();
+                if (textName.isEmpty()) {
+                    name.setError("Il nome deve essere fornito");
                 }
-                catch (Exception e){}
-                actUrl = "";
-                actImage.setImageDrawable(null);
-                name.getText().clear();
-                description.getText().clear();
-                sdate.getText().clear();
-                fdate.getText().clear();
-                address.getText().clear();
+                else {
+                    if (textDescr.isEmpty()) {
+                        description.setError("La descrizione deve essere fornita!");
+                    }
+                    else {
+                        if (sdate.getText().toString().isEmpty()) {
+                            sdate.setError("La data di inizio deve essere fornita!");
+                        }
+                        else {
+                            if (fdate.getText().toString().isEmpty()) {
+                                fdate.setError("La data di termine deve essere fornita!");
+                            }
+                            else {
+                                if (addr.isEmpty()) {
+                                    address.setError("L'indirizzo deve essere fornito!");
+                                }
+                                else {
+                                    try{
+                                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
+                                        dateStart.setTime(dateFormat.parse(sdate.getText().toString()));
+                                        dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
+                                        uic.add(auth.getCurrentUser().getUid());
+
+                                        if (dateStart.compareTo(dateEnd) <= 0) {
+                                            actWrite(textName, addr, dateStart, dateEnd, textDescr, uic, actUrl, FirebaseFirestore.getInstance());
+
+                                            actUrl = "";
+                                            actImage.setImageDrawable(null);
+                                            name.getText().clear();
+                                            description.getText().clear();
+                                            sdate.getText().clear();
+                                            fdate.getText().clear();
+                                            address.getText().clear();
+
+                                            Toast.makeText(getApplicationContext(), getString(R.string.createnewactivity_addactivity),Toast.LENGTH_SHORT).show();
+                                        }
+                                        else {
+                                            fdate.setError("La data di termine deve essere successiva a quella di inizio!");
+                                        }
+                                    }
+                                    catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         });
 

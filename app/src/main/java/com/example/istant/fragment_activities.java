@@ -112,7 +112,7 @@ public class fragment_activities extends Fragment{
         newActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, activity_createNewActivities.class));
+                startActivity(new Intent(context, DefaultActivity.class));
             }
         });
 

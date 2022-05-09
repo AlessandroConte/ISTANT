@@ -7,29 +7,19 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.istant.model.Activity;
-import com.example.istant.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
@@ -37,9 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,9 +45,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
     private EditText activity_dateEnd;
     private EditText activity_description;
     private ImageView activity_image;
-    private ListView listView_personInCharge;
     private List<String> personInCharge;
-    private ArrayAdapter<String> adapter;
 
     private Button button_review;
     private Button button_participate;
@@ -109,12 +94,8 @@ public class activity_visualizeactivities extends AppCompatActivity {
         activity_dateEnd = findViewById(R.id.visualizeactivities_edittext_dateEnd);
         activity_description = findViewById(R.id.visualizeactivities_edittext_description);
         activity_image = findViewById(R.id.visualizeactivities_image);
-        listView_personInCharge = findViewById(R.id.list_parecipants);
 
-        // adapter = new PersonInChargeAdapter(getApplicationContext(), new ArrayList<String>());
         personInCharge = new ArrayList<>();
-
-        // listView_personInCharge.setAdapter(adapter);
 
         // retrieving the buttons
         button_review = findViewById(R.id.visualizeactivities_buttonReview);
@@ -158,9 +139,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
         button_participate.setBackgroundColor(Color.GREEN);
 
         personInCharge = activity.getPersonInCharge();
-
-        // adapter.clear();
-        // adapter.addAll(personInCharge);
 
         if (personInCharge != null && !personInCharge.isEmpty() && personInCharge.contains(auth.getCurrentUser().getUid())) {
             button_delete.setVisibility(View.VISIBLE);
@@ -256,38 +234,6 @@ public class activity_visualizeactivities extends AppCompatActivity {
                     }
                 });
     }
-
-    /*
-        public PersonInChargeAdapter(@NonNull Context context,List<String> idUsers) {
-            super(context, 0, idUsers);
-            this.idUsers = idUsers;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            if (convertView == null){
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listadapter_user, parent, false);
-            }
-
-            TextView userName = convertView.findViewById(R.id.listadapter_userName);
-
-            String id = idUsers.get(position);
-
-            db.collection("user").whereEqualTo("id", id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for (DocumentSnapshot document : queryDocumentSnapshots) {
-                        userName.setText(document.get("name").toString());
-                    }
-                }
-            });
-
-            Log.d("NAME = ", "" + userName.getText());
-
-            return convertView;
-        }
-*/
 
     // Function that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
