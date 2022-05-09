@@ -274,15 +274,15 @@ public class fragment_loans extends Fragment {
                     layout.setBackgroundColor(Color.WHITE);
                 }
                 else {
-                    layout.setBackgroundColor(Color.GREEN);
+                    layout.setBackgroundColor(Color.parseColor("#77dd77"));
                 }
             }
             else {
                 if (loan.getIsTaken() == 1 && loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
-                    layout.setBackgroundColor(Color.YELLOW);
+                    layout.setBackgroundColor(Color.parseColor("#FDFD96"));
                 }
                 else {
-                    layout.setBackgroundColor(Color.RED);
+                    layout.setBackgroundColor(Color.parseColor("#ff6961"));
                 }
             }
             loanName.setText(loan.getNameLoan());

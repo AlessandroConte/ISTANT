@@ -76,11 +76,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/swipeRefresh_fragmentLoans"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             >
             <ListView
                 android:id="@+id/listView_fragmentloans"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
