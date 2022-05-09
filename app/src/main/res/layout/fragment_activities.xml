@@ -77,11 +77,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/swipeRefresh_fragmentActivities"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             >
             <ListView
             android:id="@+id/listView_fragmentactivities"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+                />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>

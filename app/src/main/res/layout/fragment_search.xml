@@ -40,6 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/swipeRefresh_fragmentSearch"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             >
             <ListView
                 android:id="@+id/users_listView"

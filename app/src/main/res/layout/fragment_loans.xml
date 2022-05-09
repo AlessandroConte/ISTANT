@@ -80,11 +80,15 @@
             android:layout_marginBottom="100dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+
             >
+
             <ListView
                 android:id="@+id/listView_fragmentloans"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:divider="#FFFFFF"
+                android:dividerHeight="7dp"
                 />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
