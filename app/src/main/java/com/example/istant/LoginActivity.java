@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 View v = inflater.inflate(R.layout.reset_pop,null);
                 reset_alert.setTitle(getString(R.string.loginactivity_alertpasswortreset_name))
                         .setMessage(getString(R.string.loginactivity_alertpasswortreset_message))
-                        .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.loginactivity_reset), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // validate the email address

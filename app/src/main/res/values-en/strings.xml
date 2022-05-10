@@ -140,4 +140,20 @@
     <string name="fragmentuser_loadingerror">Error in db loading.</string>
     <string name="fragmentuser_imageuploadedcorrectly">Image uploaded successfully</string>
     <string name="fragmentuser_percentage">Percentage</string>
+    <string name="createNewActivity_piedibus">FootBus</string>
+    <string name="createNewActivity_allenamentonuoto">Swimming Training</string>
+    <string name="createNewActivity_allenamentocalcio">Football Training</string>
+    <string name="createNewActivity_partitatennis">Tennis Match</string>
+    <string name="createNewActivity_corsocanto">Singing Course</string>
+    <string name="createNewActivity_personalizzata">Personalize</string>
+    <string name="createNewActivity_piedibus_description">Lets go to school by foot!</string>
+    <string name="createNewActivity_allenamentonuoto_description">Lets bring owr children to the swimming practice</string>
+    <string name="createNewActivity_allenamentocalcio_description">Lets bring owr children to the football practice</string>
+    <string name="createNewActivity_partitatennis_description">Lets bring owr children to the tennis match</string>
+    <string name="createNewActivity_personalizzata_description">Lets bring owr children to the singing course</string>
+    <string name="createNewActivity_fornisciindirizzo">Address required</string>
+    <string name="activityvisualizeactivities_eliminazioneconsuccesso">Deleted succesfully</string>
+    <string name="activityvisualizeactivities_oraseiunorganizzatore">Now you are a manager!</string>
+    <string name="activityvisualizeloans_titoloactivity">Loan description</string>
+    <string name="activityvisualizeloans_caricamentoimmagine">Image loading...</string>
 </resources>

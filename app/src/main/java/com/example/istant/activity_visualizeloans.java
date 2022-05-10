@@ -90,7 +90,7 @@ public class activity_visualizeloans extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Scheda del prestito"); // actionbar's name
+            actionBar.setTitle(getString(R.string.activityvisualizeloans_titoloactivity)); // actionbar's name
         }
 
         // Check if there is connectivity
@@ -383,7 +383,7 @@ public class activity_visualizeloans extends AppCompatActivity {
         final ProgressDialog pd = new ProgressDialog(this);
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
 
-        pd.setTitle("Uploading Image..");
+        pd.setTitle(getString(R.string.activityvisualizeloans_caricamentoimmagine));
         pd.show();
 
         ref.putFile(imageUri)
@@ -417,7 +417,7 @@ public class activity_visualizeloans extends AppCompatActivity {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         double progressPercent = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        pd.setMessage("Percentage: " + (int) progressPercent + "%");
+                        pd.setMessage(getString(R.string.registrationactivity_percentage)+": " + (int) progressPercent + "%");
                     }
                 });
     }

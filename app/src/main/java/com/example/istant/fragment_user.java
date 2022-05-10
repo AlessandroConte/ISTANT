@@ -391,7 +391,7 @@ public class fragment_user extends Fragment {
         final ProgressDialog pd = new ProgressDialog(getActivity());
         StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
 
-        pd.setTitle("Uploading Image..");
+        pd.setTitle(getString(R.string.activityvisualizeloans_caricamentoimmagine));
         pd.show();
 
         ref.putFile(imageUri)

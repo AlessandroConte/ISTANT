@@ -67,12 +67,13 @@ public class activity_createNewActivities extends AppCompatActivity {
 
     private String default_id;
 
-    private static final String piedibus = "PiediBus";
-    private static final String allnuoto = "AllenamentoNuoto";
-    private static final String allcalc = "AllenamentoCalcio";
-    private static final String partten = "PartitaTennis";
-    private static final String corscant = "CorsoCanto";
-    private static final String personal = "Personalizzata";
+    private final String piedibus = getString(R.string.createNewActivity_piedibus);
+    private final String allnuoto = getString(R.string.createNewActivity_allenamentonuoto);
+    private final String allcalc = getString(R.string.createNewActivity_allenamentocalcio);
+    private final String partten = getString(R.string.createNewActivity_partitatennis);
+    private final String corscant = getString(R.string.createNewActivity_corsocanto);
+    private final String personal = getString(R.string.createNewActivity_personalizzata);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,28 +122,28 @@ public class activity_createNewActivities extends AppCompatActivity {
         }
 
         if(default_id.equals(piedibus)){
-            name.setText("PiediBus");
-            description.setText("Andiamo a scuola con il piedibus");
+            name.setText(getString(R.string.createNewActivity_piedibus));
+            description.setText(getString(R.string.createNewActivity_piedibus_description));
         }
 
         if(default_id.equals(allnuoto)){
-            name.setText("Allenamento di nuoto");
-            description.setText("Portiamo i figli all'allenamento di nuoto");
+            name.setText(getString(R.string.createNewActivity_allenamentonuoto));
+            description.setText(getString(R.string.createNewActivity_allenamentonuoto_description));
         }
 
         if(default_id.equals(allcalc)){
-            name.setText("Allenamento di calcio");
-            description.setText("Portiamo i figli all'allenamento di calcio");
+            name.setText(getString(R.string.createNewActivity_allenamentocalcio));
+            description.setText(getString(R.string.createNewActivity_allenamentocalcio_description));
         }
 
         if(default_id.equals(partten)){
-            name.setText("Partita di tennis");
-            description.setText("Portiamo i figli alla partita di tennis");
+            name.setText(getString(R.string.createNewActivity_partitatennis));
+            description.setText(getString(R.string.createNewActivity_partitatennis_description));
         }
 
         if(default_id.equals(corscant)){
-            name.setText("Corso di canto");
-            description.setText("Portiamo i figli al corso di canto extrascolastico");
+            name.setText(getString(R.string.createNewActivity_corsocanto));
+            description.setText(getString(R.string.createNewActivity_personalizzata_description));
         }
 
         if(default_id.equals(personal)){
@@ -199,23 +200,23 @@ public class activity_createNewActivities extends AppCompatActivity {
                 ArrayList<String> uic = new ArrayList<>();
 
                 if (textName.isEmpty()) {
-                    name.setError("Il nome deve essere fornito");
+                    name.setError(getString(R.string.activitycreatenewchild_givename));
                 }
                 else {
                     if (textDescr.isEmpty()) {
-                        description.setError("La descrizione deve essere fornita!");
+                        description.setError(getString(R.string.activitycreatenewloan_givedescription));
                     }
                     else {
                         if (sdate.getText().toString().isEmpty()) {
-                            sdate.setError("La data di inizio deve essere fornita!");
+                            sdate.setError(getString(R.string.activitycreatenewloan_givedatestart));
                         }
                         else {
                             if (fdate.getText().toString().isEmpty()) {
-                                fdate.setError("La data di termine deve essere fornita!");
+                                fdate.setError(getString(R.string.activitycreatenewloan_giveenddate));
                             }
                             else {
                                 if (addr.isEmpty()) {
-                                    address.setError("L'indirizzo deve essere fornito!");
+                                    address.setError(getString(R.string.createNewActivity_fornisciindirizzo));
                                 }
                                 else {
                                     try{
@@ -238,7 +239,7 @@ public class activity_createNewActivities extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(), getString(R.string.createnewactivity_addactivity),Toast.LENGTH_SHORT).show();
                                         }
                                         else {
-                                            fdate.setError("La data di termine deve essere successiva a quella di inizio!");
+                                            fdate.setError(getString(R.string.activitycreatenewloan_errordate));
                                         }
                                     }
                                     catch (Exception e){

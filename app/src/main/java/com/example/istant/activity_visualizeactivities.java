@@ -148,7 +148,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     deleteActivity(db, "activity", id);
-                    Toast.makeText(activity_visualizeactivities.this, "Eliminazione avvenuta con successo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity_visualizeactivities.this, getString(R.string.activityvisualizeactivities_eliminazioneconsuccesso), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(activity_visualizeactivities.this, MainActivity.class);
                     startActivity(intent);
@@ -165,7 +165,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
                 public void onClick(View view) {
                     personInCharge.add(auth.getCurrentUser().getUid());
                     updateDatabaseField(db, "activity", id, "personInCharge", personInCharge);
-                    Toast.makeText(activity_visualizeactivities.this, "Ora sei un organizzatore!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity_visualizeactivities.this, getString(R.string.activityvisualizeactivities_oraseiunorganizzatore), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(activity_visualizeactivities.this, MainActivity.class);
                     startActivity(intent);

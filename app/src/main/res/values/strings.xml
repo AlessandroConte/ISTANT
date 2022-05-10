@@ -121,6 +121,18 @@
     <!-- activity_createNewActivities.java -->
     <string name="createnewactivity_addactivity">Aggiunto con successo</string>
     <string name="createnewactivity_actionbar">Crea una nuova attività</string>
+    <string name="createNewActivity_piedibus">PiediBus</string>
+    <string name="createNewActivity_allenamentonuoto">Allenamento Nuoto</string>
+    <string name="createNewActivity_allenamentocalcio">Allenamento Calcio</string>
+    <string name="createNewActivity_partitatennis">Partita Tennis</string>
+    <string name="createNewActivity_corsocanto">Corso Canto</string>
+    <string name="createNewActivity_personalizzata">Personalizzata</string>
+    <string name="createNewActivity_piedibus_description">Andiamo a scuola con il piedibus</string>
+    <string name="createNewActivity_allenamentonuoto_description">Portiamo i figli all\'allenamento di nuoto</string>
+    <string name="createNewActivity_allenamentocalcio_description">Portiamo i figli all\'allenamento di calcio</string>
+    <string name="createNewActivity_partitatennis_description">Portiamo i figli alla partita di tennis</string>
+    <string name="createNewActivity_personalizzata_description">Portiamo i figli al corso di canto</string>
+    <string name="createNewActivity_fornisciindirizzo">L\'indirizzo deve essere fornito!</string>
 
     <!-- activity_createNewChild.java -->
     <string name="activitycreatenewchild_givename">Il nome deve essere fornito!</string>
@@ -148,6 +160,8 @@
 
     <!-- activity_visualizeactivities.java -->
     <string name="activityvisualizeactivities_actionbarname">Scheda della attività</string>
+    <string name="activityvisualizeactivities_eliminazioneconsuccesso">Eliminazione avvenuta con successo</string>
+    <string name="activityvisualizeactivities_oraseiunorganizzatore">Ora sei un organizzatore!</string>
 
     <!-- activity_visualizeloans.java -->
     <string name="activityvisualizeloans_save">Salva</string>
@@ -162,6 +176,8 @@
     <string name="activityvisualizeloans_loadingerror">Errore nel caricamento</string>
     <string name="activityvisualizeloans_imageloaded">Immagine caricata!</string>
     <string name="activityvisualizeloans_unsuccessfullupload">Caricamento fallito!</string>
+    <string name="activityvisualizeloans_titoloactivity">Scheda del prestito</string>
+    <string name="activityvisualizeloans_caricamentoimmagine">Caricamento immagine...</string>
 
     <!-- activity_visualizeusers.java -->
     <string name="activityvisualizeusers_actionbarname">Profilo utente</string>
@@ -177,6 +193,7 @@
     <string name="loginactivity_alertpasswortreset_cancel" translatable="false">Cancel</string>
     <string name="loginactivity_loginbutton_noemail">La email non è stata fornita</string>
     <string name="loginactivity_loginbutton_nopassword">La password non è stata fornita</string>
+    <string name="loginactivity_reset" translatable="false">Reset</string>
 
     <!-- MainActivity.java -->
     <string name="mainactivity_guidealert_title">Vuoi visualizzare la guida?</string>
@@ -184,12 +201,12 @@
     <string name="mainactivity_guidealert_negativebutton" translatable="false">No</string>
     <string name="mainactivity_deleteaccountalert">Vuoi cancellare il tuo account?</string>
     <string name="mainactivity_deleteaccountalert_message">Sei sicuro?</string>
-    <string name="mainactivity_deleteaccountalert_positivebutton" translatable="false">Ok</string>
+    <string name="mainactivity_deleteaccountalert_positivebutton" translatable="false">OK</string>
     <string name="mainactivity_accountdeleted">Account eliminato!</string>
     <string name="mainactivity_deleteaccountalert_negativebutton" translatable="false">Cancel</string>
     <string name="mainactivity_logoutalert">Vuoi sloggarti?</string>
     <string name="mainactivity_logoutalert_message">Sei sicuro?</string>
-    <string name="mainactivity_logoutalert_positivebutton" translatable="false">Ok</string>
+    <string name="mainactivity_logoutalert_positivebutton" translatable="false">OK</string>
     <string name="mainactivity_logoutalert_negativebutton" translatable="false">Cancel</string>
 
     <!-- RegistrationActivity.java -->

@@ -30,11 +30,11 @@ public class DefaultActivity extends AppCompatActivity {
         // Instanciating an array list (you don't need to do this,
         // you already have yours).
         List<String> default_array = new ArrayList<String>();
-        default_array.add("PiediBus");
-        default_array.add("Allenamento Nuoto");
-        default_array.add("Allenamento Calcio");
-        default_array.add("Partita Tennis");
-        default_array.add("Corso di canto");
+        default_array.add(""+getString(R.string.createNewActivity_piedibus));
+        default_array.add(""+getString(R.string.createNewActivity_allenamentonuoto));
+        default_array.add(""+getString(R.string.createNewActivity_allenamentocalcio));
+        default_array.add(""+getString(R.string.createNewActivity_partitatennis));
+        default_array.add(""+getString(R.string.createNewActivity_corsocanto));
 
 
         // This is the array adapter, it takes the context of the activity as a
@@ -51,7 +51,7 @@ public class DefaultActivity extends AppCompatActivity {
         btn_default.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String info = "Personalizzata";
+                String info = ""+getString(R.string.createNewActivity_personalizzata);
                 Intent intent = new Intent(DefaultActivity.this, activity_createNewActivities.class);
                 intent.putExtra("key",info);
                 startActivity(intent);
@@ -66,31 +66,31 @@ public class DefaultActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 if(position == 0){
-                    String info = "PiediBus";
+                    String info = ""+getString(R.string.createNewActivity_piedibus);
                     Intent intent = new Intent(DefaultActivity.this, activity_createNewActivities.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else if(position == 1){
-                    String info = "AllenamentoNuoto";
+                    String info = ""+getString(R.string.createNewActivity_allenamentonuoto);
                     Intent intent = new Intent(DefaultActivity.this, activity_createNewActivities.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else if(position == 2){
-                    String info = "AllenamentoCalcio";
+                    String info = ""+getString(R.string.createNewActivity_allenamentocalcio);
                     Intent intent = new Intent(DefaultActivity.this, activity_createNewActivities.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else if(position == 3){
-                    String info = "PartitaTennis";
+                    String info = ""+getString(R.string.createNewActivity_partitatennis);
                     Intent intent = new Intent(DefaultActivity.this, activity_createNewActivities.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else{
-                    String info = "CorsoCanto";
+                    String info = ""+getString(R.string.createNewActivity_corsocanto);
                     Intent intent = new Intent(DefaultActivity.this, activity_createNewActivities.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
