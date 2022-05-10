@@ -44,7 +44,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class activity_createNewActivities extends AppCompatActivity {
+public class CreateNewActivitiesActivity extends AppCompatActivity {
 
     private AlertDialog.Builder builder;
 
@@ -78,7 +78,7 @@ public class activity_createNewActivities extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_activities);
+        setContentView(R.layout.create_new_activities_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -180,14 +180,14 @@ public class activity_createNewActivities extends AppCompatActivity {
         sdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(activity_createNewActivities.this,dateS,dateStart.get(Calendar.YEAR),dateStart.get(Calendar.MONTH),dateStart.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CreateNewActivitiesActivity.this,dateS,dateStart.get(Calendar.YEAR),dateStart.get(Calendar.MONTH),dateStart.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
         fdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(activity_createNewActivities.this,dateE,dateEnd.get(Calendar.YEAR),dateEnd.get(Calendar.MONTH),dateEnd.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CreateNewActivitiesActivity.this,dateE,dateEnd.get(Calendar.YEAR),dateEnd.get(Calendar.MONTH),dateEnd.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 

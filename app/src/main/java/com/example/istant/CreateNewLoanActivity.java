@@ -24,7 +24,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.istant.model.SupportFunctions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,7 +42,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class activity_createNewLoan extends AppCompatActivity {
+public class CreateNewLoanActivity extends AppCompatActivity {
 
     private ImageView loanImage;
     private EditText name;
@@ -64,7 +63,7 @@ public class activity_createNewLoan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_loan);
+        setContentView(R.layout.create_new_loan_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -129,14 +128,14 @@ public class activity_createNewLoan extends AppCompatActivity {
         sdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(activity_createNewLoan.this,dateS,dateStart.get(Calendar.YEAR),dateStart.get(Calendar.MONTH),dateStart.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CreateNewLoanActivity.this,dateS,dateStart.get(Calendar.YEAR),dateStart.get(Calendar.MONTH),dateStart.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
         fdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(activity_createNewLoan.this,dateE,dateEnd.get(Calendar.YEAR),dateEnd.get(Calendar.MONTH),dateEnd.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CreateNewLoanActivity.this,dateE,dateEnd.get(Calendar.YEAR),dateEnd.get(Calendar.MONTH),dateEnd.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -177,7 +176,7 @@ public class activity_createNewLoan extends AppCompatActivity {
                                         sdate.getText().clear();
                                         fdate.getText().clear();
 
-                                        Toast.makeText(activity_createNewLoan.this,getString(R.string.activitycreatenewloan_addedloansuccessfully),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CreateNewLoanActivity.this,getString(R.string.activitycreatenewloan_addedloansuccessfully),Toast.LENGTH_SHORT).show();
                                     }
                                     else {
                                         fdate.setError(getString(R.string.activitycreatenewloan_errordate));

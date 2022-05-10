@@ -24,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.Date;
 
-public class activity_visualizeusers extends AppCompatActivity {
+public class VisualizeUsersActivity extends AppCompatActivity {
 
     // Variables needed to change the picture of the activity
     private ImageView profilePic_visualizeuser;
@@ -50,7 +50,7 @@ public class activity_visualizeusers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizeusers);
+        setContentView(R.layout.visualizeusers_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -103,7 +103,7 @@ public class activity_visualizeusers extends AppCompatActivity {
         }
 
         if (!user.getPhotoUrl().equals("")) {
-            Glide.with(activity_visualizeusers.this).load(user.getPhotoUrl()).into(profilePic_visualizeuser);
+            Glide.with(VisualizeUsersActivity.this).load(user.getPhotoUrl()).into(profilePic_visualizeuser);
         }
 
         tv_name.setText(user.getName());

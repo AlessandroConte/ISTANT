@@ -1,43 +1,21 @@
 package com.example.istant;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.istant.model.Loan;
-import com.example.istant.model.User;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList;
-
-public class activity_guide extends AppCompatActivity{
+public class GuideActivity extends AppCompatActivity{
 
     private WebView view;
     private AlertDialog.Builder builder;
@@ -46,7 +24,7 @@ public class activity_guide extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__guide);
+        setContentView(R.layout.guide_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {

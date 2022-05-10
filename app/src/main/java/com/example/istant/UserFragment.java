@@ -42,10 +42,10 @@ import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_user#newInstance} factory method to
+ * Use the {@link UserFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_user extends Fragment {
+public class UserFragment extends Fragment {
 
     // variable needed to make the fields editable.
     private boolean flag;
@@ -93,7 +93,7 @@ public class fragment_user extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_user() {
+    public UserFragment() {
         // Required empty public constructor
     }
 
@@ -106,8 +106,8 @@ public class fragment_user extends Fragment {
      * @return A new instance of fragment UserFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_user newInstance(String param1, String param2) {
-        fragment_user fragment = new fragment_user();
+    public static UserFragment newInstance(String param1, String param2) {
+        UserFragment fragment = new UserFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -128,7 +128,7 @@ public class fragment_user extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_user, container, false);
+        View view = inflater.inflate(R.layout.user_fragment, container, false);
 
         if (savedInstanceState == null) {
             getParentFragmentManager()
@@ -222,7 +222,7 @@ public class fragment_user extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 photoURL = documentSnapshot.get("photoURL").toString();
                 if (!photoURL.equals("")) {
-                    Glide.with(fragment_user.this).load(photoURL).into(profilePic_userfragment);
+                    Glide.with(UserFragment.this).load(photoURL).into(profilePic_userfragment);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -321,7 +321,7 @@ public class fragment_user extends Fragment {
         btnManageChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity().getApplicationContext(), activity_settings_managechildren.class));
+                startActivity(new Intent(getActivity().getApplicationContext(), SettingsManageChildrenActivity.class));
             }
         });
 

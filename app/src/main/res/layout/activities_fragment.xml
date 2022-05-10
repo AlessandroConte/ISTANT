@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment_loans">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="-29dp"
         tools:layout_editor_absoluteY="54dp"
-        tools:context=".fragment_activities">
+        tools:context=".ActivitiesFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -23,13 +24,13 @@
             android:layout_marginRight="5dp">
 
             <TextView
-                android:id="@+id/textView_loans"
+                android:id="@+id/textView_activities"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:width="150dp"
                 android:gravity="center"
-                android:text="@string/fragmentLoans_textView_title"
+                android:text="@string/fragmentActivities_textView_title"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -37,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
-                android:id="@+id/switch_loans"
+                android:id="@+id/switch_activities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="150dp"
@@ -45,16 +46,16 @@
                 android:height="48dp"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:text="@string/fragmentloans_switchLoans"
+                android:text="@string/fragmentActivities_switchActivities"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.971"
-                app:layout_constraintStart_toEndOf="@+id/textView_loans"
+                app:layout_constraintStart_toEndOf="@+id/textView_activities"
                 tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck"
                 tools:layout_editor_absoluteY="-7dp" />
 
             <Button
-                android:id="@+id/fragmentloans_btnNewLoan"
+                android:id="@+id/fragmentActivities_btnNewLoan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -63,11 +64,11 @@
                 android:width="350dp"
                 android:height="60dp"
                 android:gravity="center"
-                android:text="@string/fragmentLoans_buttonNewLoan"
+                android:text="@string/fragmentActivities_buttonNewActivity"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_loans" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_activities" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,22 +76,15 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/swipeRefresh_fragmentLoans"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="100dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-
+            android:id="@+id/swipeRefresh_fragmentActivities"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             >
-
             <ListView
-                android:id="@+id/listView_fragmentloans"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="#FFFFFF"
-                android:dividerHeight="7dp"
+            android:id="@+id/listView_fragmentactivities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
                 />
-
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>

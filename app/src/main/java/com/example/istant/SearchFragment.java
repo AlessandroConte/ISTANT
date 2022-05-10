@@ -28,10 +28,10 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_search#newInstance} factory method to
+ * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_search extends Fragment {
+public class SearchFragment extends Fragment {
 
     private ListView userslistview;
     private FirebaseFirestore db;
@@ -50,7 +50,7 @@ public class fragment_search extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_search() {
+    public SearchFragment() {
         // Required empty public constructor
     }
 
@@ -64,8 +64,8 @@ public class fragment_search extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     // TODO: da cancellare???
-    public static fragment_search newInstance(String param1, String param2) {
-        fragment_search fragment = new fragment_search();
+    public static SearchFragment newInstance(String param1, String param2) {
+        SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -84,7 +84,7 @@ public class fragment_search extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+        View rootView = inflater.inflate(R.layout.search_fragment, container, false);
         context = container.getContext();
 
         db = FirebaseFirestore.getInstance();
@@ -112,7 +112,7 @@ public class fragment_search extends Fragment {
         userslistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_visualizeusers.class);
+                Intent intent = new Intent(getActivity(), VisualizeUsersActivity.class);
                 intent.putExtra("user", users.get(i));
                 startActivity(intent);
             }

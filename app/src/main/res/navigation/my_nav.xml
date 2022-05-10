@@ -7,32 +7,32 @@
 
     <fragment
         android:id="@+id/fragment_activities"
-        android:name="com.example.istant.fragment_activities"
+        android:name="com.example.istant.ActivitiesFragment"
         android:label="fragment_activities"
-        tools:layout="@layout/fragment_activities" />
+        tools:layout="@layout/activities_fragment" />
     <fragment
         android:id="@+id/fragment_search"
-        android:name="com.example.istant.fragment_search"
+        android:name="com.example.istant.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/search_fragment" />
     <fragment
         android:id="@+id/fragment_groupinfo"
-        android:name="com.example.istant.fragment_groupinfo"
+        android:name="com.example.istant.GroupInfoFragment"
         android:label="fragment_groupinfo"
-        tools:layout="@layout/fragment_groupinfo" />
+        tools:layout="@layout/groupinfo_fragment" />
     <fragment
         android:id="@+id/fragment_user"
-        android:name="com.example.istant.fragment_user"
+        android:name="com.example.istant.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/user_fragment" />
     <fragment
         android:id="@+id/fragment_loans"
-        android:name="com.example.istant.fragment_loans"
+        android:name="com.example.istant.LoansFragment"
         android:label="fragment_loans"
-        tools:layout="@layout/fragment_loans" />
+        tools:layout="@layout/loans_fragment" />
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.istant.MainActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/main_activity" />
 </navigation>

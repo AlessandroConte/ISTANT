@@ -37,7 +37,7 @@ import java.util.Locale;
 
 
 
-public class activity_settings_managechildren extends AppCompatActivity {
+public class SettingsManageChildrenActivity extends AppCompatActivity {
 
     private ListView childrenlistview;
     private FirebaseFirestore db;
@@ -52,7 +52,7 @@ public class activity_settings_managechildren extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_managechildren);
+        setContentView(R.layout.settings_managechildren_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -100,7 +100,7 @@ public class activity_settings_managechildren extends AppCompatActivity {
         newChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_settings_managechildren.this, activity_createNewChild.class);
+                Intent intent = new Intent(SettingsManageChildrenActivity.this, CreateNewChildActivity.class);
                 startActivity(intent);
             }
         });

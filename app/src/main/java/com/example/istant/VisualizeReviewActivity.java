@@ -55,7 +55,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualize_review);
+        setContentView(R.layout.visualizereview_activity);
 
         // This allows to the actionbar to have a back button pointing to the last activity you visited
         ActionBar actionBar = getSupportActionBar();
@@ -132,7 +132,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                 deleteComment(db, "scoreActivityUser", idDelete);
                 Toast.makeText(getApplicationContext(), getString(R.string.visualizereviewactivity_successfulldelete), Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(VisualizeReviewActivity.this, activity_visualizeactivities.class);
+                Intent intent = new Intent(VisualizeReviewActivity.this, VisualizeActivitiesActivity.class);
                 intent.putExtra("activity", activity);
                 startActivity(intent);
             }
@@ -144,7 +144,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), activity_visualizeactivities.class);
+        Intent myIntent = new Intent(getApplicationContext(), VisualizeActivitiesActivity.class);
         myIntent.putExtra("activity", activity);
         startActivity(myIntent);
         this.finish();
@@ -153,7 +153,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(VisualizeReviewActivity.this, activity_visualizeactivities.class);
+        Intent intent = new Intent(VisualizeReviewActivity.this, VisualizeActivitiesActivity.class);
         intent.putExtra("activity", activity);
         startActivity(intent);
         this.finish();

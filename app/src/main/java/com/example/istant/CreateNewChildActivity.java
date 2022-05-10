@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class activity_createNewChild extends AppCompatActivity {
+public class CreateNewChildActivity extends AppCompatActivity {
 
     private Calendar dateBorn = Calendar.getInstance();
 
@@ -55,7 +55,7 @@ public class activity_createNewChild extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_child);
+        setContentView(R.layout.create_new_child_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -103,7 +103,7 @@ public class activity_createNewChild extends AppCompatActivity {
         dateB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(activity_createNewChild.this,dateBo,dateBorn.get(Calendar.YEAR),dateBorn.get(Calendar.MONTH),dateBorn.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CreateNewChildActivity.this,dateBo,dateBorn.get(Calendar.YEAR),dateBorn.get(Calendar.MONTH),dateBorn.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -158,8 +158,8 @@ public class activity_createNewChild extends AppCompatActivity {
                                             rb_sex_f.setChecked(false);
                                             dateB.getText().clear();
 
-                                            Toast.makeText(activity_createNewChild.this,getString(R.string.activitycreatenewchild_addedchild),Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(activity_createNewChild.this, activity_settings_managechildren.class);
+                                            Toast.makeText(CreateNewChildActivity.this,getString(R.string.activitycreatenewchild_addedchild),Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(CreateNewChildActivity.this, SettingsManageChildrenActivity.class);
                                             startActivity(intent);
 
                                         }

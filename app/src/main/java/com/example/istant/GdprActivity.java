@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class activity_GDPR extends AppCompatActivity {
+public class GdprActivity extends AppCompatActivity {
 
     private WebView view;
     private AlertDialog.Builder builder;
@@ -23,7 +23,7 @@ public class activity_GDPR extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gdpr);
+        setContentView(R.layout.gdpr_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -71,7 +71,7 @@ public class activity_GDPR extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent i=new Intent(activity_GDPR.this,RegistrationActivity.class);
+        Intent i=new Intent(GdprActivity.this,RegistrationActivity.class);
         startActivity(i);
         finish();
         super.onBackPressed();

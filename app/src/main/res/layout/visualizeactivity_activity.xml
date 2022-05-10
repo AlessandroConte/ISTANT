@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_createNewActivities">
-
+    tools:context=".VisualizeActivitiesActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/createNewActivity_imageview_image"
+                android:id="@+id/visualizeactivities_image"
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
@@ -39,29 +38,29 @@
                 android:layout_height="match_parent">
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/createNewActivity_textview_name"
+                        android:id="@+id/visualizeactivities_address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/createNewActivity_textview_name"
+                        android:text="@string/textview_address"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/creteNewActivity_edittext_name"
+                        android:id="@+id/visualizeactivities_edittext_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:enabled="true"
+                        android:enabled="false"
                         android:gravity="center"
-                        android:layout_column="1"
-                        android:inputType="text"  />
+                        android:inputType="textPersonName"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </TableRow>
 
                 <TableRow
@@ -71,26 +70,78 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/createNewActivity_textview_description"
+                        android:id="@+id/visualizeactivities_dateStart"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/createNewActivity_textview_description"
+                        android:text="@string/textview_dateStart"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/creteNewActivity_edittext_description"
+                        android:id="@+id/visualizeactivities_edittext_dateStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivities_dateEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_dateEnd"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/visualizeactivities_edittext_dateEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="textPersonName"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/visualizeactivities_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minWidth="150dp"
+                        android:text="@string/textview_description"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/visualizeactivities_edittext_description"
                         android:layout_width="wrap_content"
                         android:layout_height="124dp"
                         android:ems="10"
-                        android:enabled="true"
+                        android:enabled="false"
                         android:gravity="center"
                         android:inputType="textMultiLine"
-                        android:minHeight="100dp"
-                        android:text="" />
+                        android:minHeight="100dp" />
                 </TableRow>
 
+                <!--
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -98,33 +149,23 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/createNewActivity_textview_datestart"
+                        android:id="@+id/visualizeactivities_rating"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/createNewActivity_textview_datestart"
+                        android:text="@string/visualizeactivity_textview_rating"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
-                    <EditText
-                        android:id="@+id/createNewActivity_edittext_datestart"
+                    <RatingBar
+                        android:id="@+id/visualizeactivities_ratingbar_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:enabled="true"
                         android:gravity="center"
-                        android:layout_column="1"
-                        android:inputType="date"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </TableRow> -->
 
-                        />
-
-                </TableRow>
-
-
+                <!--
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -132,73 +173,62 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/createNewActivity_textview_dateend"
+                        android:id="@+id/visualizeactivities_participants"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/createNewActivity_textview_dateend"
+                        android:text="@string/textview_participants"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
-                    <EditText
-                        android:id="@+id/createNewActivity_edittext_dateend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:enabled="true"
-                        android:gravity="center"
-                        android:layout_column="1"
-                        android:inputType="date"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:gravity="center"
-                        android:id="@+id/createNewActivity_textview_address"
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:minWidth="150dp"
-                        android:text="@string/createNewActivity_textview_address"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
+                        android:layout_height="100dp">
 
-                    <EditText
-                        android:id="@+id/createNewActivity_edittext_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:enabled="true"
-                        android:gravity="center"
-                        android:layout_column="1" />
+                        <ListView
+                            android:id="@+id/list_parecipants"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        </ListView>
+
+                    </ScrollView>
+
                 </TableRow>
-
-
-
+                -->
             </TableLayout>
 
 
-            <Button
-                android:id="@+id/createNewActivity_button_create"
-                android:layout_width="387dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
-                android:gravity="center_horizontal"
-                android:text="@string/createNewLoan_buttontext_create"
-                android:textAlignment="center" />
+                android:layout_marginBottom="50dp">
 
+            <Button
+                android:id="@+id/visualizeactivities_buttonReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RECENSIONI" />
+
+            <Button
+                android:id="@+id/visualizeactivities_buttonParticipate"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_participate" />
+
+            <Button
+                android:id="@+id/visualizeactivities_buttonDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="@string/button_delete" />
+
+            </RelativeLayout>
 
         </LinearLayout>
-
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

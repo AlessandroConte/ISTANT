@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class activity_visualizeactivities extends AppCompatActivity {
+public class VisualizeActivitiesActivity extends AppCompatActivity {
 
     // Firebase variables
     private DocumentReference documentReference;
@@ -60,7 +60,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualize_activity);
+        setContentView(R.layout.visualizeactivity_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -148,9 +148,9 @@ public class activity_visualizeactivities extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     deleteActivity(db, "activity", id);
-                    Toast.makeText(activity_visualizeactivities.this, getString(R.string.activityvisualizeactivities_eliminazioneconsuccesso), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VisualizeActivitiesActivity.this, getString(R.string.activityvisualizeactivities_eliminazioneconsuccesso), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(activity_visualizeactivities.this, MainActivity.class);
+                    Intent intent = new Intent(VisualizeActivitiesActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -165,9 +165,9 @@ public class activity_visualizeactivities extends AppCompatActivity {
                 public void onClick(View view) {
                     personInCharge.add(auth.getCurrentUser().getUid());
                     updateDatabaseField(db, "activity", id, "personInCharge", personInCharge);
-                    Toast.makeText(activity_visualizeactivities.this, getString(R.string.activityvisualizeactivities_oraseiunorganizzatore), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VisualizeActivitiesActivity.this, getString(R.string.activityvisualizeactivities_oraseiunorganizzatore), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(activity_visualizeactivities.this, MainActivity.class);
+                    Intent intent = new Intent(VisualizeActivitiesActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -182,7 +182,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
         button_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_visualizeactivities.this, VisualizeReviewActivity.class);
+                Intent intent = new Intent(VisualizeActivitiesActivity.this, VisualizeReviewActivity.class);
                 intent.putExtra("activity", activity);
                 startActivity(intent);
             }
@@ -203,7 +203,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(activity_visualizeactivities.this, MainActivity.class);
+        Intent intent = new Intent(VisualizeActivitiesActivity.this, MainActivity.class);
         startActivity(intent);
         this.finish();
         return true;
@@ -211,7 +211,7 @@ public class activity_visualizeactivities extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(activity_visualizeactivities.this, MainActivity.class);
+        Intent intent = new Intent(VisualizeActivitiesActivity.this, MainActivity.class);
         startActivity(intent);
         this.finish();
         super.onBackPressed();

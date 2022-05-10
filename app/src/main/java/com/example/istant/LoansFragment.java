@@ -3,7 +3,6 @@ package com.example.istant;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -11,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +35,10 @@ import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_loans#newInstance} factory method to
+ * Use the {@link LoansFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_loans extends Fragment {
+public class LoansFragment extends Fragment {
 
     private ListView loanslistview;
     private FirebaseFirestore db;
@@ -63,7 +61,7 @@ public class fragment_loans extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_loans() {
+    public LoansFragment() {
         // Required empty public constructor
     }
 
@@ -76,8 +74,8 @@ public class fragment_loans extends Fragment {
      * @return A new instance of fragment fragment_prestiti.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_loans newInstance(String param1, String param2) {
-        fragment_loans fragment = new fragment_loans();
+    public static LoansFragment newInstance(String param1, String param2) {
+        LoansFragment fragment = new LoansFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -97,7 +95,7 @@ public class fragment_loans extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_loans, container, false);
+        View rootView = inflater.inflate(R.layout.loans_fragment, container, false);
         context = container.getContext();
 
         db = FirebaseFirestore.getInstance();
@@ -119,7 +117,7 @@ public class fragment_loans extends Fragment {
         newLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, activity_createNewLoan.class));
+                startActivity(new Intent(context, CreateNewLoanActivity.class));
             }
         });
 
@@ -176,7 +174,7 @@ public class fragment_loans extends Fragment {
         loanslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_visualizeloans.class);
+                Intent intent = new Intent(getActivity(), VisualizeLoansActivity.class);
                 intent.putExtra("loan", loanArrayList.get(i));
                 startActivity(intent);
             }

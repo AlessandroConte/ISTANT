@@ -24,25 +24,25 @@
             android:name=".VisualizeReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_createNewLoan"
+            android:name=".CreateNewLoanActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_GDPR"
+            android:name=".GdprActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_visualizeloans"
+            android:name=".VisualizeLoansActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_newchild"
+            android:name=".NewChildActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_settings_managechildren"
+            android:name=".SettingsManageChildrenActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_visualizeusers"
+            android:name=".VisualizeUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_guide"
+            android:name=".GuideActivity"
             android:exported="false" />
         <activity
             android:name=".ResetPasswordActivity"
@@ -51,13 +51,13 @@
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_visualizeactivities"
+            android:name=".VisualizeActivitiesActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_createNewActivities"
+            android:name=".CreateNewActivitiesActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_createNewChild"
+            android:name=".CreateNewChildActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

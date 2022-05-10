@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_visualizeactivities">
+    tools:context=".VisualizeLoansActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,10 +20,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/visualizeactivities_image"
+                android:id="@+id/visualizeloans_image"
                 android:layout_width="225dp"
                 android:layout_height="251dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,29 +39,30 @@
                 android:layout_height="match_parent">
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp">
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivities_address"
+                        android:id="@+id/visualizeloans_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/textview_address"
+                        android:text="Nome"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/visualizeactivities_edittext_address"
+                        android:id="@+id/visualizeloans_edittext_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
-                        android:inputType="textPersonName"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        android:inputType="textMultiLine"
+                        android:minHeight="100dp"
+                        android:text="" />
                 </TableRow>
 
                 <TableRow
@@ -70,78 +72,26 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivities_dateStart"
+                        android:id="@+id/visualizeloans_description"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/textview_dateStart"
+                        android:text="@string/visualizeloans_textview_description"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/visualizeactivities_edittext_dateStart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:gravity="center"
-                        android:inputType="textPersonName"
-                        tools:ignore="TouchTargetSizeCheck" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:gravity="center"
-                        android:id="@+id/visualizeactivities_dateEnd"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:minWidth="150dp"
-                        android:text="@string/textview_dateEnd"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/visualizeactivities_edittext_dateEnd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:gravity="center"
-                        android:inputType="textPersonName"
-                        tools:ignore="TouchTargetSizeCheck" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:gravity="center"
-                        android:id="@+id/visualizeactivities_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:minWidth="150dp"
-                        android:text="@string/textview_description"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/visualizeactivities_edittext_description"
+                        android:id="@+id/visualizeloans_edittext_description"
                         android:layout_width="wrap_content"
                         android:layout_height="124dp"
                         android:ems="10"
                         android:enabled="false"
                         android:gravity="center"
                         android:inputType="textMultiLine"
-                        android:minHeight="100dp" />
+                        android:minHeight="100dp"
+                        android:text="" />
                 </TableRow>
 
-                <!--
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -149,23 +99,27 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivities_rating"
+                        android:id="@+id/visualizeloans_datestart"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/visualizeactivity_textview_rating"
+                        android:text="@string/visualizeloans_textview_datestart"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
-                    <RatingBar
-                        android:id="@+id/visualizeactivities_ratingbar_rating"
+                    <EditText
+                        android:id="@+id/visualizeloans_edittext_datestart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:focusableInTouchMode="false"
                         android:gravity="center"
-                        tools:ignore="SpeakableTextPresentCheck" />
-                </TableRow> -->
+                        android:layout_column="1" />
 
-                <!--
+                </TableRow>
+
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -173,62 +127,72 @@
 
                     <TextView
                         android:gravity="center"
-                        android:id="@+id/visualizeactivities_participants"
+                        android:id="@+id/visualizeloans_dateend"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:minWidth="150dp"
-                        android:text="@string/textview_participants"
+                        android:text="@string/visualizeloans_textview_dateend"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp">
-
-                        <ListView
-                            android:id="@+id/list_parecipants"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                        </ListView>
-
-                    </ScrollView>
+                    <EditText
+                        android:id="@+id/visualizeloans_edittext_dateend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:focusableInTouchMode="false"
+                        android:layout_column="1" />
 
                 </TableRow>
-                -->
+
+
+
+
+
+
             </TableLayout>
 
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="50dp">
-
-            <Button
-                android:id="@+id/visualizeactivities_buttonReview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RECENSIONI" />
+                android:orientation="horizontal"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="10dp">
+
+
 
             <Button
-                android:id="@+id/visualizeactivities_buttonParticipate"
-                android:layout_marginTop="50dp"
-                android:layout_width="match_parent"
+                android:id="@+id/visualizeloans_buttonModifySave"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="@string/button_participate" />
+                android:text="@string/button_modifysave" />
+
 
             <Button
-                android:id="@+id/visualizeactivities_buttonDelete"
-                android:layout_width="match_parent"
+                android:id="@+id/visualizeloans_buttonDelete"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+
+                android:layout_marginLeft="20dp"
                 android:text="@string/button_delete" />
 
-            </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:gravity="center"
+                android:id="@+id/visualizeloans_buttonParticipate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="50dp"
+                android:text="@string/visualizeloans_participate" />
 
         </LinearLayout>
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

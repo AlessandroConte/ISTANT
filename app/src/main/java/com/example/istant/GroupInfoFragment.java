@@ -9,10 +9,10 @@ import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_groupinfo#newInstance} factory method to
+ * Use the {@link GroupInfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_groupinfo extends Fragment {
+public class GroupInfoFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +23,7 @@ public class fragment_groupinfo extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_groupinfo() {
+    public GroupInfoFragment() {
         // Required empty public constructor
     }
 
@@ -36,8 +36,8 @@ public class fragment_groupinfo extends Fragment {
      * @return A new instance of fragment fragment_groupinfo.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_groupinfo newInstance(String param1, String param2) {
-        fragment_groupinfo fragment = new fragment_groupinfo();
+    public static GroupInfoFragment newInstance(String param1, String param2) {
+        GroupInfoFragment fragment = new GroupInfoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,7 +59,7 @@ public class fragment_groupinfo extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_groupinfo, container, false);
+        View rootView =  inflater.inflate(R.layout.groupinfo_fragment, container, false);
 
         ImageView image = (ImageView)rootView.findViewById(R.id.gr_image);
         image.setImageResource(R.drawable.grouplogo);

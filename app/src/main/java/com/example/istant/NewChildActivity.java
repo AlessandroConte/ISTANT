@@ -11,14 +11,14 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 
-public class activity_newchild extends AppCompatActivity {
+public class NewChildActivity extends AppCompatActivity {
 
     private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newchild);
+        setContentView(R.layout.newchild_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   // Check if there is connectivity

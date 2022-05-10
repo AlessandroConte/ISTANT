@@ -77,7 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.registration_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -167,7 +167,7 @@ public class RegistrationActivity extends AppCompatActivity {
         tv_gdpr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), activity_GDPR.class));
+                startActivity(new Intent(getApplicationContext(), GdprActivity.class));
                 finish();
             }
         });

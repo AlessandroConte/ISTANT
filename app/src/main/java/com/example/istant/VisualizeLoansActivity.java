@@ -50,7 +50,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class activity_visualizeloans extends AppCompatActivity {
+public class VisualizeLoansActivity extends AppCompatActivity {
 
     private AlertDialog.Builder builder;
 
@@ -84,7 +84,7 @@ public class activity_visualizeloans extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizeloans);
+        setContentView(R.layout.visualizeloans_activity);
 
         // Definition of the Action Bar with the back button
         ActionBar actionBar = getSupportActionBar();
@@ -226,14 +226,14 @@ public class activity_visualizeloans extends AppCompatActivity {
                         loan_startDate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                new DatePickerDialog(activity_visualizeloans.this, dateS, dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH)).show();
+                                new DatePickerDialog(VisualizeLoansActivity.this, dateS, dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH)).show();
                             }
                         });
 
                         loan_endDate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                new DatePickerDialog(activity_visualizeloans.this, dateE, dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH)).show();
+                                new DatePickerDialog(VisualizeLoansActivity.this, dateE, dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH)).show();
                             }
                         });
 
@@ -261,12 +261,12 @@ public class activity_visualizeloans extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_successfullupdate), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_successfullupdate), Toast.LENGTH_LONG).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_failedupdate), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_failedupdate), Toast.LENGTH_LONG).show();
                                 }
                             });
                         } catch (ParseException e) {
@@ -288,9 +288,9 @@ public class activity_visualizeloans extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     deleteDatabaseDocument(db, "loan", loan.getId());
-                    Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_successfullloandeletion), Toast.LENGTH_LONG).show();
+                    Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_successfullloandeletion), Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
+                    Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -324,18 +324,18 @@ public class activity_visualizeloans extends AppCompatActivity {
                     if (free) {
                         updateDatabaseField(db, "loan", loan.getId(), "isTaken", 1);
                         updateDatabaseField(db, "loan", loan.getId(), "takenUser", auth.getCurrentUser().getUid());
-                        Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_loanstartedcorrectly), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_loanstartedcorrectly), Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
+                        Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
                     else {
                         updateDatabaseField(db, "loan", loan.getId(), "isTaken", 0);
                         updateDatabaseField(db, "loan", loan.getId(), "takenUser", "");
-                        Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_gavebackloan), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_gavebackloan), Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(activity_visualizeloans.this, MainActivity.class);
+                        Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -400,17 +400,17 @@ public class activity_visualizeloans extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(activity_visualizeloans.this, getString(R.string.activityvisualizeloans_loadingerror), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_loadingerror), Toast.LENGTH_SHORT).show();
                             }
                         });
-                        Snackbar.make(activity_visualizeloans.this.findViewById(android.R.id.content), getString(R.string.activityvisualizeloans_imageloaded),Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(VisualizeLoansActivity.this.findViewById(android.R.id.content), getString(R.string.activityvisualizeloans_imageloaded),Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(activity_visualizeloans.this.getApplicationContext(), getString(R.string.activityvisualizeloans_unsuccessfullupload), Toast.LENGTH_LONG).show();
+                        Toast.makeText(VisualizeLoansActivity.this.getApplicationContext(), getString(R.string.activityvisualizeloans_unsuccessfullupload), Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

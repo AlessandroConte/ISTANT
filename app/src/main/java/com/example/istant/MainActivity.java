@@ -19,10 +19,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         // Check if there is connectivity
         if(isConnectingToInternet(getApplicationContext()) == false)   {
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton(getString(R.string.mainactivity_guidealert_positivebutton), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            startActivity(new Intent(getApplicationContext(), activity_guide.class));
+                            startActivity(new Intent(getApplicationContext(), GuideActivity.class));
                         }
                     })
                     .setNegativeButton(getString(R.string.mainactivity_guidealert_negativebutton), new DialogInterface.OnClickListener() {
@@ -170,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         // User Guide option
         if (item.getItemId() == R.id.userguide) {
-            startActivity(new Intent(getApplicationContext(), activity_guide.class));
+            startActivity(new Intent(getApplicationContext(), GuideActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

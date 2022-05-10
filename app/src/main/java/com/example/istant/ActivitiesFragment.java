@@ -31,10 +31,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_activities#newInstance} factory method to
+ * Use the {@link ActivitiesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_activities extends Fragment{
+public class ActivitiesFragment extends Fragment{
 
     private ListView activitieslistview;
     private FirebaseFirestore db;
@@ -56,7 +56,7 @@ public class fragment_activities extends Fragment{
     private String mParam1;
     private String mParam2;
 
-    public fragment_activities() {
+    public ActivitiesFragment() {
         // Required empty public constructor
     }
 
@@ -69,8 +69,8 @@ public class fragment_activities extends Fragment{
      * @return A new instance of fragment fragment_attivita.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_activities newInstance(String param1, String param2) {
-        fragment_activities fragment = new fragment_activities();
+    public static ActivitiesFragment newInstance(String param1, String param2) {
+        ActivitiesFragment fragment = new ActivitiesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -90,7 +90,7 @@ public class fragment_activities extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_activities, container, false);
+        View rootView = inflater.inflate(R.layout.activities_fragment, container, false);
         context = container.getContext();
 
         db = FirebaseFirestore.getInstance();
@@ -168,7 +168,7 @@ public class fragment_activities extends Fragment{
         activitieslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), activity_visualizeactivities.class);
+                Intent intent = new Intent(getActivity(), VisualizeActivitiesActivity.class);
                 intent.putExtra("activity", activityArrayList.get(i));
                 startActivity(intent);
             }
