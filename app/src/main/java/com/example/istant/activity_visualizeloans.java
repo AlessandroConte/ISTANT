@@ -302,14 +302,14 @@ public class activity_visualizeloans extends AppCompatActivity {
             button_delete.setVisibility(View.INVISIBLE);
 
             if (loan.getIsTaken() == 0) {
-                button_partecipate.setBackgroundColor(Color.GREEN);
+                button_partecipate.setBackgroundColor(Color.parseColor("#006400"));
                 free = true;
             }
 
             if (loan.getIsTaken() == 1) {
                 if (loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
                     button_partecipate.setText(getString(R.string.activityvisualizeloans_giveback));
-                    button_partecipate.setBackgroundColor(Color.YELLOW);
+                    button_partecipate.setBackgroundColor(Color.parseColor("#F6BE00"));
                 }
                 else {
                     button_partecipate.setText(getString(R.string.activityvisualizeloans_notavailable));

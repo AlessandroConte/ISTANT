@@ -122,6 +122,7 @@
                         android:cursorVisible="false"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
+                        android:textAlignment="center"
                         />
 
                 </TableRow>
@@ -158,6 +159,7 @@ a
                         android:cursorVisible="false"
                         android:focusable="true"
                         android:focusableInTouchMode="false"
+                        android:textAlignment="center"
                         />
                 </TableRow>
 
