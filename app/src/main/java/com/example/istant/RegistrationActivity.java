@@ -293,7 +293,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void uploadPicture() {
         final ProgressDialog pd = new ProgressDialog(this);
-        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(fAuth.getCurrentUser()).getUid() + "/" + fAuth.getCurrentUser().getUid());
+        StorageReference ref = storageReference.child("profilePictures/" + Objects.requireNonNull(fAuth.getCurrentUser()).getUid() + "/" + fAuth.getCurrentUser().getUid());
 
         pd.setTitle(getString(R.string.registrationactivity_imageuploading));
         pd.show();

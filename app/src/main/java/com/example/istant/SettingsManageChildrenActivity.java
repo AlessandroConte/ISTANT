@@ -23,6 +23,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.istant.model.Child;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -120,8 +122,8 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Child child = children.get(i);
-                Log.d("ID = ", "" + child.getId());
                 deleteDatabaseDocument(db, "child", child.getId());
+                Toast.makeText(SettingsManageChildrenActivity.this, "Figlio eliminato con successo", Toast.LENGTH_SHORT).show();
                 children.remove(i);
                 return true;
             }

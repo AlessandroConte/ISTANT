@@ -315,8 +315,6 @@ public class UserFragment extends Fragment {
             }
         });
 
-
-
         // ManageChildren
         btnManageChildren.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -340,7 +338,6 @@ public class UserFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     // The following functions are called when the user clicks the button for changing the image picture
 
@@ -389,7 +386,7 @@ public class UserFragment extends Fragment {
     // using the function defined above
     private void uploadPicture() {
         final ProgressDialog pd = new ProgressDialog(getActivity());
-        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
+        StorageReference ref = storageReference.child("profilePictures/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
 
         pd.setTitle(getString(R.string.activityvisualizeloans_caricamentoimmagine));
         pd.show();

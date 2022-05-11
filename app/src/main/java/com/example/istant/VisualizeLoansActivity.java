@@ -381,7 +381,7 @@ public class VisualizeLoansActivity extends AppCompatActivity {
 
     private void uploadPicture() {
         final ProgressDialog pd = new ProgressDialog(this);
-        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
+        StorageReference ref = storageReference.child("loans/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
 
         pd.setTitle(getString(R.string.activityvisualizeloans_caricamentoimmagine));
         pd.show();

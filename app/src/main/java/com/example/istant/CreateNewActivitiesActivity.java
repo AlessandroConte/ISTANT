@@ -284,7 +284,7 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
             });
 
     private void uploadPicture() {
-        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
+        StorageReference ref = storageReference.child("activities/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
         ref.putFile(actUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -339,7 +339,6 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
                         Log.w("TAG", "Error adding document", e);
                     }
                 });
-
     }
 
     private void updateLabelStart(){

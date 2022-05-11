@@ -218,7 +218,7 @@ public class CreateNewLoanActivity extends AppCompatActivity {
             });
 
     private void uploadPicture() {
-        StorageReference ref = storageReference.child("images/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
+        StorageReference ref = storageReference.child("loans/" + Objects.requireNonNull(auth.getCurrentUser()).getUid() + "/" + auth.getCurrentUser().getUid());
         ref.putFile(loanUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
