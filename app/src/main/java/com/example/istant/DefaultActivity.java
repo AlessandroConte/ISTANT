@@ -29,11 +29,11 @@ public class DefaultActivity extends AppCompatActivity {
         // Instanciating an array list (you don't need to do this,
         // you already have yours).
         List<String> default_array = new ArrayList<String>();
-        default_array.add(""+getString(R.string.createNewActivity_piedibus));
-        default_array.add(""+getString(R.string.createNewActivity_allenamentonuoto));
-        default_array.add(""+getString(R.string.createNewActivity_allenamentocalcio));
-        default_array.add(""+getString(R.string.createNewActivity_partitatennis));
-        default_array.add(""+getString(R.string.createNewActivity_corsocanto));
+        default_array.add(getResources().getString(R.string.createNewActivity_piedibus));
+        default_array.add(getResources().getString(R.string.createNewActivity_allenamentonuoto));
+        default_array.add(getResources().getString(R.string.createNewActivity_allenamentocalcio));
+        default_array.add(getResources().getString(R.string.createNewActivity_partitatennis));
+        default_array.add(getResources().getString(R.string.createNewActivity_corsocanto));
 
 
         // This is the array adapter, it takes the context of the activity as a
@@ -46,50 +46,47 @@ public class DefaultActivity extends AppCompatActivity {
 
         lv.setAdapter(arrayAdapter);
 
-
         btn_default.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String info = ""+getString(R.string.createNewActivity_personalizzata);
+                String info = getResources().getString(R.string.createNewActivity_personalizzata);
                 Intent intent = new Intent(DefaultActivity.this, CreateNewActivitiesActivity.class);
                 intent.putExtra("key",info);
                 startActivity(intent);
             }
         });
 
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if(position == 0){
-                    String info = ""+getString(R.string.createNewActivity_piedibus);
+                    String info = getString(R.string.createNewActivity_piedibus);
                     Intent intent = new Intent(DefaultActivity.this, CreateNewActivitiesActivity.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else if(position == 1){
-                    String info = ""+getString(R.string.createNewActivity_allenamentonuoto);
+                    String info = getString(R.string.createNewActivity_allenamentonuoto);
                     Intent intent = new Intent(DefaultActivity.this, CreateNewActivitiesActivity.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else if(position == 2){
-                    String info = ""+getString(R.string.createNewActivity_allenamentocalcio);
+                    String info = getString(R.string.createNewActivity_allenamentocalcio);
                     Intent intent = new Intent(DefaultActivity.this, CreateNewActivitiesActivity.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else if(position == 3){
-                    String info = ""+getString(R.string.createNewActivity_partitatennis);
+                    String info = getString(R.string.createNewActivity_partitatennis);
                     Intent intent = new Intent(DefaultActivity.this, CreateNewActivitiesActivity.class);
                     intent.putExtra("key",info);
                     startActivity(intent);
                 }
                 else{
-                    String info = ""+getString(R.string.createNewActivity_corsocanto);
+                    String info = getString(R.string.createNewActivity_corsocanto);
                     Intent intent = new Intent(DefaultActivity.this, CreateNewActivitiesActivity.class);
                     intent.putExtra("key",info);
                     startActivity(intent);

@@ -86,7 +86,7 @@
     <string name="activitycreatenewloan_giveenddate">End Date required</string>
     <string name="activitycreatenewloan_addedloansuccessfully">Loan added successfully</string>
     <string name="activitycreatenewloan_errordate">Start Date needs to be prior to the end date</string>
-    <string name="activitycreatenewloan_createnewloan">Create a new load</string>
+    <string name="activitycreatenewloan_createnewloan">Create a new loan</string>
     <string name="activityguideactionbarname">Guide</string>
     <string name="activitysettingsmanagechildren_managechildren">Manage your Children</string>
     <string name="activityvisualizeactivities_actionbarname">Activity page</string>
@@ -150,7 +150,7 @@
     <string name="createNewActivity_allenamentonuoto_description">Lets bring owr children to the swimming practice</string>
     <string name="createNewActivity_allenamentocalcio_description">Lets bring owr children to the football practice</string>
     <string name="createNewActivity_partitatennis_description">Lets bring owr children to the tennis match</string>
-    <string name="createNewActivity_personalizzata_description">Lets bring owr children to the singing course</string>
+    <string name="createNewActivity_corsocanto_description">Lets bring owr children to the singing course</string>
     <string name="createNewActivity_fornisciindirizzo">Address required</string>
     <string name="activityvisualizeactivities_eliminazioneconsuccesso">Deleted succesfully</string>
     <string name="activityvisualizeactivities_oraseiunorganizzatore">Now you are a manager!</string>

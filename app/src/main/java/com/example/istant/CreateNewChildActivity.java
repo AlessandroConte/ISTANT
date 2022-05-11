@@ -50,7 +50,7 @@ public class CreateNewChildActivity extends AppCompatActivity {
     // button used to modify / save the user information
     private Button btnCreate;
 
-    private int gender = 0;
+    private int gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,17 +151,10 @@ public class CreateNewChildActivity extends AppCompatActivity {
                                             dateBorn.setTime(dateFormat.parse(dateB.getText().toString()));
 
                                             childWrite(null, dateBorn, gender, "", textName, textSurname, FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
-
-                                            tv_name.getText().clear();
-                                            tv_surname.getText().clear();
-                                            rb_sex_m.setChecked(false);
-                                            rb_sex_f.setChecked(false);
-                                            dateB.getText().clear();
-
                                             Toast.makeText(CreateNewChildActivity.this,getString(R.string.activitycreatenewchild_addedchild),Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(CreateNewChildActivity.this, SettingsManageChildrenActivity.class);
                                             startActivity(intent);
-
+                                            finish();
                                         }
                                         catch (Exception e){
                                             e.printStackTrace();

@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,8 +37,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-
-
 public class SettingsManageChildrenActivity extends AppCompatActivity {
 
     private ListView childrenlistview;
@@ -45,9 +45,9 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
     private ArrayAdapter<Child> adapter;
     private ArrayList<Child> children;
     private Button newChild;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private AlertDialog.Builder builder;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
 
         childrenlistview = findViewById(R.id.settings_managechildren_childrenlist);
         newChild = findViewById(R.id.btn_createchildren);
+        swipeRefreshLayout = findViewById(R.id.swipeRefresh_manageChildrenActivity);
 
         adapter = new ChildrenAdapter(this, new ArrayList<Child>());
         childrenlistview.setAdapter(adapter);
@@ -96,6 +97,16 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
         children = new ArrayList<Child>();
 
         displayChildren();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                children.clear();
+                displayChildren();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         newChild.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +194,7 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
 
             childName.setText(child.getName());
             childSurname.setText(child.getSurname());
-            if(child.getGender() == 1){
+            if(child.getGender() == 0){
                 childGender.setText("M");
             }
             else{

@@ -54,7 +54,6 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
     private EditText sdate;
     private EditText fdate;
     private EditText address;
-    private EditText person;
 
     private Button btn;
 
@@ -67,12 +66,12 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
 
     private String default_id;
 
-    private final String piedibus = getString(R.string.createNewActivity_piedibus);
-    private final String allnuoto = getString(R.string.createNewActivity_allenamentonuoto);
-    private final String allcalc = getString(R.string.createNewActivity_allenamentocalcio);
-    private final String partten = getString(R.string.createNewActivity_partitatennis);
-    private final String corscant = getString(R.string.createNewActivity_corsocanto);
-    private final String personal = getString(R.string.createNewActivity_personalizzata);
+    private String piedibus;
+    private String allnuoto;
+    private String allcalc;
+    private String partten;
+    private String corscant;
+    private String personal;
 
 
     @Override
@@ -114,6 +113,13 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
         address = findViewById(R.id.createNewActivity_edittext_address);
         btn = findViewById(R.id.createNewActivity_button_create);
 
+        piedibus = getString(R.string.createNewActivity_piedibus);
+        allnuoto = getString(R.string.createNewActivity_allenamentonuoto);
+        allcalc = getString(R.string.createNewActivity_allenamentocalcio);
+        partten = getString(R.string.createNewActivity_partitatennis);
+        corscant = getString(R.string.createNewActivity_corsocanto);
+        personal = getString(R.string.createNewActivity_personalizzata);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key");
@@ -143,7 +149,7 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
 
         if(default_id.equals(corscant)){
             name.setText(getString(R.string.createNewActivity_corsocanto));
-            description.setText(getString(R.string.createNewActivity_personalizzata_description));
+            description.setText(getString(R.string.createNewActivity_corsocanto_description));
         }
 
         if(default_id.equals(personal)){
@@ -227,16 +233,10 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
 
                                         if (dateStart.compareTo(dateEnd) <= 0) {
                                             actWrite(textName, addr, dateStart, dateEnd, textDescr, uic, actUrl, FirebaseFirestore.getInstance());
-
-                                            actUrl = "";
-                                            actImage.setImageDrawable(null);
-                                            name.getText().clear();
-                                            description.getText().clear();
-                                            sdate.getText().clear();
-                                            fdate.getText().clear();
-                                            address.getText().clear();
-
                                             Toast.makeText(getApplicationContext(), getString(R.string.createnewactivity_addactivity),Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(CreateNewActivitiesActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
                                         }
                                         else {
                                             fdate.setError(getString(R.string.activitycreatenewloan_errordate));

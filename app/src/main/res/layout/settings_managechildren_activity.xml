@@ -48,14 +48,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tv2_children"
         tools:context=".ActivitiesFragment">
 
-
-        <ListView
-            android:id="@+id/settings_managechildren_childrenlist"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh_manageChildrenActivity"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:listitem="@layout/listadapter_children" />
+            android:layout_height="match_parent" >
+            <ListView
+                android:id="@+id/settings_managechildren_childrenlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/listadapter_children" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -131,7 +131,7 @@
     <string name="createNewActivity_allenamentonuoto_description">Portiamo i figli all\'allenamento di nuoto</string>
     <string name="createNewActivity_allenamentocalcio_description">Portiamo i figli all\'allenamento di calcio</string>
     <string name="createNewActivity_partitatennis_description">Portiamo i figli alla partita di tennis</string>
-    <string name="createNewActivity_personalizzata_description">Portiamo i figli al corso di canto</string>
+    <string name="createNewActivity_corsocanto_description">Portiamo i figli al corso di canto</string>
     <string name="createNewActivity_fornisciindirizzo">L\'indirizzo deve essere fornito!</string>
 
     <!-- activity_createNewChild.java -->

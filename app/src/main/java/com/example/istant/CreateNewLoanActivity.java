@@ -168,15 +168,10 @@ public class CreateNewLoanActivity extends AppCompatActivity {
 
                                     if (dateStart.compareTo(dateEnd) <= 0) {
                                         loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, 0, "", FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
-
-                                        loanUrl = "";
-                                        loanImage.setImageDrawable(null);
-                                        name.getText().clear();
-                                        description.getText().clear();
-                                        sdate.getText().clear();
-                                        fdate.getText().clear();
-
                                         Toast.makeText(CreateNewLoanActivity.this,getString(R.string.activitycreatenewloan_addedloansuccessfully),Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(CreateNewLoanActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }
                                     else {
                                         fdate.setError(getString(R.string.activitycreatenewloan_errordate));
