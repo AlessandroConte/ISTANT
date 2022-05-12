@@ -42,6 +42,7 @@
             android:id="@+id/swipeRefresh_fragmentSearch"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="70dp"
             >
             <ListView
                 android:id="@+id/users_listView"
