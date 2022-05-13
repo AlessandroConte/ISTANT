@@ -72,9 +72,9 @@
     <string name="visualizeloans_participate">Prendi in prestito</string>
 
     <!-- fragment_groupinfo.xml -->
-    <string name="groupinfo_nomegruppo">Grest Estivo del paese</string>
+    <string name="groupinfo_nomegruppo">Gruppo classe 3ª A</string>
     <string name="groupinfo_descrizionegruppo">Descrizione Gruppo</string>
-    <string name="groupinfo_textview_descrizione">Gruppo di gestione del Grest Estivo del paese. Qui ci organizzeremo per gestire tutte le attività!</string>
+    <string name="groupinfo_textview_descrizione">Gruppo riservato ai genitori dei ragazzi della classe 3ª sezione A di Venezia. Qui si si possono gestire i vari prestiti di oggetti e la partecipazione dei propri figli alle attività autogestite. </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

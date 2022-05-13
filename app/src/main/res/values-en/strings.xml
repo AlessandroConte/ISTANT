@@ -44,9 +44,9 @@
     <string name="visualizeloans_textview_datestart">Start Date</string>
     <string name="visualizeloans_textview_dateend">End Date</string>
     <string name="visualizeloans_participate">Take a Loan</string>
-    <string name="groupinfo_nomegruppo">"City Summer Camp "</string>
+    <string name="groupinfo_nomegruppo">3 A class group</string>
     <string name="groupinfo_descrizionegruppo">Group Description</string>
-    <string name="groupinfo_textview_descrizione">Managing group of the City Summer Camp. Here we will get together to organize all the different activities that will be available!</string>
+    <string name="groupinfo_textview_descrizione">Group reserved for parents of children in class 3 rd section A of Venice. Here you can manage the various loans of objects and the participation of your children in self-managed activities.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="guide">Guide</string>
     <string name="activityGDPR_title">GDPR - ISTANT App</string>
