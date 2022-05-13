@@ -160,4 +160,7 @@
     <string name="settings_managechildren_activity_subtitle">Press to delete a child.</string>
     <string name="default_activity_title">Choose a default activity or create a presonalized one</string>
     <string name="default_activity_personalizedactivity">Personalized activity</string>
+    <string name="search_tv24">Search user\'s name</string>
+    <string name="search_hint">Insert user\'s name</string>
+    <string name="settings_btn">Create child</string>
 </resources>

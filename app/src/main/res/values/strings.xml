@@ -13,6 +13,7 @@
     <!-- settings_managechildren_activity.xml -->
     <string name="settings_managechildren_activity_title">LISTA DEI FIGLI</string>
     <string name="settings_managechildren_activity_subtitle">Tieni premuto per cancellare un figlio</string>
+    <string name="settings_btn">Crea figlio</string>
 
     <!-- default_activity.xml -->
     <string name="default_activity_title">Scegli un\'attività di default o crea la tua attività personalizzata</string>
@@ -54,6 +55,8 @@
 
     <!-- fragment_search.xml -->
     <string name="search_button_buttonsearch">Cerca</string>
+    <string name="search_tv24">Cerca l\'utente per nome</string>
+    <string name="search_hint">Inserisci nome utente</string>
 
     <!-- fragment_loans.xml -->
     <string name="fragmentLoans_buttonNewLoan">Crea un nuovo prestito</string>
@@ -74,7 +77,7 @@
     <!-- fragment_groupinfo.xml -->
     <string name="groupinfo_nomegruppo">Gruppo classe 3ª A</string>
     <string name="groupinfo_descrizionegruppo">Descrizione Gruppo</string>
-    <string name="groupinfo_textview_descrizione">Gruppo riservato ai genitori dei ragazzi della classe 3ª sezione A di Venezia. Qui si si possono gestire i vari prestiti di oggetti e la partecipazione dei propri figli alle attività autogestite. </string>
+    <string name="groupinfo_textview_descrizione">Gruppo riservato ai genitori dei ragazzi della classe 3ª sezione A di Venezia. Qui si possono gestire i vari prestiti di oggetti e la partecipazione dei propri figli alle attività autogestite. </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
