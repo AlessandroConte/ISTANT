@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         reset_alert = new AlertDialog.Builder(this);
         inflater = this.getLayoutInflater();
 
-
+        /*
         // Alert dialog that prompts the user to view the guide page
         if ( ((JustLoggedIn) this.getApplication()).getJustLogged() == true ) {
             builder = new AlertDialog.Builder(this);
@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     );
             builder.show();
         }
+         */
     }
 
     // Function that creates the menu in the upper right corner of the screen
