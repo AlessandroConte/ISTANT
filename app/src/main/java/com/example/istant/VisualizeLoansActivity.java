@@ -303,6 +303,18 @@ public class VisualizeLoansActivity extends AppCompatActivity {
 
             if (loan.getIsTaken() == 0) {
                 button_partecipate.setBackgroundColor(Color.parseColor("#006400"));
+                button_partecipate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateDatabaseField(db, "loan", loan.getId(), "isTaken", 1);
+                        updateDatabaseField(db, "loan", loan.getId(), "takenUser", auth.getCurrentUser().getUid());
+                        Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_loanstartedcorrectly), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
                 free = true;
             }
 
@@ -310,6 +322,19 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                 if (loan.getTakenUser().equals(auth.getCurrentUser().getUid())) {
                     button_partecipate.setText(getString(R.string.activityvisualizeloans_giveback));
                     button_partecipate.setBackgroundColor(Color.parseColor("#F6BE00"));
+
+                    button_partecipate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            updateDatabaseField(db, "loan", loan.getId(), "isTaken", 0);
+                            updateDatabaseField(db, "loan", loan.getId(), "takenUser", "");
+                            Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_gavebackloan), Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
                 }
                 else {
                     button_partecipate.setText(getString(R.string.activityvisualizeloans_notavailable));
@@ -317,7 +342,7 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                     button_partecipate.setClickable(false);
                 }
             }
-
+            /*
             button_partecipate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -341,7 +366,7 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                     }
                 }
             });
-
+             */
         }
     }
 
