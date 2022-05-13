@@ -133,12 +133,18 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
     // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
     // visualizing before going in the settings activity
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        Intent intent = new Intent(SettingsManageChildrenActivity.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SettingsManageChildrenActivity.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+        super.onBackPressed();
     }
 
     private void displayChildren () {
