@@ -248,5 +248,4 @@ public class CreateNewChildActivity extends AppCompatActivity {
         Log.i("false",s);
         return false;
     }
-
 }
