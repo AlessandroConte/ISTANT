@@ -230,7 +230,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                                             id = fAuth.getCurrentUser().getUid();
 
-                                                            userWrite(id, indirizzo, dataNascita, email, CF, sesso, "", nome, cognome, numeroTelefono, db);
+                                                            uploadPicture();
+
+                                                            userWrite(id, indirizzo, dataNascita, email, CF, sesso, nome, cognome, numeroTelefono, db);
                                                             Toast.makeText(RegistrationActivity.this, getString(R.string.registrationactivity_datacorrect), Toast.LENGTH_SHORT).show();
                                                             uploadPicture();
 
@@ -353,7 +355,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public static void userWrite(String id, String address, Timestamp dateBorn, String email,
-                                 String fiscalCode, int gender, String photoUrl, String name,
+                                 String fiscalCode, int gender,String name,
                                  String surname, String telephoneNumber, FirebaseFirestore db) {
         Map<String, Object> user = new HashMap<>();
 
@@ -362,7 +364,6 @@ public class RegistrationActivity extends AppCompatActivity {
         user.put("email", email);
         user.put("fiscalCode", fiscalCode);
         user.put("gender", gender);
-        user.put("photoURL", photoUrl);
         user.put("name", name);
         user.put("surname", surname);
         user.put("telephoneNumber", telephoneNumber);
