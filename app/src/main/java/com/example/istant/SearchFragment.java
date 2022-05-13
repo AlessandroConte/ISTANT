@@ -22,6 +22,7 @@ import com.example.istant.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
@@ -164,6 +165,7 @@ public class SearchFragment extends Fragment {
 
     private void displayUsers () {
         db.collection("user")
+                .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

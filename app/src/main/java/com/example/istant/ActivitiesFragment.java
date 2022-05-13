@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
@@ -178,8 +179,9 @@ public class ActivitiesFragment extends Fragment{
     }
 
     private void displayActivities () {
-        db.collection("activity").
-                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("activity")
+                .orderBy("dateEnd", Query.Direction.ASCENDING)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
