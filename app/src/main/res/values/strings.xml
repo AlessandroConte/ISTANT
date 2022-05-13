@@ -52,6 +52,7 @@
     <string name="button_delete">Elimina</string>
     <string name="textview_delete">Elimina</string>
     <string name="visualizeactivity_textview_rating">Valutazione</string>
+    <string name="visualize_activity_reviewsbtn">Recensioni</string>
 
     <!-- fragment_search.xml -->
     <string name="search_button_buttonsearch">Cerca</string>
@@ -188,12 +189,16 @@
     <string name="activityvisualizeloans_unsuccessfullupload">Caricamento fallito!</string>
     <string name="activityvisualizeloans_titoloactivity">Scheda del prestito</string>
     <string name="activityvisualizeloans_caricamentoimmagine">Caricamento immagine...</string>
+    <string name="activityvisualizeloans_name">Nome</string>
 
     <!-- activity_visualizeusers.java -->
     <string name="activityvisualizeusers_actionbarname">Profilo utente</string>
 
     <!-- CreateReviewActivity.java -->
     <string name="createreviewactivity_insertcomment">Necessario inserire un commento nella recensione!</string>
+    <string name="createreview_tv">Lascia la tua recensione</string>
+    <string name="createreview_hint">Recensione</string>
+    <string name="createreview_send">Invia</string>
 
     <!-- LoginActivity.java -->
     <string name="loginactivity_alertpasswortreset_name">Vuoi reimpostare la password?</string>
@@ -242,6 +247,9 @@
     <string name="visualizereviewactivity_actionbarname">Recensioni</string>
     <string name="visualizereviewactivity_successfulldelete">Cancellazione avvenuta con successo!</string>
     <string name="visualizereviewactivity_servererror">Errore lato server, ci scusiamo per il disagio!</string>
+    <string name="visualizereviewactivity_info">Info: nel caso avessi creato un commento e desideri cambiarlo devi cancellare e rifarlo</string>
+    <string name="visualizereviewactivity_createReview">Crea recensione</string>
+    <string name="visualizereviewactivity_deleteReview">Elimina recensione</string>
 
     <!-- fragment_activities.java -->
     <string name="fragmentactivities_loading">Caricamento..</string>
@@ -255,6 +263,5 @@
     <string name="fragmentuser_imageuploadedcorrectly">Immagine caricata.</string>
     <string name="fragmentuser_percentage">Percentuale</string>
     <string name="createNewActivity_textview_personInCharge">Responsabile</string>
-
 
 </resources>

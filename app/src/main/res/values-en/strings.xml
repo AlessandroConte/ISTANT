@@ -163,4 +163,12 @@
     <string name="search_tv24">Search user\'s name</string>
     <string name="search_hint">Insert user\'s name</string>
     <string name="settings_btn">Create child</string>
+    <string name="activityvisualizeloans_name">Name</string>
+    <string name="visualize_activity_reviewsbtn">Reviews</string>
+    <string name="visualizereviewactivity_info">Info: if you want to change your review, you have to delete it first</string>
+    <string name="visualizereviewactivity_createReview">Create a review</string>
+    <string name="visualizereviewactivity_deleteReview">Delete review</string>
+    <string name="createreview_tv">Leave here your review</string>
+    <string name="createreview_hint">Review</string>
+    <string name="createreview_send">Send</string>
 </resources>

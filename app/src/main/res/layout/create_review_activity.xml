@@ -10,7 +10,7 @@
         android:id="@+id/tv_create_rev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lascia la tua recensione"
+        android:text="@string/createreview_tv"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="76dp"
-        android:text="Invia"
+        android:text="@string/createreview_send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -100,7 +100,7 @@
         android:paddingRight="10dp"
 
         android:ems="10"
-        android:hint="Recensione"
+        android:hint="@string/createreview_hint"
 
 
         android:gravity="top|start"

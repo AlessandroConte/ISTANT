@@ -207,11 +207,11 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="50dp">
 
-            <Button
-                android:id="@+id/visualizeactivities_buttonReview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RECENSIONI" />
+                <Button
+                    android:id="@+id/visualizeactivities_buttonReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/visualize_activity_reviewsbtn" />
 
             <Button
                 android:id="@+id/visualizeactivities_buttonParticipate"
