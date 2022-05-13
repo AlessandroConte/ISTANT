@@ -156,4 +156,8 @@
     <string name="activityvisualizeactivities_oraseiunorganizzatore">Now you are a manager!</string>
     <string name="activityvisualizeloans_titoloactivity">Loan description</string>
     <string name="activityvisualizeloans_caricamentoimmagine">Image loading...</string>
+    <string name="settings_managechildren_activity_title">CHILDREN\'S LIST</string>
+    <string name="settings_managechildren_activity_subtitle">Press to delete a child.</string>
+    <string name="default_activity_title">Choose a default activity or create a presonalized one</string>
+    <string name="default_activity_personalizedactivity">Personalized activity</string>
 </resources>

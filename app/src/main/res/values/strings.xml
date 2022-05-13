@@ -10,6 +10,13 @@
     <string name="checkinternetconnectivity_alertnointernetmessage_checkagain">Controlla nuovamente</string>
     <string name="checkinternetconnectivity_alertnointernetmessage_close">Chiudi</string>
 
+    <!-- settings_managechildren_activity.xml -->
+    <string name="settings_managechildren_activity_title">LISTA DEI FIGLI</string>
+    <string name="settings_managechildren_activity_subtitle">Tieni premuto per cancellare un figlio</string>
+
+    <!-- default_activity.xml -->
+    <string name="default_activity_title">Scegli un\'attività di default o crea la tua attività personalizzata</string>
+    <string name="default_activity_personalizedactivity">Attività personalizzata</string>
 
     <!-- fragment_user.xml -->
     <string name="fragmentuser_textview_name">Nome</string>

@@ -124,6 +124,7 @@
         <entry key="app/src/main/res/layout/activity_visualizeactivities_visualizeparticipants.xml" value="0.3328804347826087" />
         <entry key="app/src/main/res/layout/activity_visualizeloans.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_visualizeusers.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/default_activity.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_activities.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_gr_info.xml" value="0.2807971014492754" />
@@ -132,9 +133,11 @@
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/listadapter_children.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/listadapter_loan.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/listadapter_user.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/reset_pop.xml" value="0.3328804347826087" />
+        <entry key="app/src/main/res/layout/settings_managechildren_activity.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.35260416666666666" />
