@@ -128,7 +128,7 @@
     <!-- activity_createNewActivities.java -->
     <string name="createnewactivity_addactivity">Aggiunto con successo</string>
     <string name="createnewactivity_actionbar">Crea una nuova attività</string>
-    <string name="createNewActivity_piedibus">PiediBus</string>
+    <string name="createNewActivity_piedibus">PediBus</string>
     <string name="createNewActivity_allenamentonuoto">Allenamento Nuoto</string>
     <string name="createNewActivity_allenamentocalcio">Allenamento Calcio</string>
     <string name="createNewActivity_partitatennis">Partita Tennis</string>
