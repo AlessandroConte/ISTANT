@@ -225,6 +225,7 @@
     <string name="mainactivity_logoutalert_negativebutton" translatable="false">Cancel</string>
 
     <!-- RegistrationActivity.java -->
+    <string name="registrazionactivity_photorequired">La foto è richiesta</string>
     <string name="registrationactivity_namerequired">Il nome è richiesto</string>
     <string name="registrationactivity_surnamerequired">Il cognome è richiesto</string>
     <string name="registrationactivity_dateofbirthrequired">La data di nascita deve essere fornita!</string>

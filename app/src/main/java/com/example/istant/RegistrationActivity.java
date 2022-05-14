@@ -193,66 +193,66 @@ public class RegistrationActivity extends AppCompatActivity {
                 pass = regPass.getText().toString();
                 confpass = regConfPass.getText().toString();
 
-                if (nome.isEmpty()){
-                    regNome.setError(getString(R.string.registrationactivity_namerequired));
+                if (regPic.getDrawable() == null) {
+                    regButton.setError(getString(R.string.registrazionactivity_photorequired));
                 }
                 else {
-                    if (cognome.isEmpty()){
-                        regCognome.setError(getString(R.string.registrationactivity_surnamerequired));
+                    if (nome.isEmpty()){
+                        regNome.setError(getString(R.string.registrationactivity_namerequired));
                     }
                     else {
-                        if (regBornDate.getText().toString().isEmpty()) {
-                            regBornDate.setError(getString(R.string.registrationactivity_dateofbirthrequired));
+                        if (cognome.isEmpty()){
+                            regCognome.setError(getString(R.string.registrationactivity_surnamerequired));
                         }
                         else {
-                            if(email.isEmpty()){
-                                regEmail.setError(getString(R.string.registrationactivity_emailrequired));
+                            if (regBornDate.getText().toString().isEmpty()) {
+                                regBornDate.setError(getString(R.string.registrationactivity_dateofbirthrequired));
                             }
                             else {
-                                if(pass.isEmpty()){
-                                    regPass.setError(getString(R.string.registrationactivity_passwordrequired));
+                                if(email.isEmpty()){
+                                    regEmail.setError(getString(R.string.registrationactivity_emailrequired));
                                 }
                                 else {
-                                    if(confpass.isEmpty()){
-                                        regConfPass.setError(getString(R.string.registrationactivity_passwordrequired));
+                                    if(pass.isEmpty()){
+                                        regPass.setError(getString(R.string.registrationactivity_passwordrequired));
                                     }
                                     else {
-                                        if (!pass.equals(confpass)){
-                                            regConfPass.setError(getString(R.string.registrationactivity_samepasswordsrequired));
+                                        if(confpass.isEmpty()){
+                                            regConfPass.setError(getString(R.string.registrationactivity_passwordrequired));
                                         }
                                         else {
-                                            try {
-                                                dateBorn.setTime(dateFormat.parse(regBornDate.getText().toString()));
-                                            } catch (ParseException e) {
-                                                e.printStackTrace();
+                                            if (!pass.equals(confpass)){
+                                                regConfPass.setError(getString(R.string.registrationactivity_samepasswordsrequired));
                                             }
-                                            dataNascita = new Timestamp(dateBorn.getTime());
-
-                                            fAuth.createUserWithEmailAndPassword(email, pass)
-                                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                                        @Override
-                                                        public void onSuccess(AuthResult authResult) {
-                                                            // AdditionalUserInfo info = authResult.getAdditionalUserInfo();
-                                                            // String id = info.getProviderId();
-
-                                                            id = fAuth.getCurrentUser().getUid();
-
-                                                            uploadPicture();
-
-                                                            userWrite(id, indirizzo, dataNascita, email, CF, sesso, nome, cognome, numeroTelefono, db);
-                                                            Toast.makeText(RegistrationActivity.this, getString(R.string.registrationactivity_datacorrect), Toast.LENGTH_SHORT).show();
-                                                            uploadPicture();
-
-                                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                            startActivity(intent);
-                                                            finish();
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(RegistrationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            else {
+                                                try {
+                                                    dateBorn.setTime(dateFormat.parse(regBornDate.getText().toString()));
+                                                } catch (ParseException e) {
+                                                    e.printStackTrace();
                                                 }
-                                            });
+                                                dataNascita = new Timestamp(dateBorn.getTime());
+
+                                                fAuth.createUserWithEmailAndPassword(email, pass)
+                                                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                                            @Override
+                                                            public void onSuccess(AuthResult authResult) {
+                                                                id = fAuth.getCurrentUser().getUid();
+
+                                                                userWrite(id, indirizzo, dataNascita, email, CF, sesso, "", nome, cognome, numeroTelefono, db);
+                                                                uploadPicture();
+
+                                                                Toast.makeText(RegistrationActivity.this, getString(R.string.registrationactivity_datacorrect), Toast.LENGTH_SHORT).show();
+                                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                startActivity(intent);
+                                                                finish();
+                                                            }
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Toast.makeText(RegistrationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+                                            }
                                         }
                                     }
                                 }
@@ -303,20 +303,16 @@ public class RegistrationActivity extends AppCompatActivity {
             });
 
     private void uploadPicture() {
-        final ProgressDialog pd = new ProgressDialog(this);
         StorageReference ref = storageReference.child("profilePictures/" + Objects.requireNonNull(fAuth.getCurrentUser()).getUid() + "/" + fAuth.getCurrentUser().getUid());
-
-        pd.setTitle(getString(R.string.registrationactivity_imageuploading));
-        pd.show();
 
         ref.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        pd.dismiss();
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
+                                Log.d("UPDATE DELLA FOTO", "update completato!");
                                 updateDatabaseField(db,"user", id,"photoURL", uri.toString());
                             }
                         })
@@ -332,15 +328,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        pd.dismiss();
                         Toast.makeText(RegistrationActivity.this.getApplicationContext(), getString(R.string.registrationactivity_uploadfailed), Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double progressPercent = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        pd.setMessage( getString(R.string.registrationactivity_percentage) + ": " + (int) progressPercent + "%");
                     }
                 });
     }
@@ -364,7 +352,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     // This method implements the writing of a new user in the db
-    public static void userWrite(String id, String address, Timestamp dateBorn, String email, String fiscalCode, int gender,String name, String surname, String telephoneNumber, FirebaseFirestore db) {
+    public static void userWrite(String id, String address, Timestamp dateBorn, String email, String fiscalCode, int gender, String photoURL,String name, String surname, String telephoneNumber, FirebaseFirestore db) {
         Map<String, Object> user = new HashMap<>();
 
         user.put("address", address);
@@ -372,6 +360,7 @@ public class RegistrationActivity extends AppCompatActivity {
         user.put("email", email);
         user.put("fiscalCode", fiscalCode);
         user.put("gender", gender);
+        user.put("photoURL", photoURL);
         user.put("name", name);
         user.put("surname", surname);
         user.put("telephoneNumber", telephoneNumber);

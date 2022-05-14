@@ -171,4 +171,5 @@
     <string name="createreview_tv">Leave here your review</string>
     <string name="createreview_hint">Review</string>
     <string name="createreview_send">Send</string>
+    <string name="registrazionactivity_photorequired">Profile picture required</string>
 </resources>

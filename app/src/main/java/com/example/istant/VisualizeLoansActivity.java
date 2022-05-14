@@ -176,19 +176,8 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                 Calendar cend = Calendar.getInstance();
                 cstart.setTime(start);
                 cend.setTime(end);
-                /*
-                int year_start = cstart.get(Calendar.YEAR);
-                int year_end = cend.get(Calendar.YEAR);
-                int month_start = cstart.get(Calendar.MONTH);
-                int month_end = cend.get(Calendar.MONTH);
-                int date_start = cstart.get(Calendar.DATE);
-                int date_end = cend.get(Calendar.DATE);
 
-                 */
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
-
-                // loan_startDate.setText(String.valueOf(date_start).concat(" - ").concat(String.valueOf(month_start + 1)).concat(" - ").concat(String.valueOf(year_start)));
-                // loan_endDate.setText(String.valueOf(date_end).concat(" - ").concat(String.valueOf(month_end + 1)).concat(" - ").concat(String.valueOf(year_end)));
 
                 loan_startDate.setText(dateFormat.format(start));
                 loan_endDate.setText(dateFormat.format(end));
@@ -345,31 +334,6 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                     button_partecipate.setClickable(false);
                 }
             }
-            /*
-            button_partecipate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (free) {
-                        updateDatabaseField(db, "loan", loan.getId(), "isTaken", 1);
-                        updateDatabaseField(db, "loan", loan.getId(), "takenUser", auth.getCurrentUser().getUid());
-                        Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_loanstartedcorrectly), Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else {
-                        updateDatabaseField(db, "loan", loan.getId(), "isTaken", 0);
-                        updateDatabaseField(db, "loan", loan.getId(), "takenUser", "");
-                        Toast.makeText(VisualizeLoansActivity.this, getString(R.string.activityvisualizeloans_gavebackloan), Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(VisualizeLoansActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            });
-             */
         }
     }
 
