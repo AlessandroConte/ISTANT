@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import com.google.firebase.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,8 +22,8 @@ public class User implements Parcelable {
     private String surname;
     private String telephoneNumber;
 
-    // constructor
 
+    // CONSTRUCTORS
     protected User(Parcel in){
         this.id = in.readString();
         this.address = in.readString();
@@ -52,7 +51,8 @@ public class User implements Parcelable {
         this.telephoneNumber = telephoneNumber;
     }
 
-    // getter and setter
+
+    // GETTERS AND SETTERS
     public String getEmail() {
         return email;
     }
@@ -95,10 +95,6 @@ public class User implements Parcelable {
         return photoUrl;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -111,69 +107,16 @@ public class User implements Parcelable {
         return telephoneNumber;
     }
 
+
+    // METHODS
+    // override of toString method
     @NonNull
     @Override
     public String toString() {
         return this.name + " " + this.telephoneNumber;
     }
 
-    // methods
-    /**
-     * isUserSubstring returns a list of users who match,
-     * even partially, with the given string sub
-     * @param sub String
-     * @param lu List of User
-     * @return ArrayList of User
-     */
-    public static ArrayList<User> isUserSubstring(String sub, List<User> lu) {
-        ArrayList<User> result = new ArrayList<>();
-        for (User u: lu) {
-            String search_n = u.getName() + " " + u.getSurname();
-            String search_s = u.getSurname() + " " + u.getName();
-            String search_e = u.getEmail();
-            if (search_n.matches("(.*)" + sub + "(.*)") ||
-                    search_s.matches("(.*)" + sub + "(.*)") ||
-                    search_e.matches("(.*)" + sub + "(.*)")) {
-                result.add(u);
-            }
-        }
-        return result;
-    }
-    
-    /**
-     * isUserDeleted returns the presence or absence of a user inside a list of User, which should
-     * be coherent with the database, therefore is important that lu is updated
-     * @param id String
-     * @param lu List of User
-     * @return boolean, which indicates the absence or presence of the user
-     */
-    public static boolean isUserDeleted(String id, List<User> lu) {
-        boolean delete = true;
-        for (User u: lu) {
-            if (u.getId().equals(id)) {
-                delete = false;
-                break;
-            }
-        }
-        return delete;
-    }
-
-    /**
-     * getChild returns the User's object given its id
-     * @param idUser String
-     * @param lu List<User>
-     * @return User
-     */
-    public static User getUser(String idUser, List<User> lu) {
-        for (User u: lu) {
-            if (u.getId().equals(idUser)) {
-                return u;
-            }
-        }
-        return null;
-    }
-
-
+    // methods used to implement the Parcelable interface
     @Override
     public int describeContents() {
         return 0;

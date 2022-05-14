@@ -3,7 +3,6 @@ package com.example.istant;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,9 +16,11 @@ import android.webkit.WebViewClient;
 
 public class GuideActivity extends AppCompatActivity{
 
+    // GUI
     private WebView view;
     private AlertDialog.Builder builder;
 
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,8 @@ public class GuideActivity extends AppCompatActivity{
         }
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

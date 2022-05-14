@@ -1,7 +1,6 @@
 package com.example.istant;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,14 +8,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  This activity allows the user to choose a default activity to create
+ */
 public class DefaultActivity extends AppCompatActivity {
 
+    // GUI
     private ListView lv;
     private Button btn_default;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,6 @@ public class DefaultActivity extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.list_default);
         btn_default = (Button) findViewById(R.id.btn_default);
 
-        // Instanciating an array list (you don't need to do this,
-        // you already have yours).
         List<String> default_array = new ArrayList<String>();
         default_array.add(getResources().getString(R.string.createNewActivity_piedibus));
         default_array.add(getResources().getString(R.string.createNewActivity_allenamentonuoto));
@@ -35,14 +37,7 @@ public class DefaultActivity extends AppCompatActivity {
         default_array.add(getResources().getString(R.string.createNewActivity_partitatennis));
         default_array.add(getResources().getString(R.string.createNewActivity_corsocanto));
 
-
-        // This is the array adapter, it takes the context of the activity as a
-        // first parameter, the type of list view as a second parameter and your
-        // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                default_array );
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, default_array );
 
         lv.setAdapter(arrayAdapter);
 

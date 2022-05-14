@@ -2,6 +2,9 @@ package com.example.istant.model;
 
 import java.util.Random;
 
+/**
+ *  Class containing support functions
+ */
 public final class SupportFunctions {
 
     /**

@@ -2,13 +2,12 @@ package com.example.istant.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.google.firebase.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * entity 'loan' of the database
+ *  Entity 'loan' of the database
  */
 public class Loan implements Parcelable {
     private String id;
@@ -21,12 +20,10 @@ public class Loan implements Parcelable {
     private String takenUser;
     private String uid;
 
-    // constructors
-
+    // CONSTRUCTORS
     public Loan () {}
 
-    public Loan(String id, Timestamp dateStart, Timestamp dateEnd, String photoLoan,
-                String description, String nameLoan, int isTaken, String takenUser, String uid) {
+    public Loan (String id, Timestamp dateStart, Timestamp dateEnd, String photoLoan, String description, String nameLoan, int isTaken, String takenUser, String uid) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -48,7 +45,7 @@ public class Loan implements Parcelable {
         this.takenUser = in.readString();
     }
 
-    // getter and setter
+    // GETTERS AND SETTERS
     public String getId() {
         return id;
     }
@@ -73,10 +70,6 @@ public class Loan implements Parcelable {
         return nameLoan;
     }
 
-    public void setNameLoan(String nameLoan) {
-        this.nameLoan = nameLoan;
-    }
-
     public String getUid() {
         return uid;
     }
@@ -85,43 +78,16 @@ public class Loan implements Parcelable {
         return photoLoan;
     }
 
-    public void setPhotoLoan(String photoLoan) {
-        this.photoLoan = photoLoan;
-    }
-
     public int getIsTaken() {
         return isTaken;
-    }
-
-    public void setIsTaken(int isTaken) {
-        this.isTaken = isTaken;
     }
 
     public String getTakenUser() {
         return takenUser;
     }
 
-    public void setTakenUser(String takenUser) {
-        this.takenUser = takenUser;
-    }
 
-    // methods
-    /**
-     * loansUser returns all the loans that the user has created
-     * @param idUser String
-     * @param ll List<Loan>
-     * @return ArrayList<Loan>
-     */
-    public static ArrayList<Loan> loansUser(String idUser, List<Loan> ll) {
-        ArrayList<Loan> result = new ArrayList<>();
-        for (Loan l: ll) {
-            if (l.getUid().equals(idUser)) {
-                result.add(l);
-            }
-        }
-        return result;
-    }
-
+    // methods used to implement the Parcelable interface
     @Override
     public int describeContents() {
         return 0;

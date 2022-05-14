@@ -42,23 +42,32 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ *  This activity allows the logged user to create a new loan
+ */
 public class CreateNewLoanActivity extends AppCompatActivity {
 
+    // Firebase
+    private StorageReference storageReference;
+    private FirebaseAuth auth;
+
+    // GUI
     private ImageView loanImage;
     private EditText name;
     private EditText description;
     private EditText sdate;
     private EditText fdate;
     private Button btn;
+    private AlertDialog.Builder builder;
 
+    // other
     private Calendar dateStart = Calendar.getInstance();
     private Calendar dateEnd = Calendar.getInstance();
     private Uri loanUri;
     private String loanUrl;
-    private StorageReference storageReference;
-    private FirebaseAuth auth;
 
-    private AlertDialog.Builder builder;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +204,7 @@ public class CreateNewLoanActivity extends AppCompatActivity {
         }
     }
 
+    // The following methods allow the user to select the picture for the loan from the gallery
     private void choosePicture() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -232,8 +242,8 @@ public class CreateNewLoanActivity extends AppCompatActivity {
         });
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -243,9 +253,8 @@ public class CreateNewLoanActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void loanWrite(Calendar dateStart, Calendar dateEnd,
-                                 String description, String nameLoan,
-                                 String photoLoanObj, int isTaken, String takenUser, String uid, FirebaseFirestore db) {
+    // This method implements the writing of the created loan in the db
+    public static void loanWrite(Calendar dateStart, Calendar dateEnd, String description, String nameLoan, String photoLoanObj, int isTaken, String takenUser, String uid, FirebaseFirestore db) {
         Map<String, Object> loan = new HashMap<>();
         Date startLoan = dateStart.getTime();
         Date endLoan = dateEnd.getTime();
@@ -276,12 +285,14 @@ public class CreateNewLoanActivity extends AppCompatActivity {
                 });
     }
 
+    // This method sets the start date of the loan
     private void updateLabelStart(){
         String myFormat="dd-MM-yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
         sdate.setText(dateFormat.format(dateStart.getTime()));
     }
 
+    // This method sets the end date of the loan
     private void updateLabelEnd(){
         String myFormat="dd-MM-yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);

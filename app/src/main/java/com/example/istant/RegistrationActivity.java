@@ -46,18 +46,25 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ *  This activity allows the user to create a new account
+ */
 public class RegistrationActivity extends AppCompatActivity {
 
-    private TextView tv_gdpr;
-    private EditText regNome, regCognome, regEmail, regAddress, regPhoneNumber, regBornDate, regFiscalCode, regPass, regConfPass;
-    private ImageView regPic;
-    private RadioButton regSex_m, regSex_f;
-    private Button regButton,gotoLogin, gdpr;
-
+    // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     private StorageReference storageReference;
 
+    // GUI
+    private TextView tv_gdpr;
+    private EditText regNome, regCognome, regEmail, regAddress, regPhoneNumber, regBornDate, regFiscalCode, regPass, regConfPass;
+    private ImageView regPic;
+    private RadioButton regSex_m, regSex_f;
+    private Button regButton,gotoLogin;
+    private AlertDialog.Builder builder;
+
+    // other
     private Uri imageUri;
     private String id;
     private String nome;
@@ -72,7 +79,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private String pass;
     private String confpass;
 
-    private AlertDialog.Builder builder;
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -266,12 +273,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    // This method sets the born date os the user
     private void updateLabel() {
         String myFormat = "dd-MM-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ITALY);
         regBornDate.setText(dateFormat.format(dateBorn.getTime()));
     }
 
+    // The following methods allow the user to choose his profile picture from the gallery
     private void choosePicture() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -336,8 +345,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
     }
 
-    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,
-                                               String idDocument, String nameField, T value) {
+    // This method implements the updating of the field of the given document in the db
+    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName, String idDocument, String nameField, T value) {
         db.collection(collectionName).document(idDocument)
                 .update(nameField, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>(){
@@ -354,9 +363,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
     }
 
-    public static void userWrite(String id, String address, Timestamp dateBorn, String email,
-                                 String fiscalCode, int gender,String name,
-                                 String surname, String telephoneNumber, FirebaseFirestore db) {
+    // This method implements the writing of a new user in the db
+    public static void userWrite(String id, String address, Timestamp dateBorn, String email, String fiscalCode, int gender,String name, String surname, String telephoneNumber, FirebaseFirestore db) {
         Map<String, Object> user = new HashMap<>();
 
         user.put("address", address);

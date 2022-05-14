@@ -3,7 +3,6 @@ package com.example.istant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,19 +17,23 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ *  This activity allows the user either to log in the application, to create a new account or to re-set the password if forgotten
+ */
 public class LoginActivity extends AppCompatActivity {
 
-    Button createAccountBtn, loginButton, forgetPasswordButton;
-    EditText username, password;
-    FirebaseAuth fAuth;
-    AlertDialog.Builder reset_alert;
-    LayoutInflater inflater;
-
+    // GUI
+    private Button createAccountBtn, loginButton, forgetPasswordButton;
+    private EditText username, password;
+    private FirebaseAuth fAuth;
+    private AlertDialog.Builder reset_alert;
+    private LayoutInflater inflater;
     private AlertDialog.Builder builder;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,16 +171,11 @@ public class LoginActivity extends AppCompatActivity {
         return false;
     }
 
-
     protected void onStart(){
         super.onStart();
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
-        }
-        else {
-            // this piece of code signals that the user is logging in.
-            ((JustLoggedIn) this.getApplication()).setJustLogged(true);
         }
     }
 }

@@ -3,7 +3,6 @@ package com.example.istant;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.webkit.WebViewClient;
 
 public class GdprActivity extends AppCompatActivity {
 
+    // GUI
     private WebView view;
     private AlertDialog.Builder builder;
 
@@ -60,8 +60,8 @@ public class GdprActivity extends AppCompatActivity {
         }
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent myIntent = new Intent(getApplicationContext(), RegistrationActivity.class);
         startActivity(myIntent);
@@ -69,8 +69,7 @@ public class GdprActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Intent i=new Intent(GdprActivity.this,RegistrationActivity.class);
         startActivity(i);
         finish();

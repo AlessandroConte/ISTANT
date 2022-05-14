@@ -33,24 +33,26 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ *  This activity allows the logged user to create a new child
+ */
 public class CreateNewChildActivity extends AppCompatActivity {
 
-    private Calendar dateBorn = Calendar.getInstance();
-
-    private AlertDialog.Builder builder;
-
-    // Retrieveing all of the fields of the gui in order to enable and disable the edit options
+    // GUI
     private EditText tv_name;
     private EditText tv_surname;
     private TextView tv_gender;
     private EditText dateB;
     private RadioButton rb_sex_m;
     private RadioButton rb_sex_f;
-
-    // button used to modify / save the user information
+    private AlertDialog.Builder builder;
     private Button btnCreate;
 
+    // other
     private int gender;
+    private Calendar dateBorn = Calendar.getInstance();
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,9 +169,8 @@ public class CreateNewChildActivity extends AppCompatActivity {
                 });
     }
 
-    // CHILD - write
-    public static void childWrite(List<String> allergy, Calendar dateBorn, int gender,
-                                  String info, String name, String surname, String parent, FirebaseFirestore db) {
+    // This method implements the writing of the new child in the DB
+    public static void childWrite(List<String> allergy, Calendar dateBorn, int gender, String info, String name, String surname, String parent, FirebaseFirestore db) {
 
         Map<String, Object> child = new HashMap<>();
         Date born = dateBorn.getTime();
@@ -198,14 +199,8 @@ public class CreateNewChildActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+        // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -215,13 +210,14 @@ public class CreateNewChildActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // This method sets the born date of the created child
     private void updateLabelStart(){
         String myFormat="dd-MM-yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
         dateB.setText(dateFormat.format(dateBorn.getTime()));
     }
 
-    // Function that checks if there is internet connection
+    // Method that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);

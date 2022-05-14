@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * entity 'activity' of the database
+ * Entity 'activity' of the database
  */
 public class Activity implements Parcelable {
     private String id;
@@ -19,8 +19,7 @@ public class Activity implements Parcelable {
     private List<String> personInCharge;
     private String photoEvent;
 
-    // constructor
-
+    // CONSTRUCTORS
     public Activity () {}
 
     public Activity(String id, String nameActivity, String address, Timestamp dateStart, Timestamp dateEnd, String description, List<String> personInCharge, String photoEvent) {
@@ -36,24 +35,19 @@ public class Activity implements Parcelable {
 
     public Activity(Parcel parcel) {
         this.id = parcel.readString();
-        // this.nameActivity = parcel.readString();
         this.address = parcel.readString();
         this.description = parcel.readString();
         this.personInCharge = parcel.createStringArrayList();
         this.photoEvent = parcel.readString();
     }
 
-    // getter and setter
+    // GETTERS AND SETTERS
     public String getId() {
         return id;
     }
 
     public String getNameActivity() {
         return nameActivity;
-    }
-
-    public void setNameActivity(String nameActivity) {
-        this.nameActivity = nameActivity;
     }
 
     public String getAddress() {
@@ -84,35 +78,12 @@ public class Activity implements Parcelable {
         return personInCharge;
     }
 
-    public void setPersonInCharge(List<String> personInCharge) {
-        this.personInCharge = personInCharge;
-    }
-
     public String getPhotoEvent() {
         return photoEvent;
     }
 
-    public void setPhotoEvent(String photoEvent) {
-        this.photoEvent = photoEvent;
-    }
 
-    // methods
-    /**
-     * activitiesUser returns all the activities where the user is engaged
-     * @param idUser String
-     * @param la  List<Activity>
-     * @return ArrayList<Activity>
-     */
-    public static ArrayList<Activity> activitiesUser(String idUser, List<Activity> la) {
-        ArrayList<Activity> result = new ArrayList<>();
-        for (Activity a: la) {
-            if (a.getPersonInCharge().contains(idUser)) {
-                result.add(a);
-            }
-        }
-        return result;
-    }
-
+    // methods used to implement the Parcelable interface
     @Override
     public int describeContents() {
         return 0;
@@ -121,7 +92,6 @@ public class Activity implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
-        // parcel.writeString(nameActivity);
         parcel.writeString(address);
         parcel.writeString(description);
         parcel.writeStringList(personInCharge);

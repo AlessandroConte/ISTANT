@@ -31,15 +31,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ActivitiesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A simple {@link Fragment} subclass containing the list of the created activities
  */
 public class ActivitiesFragment extends Fragment{
 
-    private ListView activitieslistview;
+    // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+
+    // GUI
+    private ListView activitieslistview;
     private ArrayAdapter<Activity> adapter;
     private ArrayList<Activity> activityArrayList;
     private Button newActivity;
@@ -48,37 +49,16 @@ public class ActivitiesFragment extends Fragment{
     private Switch switchMyActivities;
     private SwipeRefreshLayout refreshLayout;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // other
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public ActivitiesFragment() {
-        // Required empty public constructor
-    }
+    // CONSTRUCTOR
+    public ActivitiesFragment() {}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_attivita.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ActivitiesFragment newInstance(String param1, String param2) {
-        ActivitiesFragment fragment = new ActivitiesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    // METHODS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,6 +158,8 @@ public class ActivitiesFragment extends Fragment{
         return rootView;
     }
 
+
+    // this method is used to display the created activities
     private void displayActivities () {
         db.collection("activity")
                 .orderBy("dateEnd", Query.Direction.ASCENDING)
@@ -209,6 +191,7 @@ public class ActivitiesFragment extends Fragment{
         });
     }
 
+    // this method is used to display the activities created by the logged user
     private void displayMyActivities () {
         db.collection("activity")
                 .get()
@@ -239,6 +222,7 @@ public class ActivitiesFragment extends Fragment{
         });
     }
 
+    // Adapter for the ListView
     private class ActivityAdapter extends ArrayAdapter<Activity> {
         ArrayList<Activity> activities;
 

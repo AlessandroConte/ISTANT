@@ -44,29 +44,32 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-
+/**
+ *  This activity allows the logged user to create a new activity
+ */
 public class CreateNewActivitiesActivity extends AppCompatActivity {
 
-    private AlertDialog.Builder builder;
 
+    // Firebase
+    private StorageReference storageReference;
+    private FirebaseAuth auth;
+
+    // GUI
     private ImageView actImage;
     private EditText name;
     private EditText description;
     private EditText sdate;
     private EditText fdate;
     private EditText address;
-
     private Button btn;
+    private AlertDialog.Builder builder;
 
+    // other
     private Calendar dateStart = Calendar.getInstance();
     private Calendar dateEnd = Calendar.getInstance();
     private Uri actUri;
     private String actUrl;
-    private StorageReference storageReference;
-    private FirebaseAuth auth;
-
     private String default_id;
-
     private String piedibus;
     private String allnuoto;
     private String allcalc;
@@ -75,6 +78,7 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
     private String personal;
 
 
+    // METHODS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +128,6 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key");
-            //The key argument here must match that used in the other activity
             default_id = value;
         }
 
@@ -262,6 +265,7 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
         }
     }
 
+    // The following methods allow the user to choose the activity picture from the gallery
     private void choosePicture() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -299,8 +303,8 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
         });
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -310,9 +314,8 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void actWrite(String nameActivity, String address,
-                                Calendar dateStart, Calendar dateEnd, String description,
-                                List<String> personInCharge, String photoEvent, FirebaseFirestore db) {
+    // This method implements the writing of the new activity in the DB
+    public static void actWrite(String nameActivity, String address, Calendar dateStart, Calendar dateEnd, String description, List<String> personInCharge, String photoEvent, FirebaseFirestore db) {
         Map<String, Object> activity = new HashMap<>();
         Date startEvent = dateStart.getTime();
         Date endEvent = dateEnd.getTime();
@@ -342,19 +345,21 @@ public class CreateNewActivitiesActivity extends AppCompatActivity {
                 });
     }
 
+    // This method sets the start date of the activity
     private void updateLabelStart(){
         String myFormat="dd-MM-yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
         sdate.setText(dateFormat.format(dateStart.getTime()));
     }
 
+    // This method sets the end date of the activity
     private void updateLabelEnd(){
         String myFormat="dd-MM-yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
         fdate.setText(dateFormat.format(dateEnd.getTime()));
     }
 
-    // Function that checks if there is internet connection
+    // Method that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);

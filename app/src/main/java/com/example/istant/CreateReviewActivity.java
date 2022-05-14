@@ -23,22 +23,28 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *  Thia activity allows the logged user to create a new review for an activity
+ */
 public class CreateReviewActivity extends AppCompatActivity {
 
+    // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private Activity activity;
 
+    // GUI
     private RatingBar ratingBar;
     private EditText textInputEditText;
     private Button createReview;
+    private AlertDialog.Builder builder;
 
+    // other
     private String activityId;
     private float score;
     private String comment;
 
-    private AlertDialog.Builder builder;
-
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +106,8 @@ public class CreateReviewActivity extends AppCompatActivity {
         });
     }
 
-    public static void scoreActivityUserWrite(float score, String comment,
-                                              String idActivity, String uid, FirebaseFirestore db) {
+    // This method implements the writing of the new review in the db
+    public static void scoreActivityUserWrite(float score, String comment, String idActivity, String uid, FirebaseFirestore db) {
         Map<String, Object> scoreActivityUser = new HashMap<>();
 
         scoreActivityUser.put("score", score);

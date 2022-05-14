@@ -2,7 +2,6 @@ package com.example.istant;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,9 +10,15 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 
+/**
+ *  This activity allows the user to create a new child
+ */
 public class NewChildActivity extends AppCompatActivity {
 
+    // GUI
     private AlertDialog.Builder builder;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,6 @@ public class NewChildActivity extends AppCompatActivity {
             }
 
     }
-
 
     // Function that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){

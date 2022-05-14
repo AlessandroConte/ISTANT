@@ -3,7 +3,6 @@ package com.example.istant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,11 +21,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
-    EditText userPassword, userConfirmPassword;
-    Button savePasswordBtn;
-    FirebaseUser user;
+    // Firebase
+    private FirebaseUser user;
 
+    // GUI
+    private EditText userPassword, userConfirmPassword;
+    private Button savePasswordBtn;
     private AlertDialog.Builder builder;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

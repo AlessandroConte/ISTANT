@@ -7,7 +7,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,16 +26,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
-    AlertDialog.Builder reset_alert;
-    LayoutInflater inflater;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    // Firebase
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
-    // Alert dialog
+    // GUI
+    private AlertDialog.Builder reset_alert;
+    private LayoutInflater inflater;
     private AlertDialog.Builder builder;
-    private AlertDialog.Builder builder2;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,42 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottombar);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        //NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.fragment_groupinfo, R.id.fragment_loans, R.id.fragment_search, R.id.fragment_activities, R.id.fragment_user).build();
-        // on the line above I need to add the references to the different fragments
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         reset_alert = new AlertDialog.Builder(this);
         inflater = this.getLayoutInflater();
-
-        /*
-        // Alert dialog that prompts the user to view the guide page
-        if ( ((JustLoggedIn) this.getApplication()).getJustLogged() == true ) {
-            builder = new AlertDialog.Builder(this);
-            builder.setMessage(getString(R.string.mainactivity_guidealert_title))
-                    .setCancelable(false)
-                    .setPositiveButton(getString(R.string.mainactivity_guidealert_positivebutton), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            startActivity(new Intent(getApplicationContext(), GuideActivity.class));
-                        }
-                    })
-                    .setNegativeButton(getString(R.string.mainactivity_guidealert_negativebutton), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
-                            }
-                    );
-            builder.show();
-        }
-         */
     }
 
-    // Function that creates the menu in the upper right corner of the screen
+    // Method that creates the menu in the upper right corner of the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -111,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Function that manages what is done when you open the options menu and click on one of the items
+    // Method that manages what is done when you open the options menu and click on one of the items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -173,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName,
-                                              String idDocument) {
+    // This method implements the deleting of a given document from the db
+    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName, String idDocument) {
         db.collection(collectionName).document(idDocument).delete();
     }
 

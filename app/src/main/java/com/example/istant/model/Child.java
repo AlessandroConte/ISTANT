@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * entity 'child' of the database
+ *  Entity 'child' of the database
  */
 public class Child {
     private String id;
@@ -17,11 +17,11 @@ public class Child {
     private String surname;
     private String parent;
 
+
+    // CONSTRUCTORS
     public Child(){};
 
-    // constructor
-    public Child(String id, List<String> allergy, Timestamp dateBorn, int gender,
-                 String info, String name, String surname, String parent) {
+    public Child(String id, List<String> allergy, Timestamp dateBorn, int gender, String info, String name, String surname, String parent) {
         this.id = id;
         this.allergy = allergy;
         this.dateBorn = dateBorn;
@@ -32,17 +32,10 @@ public class Child {
         this.parent = parent;
     }
 
-    // getter and setter
+
+    // GETTERS AND SETTERS
     public String getId() {
         return id;
-    }
-
-    public List<String> getAllergy() {
-        return allergy;
-    }
-
-    public void setAllergy(List<String> allergy) {
-        this.allergy = allergy;
     }
 
     public Timestamp getDateBorn() {
@@ -85,35 +78,4 @@ public class Child {
         return parent;
     }
 
-    // methods
-    /**
-     * childUser returns all the children managed by the user
-     * @param idUser String
-     * @param lc List<Child>
-     * @return ArrayList<Child>
-     */
-    public static ArrayList<Child> childUser(String idUser, List<Child> lc) {
-        ArrayList<Child> result = new ArrayList<>();
-        for (Child c: lc) {
-            if (c.getParent().equals(idUser)) {
-                result.add(c);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * getChild returns the Child's object given its id
-     * @param idChild String
-     * @param lc List<Child>
-     * @return Child
-     */
-    public static Child getChild(String idChild, List<Child> lc) {
-        for (Child c: lc) {
-            if (c.getId().equals(idChild)) {
-                return c;
-            }
-        }
-        return null;
-    }
 }

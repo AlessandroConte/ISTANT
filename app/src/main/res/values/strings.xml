@@ -170,7 +170,7 @@
     <string name="activitysettingsmanagechildren_managechildren">Gestisci i tuoi figli</string>
 
     <!-- activity_visualizeactivities.java -->
-    <string name="activityvisualizeactivities_actionbarname">Scheda della attività</string>
+    <string name="activityvisualizeactivities_actionbarname">Scheda dell\'attività</string>
     <string name="activityvisualizeactivities_eliminazioneconsuccesso">Eliminazione avvenuta con successo</string>
     <string name="activityvisualizeactivities_oraseiunorganizzatore">Ora sei un organizzatore!</string>
 
@@ -232,7 +232,7 @@
     <string name="registrationactivity_passwordrequired">La password è richiesta</string>
     <string name="registrationactivity_samepasswordsrequired">Le password devono essere uguali</string>
     <string name="registrationactivity_datacorrect">I dati inseriti sono corretti</string>
-    <string name="registrationactivity_imageuploading">Uploading della immagine..</string>
+    <string name="registrationactivity_imageuploading">Uploading dell\'immagine..</string>
     <string name="registrationactivity_uploaderror">Errore nel caricamento</string>
     <string name="registrationactivity_imageuploaded">Immagine caricata!</string>
     <string name="registrationactivity_uploadfailed">Caricamento fallito!</string>

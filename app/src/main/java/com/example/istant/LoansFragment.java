@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,15 +34,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoansFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A simple {@link Fragment} subclass containing the list of the created loans
  */
 public class LoansFragment extends Fragment {
 
-    private ListView loanslistview;
+    // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+
+    // GUI
+    private ListView loanslistview;
     private ArrayAdapter<Loan> adapter;
     private Button newLoan;
     private ArrayList<Loan> loanArrayList;
@@ -52,38 +52,17 @@ public class LoansFragment extends Fragment {
     private Switch switchMyLoan;
     private SwipeRefreshLayout refreshLayout;
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // other
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public LoansFragment() {
-        // Required empty public constructor
-    }
+    // CONSTRUCTOR
+    public LoansFragment() {}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_prestiti.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LoansFragment newInstance(String param1, String param2) {
-        LoansFragment fragment = new LoansFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
+    // METHODS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,6 +164,7 @@ public class LoansFragment extends Fragment {
         return rootView;
     }
 
+    // This method is used to display all the created loans
     private void displayLoans() {
         db.collection("loan")
                 .orderBy("dateEnd", Query.Direction.ASCENDING)
@@ -218,6 +198,7 @@ public class LoansFragment extends Fragment {
         });
     }
 
+    // This method is used to display all the loans taken by the logged user
     private void displayUserLoans () {
         db.collection("loan")
                 .whereEqualTo("takenUser", auth.getCurrentUser().getUid())
@@ -251,6 +232,7 @@ public class LoansFragment extends Fragment {
                 });
     }
 
+    // Adapter for the ListView
     private class LoanAdapter extends ArrayAdapter<Loan> {
         ArrayList<Loan> loans;
 
