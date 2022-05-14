@@ -32,30 +32,32 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *  This activity allow the user to visualize the info of a created activity
+ */
 public class VisualizeActivitiesActivity extends AppCompatActivity {
 
-    // Firebase variables
+    // Firebase
     private DocumentReference documentReference;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
-    // Retrieving all of the fields of the gui in order to enable and disable the edit options
+    // GUI
     private EditText activity_address;
     private EditText activity_dateStart;
     private EditText activity_dateEnd;
     private EditText activity_description;
     private ImageView activity_image;
-    private List<String> personInCharge;
-
+    private AlertDialog.Builder builder;
     private Button button_review;
     private Button button_participate;
     private Button button_delete;
 
-    // variable needed to retrieve the intent
+    // other
     private Activity activity;
+    private List<String> personInCharge;
 
-    private AlertDialog.Builder builder;
-
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,12 +198,8 @@ public class VisualizeActivitiesActivity extends AppCompatActivity {
         }
     }
 
-    private void deleteActivity(FirebaseFirestore db, String collection, String idDocument) {
-        db.collection(collection).document(idDocument).delete();
-    }
-
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(VisualizeActivitiesActivity.this, MainActivity.class);
         startActivity(intent);
@@ -217,6 +215,12 @@ public class VisualizeActivitiesActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    // This method implements the deleting of an activity from the db
+    private void deleteActivity(FirebaseFirestore db, String collection, String idDocument) {
+        db.collection(collection).document(idDocument).delete();
+    }
+
+    // This method implements the updating of the field of a document in the db
     public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,
                                                String idDocument, String nameField, T value) {
         db.collection(collectionName).document(idDocument)
@@ -235,7 +239,7 @@ public class VisualizeActivitiesActivity extends AppCompatActivity {
                 });
     }
 
-    // Function that checks if there is internet connection
+    // Method that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);

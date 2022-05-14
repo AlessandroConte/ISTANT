@@ -50,36 +50,39 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ *  This activity allows the user to visualize the info of a created loan
+ */
 public class VisualizeLoansActivity extends AppCompatActivity {
 
-    private AlertDialog.Builder builder;
-
+    // Firebase
     private FirebaseFirestore db;
     private StorageReference storageReference;
     private DocumentReference documentReference;
     private FirebaseAuth auth;
 
+    // GUI
     private ImageView image_loan;
     private EditText loan_description;
     private EditText loan_name;
     private EditText loan_startDate;
     private EditText loan_endDate;
-
     private Button button_modify;
     private Button button_partecipate;
     private Button button_delete;
+    private AlertDialog.Builder builder;
 
+    // other
     private boolean free = false;
     private boolean editable;
-
-    // variable needed to retrieve the intent
     private Loan loan;
-
     private Uri imageUri;
     private String name;
     private String description;
     private Calendar dateStart;
     private Calendar dateEnd;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -370,18 +373,21 @@ public class VisualizeLoansActivity extends AppCompatActivity {
         }
     }
 
+    // This method sets the start date of the activity
     private void updateLabelEnd() {
         String myFormat = "dd-MM-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ITALY);
         loan_endDate.setText(dateFormat.format(dateEnd.getTime()));
     }
 
+    // This method sets the end date of the activity
     private void updateLabelStart() {
         String myFormat = "dd-MM-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ITALY);
         loan_startDate.setText(dateFormat.format(dateStart.getTime()));
     }
 
+    // The following methods allow the user to choose the activity picture from the gallery
     private void choosePicture() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -447,9 +453,8 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                 });
     }
 
-
-    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName,
-                                               String idDocument, String nameField, T value) {
+    // This method implements the updating of the field of a document in the db
+    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName, String idDocument, String nameField, T value) {
         db.collection(collectionName).document(idDocument)
                 .update(nameField, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>(){
@@ -466,13 +471,13 @@ public class VisualizeLoansActivity extends AppCompatActivity {
                 });
     }
 
-    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName,
-                                              String idDocument) {
+    // This method implements the deleting of a document in the db
+    public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName, String idDocument) {
         db.collection(collectionName).document(idDocument).delete();
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -482,7 +487,7 @@ public class VisualizeLoansActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Function that checks if there is internet connection
+    // Method that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);

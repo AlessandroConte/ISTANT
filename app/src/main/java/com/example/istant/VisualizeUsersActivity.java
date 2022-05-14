@@ -24,16 +24,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ *  This activity allows the user to visualize the info of the other users
+ */
 public class VisualizeUsersActivity extends AppCompatActivity {
 
-    // Variables needed to change the picture of the activity
-    private ImageView profilePic_visualizeuser;
+    // Firebase
     private DocumentReference documentReference;
     private FirebaseFirestore db;
 
-    // variable needed to retrieve the intent
-    private User user;
-
+    // GUI
     private TextView tv_name;
     private TextView tv_surname;
     private TextView tv_phonenumber;
@@ -43,9 +43,13 @@ public class VisualizeUsersActivity extends AppCompatActivity {
     private TextView tv_dateofbirth;
     private RadioButton rb_m;
     private RadioButton rb_f;
-
+    private ImageView profilePic_visualizeuser;
     private AlertDialog.Builder builder;
 
+    // other
+    private User user;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,8 +141,8 @@ public class VisualizeUsersActivity extends AppCompatActivity {
         }
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -148,7 +152,7 @@ public class VisualizeUsersActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Function that checks if there is internet connection
+    // Method that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);

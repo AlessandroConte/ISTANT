@@ -6,7 +6,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.istant.model.Child;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,17 +37,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ *  This activity allows the user to create or delete a child from the application
+ */
 public class SettingsManageChildrenActivity extends AppCompatActivity {
 
-    private ListView childrenlistview;
+    // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+
+    // GUI
+    private ListView childrenlistview;
     private ArrayAdapter<Child> adapter;
     private ArrayList<Child> children;
     private Button newChild;
     private SwipeRefreshLayout swipeRefreshLayout;
-
     private AlertDialog.Builder builder;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,8 +135,8 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
         });
     }
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(SettingsManageChildrenActivity.this, MainActivity.class);
         startActivity(intent);
@@ -147,6 +152,7 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    // This method is used to display the children of the logged user
     private void displayChildren () {
         db.collection("child")
                 .whereEqualTo("uid", auth.getCurrentUser().getUid())
@@ -174,10 +180,12 @@ public class SettingsManageChildrenActivity extends AppCompatActivity {
                 });
     }
 
+    // This method implements the deleting of a document in the db
     public static void deleteDatabaseDocument(FirebaseFirestore db, String collectionName, String idDocument) {
         db.collection(collectionName).document(idDocument).delete();
     }
 
+    // Adapter of the ListView
     private class ChildrenAdapter extends ArrayAdapter<Child> {
         ArrayList<Child> children;
 

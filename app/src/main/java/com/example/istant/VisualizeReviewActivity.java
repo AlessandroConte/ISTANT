@@ -6,7 +6,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +22,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.istant.model.Activity;
 import com.example.istant.model.ScoreActivityUser;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,23 +32,31 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
+/**
+ *  This activity allows the user to visualize the reviews of a created activity
+ */
 public class VisualizeReviewActivity extends AppCompatActivity {
 
-    private AlertDialog.Builder builder;
+    // Firebase
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
 
+    // GUI
     private ListView reviewlistview;
     private TextView score;
-    private FirebaseFirestore db;
     private ArrayAdapter<ScoreActivityUser> adapter;
     private ArrayList<ScoreActivityUser> review;
-    private FirebaseAuth auth;
     private SwipeRefreshLayout refreshLayout;
+    private AlertDialog.Builder builder;
 
+    // other
     private String idActivity;
     private Activity activity;
     private Button newReview;
     private Button deleteReview;
     private String idDelete;
+
+    // METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,10 +145,6 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         });
     }
 
-    public static void deleteComment(FirebaseFirestore db, String collectionName, String idDocument) {
-        db.collection(collectionName).document(idDocument).delete();
-    }
-
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent myIntent = new Intent(getApplicationContext(), VisualizeActivitiesActivity.class);
         myIntent.putExtra("activity", activity);
@@ -160,6 +162,12 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    // This method implements the deleting of a review from the db
+    public static void deleteComment(FirebaseFirestore db, String collectionName, String idDocument) {
+        db.collection(collectionName).document(idDocument).delete();
+    }
+
+    // This method allows the user to visualize the mean score of the selected activity
     public void visualizeScore () {
         db.collection("scoreActivityUser")
                 .whereEqualTo("activityid", idActivity)
@@ -197,6 +205,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                 });
     }
 
+    // This method allows the user to visualize all the reviews of the selected activity
     public void visualizeReviews () {
         db.collection("scoreActivityUser")
                 .whereEqualTo("activityid", idActivity)
@@ -232,6 +241,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
                 });
     }
 
+    // Adapter of the ListView
     private class ReviewAdapter extends ArrayAdapter<ScoreActivityUser> {
         ArrayList<ScoreActivityUser> review;
 
@@ -259,7 +269,7 @@ public class VisualizeReviewActivity extends AppCompatActivity {
         }
     }
 
-    // Function that checks if there is internet connection
+    // Method that checks if there is internet connection
     private boolean isConnectingToInternet(Context applicationContext){
         ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);

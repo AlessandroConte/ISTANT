@@ -41,39 +41,18 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A simple {@link Fragment} subclass containing all the info oh the logged user
  */
 public class UserFragment extends Fragment {
 
-    // variable needed to make the fields editable.
-    private boolean flag;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // Variables needed to change the picture of the activity
-    private ImageView profilePic_userfragment;
-    private Uri imageUri;
-    private String photoURL;
+    // Firebase
     private StorageReference storageReference;
     private DocumentReference documentReference;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
-    // variables needed to retrieve the fields of the EditText
-    private String name;
-    private String surname;
-    private String phoneNumber;
-    private String fiscalCode;
-    private String address;
-    private String email;
-
-
-    // Retrieveing all of the fields of the gui in order to enable and disable the edit options
+    // GUI
+    private ImageView profilePic_userfragment;
     private TextView tv_name;
     private TextView tv_surname;
     private TextView tv_phonenumber;
@@ -83,37 +62,28 @@ public class UserFragment extends Fragment {
     private TextView tv_dateofbirth;
     private RadioButton rb_sex_m;
     private RadioButton rb_sex_f;
-
-    // button used to modify / save the user information
     private Button btnModify;
     private Button btnManageChildren;
 
-
-    // TODO: Rename and change types of parameters
+    // other
+    private Uri imageUri;
+    private String photoURL;
+    private String name;
+    private String surname;
+    private String phoneNumber;
+    private String fiscalCode;
+    private String address;
+    private String email;
     private String mParam1;
     private String mParam2;
+    private boolean flag;
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    public UserFragment() {
-        // Required empty public constructor
-    }
+    // CONSTRUCTOR
+    public UserFragment() {}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserFragment newInstance(String param1, String param2) {
-        UserFragment fragment = new UserFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    // METHODS
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -328,8 +298,8 @@ public class UserFragment extends Fragment {
     }
 
 
-    // This function allows the back button located in the actionbar to make me return to the activity/fragment I was
-    // visualizing before going in the settings activity
+    // This method allows the back button located in the actionbar to make me return to the activity/fragment I was
+    // visualizing before going in this activity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -339,7 +309,6 @@ public class UserFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    // The following functions are called when the user clicks the button for changing the image picture
 
     // These functions open the gallery and allow the user to select his profile picture
     private void choosePicture() {
