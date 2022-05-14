@@ -172,4 +172,7 @@
     <string name="createreview_hint">Review</string>
     <string name="createreview_send">Send</string>
     <string name="registrazionactivity_photorequired">Profile picture required</string>
+    <string name="resetPasswordActivity">Insert the new password</string>
+    <string name="resetPasswordActivity_reset">Insert the password again</string>
+    <string name="resetPasswordActivity_btn">Save</string>
 </resources>

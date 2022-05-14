@@ -219,7 +219,8 @@
     <string name="mainactivity_deleteaccountalert_positivebutton" translatable="false">OK</string>
     <string name="mainactivity_accountdeleted">Account eliminato!</string>
     <string name="mainactivity_deleteaccountalert_negativebutton" translatable="false">Cancel</string>
-    <string name="mainactivity_logoutalert">Vuoi sloggarti?</string>
+    <string name="mainactivity_logoutalert">Vuoi uscire dall\'applicazione?
+    </string>
     <string name="mainactivity_logoutalert_message">Sei sicuro?</string>
     <string name="mainactivity_logoutalert_positivebutton" translatable="false">OK</string>
     <string name="mainactivity_logoutalert_negativebutton" translatable="false">Cancel</string>
@@ -264,5 +265,10 @@
     <string name="fragmentuser_imageuploadedcorrectly">Immagine caricata.</string>
     <string name="fragmentuser_percentage">Percentuale</string>
     <string name="createNewActivity_textview_personInCharge">Responsabile</string>
+
+    <!-- resetPasswordActivity.java -->
+    <string name="resetPasswordActivity">Inserisci la nuova password</string>
+    <string name="resetPasswordActivity_reset">Reinserisci la password</string>
+    <string name="resetPasswordActivity_btn">Salva</string>
 
 </resources>
