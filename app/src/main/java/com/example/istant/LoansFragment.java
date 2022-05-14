@@ -183,7 +183,7 @@ public class LoansFragment extends Fragment {
                     String takenUser = document.get("takenUser").toString();
                     String uid = document.get("uid").toString();
 
-                    if (dateEnd.toDate().after(new Date())) {
+                    if (dateEnd.toDate().equals(new Date()) || dateEnd.toDate().after(new Date())) {
                         Loan loan = new Loan(id, dateStart, dateEnd, photoLoan, description, nameLoan, isTaken, takenUser, uid);
                         loanArrayList.add(loan);
                     }

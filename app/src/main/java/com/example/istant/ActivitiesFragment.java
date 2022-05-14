@@ -208,7 +208,7 @@ public class ActivitiesFragment extends Fragment{
                     List<String> personInCharge = (List<String>) document.get("personInCharge");
                     String photo = document.get("photoEvent").toString();
 
-                    if (dateEnd.toDate().after(new Date()) && personInCharge.contains(auth.getCurrentUser().getUid())) {
+                    if ((dateEnd.toDate().equals(new Date())||dateEnd.toDate().after(new Date())) && personInCharge.contains(auth.getCurrentUser().getUid())) {
                         Activity activity = new Activity(id, name, address, dateStart, dateEnd, description, personInCharge, photo);
                         activityArrayList.add(activity);
                     }

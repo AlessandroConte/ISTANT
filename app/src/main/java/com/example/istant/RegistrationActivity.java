@@ -78,6 +78,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private String email;
     private String pass;
     private String confpass;
+    private Boolean insert = false;
 
     // METHODS
 
@@ -237,10 +238,10 @@ public class RegistrationActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onSuccess(AuthResult authResult) {
                                                                 id = fAuth.getCurrentUser().getUid();
-
                                                                 userWrite(id, indirizzo, dataNascita, email, CF, sesso, "", nome, cognome, numeroTelefono, db);
-                                                                uploadPicture();
-
+                                                                if (insert) {
+                                                                    uploadPicture();
+                                                                }
                                                                 Toast.makeText(RegistrationActivity.this, getString(R.string.registrationactivity_datacorrect), Toast.LENGTH_SHORT).show();
                                                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                                 startActivity(intent);
@@ -298,6 +299,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         assert data != null;
                         imageUri = data.getData();
                         regPic.setImageURI(imageUri);
+                        insert = true;
                     }
                 }
             });
@@ -312,7 +314,6 @@ public class RegistrationActivity extends AppCompatActivity {
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Log.d("UPDATE DELLA FOTO", "update completato!");
                                 updateDatabaseField(db,"user", id,"photoURL", uri.toString());
                             }
                         })

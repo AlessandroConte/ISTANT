@@ -65,7 +65,8 @@ public class CreateNewLoanActivity extends AppCompatActivity {
     private Calendar dateEnd = Calendar.getInstance();
     private Uri loanUri;
     private String loanUrl;
-
+    private Boolean insert = false;
+    private String id;
 
     // METHODS
 
@@ -176,7 +177,11 @@ public class CreateNewLoanActivity extends AppCompatActivity {
                                     dateEnd.setTime(dateFormat.parse(fdate.getText().toString()));
 
                                     if (dateStart.compareTo(dateEnd) <= 0) {
-                                        loanWrite(dateStart, dateEnd, textDescr, textName, loanUrl, 0, "", FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+                                        id = SupportFunctions.generateRandomString();
+                                        loanWrite(id, dateStart, dateEnd, textDescr, textName, "", 0, "", FirebaseAuth.getInstance().getUid(), FirebaseFirestore.getInstance());
+                                        if (insert) {
+                                            uploadPicture();
+                                        }
                                         Toast.makeText(CreateNewLoanActivity.this,getString(R.string.activitycreatenewloan_addedloansuccessfully),Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(CreateNewLoanActivity.this, MainActivity.class);
                                         startActivity(intent);
@@ -222,7 +227,7 @@ public class CreateNewLoanActivity extends AppCompatActivity {
                         assert data != null;
                         loanUri = data.getData();
                         loanImage.setImageURI(loanUri);
-                        uploadPicture();
+                        insert = true;
                     }
                 }
             });
@@ -235,7 +240,7 @@ public class CreateNewLoanActivity extends AppCompatActivity {
                 ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        loanUrl = uri.toString();
+                        updateDatabaseField(FirebaseFirestore.getInstance(), "loan", id, "photoLoan", uri.toString());
                     }
                 });
             }
@@ -254,7 +259,7 @@ public class CreateNewLoanActivity extends AppCompatActivity {
     }
 
     // This method implements the writing of the created loan in the db
-    public static void loanWrite(Calendar dateStart, Calendar dateEnd, String description, String nameLoan, String photoLoanObj, int isTaken, String takenUser, String uid, FirebaseFirestore db) {
+    public static void loanWrite(String id, Calendar dateStart, Calendar dateEnd, String description, String nameLoan, String photoLoanObj, int isTaken, String takenUser, String uid, FirebaseFirestore db) {
         Map<String, Object> loan = new HashMap<>();
         Date startLoan = dateStart.getTime();
         Date endLoan = dateEnd.getTime();
@@ -267,7 +272,6 @@ public class CreateNewLoanActivity extends AppCompatActivity {
         loan.put("uid", uid);
         loan.put("dateStart", new Timestamp(startLoan));
         loan.put("dateEnd", new Timestamp(endLoan));
-        String id = SupportFunctions.generateRandomString();
 
         db.collection("loan").document(id)
                 .set(loan)
@@ -281,6 +285,24 @@ public class CreateNewLoanActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }
+
+    // This method implements the updating of the field of the given document in the db
+    public static <T> void updateDatabaseField(FirebaseFirestore db, String collectionName, String idDocument, String nameField, T value) {
+        db.collection(collectionName).document(idDocument)
+                .update(nameField, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "Document updated added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error update document", e);
                     }
                 });
     }
